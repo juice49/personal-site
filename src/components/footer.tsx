@@ -20,18 +20,14 @@ const Footer: React.FC = () => (
           <p css={`font-variation-settings: 'wght' 700;`}>Etc.</p>
           <MetaList>
             <li>
-              <Link href='/about-this-site'>
-                <a>
-                  About this site
-                </a>
-              </Link>
+              <a href='#'>
+                <del>About this site</del>
+              </a>
             </li>
             <li>
-              <Link href='/design-system'>
-                <a>
-                  Design system
-                </a>
-              </Link>
+              <a href='#'>
+                <del>Design system</del>
+              </a>
             </li>
           </MetaList>
         </Stack>
