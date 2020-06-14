@@ -56,6 +56,16 @@ const Page: NextPage<Props> = ({ posts }) => (
               <Image
                 src='/img/me.jpg'
                 previewSrc={require('url-loader!../../public/img/me-preview.jpg').default}
+                srcSet={`
+                  /img/me@600x897.jpg 600w,
+                  /img/me@800x1196.jpg 800w,
+                  /img/me@1000x1494.jpg 1000w
+                `}
+                webpSrcSet={`
+                  /img/me@600x897.webp 600w,
+                  /img/me@800x1196.webp 800w,
+                  /img/me@1000x1494.webp 1000w
+                `}
                 alt='Me'
                 style={{
                   '--width': 2698,
