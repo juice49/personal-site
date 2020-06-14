@@ -46,7 +46,7 @@ const Image: React.FC<Props> = ({
           loading='lazy'
           onLoad={() => setHasLoaded(true)}
         />
-      </ImageContent>
+        </ImageContent>
     </ImageBox>
   )
 }
@@ -72,7 +72,6 @@ interface ImageContentProps {
 }
 
 const ImageContent = styled.img<ImageContentProps>`
-  display: block;
   position: absolute;
   left: 0;
   top: 0;
@@ -80,6 +79,7 @@ const ImageContent = styled.img<ImageContentProps>`
   transition-duration: var(--transition-duration, 500ms);
 
   &, img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
