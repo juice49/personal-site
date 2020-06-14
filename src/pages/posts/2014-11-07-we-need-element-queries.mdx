@@ -1,0 +1,17 @@
+export const meta = {
+  title: 'We need element queries',
+  description: 'Media queries are considered a cornerstone of responsive web development, but are they a hack?',
+  date: '2014-11-07',
+  tags: ['CSS', 'frontend', 'responsive web design', 'element queries'],
+  column: 'Rant'
+}
+
+Media queries are a really awful way to handle components. In fact, I consider them a hack. As soon as a media query is written, a component is only good for use in a single context. The component that we have put effort into creating in a modular fashion is not reusable at all.
+
+Without element queries, almost every media query we use to style a component depends on knowledge of layout and configuration outside of the component. Our breakpoints are explicitly defined with this knowledge, and when something outside of the component changes, it is fairly likely the component breakpoints will need to as well.
+
+This is one of many disheartening shortcomings in frontend web development that has lead me to write this post in haste. I should add links. I should be more constructive. For now, I am just venting.
+
+On a constructive note, the fact this is a concern is telling of how frontend development is advancing. We are still in the formative years of _responsive web design_ (and, more widely, huge shifts in the way we make websites). Despite my moaning, I have no doubt that in a matter of years these issues will be eased (and I, of course, will be frustrated with issues that haven't even crossed my mind yet).
+
+There are a lot of smart people thinking about these problems.

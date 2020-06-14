@@ -1,0 +1,86 @@
+export const meta = {
+  title: `A Simpler BEM Class Naming Convention?`,
+  description: 'BEM is a useful convention for structuring CSS, but can we make it less verbose?',
+  date: '2013-10-27',
+  tags: ['CSS', 'BEM', 'HTML', 'Stylus'],
+}
+
+I've been using BEM style architecture for my CSS for a little while now. I like it a lot, but I wanted to know whether it's possible to avoid the repetition that results from stacking up modifiers. My aim is to take something like:
+
+```html
+<div class='block__element block__element--modifier block__element--second-modifier'></div>
+```
+
+And shrink it down to this:
+
+```html
+<div class='block__element--modifier--second-modifier'></div>
+```
+
+Here's a practical example:
+
+```html
+<nav class='main-nav'>
+  <a class='main-nav__item' href='#'>Link</a>
+    <a class='main-nav__item main-nav__item--featured' href='#'>Link</a>
+    <a class='main-nav__item main-nav__item--featured main-nav__item--xmas' href='#'>Link</a>
+</nav>
+```
+
+This is a pretty straightforward example showing a block - `main-nav` with a single type of descendant - `item`. There are two modifiers, `featured`and `xmas`. You can see that in order to use modifiers, we must add extra classes - one for each modifier.
+
+If you're using many modifiers (of course, it's questionable whether you should be), class attributes can quickly become unwieldy. I wondered whether there was a better way, whether we could somehow concatenate all of our modifiers into a single class name. Yesterday I had a chance to investigate, and after a couple of attempts found a way. It results in markup that looks like this:
+
+```html
+<nav class='main-nav'>
+  <a class='main-nav__item' href='#'>Link</a>
+    <a class='main-nav__item--featured' href='#'>Link</a>
+    <a class='main-nav__item--featured--xmas' href='#'>Link</a>
+</nav>
+```
+
+*Mmm, minty fresh.*
+
+So how does the CSS look? I've used attribute selectors combined with the `@extend` mixin (Stylus is my preprocessor of choice). Complexity is shifted from my class attributes to my class definitions; but not too much so.
+
+```stylus
+/**
+ * Blocks and elements still use simple class names like usual.
+ */
+
+.main-nav
+  text-align center
+
+.main-nav__item
+  display block
+
+/**
+ * Modifiers are comprised of two class attribute selectors:
+ *
+ * 1. The base block or element class suffixed
+ *    with the modifier syntax (`--`).
+ *
+ * 2. The modifier name prefixed with the modifier syntax.
+ *
+ * Each modifier extends the block / element base class.
+ */
+
+// `featured` modifier
+[class*='main-nav__item--'][class*='--featured']
+  @extend .main-nav__item
+  font-weight bold
+
+// `xmas` modifier
+[class*='main-nav__item--'][class*='--xmas']
+  @extend .main-nav__item
+  background green
+  color red
+```
+
+You can see a demo on [CodePen](http://codepen.io/Ash/pen/vkpxE).
+
+This seems to work pretty well. The resulting CSS is not too complicated or bloated, and the HTML looks nice. I started to build out a project following this approach, but quickly changed my tactics and returned to stacking modifiers. I realised it felt wrong to me and kinda like an abuse of CSS rather than a stroke of ingenuity. I feel like all elements of the same type should share a class, and this approach breaks that.
+
+I also encountered some problems when I added JavaScript. Manipulating modifiers is harder because we can no longer simply add and remove classes; we must manipulate the class name itself. Theoretically it'd be possible to create a helper that interacts with classes defined in this way - manipulating the class string to find, add and remove modifiers - but we already know that DOM manipulation can poorly affect performance, without adding this complication.
+
+My conclusion is that pursuing this class name simplification isn't worth it. It's an unnecessary complication for little benefit other than occasionally cleaner looking (though possibly more confusing HTML). If you're using an HTML preprocessor such as Jade or HAML, perhaps a compilation step could interpolate the shortened class names into multiple classes. I think that'd be the most sensible way of achieving this.

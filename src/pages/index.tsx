@@ -1,0 +1,210 @@
+import { NextPage } from 'next'
+import Link from 'next/link'
+import { PostMeta } from '../types/post'
+import projects from '../data/projects'
+import misc from '../data/misc'
+import * as postApi from '../lib/post-api'
+import Layout from '../components/layout'
+import Box from '../components/box'
+import Text from '../components/text'
+import Stack from '../components/stack'
+import Heading from '../components/heading'
+import Image from '../components/image'
+import Button from '../components/button'
+import FeaturedSection, { FeaturedSectionHeading } from '../components/featured-section'
+import Articles, { Article } from '../components/articles'
+import ArticleList, { ArticleListItem } from '../components/article-list'
+
+import StandardGrid, {
+  StandardGridContent,
+  StandardGridContentSlightlyWide,
+  StandardGridMeta
+} from '../components/standard-grid'
+
+const recentWork = [
+  {
+    title: 'Implemented Incremental Static Regeneration for a Next.js site.'
+  },
+  {
+    title: 'Built a GraphQL API layer over an old and inconsistent REST-ish API.'
+  },
+  {
+    title: 'Built a CSS-in-JS helper library.'
+  },
+  {
+    title: 'Built a headless site builder with WordPress and Next.js.'
+  },
+  {
+    title: 'Setup Next.js preview mode with WordPress.'
+  },
+  {
+    title: 'Created a Connect 4 game in TypeScript and React.'
+  }
+]
+
+interface Props {
+  posts: PostMeta[]
+}
+
+const Page: NextPage<Props> = ({ posts }) => (
+  <Layout>
+    <Box>
+      <Stack gap={[10, 'vmin']}>
+        <div>
+          <Box
+            px={2}
+            mw={1}
+            css={`
+              position: relative;
+              z-index: 1;
+              margin-left: auto;
+              margin-right: auto;
+            `}
+          >
+            <Heading
+              as='p'
+              variant='alpha'
+              css={`
+                margin-bottom: -0.42em;
+              `}
+            >
+              The Web and Stuff.
+            </Heading>
+          </Box>
+          <StandardGrid>
+            <StandardGridContentSlightlyWide>
+              <Image
+                src='/img/me.jpg'
+                previewSrc={require('url-loader!../../public/img/me-preview.jpg').default}
+                alt='Me'
+                style={{
+                  '--width': 2698,
+                  '--height': 4032
+                }}
+              />
+            </StandardGridContentSlightlyWide>
+          </StandardGrid>
+        </div>
+        <StandardGrid>
+          <StandardGridContent>
+            <Stack gap={2}>
+              <Text as='p' weight='bold'>
+                I like to make things&mdash;usually with web technologies, and usually <em>for</em> the web.
+              </Text>
+              <p>At the moment I'm most interested in design systems and frontend development with components. I also do backend development with things like node.js, GraphQL, and PHP. Although there are parts of the stack I'm super nerdy about, I am most passionate about <em>making stuff</em>.</p>
+              <p>When I was a kid, I realised the web made it possible for almost anybody to publish content. I've been fascinated ever since. In the decade or so since then, I've not published very much&hellip; but I have made a lot of websites for other people.</p>
+            </Stack>
+          </StandardGridContent>
+          <StandardGridMeta position={2}>
+            <Text as='p' size='micro' variant='mono'>
+              Blah blah blah I make websites.
+            </Text>
+          </StandardGridMeta>
+        </StandardGrid>
+      </Stack>
+    </Box>
+    <Box mw={1} center>
+      <FeaturedSection>
+        <Stack gap={4}>
+          <Box as='header' px={4} pt={4}>
+            <FeaturedSectionHeading>
+              Blog posts
+            </FeaturedSectionHeading>
+          </Box>
+          <Box px={4}>
+            <Articles>
+              {posts.map(post => (
+                <Article
+                  key={post.slug}
+                  column={post.column ?? post?.tags?.[0]}
+                  date={post.date}
+                  title={post.title}
+                  description={post.description}
+                  link={{
+                    href: `/posts/${post.slug}`
+                  }}
+                />
+              ))}
+            </Articles>
+          </Box>
+          <Box px={4} pb={4}>
+            <Link href='/posts' passHref>
+              <Button as='a' variant='large'>
+                View more posts
+              </Button>
+            </Link>
+          </Box>
+        </Stack>
+      </FeaturedSection>
+    </Box>
+    <Box px={2}>
+      <Articles>
+        <ListBox>
+          <Heading as='h2'>
+            Projects
+          </Heading>
+          <ArticleList>
+            {projects.map(project => (
+              <ArticleListItem
+                key={project.slug}
+                heading={project.name}
+                description={project.description}
+                link={{
+                  href: `/projects/${project.slug}`
+                }}
+              />
+            ))}
+          </ArticleList>
+        </ListBox>
+        <ListBox>
+          <Heading as='h2'>
+            Misc
+          </Heading>
+          <ArticleList>
+            {misc.map(misc => (
+              <ArticleListItem
+                key={misc.slug}
+                heading={misc.name}
+                description={misc.description}
+                link={{
+                  href: `/projects/${misc.slug}`
+                }}
+              />
+            ))}
+          </ArticleList>
+        </ListBox>
+        <ListBox>
+          <Heading as='h2'>
+            Recent work
+          </Heading>
+          <ArticleList>
+            {Object.values(recentWork).map((item, index) => (
+              <ArticleListItem
+                key={index}
+                description={item.title}
+              />
+            ))}
+          </ArticleList>
+        </ListBox>
+      </Articles>
+    </Box>
+  </Layout>
+)
+
+export default Page
+
+const ListBox: React.FC = ({ children }) => (
+  <Stack gap={2}>
+    {children}
+  </Stack>
+)
+
+export async function getStaticProps () {
+  const posts = await postApi.getAll()
+
+  return {
+    props: {
+      posts: posts.slice(0, 6)
+    }
+  }
+}

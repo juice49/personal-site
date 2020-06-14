@@ -1,0 +1,30 @@
+export const meta = {
+  title: 'Check your HTML document outline',
+  description: 'Understanding exactly where and when to use the elements introduced in HTML5 can be tricky.',
+  date: '2015-08-12',
+  tags: ['HTML', 'semantics', 'document outlines'],
+  column: 'Semantic web'
+}
+
+<mark>First published: 20/11/12</mark>
+
+This is a cross-post of a [Coderwall protip](https://coderwall.com/p/fwybka/check-your-html-document-outline) I wrote in November 2012. I wanted to put it here for archival purposes.
+
+I still use an outlining tool all the time, but I now use the excellent and actively maintained [h5o bookmarklet](https://h5o.github.io).
+
+---
+
+Understanding exactly where and when to use the elements introduced in HTML5 can be tricky to begin with. I at first slapped them all over the place with little caution.
+
+> "This is semantic, right?"
+
+I read a fair few articles on how to use the veritable smorgasbord of shiny new HTML5 elements sensibly - but I was never sure I had understood completely.
+
+> "This is a section of the page with an article in it, I guess each column inside is a section of that article and that article's image is a section of the article, too, so best pop it in a section. Oh yeah, and the whole thing is a child of a main page section."
+Wrong. Page layout markup can get pretty damn complicated. It's unfortunate, but in order to create even the most mundane designs, it's often necessary to resort to a little extraneous markup and dubious element nesting. Yeah, it's possible to cut out a lot of the soup with some cleverly used :befores and :afters, but this won't take care of everything. If you're brandishing HTML5's 'semantic' elements in the same unwieldy fashion that I initially did, you're really just hitting your site with a big ol' stick of muddlement.
+
+This changed when I ran my markup through a tool to analyse the document outline. I use a handy [Chrome extension](https://chrome.google.com/webstore/detail/html5-outliner/afoibpobokebhgfnknfndkgemglggomo) to make this easy to do throughout the dev process. Just checking out the document outline of a site I'd recently built helped me to understand the whole concept a lot better than any of the articles I'd read previously.
+
+If you haven't before, I really recommend making sure that the markup you are writing is actually adhering to the structure of the content you are marking up. The Chrome HTML5 document outline extension is now used (somewhat) constantly throughout my frontend dev process. Go check out your document outlines now!
+
+(Disclaimer: 'document outline' is not an HTML5 thing, but I can't imagine many people who care about such things haven't started using 'HTMl5' yet. There is [more comprehensive documentation of the document outline](https://developer.mozilla.org/en-US/docs/Sections_and_Outlines_of_an_HTML5_document) created in both HTML4 and HTML5 available on MDN.)

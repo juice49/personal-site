@@ -1,0 +1,12 @@
+export const meta = {
+  title: 'Server-Side Analytics with Measurement Protocol',
+  description: `Using Google's Measurement Protocol to collect analytics data server-side.`,
+  date: '2014-07-24',
+  tags: ['Analytics'],
+}
+
+Google's _[Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/)_ is a new way of recording data to Analytics by making an HTTP request, rather than using the Analytics JS library. The ability to record events from the server is handy for tracking events that are not immediately reconcileable to a user's activity on the frontend.
+
+A good usecase for this is a customer completing a payment at an external payment gateway. We cannot necessarily rely on the user returning to the website after payment (triggering the JavaScript that registers a transaction with Analytics), meaning we will most likely miss out on tracking some transactions. A much more reliable approach is to log transactions upon the payment gateway's success ping (for example, a [Stripe event](https://stripe.com/docs/api#event_types) or [PayPal IPN](https://developer.paypal.com/webapps/developer/docs/classic/products/instant-payment-notification/)). As soon as a "hook" on our server is notified of this event, it is simply a matter of sending Analytics an HTTP request detailing the transaction.
+
+[Google Analytics Measurement Protocol](https://developers.google.com/analytics/devguides/collection/protocol/v1/)

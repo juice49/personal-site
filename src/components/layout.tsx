@@ -1,0 +1,79 @@
+import React from 'react'
+import Head from 'next/head'
+import styled from 'styled-components'
+import GlobalStyle from './global-style'
+import Header from '../components/header'
+import Footer from '../components/footer'
+import Box from './box'
+import Stack from './stack'
+
+const Layout: React.FC = ({ children }) => (
+  <>
+    <GlobalStyle />
+    <Head>
+      <style
+        type='text/css'
+        dangerouslySetInnerHTML={{
+          __html: `
+            /* @font-face {
+              font-family: 'PT Root UI';
+              font-display: swap;
+              src: url('/fonts/pt-root-ui-vf/fonts/pt-root-ui-vf.woff2') format('woff2');
+            } */
+            
+            @font-face {
+              font-family: 'Zangezi Sans';
+              font-weight: 700;
+              font-display: swap;
+              src: url('/fonts/zangezi-sans/ZangeziSans06TRIAL-Black.otf') format('opentype');
+            }
+
+            @font-face {
+              font-family: Arnold;
+              font-display: swap;
+              src: url('/fonts/arnold/ArnoldTestv03.otf') format('opentype');
+            }
+
+            @font-face {
+              font-family: Arnold;
+              font-style: italic;
+
+              font-display: swap;
+              src: url('/fonts/arnold/ArnoldItalicTestv03.otf') format('opentype');
+            }
+
+            @font-face {
+              font-family: Space Grotesk;
+              font-display: swap;
+              src: url('/fonts/space-grotesk-1.1.6/variable/SpaceGroteskVariable.ttf') format('truetype');
+            }
+          `
+        }}
+      />
+    </Head>
+    <DocumentOuter>
+      <DocumentInner>
+        <Box pb={[15, 'vmin']}>
+          <Stack gap={[15, 'vmin']}>
+            <Header />
+            {children}
+          </Stack>
+        </Box>
+      </DocumentInner>
+      <Footer />
+    </DocumentOuter>
+  </>
+)
+
+export default Layout
+
+const DocumentOuter = styled.div`
+  display: flex;
+  min-height: calc(100vh - var(--document-border-width));
+  flex-direction: column;
+`
+
+const DocumentInner = styled.div`
+  flex: 1;
+  background-color: var(--background-color);
+`

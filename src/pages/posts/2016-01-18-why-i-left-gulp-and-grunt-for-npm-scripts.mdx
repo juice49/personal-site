@@ -1,0 +1,19 @@
+export const meta = {
+  title: '"Why I Left Gulp and Grunt for npm Scripts"—Cory House',
+  description: 'Cory House provides many good reasons for using npm scripts instead of an alternative task runner such as Gulp.',
+  date: '2016-01-16',
+  tags: ['npm', 'Gulp'],
+  column: 'Gulp'
+}
+
+[Why I Left Gulp and Grunt for npm Scripts by Cory House](https://medium.com/@housecor/why-i-left-gulp-and-grunt-for-npm-scripts-3d6853dd22b8#.92bmkrbta)
+
+Cory House provides many good reasons for using npm scripts instead of an alternative task runner such as Gulp.
+
+This is an approach I have been leaning towards more and more lately, because I find it easier and faster to get started with npm scripts. CLIs are often documented as the canonical entry point for tools, and this makes them very easy to pick up immediately and use in an npm script.
+
+Gulp does have advantages. The fact its plugins provide a common interface to many tools, for example. But as Cory mentions, this introduces further dependencies and an extra layer between you and the tools you use. I have also found that that in general Gulp workflows occupy more lines than their npm counterparts, whose functionality is often obvious from a glance at a project's `package.json`.
+
+Cory isn't the first to write about this. Perhaps my first exposure to the abilities held by npm scripts was thanks to [Substack's](http://substack.net/task_automation_with_npm_run) [materials](https://gist.github.com/substack/8313379) published a couple of years ago.
+
+For me the main advantage of npm scripts is convenience. I also question the necessity of Gulp, which when I think about it feels a bit like using npm to install Bower. npm scripts are quite powerful, but seem to be commonly overlooked. Perhaps if their functionality was more widely understood, Gulp and friends would be less prominent.

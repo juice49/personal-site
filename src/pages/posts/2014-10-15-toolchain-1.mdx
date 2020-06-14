@@ -1,0 +1,95 @@
+export const meta = {
+  title: 'Toolchain #1',
+  description: 'Toolchain is a regular update about tools and techniques I have been playing around with.',
+  date: '2014-10-15',
+  tags: ['npm', 'React', 'JavaScript'],
+  column: 'Toolchain'
+}
+
+_Toolchain_ is a regular update about tools and techniques I have been playing around with; for the sake of my sanity as much as anything.
+
+## React
+
+I'd been eyeing Facebook's [React](http://facebook.github.io/react/) for some time, and recently tried it out. React prescribes that you place the markup for your views within your controller—known as a React component—in the form of functions that create DOM nodes. Kind of a weird proposition for me at first, but one that makes a lot of sense and I appreciate the benefits of (many of React's features are the result of implementing a _virtual DOM_, enabled by writing markup in this way). React supports an XHTML-like syntax called [JSX](http://facebook.github.io/react/docs/jsx-in-depth.html) that allows you to write your views in a more familiar way, and compiles to the aforementioned DOM functions.
+
+React is really worth checking out, especially at a time when web components are emerging as an important concept. I like React's take on web components, and they are more easily rendered on the server because they don't depend on the DOM, unlike the W3C implementation.
+
+<small><em>React is not an implementation of W3C web components, just a similar concept.</em></small>
+
+### React Router
+[React Router](https://github.com/rackt/react-router) is a handy React component that allows you to route to components.
+
+## Promises (with Bluebird)
+
+Flow control in JavaScript is a somewhat confusing topic, with various approaches often coexisting in a project's dependencies. Promises seem to be becoming a popular choice, with a place solidified in the ES6 spec (sadly the various promise implementations are yet another source of confusion). I've been using the [Bluebird](https://github.com/petkaantonov/bluebird) library.
+
+## Enums in JavaScript
+
+My previous experience with enums stretched as far as using them in MySQL databases to limit a column to a set of predefined values. For one reason or another, perhaps dabbling with [Apple's Swift language](https://developer.apple.com/library/ios/documentation/swift/conceptual/swift_programming_language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-XID_224), I recently became aware of further applications for the enum, and I began to spot problems that might benefit from its application.
+
+For example, I've experienced occasions where a piece of state is _almost_ binary. A client is not just `connected` or `disconnected`. It might be `connecting`.
+
+Without an enum, you might write something like this and assume the status is `connecting` if it is not `true` or `false`.
+
+```js
+var connected;
+
+if(typeof connected === 'undefined') {
+  // Connecting
+}
+
+if(connected) {
+  // Connected
+}
+
+if(!connected) {
+  // Disconnected
+}
+```
+
+This lacks clarity and is limited to three states. You could add strings that describe various states, but that means replicating strings in various places, and becoming susceptible to the kind of errors that using variables prevents (such as typos).
+
+With an enum-style construction:
+
+```js
+var states = {
+  'DISCONNECTED': 0,
+  'CONNECTING': 1,
+  'CONNECTED': 2
+};
+
+var connection = states.CONNECTING;
+
+if(connection === states.CONNECTING) {
+  // Connecting
+}
+
+if(connection === states.CONNECTED) {
+  // Connected
+}
+
+if(connection === states.DISCONNECTED) {
+  // Disconnected
+}
+```
+
+Clearer and less error prone.
+
+There are also benefits to having numeric values associated with state. For example, in the code above, we know that the client is not connected if `connection < states.CONNECTED`. David Strauß explores this on his [blog]( http://stravid.com/en/cleaner-javascript-code-with-enums/).
+
+## Partial application with function.prototype.bind()
+
+This is not new at all, but something I've been playing around with more widely recently. I will attempt to demonstrate with an example:
+
+```js
+function findPeople(name, hobbies) {}
+var findPeopleNamedBruce = findPeople.bind(undefined, 'bruce');
+```
+
+[Pascal Hartig explains it](http://passy.svbtle.com/partial-application-in-javascript-using-bind) better than I can.
+
+Partial application is a nice halfway step to currying, which requires an implementation on top of JavaScript. Next on my todo list to dabble with.
+
+## David dependency manager
+
+npm does a great job of dependency management, automatically fetching you the latest appropriate version of a dependency based on the semver range specified in your `package.json`. But I wanna know about new versions, even if they are breaking! [David](https://david-dm.org/) makes this easy; run it in the directory of your project and it'll report any dependencies that have updates beyond your semver range. _Also available as a badge, if you're into that kind of thing._
