@@ -20,12 +20,14 @@ const projects: Project[] = [
   {
     name: '⏳ Little Timer',
     slug: 'little-timer',
-    description: 'Tiny CLI based time tracking tool.'
+    description: 'Tiny CLI based time tracking tool.',
+    externalUrl: 'https://github.com/juice49/lt-cli'
   },
   {
     name: '🥪 Lipsumator',
     slug: 'lipsumator',
-    description: 'TypeScript library and Deno CLI for generating placeholder text.'
+    description: 'TypeScript library and Deno CLI for generating placeholder text.',
+    externalUrl: 'https://github.com/juice49/lipsumator-next'
   },
   {
     name: '🔴 Connect 4',
