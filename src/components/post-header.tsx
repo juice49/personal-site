@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { format } from 'date-fns'
 import Stack from './stack'
 import Tag from './tag'
+import Text from './text'
 import FeaturedSection from './featured-section'
 
 interface Props {
@@ -48,17 +49,19 @@ const Time: React.FC<DateProps> = ({ dateTime }) => {
   const date = new Date(dateTime)
 
   return (
-    <TimeContainer dateTime={dateTime}>
+    <Text
+      as='time'
+      dateTime={dateTime}
+      variant='mono'
+      size='micro'
+      css={`
+        color: var(--body-color-subtle);
+      `}
+    >
       {format(date, 'dd/MM/yyyy')}
-    </TimeContainer>
+    </Text>
   )
 }
-
-const TimeContainer = styled.time`
-  font-family: Arnold;
-  font-size: 0.55rem;
-  color: #5c5c5c;
-`
 
 const Heading = styled.p`
   font-family: 'Zangezi Sans';

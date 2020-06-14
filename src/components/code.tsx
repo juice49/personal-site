@@ -53,6 +53,7 @@ const Container = styled(Box)`
     tab-size: 2;
     font: inherit;
     font-family: Arnold;
+    font-family: 'JetBrains Mono';
   }
 
   /* .hljs-comment {

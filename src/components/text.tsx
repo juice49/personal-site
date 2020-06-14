@@ -19,7 +19,7 @@ const Text = styled.span`
 
   ${variants({
     mono: `
-      font-family: Arnold, SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+      font-family: 'JetBrains Mono', SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
     `
   })}
 `

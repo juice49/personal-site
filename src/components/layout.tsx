@@ -29,17 +29,9 @@ const Layout: React.FC = ({ children }) => (
             }
 
             @font-face {
-              font-family: Arnold;
+              font-family: 'JetBrains Mono';
               font-display: swap;
-              src: url('/fonts/arnold/ArnoldTestv03.otf') format('opentype');
-            }
-
-            @font-face {
-              font-family: Arnold;
-              font-style: italic;
-
-              font-display: swap;
-              src: url('/fonts/arnold/ArnoldItalicTestv03.otf') format('opentype');
+              src: url('/fonts/JetBrainsMono-1.0.3/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
             }
 
             @font-face {
