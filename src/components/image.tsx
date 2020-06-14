@@ -46,7 +46,7 @@ const Image: React.FC<Props> = ({
           loading='lazy'
           onLoad={() => setHasLoaded(true)}
         />
-        </ImageContent>
+      </ImageContent>
     </ImageBox>
   )
 }
