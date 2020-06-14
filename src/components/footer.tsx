@@ -41,8 +41,8 @@ const Footer: React.FC = () => (
           <p css={`font-variation-settings: 'wght' 700;`}>Networks and stuff:</p>
           <MetaList>
             <li>
-              <a href='mailto:hello@ash.gd'>
-                hello@ash.gd
+              <a href='mailto:ashley@juice49.com'>
+                ashley@juice49.com
               </a>
             </li>
             <li>
