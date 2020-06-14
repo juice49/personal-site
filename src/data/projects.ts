@@ -12,10 +12,9 @@ const projects: Project[] = [
     description: 'CSS-in-JS helper library.'
   },
   {
-    name: '📓 Frontend Guiding Principles',
-    slug: 'frontend-guiding-principles',
-    description: 'Handbook explaining my guiding principles for frontend web development.',
-    externalUrl: 'https://github.com/juice49/frontend-guiding-principles'
+    name: '🔴 Connect 4',
+    slug: 'connect-4',
+    description: 'Connect 4 game built with React and TypeScript.'
   },
   {
     name: '⏳ Little Timer',
@@ -30,9 +29,10 @@ const projects: Project[] = [
     externalUrl: 'https://github.com/juice49/lipsumator-next'
   },
   {
-    name: '🔴 Connect 4',
-    slug: 'connect-4',
-    description: 'Connect 4 game built with React and TypeScript.'
+    name: '📓 Frontend Guiding Principles',
+    slug: 'frontend-guiding-principles',
+    description: 'Handbook explaining my guiding principles for frontend web development.',
+    externalUrl: 'https://github.com/juice49/frontend-guiding-principles'
   }
 ]
 
