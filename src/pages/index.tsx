@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
+import Head from 'next/head'
 import { PostMeta } from '../types/post'
 import projects from '../data/projects'
 import misc from '../data/misc'
@@ -28,6 +29,19 @@ interface Props {
 
 const Page: NextPage<Props> = ({ posts }) => (
   <Layout>
+    <Head>
+      <link
+        rel='preload'
+        as='image'
+        href='/img/me@1000x1494.jpg'
+        // @ts-ignore
+        imagesrcset={`
+          /img/me@600x897.webp 600w,
+          /img/me@800x1196.webp 800w,
+          /img/me@1000x1494.webp 1000w
+        `}
+      />
+    </Head>
     <Box>
       <Stack gap={[10, 'vmin']}>
         <div>
