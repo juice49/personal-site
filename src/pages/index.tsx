@@ -54,8 +54,8 @@ const Page: NextPage<Props> = ({ posts }) => (
           <StandardGrid>
             <StandardGridContentSlightlyWide>
               <Image
-                src='/img/me.jpg'
-                previewSrc={require('url-loader!../../public/img/me-preview.jpg').default}
+                src={require('../img/me.jpg?resize&sizes[]=600&sizes[]=800&sizes[]=1000')}
+                previewSrc={require('../img/me-preview.jpg?inline')}
                 alt='Me'
                 style={{
                   '--width': 2698,

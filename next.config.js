@@ -1,3 +1,6 @@
+const withPlugins = require('next-compose-plugins')
+const optimizedImages = require('next-optimized-images')
+
 const mdxRenderer = `
   import React from 'react'
   import { mdx } from '@mdx-js/react'
@@ -18,7 +21,11 @@ const withMdx = require('@next/mdx')({
   }
 })
 
-module.exports = withMdx({
+module.exports = withPlugins([
+  [optimizedImages, {
+    imagesFolder: 'img'
+  }],
+], withMdx({
   pageExtensions: ['tsx', 'mdx'],
   webpack: (config, { isServer }) => {
     // Fixes npm packages that depend on `fs` module.
@@ -30,4 +37,4 @@ module.exports = withMdx({
 
     return config
   }
-})
+}))
