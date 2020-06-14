@@ -17,7 +17,7 @@ const work: Work[] = [
     description: 'Built a headless site builder with WordPress and Next.js.'
   },
   {
-    description: 'Setup Next.js preview mode with WordPress.'
+    description: 'Configured Next.js preview mode with WordPress.'
   },
   {
     description: 'Created a Connect 4 game in TypeScript and React.'
