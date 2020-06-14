@@ -11,7 +11,6 @@ interface Props {
 
 const Image: React.FC<Props> = ({ src, srcSet, previewSrc, alt, style }) => {
   const [hasLoaded, setHasLoaded] = useState<boolean>(false)
-  // const ref = useRef<HTMLImageElement>()
 
   const ref = useCallback(image => {
     if (image?.complete) {
