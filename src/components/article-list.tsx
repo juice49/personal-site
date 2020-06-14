@@ -51,13 +51,15 @@ export default ArticleList
 interface ArticleListItemProps {
   heading?: string,
   description?: string,
-  link?: LinkProps
+  link?: LinkProps,
+  externalUrl?: string
 }
 
 export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   heading,
   description,
-  link
+  link,
+  externalUrl
 }) => {
   let BlockLink: React.FC<LinkProps> = props => <React.Fragment {...props} />
 
@@ -68,6 +70,14 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
           {children}
         </ArticleLink>
       </Link>
+    )
+  }
+
+  if (externalUrl) {
+    BlockLink = ({ children }) => (
+      <ArticleLink href={externalUrl} target='_blank' rel='noopener'>
+        {children}
+      </ArticleLink>
     )
   }
 
