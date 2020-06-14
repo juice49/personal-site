@@ -4,12 +4,20 @@ import styled from 'styled-components'
 interface Props {
   src: string,
   srcSet?: string,
+  webpSrcSet?: string,
   previewSrc: string,
   alt: string,
   style?: React.CSSProperties
 }
 
-const Image: React.FC<Props> = ({ src, srcSet, previewSrc, alt, style }) => {
+const Image: React.FC<Props> = ({
+  src,
+  srcSet,
+  webpSrcSet,
+  previewSrc,
+  alt,
+  style
+}) => {
   const [hasLoaded, setHasLoaded] = useState<boolean>(false)
 
   const ref = useCallback(image => {
@@ -26,15 +34,19 @@ const Image: React.FC<Props> = ({ src, srcSet, previewSrc, alt, style }) => {
         aria-hidden
         isPreview
       />
-      <ImageContent
-        ref={ref}
-        src={src}
-        srcSet={srcSet}
-        alt={alt}
-        loading='lazy'
-        hasLoaded={hasLoaded}
-        onLoad={() => setHasLoaded(true)}
-      />
+      <ImageContent as='picture' hasLoaded={hasLoaded}>
+        {webpSrcSet && (
+          <source srcSet={webpSrcSet} type='image/webp' />
+        )}
+        <source srcSet={srcSet} type='image/jpeg' />
+        <img
+          ref={ref}
+          src={src}
+          alt={alt}
+          loading='lazy'
+          onLoad={() => setHasLoaded(true)}
+        />
+      </ImageContent>
     </ImageBox>
   )
 }
@@ -64,11 +76,14 @@ const ImageContent = styled.img<ImageContentProps>`
   position: absolute;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   transition-property: opacity;
   transition-duration: var(--transition-duration, 500ms);
+
+  &, img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   ${props => props.isPreview && `
     filter: blur(var(--blur, 20px));
