@@ -9,5 +9,55 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/first-look-at-ghost",
+      "destination": "/posts/2013-09-23-first-look-at-ghost"
+    },
+    {
+      "source": "/a-simple-bem-class-naming-convention",
+      "destination": "/posts/2013-10-27-a-simple-bem-class-naming-convention"
+    },
+    {
+      "source": "/on-atoms-tinkerability-and-keeping-in-sync-with-dropbox",
+      "destination": "/posts/2014-03-10-on-atoms-tinkerability-and-keeping-in-sync-with-dropbox"
+    },
+    {
+      "source": "/auto-prefixer-is-the-bees-knees",
+      "destination": "/posts/2014-05-28-auto-prefixer-is-the-bees-knees"
+    },
+    {
+      "source": "/server-side-analytics-with-measurement-protocol",
+      "destination": "/posts/2014-07-24-server-side-analytics-with-measurement-protocol"
+    },
+    {
+      "source": "/toolchain-1",
+      "destination": "/posts/2014-10-15-toolchain-1"
+    },
+    {
+      "source": "/we-need-element-queries",
+      "destination": "/posts/2014-11-07-we-need-element-queries"
+    },
+    {
+      "source": "/chris-dave-discuss-web-development-in-2015",
+      "destination": "/posts/2015-06-17-chris-dave-discuss-web-development-in-2015"
+    },
+    {
+      "source": "/making-your-entire-apple-music-library-offline",
+      "destination": "/posts/2015-07-03-making-your-entire-apple-music-library-offline"
+    },
+    {
+      "source": "/d",
+      "destination": "/posts/2015-08-12-check-your-html-document-outline"
+    },
+    {
+      "source": "/why-i-left-gulp-and-grunt-for-npm-scripts",
+      "destination": "/posts/2016-01-18-why-i-left-gulp-and-grunt-for-npm-scripts"
+    },
+    {
+      "source": "/exploring-the-stylus-cache-function",
+      "destination": "/posts/2016-01-24-exploring-the-stylus-cache-function"
+    }
   ]
 }
