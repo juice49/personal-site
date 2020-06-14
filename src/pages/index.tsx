@@ -127,7 +127,14 @@ const Page: NextPage<Props> = ({ posts }) => (
         </Stack>
       </FeaturedSection>
     </Box>
-    <Box px={2}>
+    <Box
+      px={2}
+      mw={1}
+      css={`
+        margin-left: auto;
+        margin-right: auto;
+      `}
+    >
       <Articles>
         <ListBox>
           <Heading as='h2'>

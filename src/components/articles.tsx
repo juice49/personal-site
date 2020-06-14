@@ -10,7 +10,7 @@ import Heading from './heading'
 const Articles = styled.div`
   display: grid;
   grid-template-columns: repeat(
-    auto-fill,
+    auto-fit,
     minmax(min(14rem, 100%), 1fr)
   );
   grid-gap: var(--space4);
