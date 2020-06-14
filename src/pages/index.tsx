@@ -164,9 +164,10 @@ const Page: NextPage<Props> = ({ posts }) => (
                 key={misc.slug}
                 heading={misc.name}
                 description={misc.description}
-                link={{
+                link={misc.slug && !misc.externalUrl && {
                   href: `/projects/${misc.slug}`
                 }}
+                externalUrl={misc.externalUrl}
               />
             ))}
           </ArticleList>
