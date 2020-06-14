@@ -3,6 +3,10 @@ import path from 'path'
 import Post, { PostMeta } from '../types/post'
 
 export async function getAll (): Promise<PostMeta[]> {
+  if (typeof process.env.POSTS_PATH === 'undefined') {
+    throw new Error('`POSTS_PATH` is not defined.')
+  }
+
   const postFiles = await fs.readdir(`./src/pages/${process.env.POSTS_PATH}`)
 
   const postImports = postFiles
