@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { PostMeta } from '../types/post'
 import projects from '../data/projects'
 import misc from '../data/misc'
+import work from '../data/work'
 import * as postApi from '../lib/post-api'
 import Layout from '../components/layout'
 import Box from '../components/box'
@@ -20,27 +21,6 @@ import StandardGrid, {
   StandardGridContentSlightlyWide,
   StandardGridMeta
 } from '../components/standard-grid'
-
-const recentWork = [
-  {
-    title: 'Implemented Incremental Static Regeneration for a Next.js site.'
-  },
-  {
-    title: 'Built a GraphQL API layer over an old and inconsistent REST-ish API.'
-  },
-  {
-    title: 'Built a CSS-in-JS helper library.'
-  },
-  {
-    title: 'Built a headless site builder with WordPress and Next.js.'
-  },
-  {
-    title: 'Setup Next.js preview mode with WordPress.'
-  },
-  {
-    title: 'Created a Connect 4 game in TypeScript and React.'
-  }
-]
 
 interface Props {
   posts: PostMeta[]
@@ -178,10 +158,10 @@ const Page: NextPage<Props> = ({ posts }) => (
             Recent work
           </Heading>
           <ArticleList>
-            {Object.values(recentWork).map((item, index) => (
+            {work.map((item, index) => (
               <ArticleListItem
                 key={index}
-                description={item.title}
+                description={item.description}
               />
             ))}
           </ArticleList>
