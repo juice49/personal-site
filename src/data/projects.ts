@@ -1,7 +1,8 @@
 interface Project {
   name?: string,
   slug: string,
-  description?: string
+  description?: string,
+  externalUrl?: string
 }
 
 const projects: Project[] = [
@@ -13,7 +14,8 @@ const projects: Project[] = [
   {
     name: '📓 Frontend Guiding Principles',
     slug: 'frontend-guiding-principles',
-    description: 'Handbook explaining my guiding principles for frontend web development.'
+    description: 'Handbook explaining my guiding principles for frontend web development.',
+    externalUrl: 'https://github.com/juice49/frontend-guiding-principles'
   },
   {
     name: '⏳ Little Timer',
