@@ -95,8 +95,8 @@ const Page: NextPage<Props> = ({ posts }) => (
               <Text as='p' weight='bold'>
                 I like to make things&mdash;usually with web technologies, and usually <em>for</em> the web.
               </Text>
-              <p>At the moment I'm most interested in design systems and frontend development with components. I also do backend development with things like node.js, GraphQL, and PHP. Although there are parts of the stack I'm super nerdy about, I am most passionate about <em>making stuff</em>.</p>
-              <p>When I was a kid, I realised the web made it possible for almost anybody to publish content. I've been fascinated ever since. In the decade or so since then, I've not published very much&hellip; but I have made a lot of websites for other people.</p>
+              <p>At the moment I'm most interested in jamstack and design systems. I work with things like React, Next.js, node.js, and GraphQL. Although there are parts of the stack I'm very focused on, I am most passionate about <em>making stuff</em>.</p>
+              <p>When I was younger, I was fortunate to discover how simple it is to publish content online. I've been fascinated ever since. In the decade or so since then, I haven't published very much myself&hellip; but I have made a lot of websites for other people.</p>
             </Stack>
           </StandardGridContent>
           <StandardGridMeta position={2}>
