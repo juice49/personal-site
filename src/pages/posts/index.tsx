@@ -39,6 +39,7 @@ const Page: NextPage<Props> = ({ posts }) => {
       </Box>
       <Box
         mw={1}
+        px={2}
         css={`
           margin-left: auto;
           margin-right: auto;

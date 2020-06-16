@@ -107,7 +107,7 @@ const Page: NextPage<Props> = ({ posts }) => (
         </StandardGrid>
       </Stack>
     </Box>
-    <Box mw={1} center>
+    <Box mw={1} px={2} center>
       <FeaturedSection>
         <Stack gap={4}>
           <Box as='header' px={4} pt={4}>
