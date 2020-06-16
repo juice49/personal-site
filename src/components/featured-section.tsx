@@ -16,8 +16,6 @@ export default FeaturedSection
 const FeaturedSectionBox = styled.div`
   --link-focus-outline-color: var(--accent-color-b);
   position: relative;
-  margin-left: var(--space2);
-  margin-right: var(--space2);
 
   &::before {
     content: '';

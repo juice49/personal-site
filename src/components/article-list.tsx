@@ -56,6 +56,7 @@ interface ArticleListItemProps {
 }
 
 export const ArticleListItem: React.FC<ArticleListItemProps> = ({
+  children,
   heading,
   description,
   link,
@@ -84,7 +85,7 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   return (
     <Box as='li' px={1}>
       <BlockLink {...link}>
-        <Stack gap={0}>
+        <Stack gap={1}>
           {heading && (
             <Text
               as='h4'
@@ -94,7 +95,11 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
                 color: var(--color);
               `}
             >
-              <Stack as='span' direction='inline' gap={1}>
+              <Stack
+                as='span'
+                direction='inline'
+                gap={1}
+              >
                 <span>
                   {heading}
                 </span>
@@ -116,6 +121,7 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
               {description}
             </Text>
           )}
+          {children}
         </Stack>
       </BlockLink>
     </Box>
