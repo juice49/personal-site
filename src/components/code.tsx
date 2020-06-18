@@ -44,6 +44,10 @@ const Container = styled(Box)`
   color: #fff;
   overflow: auto;
 
+  .shiki {
+    background-color: transparent !important;
+  }
+
   code {
     white-space: pre;
     word-spacing: normal;

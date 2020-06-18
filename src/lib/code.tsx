@@ -36,8 +36,9 @@ export default async function getCodeBlockStaticProps (Page: NextPage) {
     </Providers>
   )
 
-  const theme = loadTheme('./syntax-theme/ash/themes/ash-color-theme.json')
-  const highlighter = await getHighlighter({ theme })
+  const highlighter = await getHighlighter({
+    theme: 'Material-Theme-Palenight-High-Contrast'
+  })
 
   // @ts-ignore
   global.__nextSsgCodeBlocks.forEach(({ code, language }) => {
