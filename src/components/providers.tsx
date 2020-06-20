@@ -6,6 +6,7 @@ import { CodeBlocksContext } from '../components/code'
 import PostLayout from '../components/post-layout'
 import Code from '../components/code'
 import Box from '../components/box'
+import Heading from '../components/heading'
 
 const breakpoints: CssValue[] = [
   [30, 'em'],
@@ -29,7 +30,13 @@ const MDXComponents = {
     <Box mx={-2}>
       <Code code={children} language={className.replace(/language-/, '')} />
     </Box>
-  )
+  ),
+  h1: props => <Heading as='h1' {...props} />,
+  h2: props => <Heading as='h2' {...props} />,
+  h3: props => <Heading as='h3' {...props} />,
+  h4: props => <Heading as='h4' {...props} />,
+  h5: props => <Heading as='h5' {...props} />,
+  h6: props => <Heading as='h6' {...props} />
 }
 
 interface Props {
