@@ -13,6 +13,7 @@ import Stack from '../components/stack'
 import Heading from '../components/heading'
 import Image from '../components/image'
 import Button from '../components/button'
+import Note from '../components/note'
 import FeaturedSection, { FeaturedSectionHeading } from '../components/featured-section'
 import Articles, { Article } from '../components/articles'
 import ArticleList, { ArticleListItem } from '../components/article-list'
@@ -100,9 +101,9 @@ const Page: NextPage<Props> = ({ posts }) => (
             </Stack>
           </StandardGridContent>
           <StandardGridMeta position={2}>
-            <Text as='p' size='micro' variant='mono'>
+            <Note as='p'>
               Blah blah blah I make websites.
-            </Text>
+            </Note>
           </StandardGridMeta>
         </StandardGrid>
       </Stack>

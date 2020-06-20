@@ -70,7 +70,6 @@ interface StandardGridMetaProps {
 
 export const StandardGridMeta = styled.div<StandardGridMetaProps>`
   grid-area: ${(props: StandardGridMetaProps) => `meta${props.position}`};
-  color: var(--body-color-subtle);
 `
 
 StandardGridMeta.defaultProps = {
