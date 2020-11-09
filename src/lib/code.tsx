@@ -37,7 +37,7 @@ export default async function getCodeBlockStaticProps(Page: NextPage) {
   )
 
   const highlighter = await getHighlighter({
-    theme: 'Material-Theme-Palenight-High-Contrast',
+    theme: 'material-theme-palenight',
   })
 
   // @ts-ignore
