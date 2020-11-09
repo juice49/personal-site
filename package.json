@@ -37,6 +37,7 @@
     "babel-plugin-styled-components": "^1.10.7",
     "csstype": "^3.0.2",
     "loader-utils": "^2.0.0",
+    "prettier": "^2.1.2",
     "typescript": "^3.9.5",
     "url-loader": "^4.1.1",
     "webpack": "^5.3.1"
