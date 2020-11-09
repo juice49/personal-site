@@ -8,8 +8,8 @@ interface Props {
 }
 
 const Wave: React.FC<Props> = ({ className, size, strokeWidth, color }) => {
-  // return null
-  const [width] = size
+  return null
+  /* const [width] = size
   const [containerSize, ref] = useResizeObserver()
   let count = 1
 
@@ -45,7 +45,7 @@ const Wave: React.FC<Props> = ({ className, size, strokeWidth, color }) => {
         />
       </svg>
     </div>
-  )
+  ) */
 }
 
 Wave.defaultProps = {
