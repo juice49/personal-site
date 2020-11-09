@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react'
+import * as CSS from 'csstype'
 import styled from 'styled-components'
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
   webpSrcSet?: string
   previewSrc: string
   alt: string
-  style?: React.CSSProperties
+  style?: CSS.Properties
 }
 
 const Image: React.FC<Props> = ({
