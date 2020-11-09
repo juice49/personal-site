@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-import { useGenerateCustomPropRange } from 'monstera'
 
 export default createGlobalStyle`
   * {
@@ -33,12 +32,7 @@ export default createGlobalStyle`
     margin: var(--document-border-width);
     margin-bottom: 0;
 
-    ${() =>
-      useGenerateCustomPropRange('space', [
-        [[0.25, 'rem'], [1, 'rem'], 1.25, 1.5, 1.5],
-        1.25,
-        1.25,
-      ])}
+    ${props => props.space}
   }
 
   h1, h2, h3, h4, h5, h6 {
