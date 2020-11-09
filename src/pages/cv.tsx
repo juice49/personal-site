@@ -20,9 +20,7 @@ const Page: NextPage = () => (
       <StandardGridContent>
         <Stack gap={4}>
           <Stack as='header' gap={1}>
-            <Heading as='h1'>
-              Ash Stevens
-            </Heading>
+            <Heading as='h1'>Ash Stevens</Heading>
             <Text as='p' variant='mono' size='micro'>
               Full stack web developer.
             </Text>
@@ -33,11 +31,9 @@ const Page: NextPage = () => (
               'JavaScript',
               'React',
               'Jamstack',
-              'Responsive Web Design'
+              'Responsive Web Design',
             ].map((item, index) => (
-              <LoveListItem key={index}>
-                {item}
-              </LoveListItem>
+              <LoveListItem key={index}>{item}</LoveListItem>
             ))}
           </LoveList>
           <Contact />
@@ -48,9 +44,7 @@ const Page: NextPage = () => (
       <StandardGridContent>
         <Stack gap={2}>
           <Stack gap={2}>
-            <Heading as='h2'>
-              Skills
-            </Heading>
+            <Heading as='h2'>Skills</Heading>
             <ArticleList columns>
               <ArticleListItem
                 heading='Writing'
@@ -131,9 +125,7 @@ const Page: NextPage = () => (
     <StandardGrid>
       <StandardGridContent>
         <Stack gap={2}>
-          <Heading as='h2'>
-            Experience
-          </Heading>
+          <Heading as='h2'>Experience</Heading>
           <ArticleList>
             <ArticleListItem
               heading='Si digital&thinsp;&mdash;&thinsp;Web developer'
@@ -141,13 +133,20 @@ const Page: NextPage = () => (
             >
               <Stack gap={1}>
                 <Text as='p' size='milli'>
-                  At Si digital I have led and delivered many full stack projects including basic marketing sites, PWAs, and APIs (REST and GraphQL).
+                  At Si digital I have led and delivered many full stack
+                  projects including basic marketing sites, PWAs, and APIs (REST
+                  and GraphQL).
                 </Text>
                 <Text as='p' size='milli'>
-                  Since 2014 I have driven the adoption of React and Jamstack frameworks such as Next.js and Gatsby. We now use these tools for most projects.
+                  Since 2014 I have driven the adoption of React and Jamstack
+                  frameworks such as Next.js and Gatsby. We now use these tools
+                  for most projects.
                 </Text>
                 <Text as='p' size='milli'>
-                  In 2019 I mentored an apprentice developer. During their time at the company they developed a great understanding of React and Next.js, and created some fantastic projects using these tools.
+                  In 2019 I mentored an apprentice developer. During their time
+                  at the company they developed a great understanding of React
+                  and Next.js, and created some fantastic projects using these
+                  tools.
                 </Text>
               </Stack>
             </ArticleListItem>
@@ -157,13 +156,21 @@ const Page: NextPage = () => (
             >
               <Stack gap={1}>
                 <Text as='p' size='milli'>
-                  At Chichester Design I led and completed multiple full stack web development projects.
+                  At Chichester Design I led and completed multiple full stack
+                  web development projects.
                 </Text>
                 <Text as='p' size='milli'>
-                  I worked on a range of projects varying from simple marketing websites to web apps and realtime data visualisation. These projects presented fantastic opportunities to use tools and technologies such as node.js, web sockets, Backbone.js and AngularJS.
+                  I worked on a range of projects varying from simple marketing
+                  websites to web apps and realtime data visualisation. These
+                  projects presented fantastic opportunities to use tools and
+                  technologies such as node.js, web sockets, Backbone.js and
+                  AngularJS.
                 </Text>
                 <Text as='p' size='milli'>
-                  I regularly created responsive variations from an original design as part of my frontend development work, and occasionally had the opportunity to undertake wider design work.
+                  I regularly created responsive variations from an original
+                  design as part of my frontend development work, and
+                  occasionally had the opportunity to undertake wider design
+                  work.
                 </Text>
               </Stack>
             </ArticleListItem>
@@ -172,7 +179,9 @@ const Page: NextPage = () => (
               description='2006&thinsp;&ndash;&thinsp;2007'
             >
               <Text as='p' size='milli'>
-                Following a short period of work experience with web agency Strawberry Soup, I was hired to write technical articles for their blog.
+                Following a short period of work experience with web agency
+                Strawberry Soup, I was hired to write technical articles for
+                their blog.
               </Text>
             </ArticleListItem>
             <ArticleListItem
@@ -180,7 +189,9 @@ const Page: NextPage = () => (
               description='2005&thinsp;&ndash;&thinsp;2008'
             >
               <Text as='p' size='milli'>
-                As a teenager I freelanced remotely with companies open to working with somebody so young, including the (surprisingly SFW) Furry Friends Web Design.
+                As a teenager I freelanced remotely with companies open to
+                working with somebody so young, including the (surprisingly SFW)
+                Furry Friends Web Design.
               </Text>
             </ArticleListItem>
           </ArticleList>
@@ -190,15 +201,10 @@ const Page: NextPage = () => (
     <StandardGrid>
       <StandardGridContent>
         <Stack gap={2}>
-          <Heading as='h2'>
-            Recent work
-          </Heading>
+          <Heading as='h2'>Recent work</Heading>
           <ArticleList columns>
             {work.map((work, index) => (
-              <ArticleListItem
-                key={index}
-                description={work.description}
-              />
+              <ArticleListItem key={index} description={work.description} />
             ))}
           </ArticleList>
         </Stack>
@@ -207,16 +213,15 @@ const Page: NextPage = () => (
     <StandardGrid>
       <StandardGridContent>
         <Stack gap={2}>
-          <Heading as='h2'>
-            Education
-          </Heading>
+          <Heading as='h2'>Education</Heading>
           <ArticleList>
             <ArticleListItem
               heading='Bishop Luffa school'
               description='2003&thinsp;&ndash;&thinsp;2009'
             >
               <Text as='p' size='milli'>
-                Nine GCSEs A&thinsp;&ndash;&thinsp;C including ICT, English, Maths, Science, Graphics and Media Studies.
+                Nine GCSEs A&thinsp;&ndash;&thinsp;C including ICT, English,
+                Maths, Science, Graphics and Media Studies.
               </Text>
             </ArticleListItem>
           </ArticleList>
@@ -236,7 +241,7 @@ export default Page
 const SkillList = styled(Text).attrs(() => ({
   size: 'micro',
   variant: 'mono',
-  as: 'ul'
+  as: 'ul',
 }))`
   margin-left: var(--space2);
   list-style: square;
@@ -249,29 +254,25 @@ const Contact: React.FC = () => (
       <Box p={2}>
         <ContactList>
           <ContactListItem>
-            <Text weight='bold'>
-              Email:
-            </Text>
+            <Text weight='bold'>Email:</Text>
             &nbsp;
-            <a href='mailto:ashley@juice49.com'>
-              ashley@juice49.com
-            </a>
+            <a href='mailto:ashley@juice49.com'>ashley@juice49.com</a>
           </ContactListItem>
           <ContactListItem>
-            <Text weight='bold'>
-              GitHub:
-            </Text>
+            <Text weight='bold'>GitHub:</Text>
             &nbsp;
             <a href='https://github.com/juice49' target='_blank' rel='noopener'>
               juice49
             </a>
           </ContactListItem>
           <ContactListItem>
-            <Text weight='bold'>
-              Twitter:
-            </Text>
+            <Text weight='bold'>Twitter:</Text>
             &nbsp;
-            <a href='https://twitter.com/juice49' target='_blank' rel='noopener'>
+            <a
+              href='https://twitter.com/juice49'
+              target='_blank'
+              rel='noopener'
+            >
               @juice49
             </a>
           </ContactListItem>
@@ -294,7 +295,7 @@ const ContactList = styled.ul`
 
 const ContactListItem = styled(Text).attrs(() => ({
   as: 'li',
-  size: 'milli'
+  size: 'milli',
 }))`
   a {
     display: inline-block;

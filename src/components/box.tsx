@@ -3,7 +3,7 @@ import { space } from 'monstera'
 
 // TODO: Add Monstera props.
 interface Props {
-  mw: number,
+  mw: number
   center?: boolean
 }
 
@@ -13,11 +13,15 @@ const mw = ['44ch', '75rem']
 const Box = styled.div<Props>`
   ${space}
 
-  ${props => typeof mw[props.mw] !== 'undefined' && `
+  ${props =>
+    typeof mw[props.mw] !== 'undefined' &&
+    `
     max-width: ${mw[props.mw]};
   `}
 
-  ${props => props.center && `
+  ${props =>
+    props.center &&
+    `
     margin-left: auto;
     margin-right: auto;
   `}

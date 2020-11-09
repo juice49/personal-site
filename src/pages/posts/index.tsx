@@ -7,10 +7,14 @@ import usePostsByYear from '../../lib/use-posts-by-year'
 import Heading from '../../components/heading'
 import Text from '../../components/text'
 import Layout from '../../components/layout'
-import StandardGrid, { StandardGridContent } from '../../components/standard-grid'
+import StandardGrid, {
+  StandardGridContent,
+} from '../../components/standard-grid'
 import Box from '../../components/box'
 import Stack from '../../components/stack'
-import FeaturedSection, { FeaturedSectionHeading } from '../../components/featured-section'
+import FeaturedSection, {
+  FeaturedSectionHeading,
+} from '../../components/featured-section'
 import Articles, { Article } from '../../components/articles'
 
 interface Props {
@@ -21,7 +25,7 @@ const Page: NextPage<Props> = ({ posts }) => {
   const featurePostLimit = 6
 
   const { sortedYears, postsByYear } = usePostsByYear(
-    posts.slice(featurePostLimit)
+    posts.slice(featurePostLimit),
   )
 
   return (
@@ -48,9 +52,7 @@ const Page: NextPage<Props> = ({ posts }) => {
         <FeaturedSection>
           <Stack gap={4}>
             <Box as='header' px={4} pt={4}>
-              <FeaturedSectionHeading>
-                Recent
-              </FeaturedSectionHeading>
+              <FeaturedSectionHeading>Recent</FeaturedSectionHeading>
             </Box>
             <Box px={4} pb={4}>
               <Articles>
@@ -62,7 +64,7 @@ const Page: NextPage<Props> = ({ posts }) => {
                     title={post.title}
                     description={post.description}
                     link={{
-                      href: `/posts/${post.slug}`
+                      href: `/posts/${post.slug}`,
                     }}
                   />
                 ))}
@@ -101,12 +103,12 @@ const Page: NextPage<Props> = ({ posts }) => {
 
 export default Page
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const posts = await postApi.getAll()
 
   return {
     props: {
-      posts
-    }
+      posts,
+    },
   }
 }

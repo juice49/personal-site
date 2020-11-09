@@ -19,7 +19,7 @@ const Heading = styled.h1<Props>`
       font-size: clamp(2.6rem, 7.2vw, 5.6rem);
       line-height: 1.08;
       text-align: center;
-    `
+    `,
   })}
 `
 

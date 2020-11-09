@@ -1,14 +1,14 @@
 export interface PostMeta {
-  title: string,
-  slug: string,
-  date: string,
-  description?: string,
-  column?: string,
+  title: string
+  slug: string
+  date: string
+  description?: string
+  column?: string
   tags?: string[]
 }
 
 interface Post {
-  meta: PostMeta,
+  meta: PostMeta
   default: string
 }
 

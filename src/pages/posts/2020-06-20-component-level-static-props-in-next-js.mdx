@@ -5,12 +5,12 @@ export const meta = {
   description: `The Next-CMS project gives us a peek at component-level static props in Next.js. How does it work, and how can we use the pattern ourselves?`,
   date: '2020-06-20',
   tags: ['Next.js', 'Jamstack'],
-  column: 'Jamstack'
+  column: 'Jamstack',
 }
 
-One of Next.js' most useful features is that it *pre-renders* apps. By executing our code before React renders in the browser, Next.js produces static HTML documents that can be cached by CDNs and displayed without any client-side JavaScript running.
+One of Next.js' most useful features is that it _pre-renders_ apps. By executing our code before React renders in the browser, Next.js produces static HTML documents that can be cached by CDNs and displayed without any client-side JavaScript running.
 
-To help simplify pre-rendering, Next.js requires that dynamic data is prepared at the page-level. Components inside a page can't define their own [*static props*](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) or [*server side props*](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering). They can of course *be dynamic*, but Next.js will pre-render them in their initial state. Usually we pass the props prepared during pre-render down the tree to the components that need them.
+To help simplify pre-rendering, Next.js requires that dynamic data is prepared at the page-level. Components inside a page can't define their own [_static props_](https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation) or [_server side props_](https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering). They can of course _be dynamic_, but Next.js will pre-render them in their initial state. Usually we pass the props prepared during pre-render down the tree to the components that need them.
 
 ```text
 ┌──────────────────────┐        ╔════════════╗
@@ -65,13 +65,13 @@ In this example from the Next-CMS docs, the `<Header />` component will be pre-r
 
 ## The inner workings of Next-CMS
 
-Next-CMS doesn't add any special capabilities to Next.js. Instead, it cleverly uses *double rendering* to automatically lift the requested endpoints up to the page's `getStaticProps` function. The fetched data then gets injected at render time using React Context.
+Next-CMS doesn't add any special capabilities to Next.js. Instead, it cleverly uses _double rendering_ to automatically lift the requested endpoints up to the page's `getStaticProps` function. The fetched data then gets injected at render time using React Context.
 
 There are three parts to this technique.
 
 ### 1. Lifting and resolving API requests
 
-[A function](https://github.com/shuding/next-cms/blob/master/lib/get-cms-static-props.js) is provided that gathers and fetches the endpoints assigned to nested `<CMS />` components. It's called from inside the `getStaticProps` function, and uses ReactDOM's `renderToStaticMarkup` to perform an extra page render *prior* to Next.js' pre-render.
+[A function](https://github.com/shuding/next-cms/blob/master/lib/get-cms-static-props.js) is provided that gathers and fetches the endpoints assigned to nested `<CMS />` components. It's called from inside the `getStaticProps` function, and uses ReactDOM's `renderToStaticMarkup` to perform an extra page render _prior_ to Next.js' pre-render.
 
 During this extra render, the endpoints of all nested `<CMS />` components are [pushed to a global array](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/lib/get-cms-static-props.js#L10). They are added to a [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set)—which is a convenient way to deduplicate them—and [then resolved in parallel using `fetch`](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/lib/get-cms-static-props.js#L23).
 
@@ -99,13 +99,18 @@ During this extra render, the endpoints of all nested `<CMS />` components are [
                     └─────────────────────────────────────────────────────────────┘
 ```
 
-<Note as='p'>Gathering static props before pre-render. Each CMS component pushes its assigned endpoint to a global array. Once the required endpoints have been lifted up to the getStaticProps function, they are fetched in parallel. The fetched data is passed into the page props when Next.js pre-renders the page.</Note>
+<Note as='p'>
+  Gathering static props before pre-render. Each CMS component pushes its
+  assigned endpoint to a global array. Once the required endpoints have been
+  lifted up to the getStaticProps function, they are fetched in parallel. The
+  fetched data is passed into the page props when Next.js pre-renders the page.
+</Note>
 
 The fetched data is [added to an object](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/lib/get-cms-static-props.js#L32), where its key is the requested endpoint. This object is [passed into the page props](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/pages/index.js#L25). Because the key is the requested endpoint, it can be mapped back to the relevant `<CMS />` component when the page is rendered.
 
 ### 2. React Context
 
-The `withCMSPage` *higher order component* wraps the page in [a React Context](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/lib/with-cms-page.js#L11). The Context is initialised using the fetched data from the page props. `<CMS />` components nested at any level can then read the data returned from their assigned endpoint.
+The `withCMSPage` _higher order component_ wraps the page in [a React Context](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/lib/with-cms-page.js#L11). The Context is initialised using the fetched data from the page props. `<CMS />` components nested at any level can then read the data returned from their assigned endpoint.
 
 ```text
                           ┌──────────────────────┐        ╔════════════╗
@@ -140,7 +145,9 @@ The `withCMSPage` *higher order component* wraps the page in [a React Context](h
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-<Note as='p'>The fetched data is injected into the CMS components using React Context.</Note>
+<Note as='p'>
+  The fetched data is injected into the CMS components using React Context.
+</Note>
 
 ### 3. The CMS component
 
@@ -150,7 +157,7 @@ During the extra render, it [simply pushes its assigned endpoint to a global arr
 
 During a normal render, the `<CMS />` component reads the fetched data from Context, and then passes it down to its [child render function](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/lib/cms.js#L11).
 
-***
+---
 
 There's a few connected parts to think about here. The important thing is that it's relatively simple for users to set up. The [`withCMSPage` and `getCMSStaticProps`](https://github.com/shuding/next-cms/blob/master/pages/index.js) function are all we need to add to start using the `<CMS />` component.
 

@@ -14,14 +14,16 @@ import Heading from '../components/heading'
 import Image from '../components/image'
 import Button from '../components/button'
 import Note from '../components/note'
-import FeaturedSection, { FeaturedSectionHeading } from '../components/featured-section'
+import FeaturedSection, {
+  FeaturedSectionHeading,
+} from '../components/featured-section'
 import Articles, { Article } from '../components/articles'
 import ArticleList, { ArticleListItem } from '../components/article-list'
 
 import StandardGrid, {
   StandardGridContent,
   StandardGridContentSlightlyWide,
-  StandardGridMeta
+  StandardGridMeta,
 } from '../components/standard-grid'
 
 interface Props {
@@ -70,7 +72,9 @@ const Page: NextPage<Props> = ({ posts }) => (
             <StandardGridContentSlightlyWide>
               <Image
                 src='/img/me@1000x1494.jpg'
-                previewSrc={require('url-loader!../../public/img/me-preview.jpg').default}
+                previewSrc={
+                  require('url-loader!../../public/img/me-preview.jpg').default
+                }
                 srcSet={`
                   /img/me@600x897.jpg 600w,
                   /img/me@800x1196.jpg 800w,
@@ -84,7 +88,7 @@ const Page: NextPage<Props> = ({ posts }) => (
                 alt='Me'
                 style={{
                   '--width': 2698,
-                  '--height': 4032
+                  '--height': 4032,
                 }}
               />
             </StandardGridContentSlightlyWide>
@@ -94,16 +98,25 @@ const Page: NextPage<Props> = ({ posts }) => (
           <StandardGridContent>
             <Stack gap={2}>
               <Text as='p' weight='bold'>
-                I like to make things&mdash;usually with web technologies, and usually <em>for</em> the web.
+                I like to make things&mdash;usually with web technologies, and
+                usually <em>for</em> the web.
               </Text>
-              <p>At the moment I'm most interested in jamstack and design systems. I work with things like React, Next.js, node.js, and GraphQL. Although there are parts of the stack I'm very focused on, I am most passionate about <em>making stuff</em>.</p>
-              <p>When I was younger, I was fortunate to discover how simple it can be to publish content online. In the decade or so since, I haven't published very much myself&hellip; but I have made a lot of websites for other people.</p>
+              <p>
+                At the moment I'm most interested in jamstack and design
+                systems. I work with things like React, Next.js, node.js, and
+                GraphQL. Although there are parts of the stack I'm very focused
+                on, I am most passionate about <em>making stuff</em>.
+              </p>
+              <p>
+                When I was younger, I was fortunate to discover how simple it
+                can be to publish content online. In the decade or so since, I
+                haven't published very much myself&hellip; but I have made a lot
+                of websites for other people.
+              </p>
             </Stack>
           </StandardGridContent>
           <StandardGridMeta position={2}>
-            <Note as='p'>
-              Blah blah blah I make websites.
-            </Note>
+            <Note as='p'>Blah blah blah I make websites.</Note>
           </StandardGridMeta>
         </StandardGrid>
       </Stack>
@@ -112,9 +125,7 @@ const Page: NextPage<Props> = ({ posts }) => (
       <FeaturedSection>
         <Stack gap={4}>
           <Box as='header' px={4} pt={4}>
-            <FeaturedSectionHeading>
-              Blog posts
-            </FeaturedSectionHeading>
+            <FeaturedSectionHeading>Blog posts</FeaturedSectionHeading>
           </Box>
           <Box px={4}>
             <Articles>
@@ -126,7 +137,7 @@ const Page: NextPage<Props> = ({ posts }) => (
                   title={post.title}
                   description={post.description}
                   link={{
-                    href: `/posts/${post.slug}`
+                    href: `/posts/${post.slug}`,
                   }}
                 />
               ))}
@@ -152,51 +163,48 @@ const Page: NextPage<Props> = ({ posts }) => (
     >
       <Articles>
         <ListBox>
-          <Heading as='h2'>
-            Projects
-          </Heading>
+          <Heading as='h2'>Projects</Heading>
           <ArticleList>
             {projects.map(project => (
               <ArticleListItem
                 key={project.slug}
                 heading={project.name}
                 description={project.description}
-                link={project.slug && !project.externalUrl && {
-                  href: `/projects/${project.slug}`
-                }}
+                link={
+                  project.slug &&
+                  !project.externalUrl && {
+                    href: `/projects/${project.slug}`,
+                  }
+                }
                 externalUrl={project.externalUrl}
               />
             ))}
           </ArticleList>
         </ListBox>
         <ListBox>
-          <Heading as='h2'>
-            Misc
-          </Heading>
+          <Heading as='h2'>Misc</Heading>
           <ArticleList>
             {misc.map(misc => (
               <ArticleListItem
                 key={misc.slug}
                 heading={misc.name}
                 description={misc.description}
-                link={misc.slug && !misc.externalUrl && {
-                  href: `/projects/${misc.slug}`
-                }}
+                link={
+                  misc.slug &&
+                  !misc.externalUrl && {
+                    href: `/projects/${misc.slug}`,
+                  }
+                }
                 externalUrl={misc.externalUrl}
               />
             ))}
           </ArticleList>
         </ListBox>
         <ListBox>
-          <Heading as='h2'>
-            Recent work
-          </Heading>
+          <Heading as='h2'>Recent work</Heading>
           <ArticleList>
             {work.map((item, index) => (
-              <ArticleListItem
-                key={index}
-                description={item.description}
-              />
+              <ArticleListItem key={index} description={item.description} />
             ))}
           </ArticleList>
         </ListBox>
@@ -207,18 +215,14 @@ const Page: NextPage<Props> = ({ posts }) => (
 
 export default Page
 
-const ListBox: React.FC = ({ children }) => (
-  <Stack gap={2}>
-    {children}
-  </Stack>
-)
+const ListBox: React.FC = ({ children }) => <Stack gap={2}>{children}</Stack>
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const posts = await postApi.getAll()
 
   return {
     props: {
-      posts: posts.slice(0, 6)
-    }
+      posts: posts.slice(0, 6),
+    },
   }
 }

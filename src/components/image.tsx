@@ -2,11 +2,11 @@ import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
 
 interface Props {
-  src: string,
-  srcSet?: string,
-  webpSrcSet?: string,
-  previewSrc: string,
-  alt: string,
+  src: string
+  srcSet?: string
+  webpSrcSet?: string
+  previewSrc: string
+  alt: string
   style?: React.CSSProperties
 }
 
@@ -16,7 +16,7 @@ const Image: React.FC<Props> = ({
   webpSrcSet,
   previewSrc,
   alt,
-  style
+  style,
 }) => {
   const [hasLoaded, setHasLoaded] = useState<boolean>(false)
 
@@ -28,16 +28,9 @@ const Image: React.FC<Props> = ({
 
   return (
     <ImageBox style={style}>
-      <ImageContent
-        src={previewSrc}
-        alt=''
-        aria-hidden
-        isPreview
-      />
+      <ImageContent src={previewSrc} alt='' aria-hidden isPreview />
       <ImageContent as='picture' hasLoaded={hasLoaded}>
-        {webpSrcSet && (
-          <source srcSet={webpSrcSet} type='image/webp' />
-        )}
+        {webpSrcSet && <source srcSet={webpSrcSet} type='image/webp' />}
         <source srcSet={srcSet} type='image/jpeg' />
         <img
           ref={ref}
@@ -67,7 +60,7 @@ const ImageBox = styled.div`
 `
 
 interface ImageContentProps {
-  isPreview?: boolean,
+  isPreview?: boolean
   hasLoaded?: boolean
 }
 
@@ -78,18 +71,23 @@ const ImageContent = styled.img<ImageContentProps>`
   transition-property: opacity;
   transition-duration: var(--transition-duration, 500ms);
 
-  &, img {
+  &,
+  img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
 
-  ${props => props.isPreview && `
+  ${props =>
+    props.isPreview &&
+    `
     filter: blur(var(--blur, 20px));
   `}
 
-  ${props => props.hasLoaded === false && `
+  ${props =>
+    props.hasLoaded === false &&
+    `
     opacity: 0;
   `}
 `

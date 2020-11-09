@@ -39,7 +39,7 @@ const Layout: React.FC = ({ children }) => (
               font-display: swap;
               src: url('/fonts/space-grotesk-1.1.6/variable/SpaceGroteskVariable.ttf') format('truetype');
             }
-          `
+          `,
         }}
       />
     </Head>

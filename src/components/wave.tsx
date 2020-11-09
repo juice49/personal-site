@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
 
 interface Props {
-  className?: string,
-  size: [number, number],
-  strokeWidth?: number,
+  className?: string
+  size: [number, number]
+  strokeWidth?: number
   color?: string
 }
 
@@ -14,18 +14,16 @@ const Wave: React.FC<Props> = ({ className, size, strokeWidth, color }) => {
   let count = 1
 
   const inlineSize = containerSize
-    ? containerSize?.borderBoxSize?.inlineSize ?? containerSize?.contentRect?.width
+    ? containerSize?.borderBoxSize?.inlineSize ??
+      containerSize?.contentRect?.width
     : null
-  
+
   if (inlineSize) {
-    count = (Math.floor(inlineSize / width) * 2) - 1
+    count = Math.floor(inlineSize / width) * 2 - 1
   }
-  
+
   return (
-    <div
-      ref={ref}
-      className={className}
-    >
+    <div ref={ref} className={className}>
       <svg
         width={inlineSize ?? 0}
         height={size[1] + strokeWidth}
@@ -52,12 +50,12 @@ const Wave: React.FC<Props> = ({ className, size, strokeWidth, color }) => {
 
 Wave.defaultProps = {
   strokeWidth: 1,
-  color: '#f461ff'
+  color: '#f461ff',
 }
 
 export default Wave
 
-function singleResizeObserver () {
+function singleResizeObserver() {
   const callbacks = new WeakMap()
 
   if (typeof window === 'undefined') {
@@ -72,25 +70,25 @@ function singleResizeObserver () {
   })
 
   return {
-    observe (target, callback) {
+    observe(target, callback) {
       callbacks.set(target, callback)
       observer.observe(target)
     },
-    unobserve (target) {
+    unobserve(target) {
       callbacks.delete(target)
       observer.unobserve(target)
     },
-    disconnect () {
+    disconnect() {
       observer.disconnect()
-    }
+    },
   }
 }
 
 const observers = singleResizeObserver()
 
-function useResizeObserver (): [
+function useResizeObserver(): [
   ResizeObserverEntry,
-  React.MutableRefObject<undefined>
+  React.MutableRefObject<undefined>,
 ] {
   const ref = useRef()
   const [entry, setEntry] = useState<ResizeObserverEntry>()

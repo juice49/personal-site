@@ -7,7 +7,7 @@ import Text from './text'
 import FeaturedSection from './featured-section'
 
 interface Props {
-  date?: string,
+  date?: string
   column?: string
 }
 
@@ -16,19 +16,13 @@ const PostHeader: React.FC<Props> = ({ children, date, column }) => (
     <Stack gap={2}>
       {date && (
         <div>
-          <Time dateTime={date}>
-            {date}
-          </Time>
+          <Time dateTime={date}>{date}</Time>
         </div>
       )}
-      <Heading>
-        {children}
-      </Heading>
+      <Heading>{children}</Heading>
       {column && (
         <div>
-          <Tag>
-            {column}
-          </Tag>
+          <Tag>{column}</Tag>
         </div>
       )}
     </Stack>

@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 import { useGenerateCustomPropRange, CustomPropRangeDefinition } from 'monstera'
 
 interface Props {
-  name: string,
+  name: string
   values: CustomPropRangeDefinition[]
 }
 
@@ -16,9 +16,7 @@ const CustomPropRange: React.FC<Props> = ({ name, values }) => {
     }
   `
 
-  return (
-    <Styles />
-  )
+  return <Styles />
 }
 
 export default CustomPropRange
