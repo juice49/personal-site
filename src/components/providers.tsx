@@ -1,6 +1,6 @@
 import React from 'react'
 import { MonsteraContext, MonsteraConfig, CssValue } from 'monstera'
-import { ThemeProvider } from 'styled-components' 
+import { ThemeProvider } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import { CodeBlocksContext } from '../components/code'
 import PostLayout from '../components/post-layout'
@@ -12,15 +12,15 @@ const breakpoints: CssValue[] = [
   [30, 'em'],
   [45, 'em'],
   [65, 'em'],
-  [72, 'em']
+  [72, 'em'],
 ]
 
 const monsteraConfig: MonsteraConfig = {
-  breakpoints
+  breakpoints,
 }
 
 const theme = {
-  breakpoints: breakpoints.map(value => value.join(''))
+  breakpoints: breakpoints.map(value => value.join('')),
 }
 
 const MDXComponents = {
@@ -36,7 +36,7 @@ const MDXComponents = {
   h3: props => <Heading as='h3' {...props} />,
   h4: props => <Heading as='h4' {...props} />,
   h5: props => <Heading as='h5' {...props} />,
-  h6: props => <Heading as='h6' {...props} />
+  h6: props => <Heading as='h6' {...props} />,
 }
 
 interface Props {
@@ -47,9 +47,7 @@ const Providers: React.FC<Props> = ({ children, pageProps }) => (
   <MonsteraContext.Provider value={monsteraConfig}>
     <ThemeProvider theme={theme}>
       <CodeBlocksContext.Provider value={pageProps?.__nextSsgCodeBlocks || {}}>
-        <MDXProvider components={MDXComponents}>
-          {children}
-        </MDXProvider>
+        <MDXProvider components={MDXComponents}>{children}</MDXProvider>
       </CodeBlocksContext.Provider>
     </ThemeProvider>
   </MonsteraContext.Provider>

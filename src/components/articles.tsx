@@ -9,20 +9,17 @@ import Heading from './heading'
 
 const Articles = styled.div`
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(14rem, 100%), 1fr)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
   grid-gap: var(--space4);
 `
 
 export default Articles
 
 interface ArticleProps {
-  column?: string,
-  date: string,
-  title: string,
-  description: string,
+  column?: string
+  date: string
+  title: string
+  description: string
   link: LinkProps
 }
 
@@ -31,22 +28,16 @@ export const Article: React.FC<ArticleProps> = ({
   column,
   date,
   title,
-  description
+  description,
 }) => (
   <Stack gap={1}>
     <Meta as={Stack} direction='inline' gap={1}>
-      {column && (
-        <Tag>
-          {column}
-        </Tag>
-      )}
+      {column && <Tag>{column}</Tag>}
       <DateTime dateTime={date} />
     </Meta>
     <Link passHref {...link}>
       <ArticleLink>
-        <Heading as='h3'>
-          {title}
-        </Heading>
+        <Heading as='h3'>{title}</Heading>
       </ArticleLink>
     </Link>
     <Text

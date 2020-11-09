@@ -11,13 +11,25 @@ const Footer: React.FC = () => (
     <FooterBox>
       <Main>
         <Stack gap={1}>
-          <p css={`font-variation-settings: 'wght' 700;`}>Made by Ash.</p>
+          <p
+            css={`
+              font-variation-settings: 'wght' 700;
+            `}
+          >
+            Made by Ash.
+          </p>
           <p>Figuring shit out 2008&thinsp;&ndash;&thinsp;??</p>
         </Stack>
       </Main>
       <MetaA>
         <Stack gap={1}>
-          <p css={`font-variation-settings: 'wght' 700;`}>Etc.</p>
+          <p
+            css={`
+              font-variation-settings: 'wght' 700;
+            `}
+          >
+            Etc.
+          </p>
           <MetaList>
             <li>
               <a href='#'>
@@ -34,25 +46,41 @@ const Footer: React.FC = () => (
       </MetaA>
       <MetaB>
         <Stack gap={1}>
-          <p css={`font-variation-settings: 'wght' 700;`}>Networks and stuff:</p>
+          <p
+            css={`
+              font-variation-settings: 'wght' 700;
+            `}
+          >
+            Networks and stuff:
+          </p>
           <MetaList>
             <li>
-              <a href='mailto:ashley@juice49.com'>
-                ashley@juice49.com
-              </a>
+              <a href='mailto:ashley@juice49.com'>ashley@juice49.com</a>
             </li>
             <li>
-              <a href='https://twitter.com/juice49' target='_blank' rel='noopener'>
+              <a
+                href='https://twitter.com/juice49'
+                target='_blank'
+                rel='noopener'
+              >
                 Twitter
               </a>
             </li>
             <li>
-              <a href='https://github.com/juice49' target='_blank' rel='noopener'>
+              <a
+                href='https://github.com/juice49'
+                target='_blank'
+                rel='noopener'
+              >
                 GitHub
               </a>
             </li>
             <li>
-              <a href='https://instagram.com/juice49' target='_blank' rel='noopener'>
+              <a
+                href='https://instagram.com/juice49'
+                target='_blank'
+                rel='noopener'
+              >
                 Instagram
               </a>
             </li>
@@ -77,7 +105,10 @@ const Footer: React.FC = () => (
               strokeWidth={2}
               color='rgb(253, 206, 245)'
             /> */}
-            <p>Feel free to use and remix anything you find on this site. It would be cool to hear what you do with it ✌️.</p>
+            <p>
+              Feel free to use and remix anything you find on this site. It
+              would be cool to hear what you do with it ✌️.
+            </p>
           </Stack>
         </Box>
       </MetaC>
@@ -111,7 +142,7 @@ const FooterBox = styled.footer`
       'main metaA metaB'
       'main metaA metaB'
       'metaC metaC metaC';
-    
+
     grid-template-columns: 1fr repeat(2, max-content);
   }
 `

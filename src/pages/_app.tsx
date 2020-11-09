@@ -19,10 +19,11 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Providers pageProps={pageProps}>
       <Head>
-        <title>
-          Ash - full stack web developer
-        </title>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`} />
+        <title>Ash - full stack web developer</title>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -32,7 +33,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
               gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
                 page_path: window.location.pathname,
               });
-            `
+            `,
           }}
         />
       </Head>

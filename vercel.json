@@ -3,10 +3,10 @@
   "headers": [
     {
       "source": "/(fonts|img)/(.*)",
-      "headers" : [
+      "headers": [
         {
-          "key" : "Cache-Control",
-          "value" : "max-age=31536000, immutable"
+          "key": "Cache-Control",
+          "value": "max-age=31536000, immutable"
         }
       ]
     }

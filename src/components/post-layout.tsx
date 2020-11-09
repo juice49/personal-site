@@ -10,7 +10,7 @@ import PostHeader from './post-header'
 import Tag from './tag'
 
 interface Props {
-  meta: PostMeta,
+  meta: PostMeta
   __nextSsgCodeBlocks: any
 }
 
@@ -18,9 +18,7 @@ const PostLayout: React.FC<Props> = ({ children, meta }) => {
   return (
     <Layout>
       <Head>
-        <title>
-          {meta.title} - Ash
-        </title>
+        <title>{meta.title} - Ash</title>
       </Head>
       <Box
         px={2}
@@ -37,18 +35,14 @@ const PostLayout: React.FC<Props> = ({ children, meta }) => {
       <Box>
         <StandardGrid>
           <StandardGridContent>
-            <Stack gap={2}>
-              {children}
-            </Stack>
+            <Stack gap={2}>{children}</Stack>
           </StandardGridContent>
         </StandardGrid>
       </Box>
       <Tags>
         <Stack direction='inline' gap={1}>
           {(meta.tags ?? []).map(tag => (
-            <Tag key={tag}>
-              {tag}
-            </Tag>
+            <Tag key={tag}>{tag}</Tag>
           ))}
         </Stack>
       </Tags>

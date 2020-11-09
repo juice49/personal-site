@@ -15,30 +15,22 @@ const Header = () => (
       <Navigation>
         <NavigationItem>
           <Link href='/' passHref>
-            <NavigationLink>
-              Home
-            </NavigationLink>
+            <NavigationLink>Home</NavigationLink>
           </Link>
         </NavigationItem>
         <NavigationItem>
           <Link href='/posts' passHref>
-            <NavigationLink>
-              Posts
-            </NavigationLink>
+            <NavigationLink>Posts</NavigationLink>
           </Link>
         </NavigationItem>
         <NavigationItem>
           <Link href='/projects' passHref>
-            <NavigationLink>
-              Projects
-            </NavigationLink>
+            <NavigationLink>Projects</NavigationLink>
           </Link>
         </NavigationItem>
         <NavigationItem>
           <Link href='/about' passHref>
-            <NavigationLink>
-              About
-            </NavigationLink>
+            <NavigationLink>About</NavigationLink>
           </Link>
         </NavigationItem>
       </Navigation>

@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
 
 interface PostsByYear {
-  postsByYear: Record<number, any[]>,
+  postsByYear: Record<number, any[]>
   sortedYears: number[]
 }
 
-export default function usePostsByYear (posts: any[]): PostsByYear {
+export default function usePostsByYear(posts: any[]): PostsByYear {
   return useMemo(() => {
     const postsByYear = posts.reduce((reduced, post) => {
       if (!post.date) {
@@ -14,7 +14,7 @@ export default function usePostsByYear (posts: any[]): PostsByYear {
 
       const date = new Date(post.date)
       const year = date.getFullYear()
-      
+
       if (typeof reduced[year] === 'undefined') {
         reduced[year] = []
       }
@@ -31,7 +31,7 @@ export default function usePostsByYear (posts: any[]): PostsByYear {
 
     return {
       postsByYear,
-      sortedYears
+      sortedYears,
     }
   }, [posts])
 }

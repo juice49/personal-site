@@ -2,7 +2,7 @@ export const meta = {
   title: `On Atom's Tinkerability (and keeping in sync with Dropbox)`,
   description: `Atom is a highly configurable editor. Let's investigate using Dropbox to keep everything in sync.`,
   date: '2014-03-10',
-  tags: ['Atom', 'Dropbox']
+  tags: ['Atom', 'Dropbox'],
 }
 
 I recently switched from [Chocolat](https://chocolatapp.com/) to [Atom](http://atom.io) as my text editor of choice. I have a lot of love for Chocolat, but the fact Atom is built using languages and techniques I already understand makes it a winner. Atom offers incredible tinkerability to a much wider range of its users, and there's already a pretty [big collection of packages and themes](https://atom.io/packages). A basic understanding of CSS is all you need to begin tweaking any part of the UI, with the results of your hackery rendered in real time by the very editor window you're using. You can even inspect the UI using Chrome's Dev tools (when I saw this I was sold).
@@ -11,9 +11,11 @@ I recently switched from [Chocolat](https://chocolatapp.com/) to [Atom](http://a
 
 <small>
 
+
 You had me at `cmd + alt + i`. Yes, that is a [bitcoin ticker](https://atom.io/packages/atom-bitcoin).
 
 </small>
+
 
 The result of this deep running extensibility is the ability to create a super-personalised editor environment. Syncing of settings is more important than ever, and is luckily very easy to setup with Dropbox. All Atom configuration and packages (including themes) are (for now<sup>1</sup>) stored at `~/.atom`. A symlink at this location to Dropbox is all that's required.
 
@@ -35,4 +37,9 @@ This is all that's required! You can make any system you use Atom on point to Dr
 
 ---
 
-<small><sup>1.</sup> I say for now as there is some debate about Atom following the convention of the OS it is operating under (OS X, Unix and Windows all have their own locations for storing app configuration). Even if this does change, it should still be possible to symlink to a Dropbox-stored directory.</small>
+<small>
+  <sup>1.</sup> I say for now as there is some debate about Atom following the
+  convention of the OS it is operating under (OS X, Unix and Windows all have
+  their own locations for storing app configuration). Even if this does change,
+  it should still be possible to symlink to a Dropbox-stored directory.
+</small>

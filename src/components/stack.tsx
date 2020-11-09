@@ -7,7 +7,7 @@ const Stack = styled.div<StackProps>`
 
 Stack.defaultProps = {
   gap: 2,
-  direction: 'block'
+  direction: 'block',
 }
 
 export default Stack

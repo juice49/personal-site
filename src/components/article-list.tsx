@@ -23,19 +23,25 @@ const ArticleList: React.FC<Props> = ({ children, columns }) => (
       list-style: circle;
       margin-left: var(--space2);
 
-      ${props => props.columns && `
+      ${props =>
+        props.columns &&
+        `
         display: grid;
         grid-gap: var(--space2);
         grid-template-columns: 1fr 1fr;
       `}
 
-      ${props => !props.columns && `
+      ${props =>
+        !props.columns &&
+        `
         > * + * {
           ${border}
         }
       `}
 
-      ${props => props.columns && `
+      ${props =>
+        props.columns &&
+        `
         > * {
           ${border}
         }
@@ -49,9 +55,9 @@ const ArticleList: React.FC<Props> = ({ children, columns }) => (
 export default ArticleList
 
 interface ArticleListItemProps {
-  heading?: string,
-  description?: string,
-  link?: LinkProps,
+  heading?: string
+  description?: string
+  link?: LinkProps
   externalUrl?: string
 }
 
@@ -60,16 +66,14 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   heading,
   description,
   link,
-  externalUrl
+  externalUrl,
 }) => {
   let BlockLink: React.FC<LinkProps> = props => <React.Fragment {...props} />
 
   if (link) {
     BlockLink = ({ children, ...props }) => (
       <Link {...props} passHref>
-        <ArticleLink>
-          {children}
-        </ArticleLink>
+        <ArticleLink>{children}</ArticleLink>
       </Link>
     )
   }
@@ -95,17 +99,9 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
                 color: var(--color);
               `}
             >
-              <Stack
-                as='span'
-                direction='inline'
-                gap={1}
-              >
-                <span>
-                  {heading}
-                </span>
-                {externalUrl && (
-                  <ExternalLinkIcon />
-                )}
+              <Stack as='span' direction='inline' gap={1}>
+                <span>{heading}</span>
+                {externalUrl && <ExternalLinkIcon />}
               </Stack>
             </Text>
           )}
@@ -117,7 +113,7 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
               css={`
                 color: var(--color, var(--body-color-subtle));
               `}
-              >
+            >
               {description}
             </Text>
           )}
@@ -128,10 +124,10 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   )
 }
 
-const ArticleLink = React.forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement>>(({
-  children,
-  ...props
-}, ref) => (
+const ArticleLink = React.forwardRef<
+  HTMLAnchorElement,
+  React.AnchorHTMLAttributes<HTMLAnchorElement>
+>(({ children, ...props }, ref) => (
   <a
     ref={ref}
     {...props}

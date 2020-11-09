@@ -5,9 +5,7 @@ import Text from './text'
 
 const Navigation: React.FC = ({ children }) => (
   <Text as='nav' size='milli'>
-    <NavigationList>
-      {children}
-    </NavigationList>
+    <NavigationList>{children}</NavigationList>
   </Text>
 )
 
@@ -28,20 +26,23 @@ const NavigationList = styled.ul`
 
 export const NavigationItem = 'li'
 
-export const NavigationLink = forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement>>((props, ref) => {
+export const NavigationLink = forwardRef<
+  HTMLAnchorElement,
+  React.AnchorHTMLAttributes<HTMLAnchorElement>
+>((props, ref) => {
   const router = useRouter()
 
-  const [currentPath, targetPath] = [router?.asPath, props?.href]
-    .map(path => (path ?? '').split('/')[1])
+  const [currentPath, targetPath] = [router?.asPath, props?.href].map(
+    path => (path ?? '').split('/')[1],
+  )
 
   const isActive = currentPath === targetPath
 
-  const activeClassName = isActive
-    ? 'is-active'
-    : null
+  const activeClassName = isActive ? 'is-active' : null
 
   return (
-    <Text as='a'
+    <Text
+      as='a'
       {...props}
       ref={ref}
       className={activeClassName}
@@ -64,7 +65,8 @@ export const NavigationLink = forwardRef<HTMLAnchorElement, React.AnchorHTMLAttr
           height: 2px;
           background-color: var(--accent-color);
 
-          @media (max-width: calc(${props => props.theme.breakpoints[0]} - 1px)) {
+          @media (max-width: calc(${props =>
+              props.theme.breakpoints[0]} - 1px)) {
             width: var(--space2);
             left: 0;
             top: calc(50% - 1px);

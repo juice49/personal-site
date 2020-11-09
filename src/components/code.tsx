@@ -5,7 +5,7 @@ import Box from './box'
 export const CodeBlocksContext = createContext({})
 
 interface Props {
-  code: string,
+  code: string
   language: string
 }
 
@@ -13,9 +13,7 @@ const Code: React.FC<Props> = ({ language, code }) => {
   const codeBlocks = useContext(CodeBlocksContext)
 
   if (typeof codeBlocks[code] !== 'undefined') {
-    return (
-      <Container dangerouslySetInnerHTML={{ __html: codeBlocks[code] }} />
-    )
+    return <Container dangerouslySetInnerHTML={{ __html: codeBlocks[code] }} />
   }
 
   const IS_SSG =
@@ -24,11 +22,11 @@ const Code: React.FC<Props> = ({ language, code }) => {
     // @ts-ignore
     global.__nextSsgCodeBlocks
 
-  if (IS_SSG) {  
+  if (IS_SSG) {
     // @ts-ignore
     global.__nextSsgCodeBlocks.push({
       code,
-      language
+      language,
     })
   }
 

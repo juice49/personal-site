@@ -7,7 +7,7 @@ const StandardGrid = styled.div`
     'gutter1 content gutter2'
     'gutter1 meta1 gutter2'
     'gutter1 meta2 gutter2';
-  
+
   grid-template-columns:
     minmax(var(--space2), auto)
     minmax(0, 44ch)
@@ -23,7 +23,7 @@ const StandardGrid = styled.div`
 
   @media (min-width: ${props => props.theme.breakpoints[2]}) {
     grid-template-areas: 'gutter1 meta1 gutterA content gutterB meta2 gutter2';
-    
+
     grid-template-columns:
       1fr
       minmax(auto, 15ch)
@@ -58,7 +58,7 @@ export const StandardGridContentSlightlyWide = styled.div`
 
 export const StandardGridContentWide = styled.div`
   grid-area: content;
-  
+
   @media (min-width: ${props => props.theme.breakpoints[2]}) {
     grid-area: 1 / meta1 / 1 / meta2;
   }
@@ -73,5 +73,5 @@ export const StandardGridMeta = styled.div<StandardGridMetaProps>`
 `
 
 StandardGridMeta.defaultProps = {
-  position: 1
+  position: 1,
 }

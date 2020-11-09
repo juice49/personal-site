@@ -5,9 +5,7 @@ import Text from './text'
 
 const FeaturedSection: React.FC = ({ children }) => (
   <FeaturedSectionBox>
-    <Inner>
-      {children}
-    </Inner>
+    <Inner>{children}</Inner>
   </FeaturedSectionBox>
 )
 
@@ -43,11 +41,7 @@ export const FeaturedSectionHeading: React.FC = ({ children }) => (
       border-bottom: 1px dashed currentColor;
     `}
   >
-    <Text
-      as='h2'
-      variant='mono'
-      size='milli'
-    >
+    <Text as='h2' variant='mono' size='milli'>
       {children}
     </Text>
   </Box>

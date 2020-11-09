@@ -2,25 +2,31 @@ import styled from 'styled-components'
 import variants from '../lib/variants'
 
 const Text = styled.span`
-  ${variants({
-    micro: `
+  ${variants(
+    {
+      micro: `
       font-size: 0.6rem;
     `,
-    milli: `
+      milli: `
       font-size: 0.8rem;
-    `
-  }, 'size')}
+    `,
+    },
+    'size',
+  )}
 
-  ${variants({
-    bold: `
+  ${variants(
+    {
+      bold: `
       font-variation-settings: 'wght' 680;
-    `
-  }, 'weight')}
+    `,
+    },
+    'weight',
+  )}
 
   ${variants({
     mono: `
       font-family: 'JetBrains Mono', SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    `
+    `,
   })}
 `
 

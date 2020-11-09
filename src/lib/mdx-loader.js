@@ -11,7 +11,7 @@ const loader = async function (content) {
 
   const options = {
     ...getOptions(this),
-    filepath: this.resourcePath
+    filepath: this.resourcePath,
   }
 
   let result
@@ -36,7 +36,6 @@ const loader = async function (content) {
   const result = await compiler.process(fileOpts)
 
   console.log('[RESULT]', result) */
-
 }
 
 module.exports = loader

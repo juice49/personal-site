@@ -25,7 +25,7 @@ const Button = styled.button<Props>`
       width: 100%;
       padding: var(--space2);
       font-size: 1.3rem;
-    `
+    `,
   })}
 `
 

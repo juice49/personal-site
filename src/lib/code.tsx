@@ -10,19 +10,19 @@ import Providers from '../components/providers'
 // 5. During a client render, React context is created based on the code block page props.
 // 6. During a client render, the code block component grabs the code block HTML from the context.
 
-export default async function getCodeBlockStaticProps (Page: NextPage) {
+export default async function getCodeBlockStaticProps(Page: NextPage) {
   // const low = require('lowlight')
   // const rehype = require('rehype')
   const { getHighlighter, loadTheme } = require('shiki')
 
   // @ts-ignore
   const { renderToStaticMarkup } = require('react-dom/server')
-  
+
   // @ts-ignore
   global.__nextSsgCodeBlocks = []
 
   const props = {
-    __nextSsgCodeBlocks: {}
+    __nextSsgCodeBlocks: {},
   }
 
   // Calling the render function collects all of our code blocks.
@@ -33,11 +33,11 @@ export default async function getCodeBlockStaticProps (Page: NextPage) {
   renderToStaticMarkup(
     <Providers>
       <Page />
-    </Providers>
+    </Providers>,
   )
 
   const highlighter = await getHighlighter({
-    theme: 'Material-Theme-Palenight-High-Contrast'
+    theme: 'Material-Theme-Palenight-High-Contrast',
   })
 
   // @ts-ignore

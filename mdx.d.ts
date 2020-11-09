@@ -1,6 +1,6 @@
 declare module '*.mdx' {
   const MDXComponent: React.FC
-  
+
   interface Meta {
     title: string
   }

@@ -3,7 +3,7 @@ import Text from './text'
 
 const Note = styled(Text).attrs(() => ({
   size: 'micro',
-  variant: 'mono'
+  variant: 'mono',
 }))`
   color: var(--body-color-subtle);
 `

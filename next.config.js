@@ -14,10 +14,10 @@ const mdxRenderer = `
 
 const withMdx = require('@next/mdx')({
   options: {
-    renderer: mdxRenderer
-  }
+    renderer: mdxRenderer,
+  },
 })
 
 module.exports = withMdx({
-  pageExtensions: ['tsx', 'mdx']
+  pageExtensions: ['tsx', 'mdx'],
 })
