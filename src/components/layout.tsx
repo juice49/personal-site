@@ -1,28 +1,20 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
-import { useGenerateCustomPropRange } from 'monstera'
 import GlobalStyle from './global-style'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Box from './box'
 import Stack from './stack'
 
-const Layout: React.FC = ({ children }) => {
-  const space = useGenerateCustomPropRange('space', [
-    [[0.25, 'rem'], [1, 'rem'], 1.25, 1.5, 1.5],
-    1.25,
-    1.25,
-  ])
-
-  return (
-    <>
-      <GlobalStyle space={space} />
-      <Head>
-        <style
-          type='text/css'
-          dangerouslySetInnerHTML={{
-            __html: `
+const Layout: React.FC = ({ children }) => (
+  <>
+    <GlobalStyle />
+    <Head>
+      <style
+        type='text/css'
+        dangerouslySetInnerHTML={{
+          __html: `
             /* @font-face {
               font-family: 'PT Root UI';
               font-display: swap;
@@ -48,23 +40,22 @@ const Layout: React.FC = ({ children }) => {
               src: url('/fonts/space-grotesk-1.1.6/variable/SpaceGroteskVariable.ttf') format('truetype');
             }
           `,
-          }}
-        />
-      </Head>
-      <DocumentOuter>
-        <DocumentInner>
-          <Box pb={[15, 'vmin']}>
-            <Stack gap={[15, 'vmin']}>
-              <Header />
-              {children}
-            </Stack>
-          </Box>
-        </DocumentInner>
-        <Footer />
-      </DocumentOuter>
-    </>
-  )
-}
+        }}
+      />
+    </Head>
+    <DocumentOuter>
+      <DocumentInner>
+        <Box pb={[15, 'vmin']}>
+          <Stack gap={[15, 'vmin']}>
+            <Header />
+            {children}
+          </Stack>
+        </Box>
+      </DocumentInner>
+      <Footer />
+    </DocumentOuter>
+  </>
+)
 
 export default Layout
 

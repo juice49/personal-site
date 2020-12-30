@@ -3747,10 +3747,10 @@ mkdirp@^1.0.3, mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-monstera@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/monstera/-/monstera-1.0.0.tgz#28c319f405b3576ab4dad2205568194c7b84b4ef"
-  integrity sha512-aFSS7N0/B+IAa1hhOr9GwH+q6BuOJbyOGlQh7tfhTtsmKX37vLPpCBEZZ29cz2xN6xdnLTxwgWmYQQzZkHdNZA==
+monstera@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/monstera/-/monstera-2.0.0.tgz#3aba5e6f7856f0760c6bbbf9931e8c63abfea9bc"
+  integrity sha512-ITc+vUsk+agDBckT6BDYArPKyXWJwtxiXiuwTC4RqEdaeNb7+FlvRKlJ8q+qoTTgJSmcv32PJ7FzZwUaL7ULyg==
   dependencies:
     lodash.upperfirst "^4.3.1"
 

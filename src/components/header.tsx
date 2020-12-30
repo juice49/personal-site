@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
+import { cssValueToString } from 'monstera'
 import Text from './text'
 import Navigation, { NavigationItem, NavigationLink } from './navigation'
 
@@ -44,7 +45,7 @@ const Container = styled.div`
   display: flex;
   padding: var(--space3);
 
-  @media (min-width: ${props => props.theme.breakpoints[0]}) {
+  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[0])}) {
     align-items: center;
   }
 `

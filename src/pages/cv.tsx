@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { NextPage } from 'next'
 import Head from 'next/head'
+import { cssValueToString } from 'monstera'
 import work from '../data/work'
 import Layout from '../components/layout'
 import Box from '../components/box'
@@ -288,7 +289,7 @@ const ContactList = styled.ul`
   list-style: none;
   color: #fff;
 
-  @media (min-width: ${props => props.theme.breakpoints[1]}) {
+  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[1])}) {
     grid-template-columns: repeat(3, auto);
   }
 `
