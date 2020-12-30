@@ -1,6 +1,7 @@
 import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
+import { cssValueToString } from 'monstera'
 import Text from './text'
 
 const Navigation: React.FC = ({ children }) => (
@@ -15,11 +16,12 @@ const NavigationList = styled.ul`
   margin: calc(var(--space1) * -1);
   list-style: none;
 
-  @media (max-width: calc(${props => props.theme.breakpoints[0]} - 1px)) {
+  @media (max-width: calc(${props =>
+    cssValueToString(props.theme.breakpoints[0])} - 1px)) {
     text-align: right;
   }
 
-  @media (min-width: ${props => props.theme.breakpoints[0]}) {
+  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[0])}) {
     display: flex;
   }
 `
@@ -66,14 +68,14 @@ export const NavigationLink = forwardRef<
           background-color: var(--accent-color);
 
           @media (max-width: calc(${props =>
-              props.theme.breakpoints[0]} - 1px)) {
+            cssValueToString(props.theme.breakpoints[0])} - 1px)) {
             width: var(--space2);
             left: 0;
             top: calc(50% - 1px);
             transform: translate(-100%, -50%);
           }
 
-          @media (min-width: ${props => props.theme.breakpoints[0]}) {
+          @media (min-width: ${props => cssValueToString(props.theme.breakpoints[0])}) {
             left: var(--space1);
             right: var(--space1);
             bottom: calc((var(--space1) * 0.5) + 1px);
