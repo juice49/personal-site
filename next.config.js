@@ -19,7 +19,7 @@ const withMdx = require('@next/mdx')({
 })
 
 module.exports = withMdx({
-  pageExtensions: ['tsx', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   images: {
     domains: [
       'is1-ssl.mzstatic.com',
