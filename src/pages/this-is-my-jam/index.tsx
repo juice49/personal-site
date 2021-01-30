@@ -1,10 +1,10 @@
 import { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
-import sanityClient from '@sanity/client'
 import Layout from '../../components/layout'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 import Heading from '../../components/heading'
 import Box from '../../components/box'
+import sanity from '../../lib/sanity'
 
 import StandardGrid, {
   StandardGridContent,
@@ -43,12 +43,6 @@ const Page: NextPage<Props> = ({ jams }) => (
 export default Page
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const sanity = sanityClient({
-    projectId: process.env.SANITY_PROJECT_ID,
-    dataset: process.env.SANITY_DATASET,
-    token: process.env.SANITY_API_TOKEN,
-    useCdn: true,
-  })
 
   const jams = await sanity.fetch(`*[ _type ==  "jam"]{
     ...,
