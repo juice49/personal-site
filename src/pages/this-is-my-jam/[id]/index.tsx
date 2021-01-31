@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   return {
     notFound: typeof jam._id === 'undefined',
     props: {
-      ogImageUrl: `https://${process.env.VERCEL_URL}/api/og-image/this-is-my-jam/${params.id}/og-image.png`,
+      ogImageUrl: `https://ash.gd/api/og-image/this-is-my-jam/${params.id}/og-image.png`,
       jam,
     },
     revalidate: 3600,
