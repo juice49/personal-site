@@ -20,41 +20,47 @@ interface Props {
   ogImageUrl: string
 }
 
-const Page: NextPage<Props> = ({ jam, ogImageUrl }) => (
-  <Layout>
-    <Head>
-      <title>
-        {jam.track.name} by{' '}
-        {jam.track.artists.map(({ name }) => name).join(', ')} - This is My Jam
-        - Ash
-      </title>
-      <meta property='og:image' content={ogImageUrl} />
-      <meta property='og:image:width' content='2048' />
-      <meta property='og:image:height' content='1260' />
-    </Head>
-    <Box px={2}>
-      <Heading as='h1' variant='alpha'>
-        This is My Jam
-      </Heading>
-    </Box>
-    <StandardGrid>
-      <StandardGridContent>
-        <Stack gap={4}>
-          <TrackComponent jam={jam} />
-        </Stack>
-      </StandardGridContent>
-    </StandardGrid>
-    <StandardGrid>
-      <StandardGridContent>
-        <Link href='/this-is-my-jam' passHref>
-          <Button as='a' variant='large'>
-            View all jams
-          </Button>
-        </Link>
-      </StandardGridContent>
-    </StandardGrid>
-  </Layout>
-)
+const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
+  const title = `${jam.track.name} by ${jam.track.artists
+    .map(({ name }) => name)
+    .join(', ')}`
+
+  return (
+    <Layout>
+      <Head>
+        <title>{title} - This is My Jam - Ash</title>
+        <meta property='og:image' content={ogImageUrl} />
+        <meta property='og:image:width' content='2048' />
+        <meta property='og:image:height' content='1260' />
+        <meta property='og:title' content={`This is My Jam: ${title}`} />
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:site' content='@juice49' />
+        <meta name='twitter:image' content={ogImageUrl} />
+      </Head>
+      <Box px={2}>
+        <Heading as='h1' variant='alpha'>
+          This is My Jam
+        </Heading>
+      </Box>
+      <StandardGrid>
+        <StandardGridContent>
+          <Stack gap={4}>
+            <TrackComponent jam={jam} />
+          </Stack>
+        </StandardGridContent>
+      </StandardGrid>
+      <StandardGrid>
+        <StandardGridContent>
+          <Link href='/this-is-my-jam' passHref>
+            <Button as='a' variant='large'>
+              View all jams
+            </Button>
+          </Link>
+        </StandardGridContent>
+      </StandardGrid>
+    </Layout>
+  )
+}
 
 export default Page
 
