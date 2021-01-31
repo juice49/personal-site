@@ -31,12 +31,11 @@ export default createGlobalStyle`
     color: var(--body-color);
 
     margin: var(--document-border-width);
-    margin-bottom: 0;
 
     ${props =>
       generateCustomPropRange(
         'space',
-        [[[0.25, 'rem'], [1, 'rem'], 1.25, 1.5, 1.5], 1.25, 1.25],
+        [[[0.5, 'rem'], [1, 'rem'], 1.25, 1.5, 1.5], 1.25, 1.25],
         props.theme.breakpoints,
       )}
   }
