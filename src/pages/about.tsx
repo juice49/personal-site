@@ -26,12 +26,6 @@ const Page: NextPage = () => (
             there are parts of the stack I'm very focused on, I am most
             passionate about <em>making stuff</em>.
           </p>
-          <p>
-            When I was younger, I was fortunate to discover how simple it can be
-            to publish content online. In the decade or so since, I haven't
-            published very much myself&hellip; but I have made a lot of websites
-            for other people.
-          </p>
         </Stack>
       </StandardGridContent>
     </StandardGrid>
