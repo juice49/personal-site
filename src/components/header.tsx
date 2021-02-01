@@ -1,9 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { cssValueToString } from 'monstera'
+import { CssValue, cssValueToString } from 'monstera'
 import Text from './text'
 import Navigation, { NavigationItem, NavigationLink } from './navigation'
+
+const breakpoints: CssValue[] = [[36, 'em']]
 
 const Header = () => (
   <Container>
@@ -15,11 +17,6 @@ const Header = () => (
     <NavigationContainer>
       <Navigation>
         <NavigationItem>
-          <Link href='/' passHref>
-            <NavigationLink>Home</NavigationLink>
-          </Link>
-        </NavigationItem>
-        <NavigationItem>
           <Link href='/posts' passHref>
             <NavigationLink>Posts</NavigationLink>
           </Link>
@@ -27,6 +24,11 @@ const Header = () => (
         <NavigationItem>
           <Link href='/projects' passHref>
             <NavigationLink>Projects</NavigationLink>
+          </Link>
+        </NavigationItem>
+        <NavigationItem>
+          <Link href='/this-is-my-jam' passHref>
+            <NavigationLink>This is My Jam</NavigationLink>
           </Link>
         </NavigationItem>
         <NavigationItem>
@@ -45,7 +47,7 @@ const Container = styled.div`
   display: flex;
   padding: var(--space3);
 
-  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[0])}) {
+  @media (min-width: ${cssValueToString(breakpoints[0])}) {
     align-items: center;
   }
 `
