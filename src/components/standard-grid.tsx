@@ -17,7 +17,7 @@ const StandardGrid = styled.div`
   --gutterAb: var(--space2);
 
   @media (max-width: calc(${props =>
-    cssValueToString(props.theme.breakpoints[2])} - 1px)) {
+      cssValueToString(props.theme.breakpoints[2])} - 0.001em)) {
     > * + * {
       margin-top: var(--space2);
     }
