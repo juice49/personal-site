@@ -18,14 +18,12 @@ const FeaturedSectionBox = styled.div`
   &::before {
     content: '';
     position: absolute;
-
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     transform: skew(0.7deg, 0.7deg);
     background-color: var(--featured-section-bg, #1e58fa);
-    content: '';
   }
 `
 

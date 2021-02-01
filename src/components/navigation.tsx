@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
-import { cssValueToString } from 'monstera'
+import { CssValue, cssValueToString } from 'monstera'
 import Text from './text'
 
 const Navigation: React.FC = ({ children }) => (
@@ -12,16 +12,17 @@ const Navigation: React.FC = ({ children }) => (
 
 export default Navigation
 
+const breakpoints: CssValue[] = [[36, 'em']]
+
 const NavigationList = styled.ul`
   margin: calc(var(--space1) * -1);
   list-style: none;
 
-  @media (max-width: calc(${props =>
-    cssValueToString(props.theme.breakpoints[0])} - 1px)) {
+  @media (max-width: calc(${cssValueToString(breakpoints[0])} - 0.001em)) {
     text-align: right;
   }
 
-  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[0])}) {
+  @media (min-width: ${cssValueToString(breakpoints[0])}) {
     display: flex;
   }
 `
@@ -67,15 +68,16 @@ export const NavigationLink = forwardRef<
           height: 2px;
           background-color: var(--accent-color);
 
-          @media (max-width: calc(${props =>
-            cssValueToString(props.theme.breakpoints[0])} - 1px)) {
+          @media (max-width: calc(${cssValueToString(
+              breakpoints[0],
+            )} - 0.001em)) {
             width: var(--space2);
             left: 0;
             top: calc(50% - 1px);
             transform: translate(-100%, -50%);
           }
 
-          @media (min-width: ${props => cssValueToString(props.theme.breakpoints[0])}) {
+          @media (min-width: ${cssValueToString(breakpoints[0])}) {
             left: var(--space1);
             right: var(--space1);
             bottom: calc((var(--space1) * 0.5) + 1px);

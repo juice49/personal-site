@@ -101,7 +101,7 @@ const Container = styled.article`
 const ActionList = styled.ul`
   list-style: none;
 
-  @media (max-width: calc(${props => props.theme.breakpoints[0]} - 1px)) {
+  @media (max-width: calc(${props => props.theme.breakpoints[0]} - 0.001em)) {
     ${props =>
       stack({
         gap: [0.25, 'rem'],
