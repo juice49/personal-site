@@ -11,6 +11,13 @@ const Layout: React.FC = ({ children }) => (
   <>
     <GlobalStyle />
     <Head>
+      <link
+        rel='preload'
+        href='/fonts/zangezi-sans-0.8/ZangeziSans08-Black.woff2'
+        as='font'
+        type='font/woff2'
+        crossOrigin='anonymous'
+      />
       <style
         type='text/css'
         dangerouslySetInnerHTML={{
