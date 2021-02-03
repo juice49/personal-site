@@ -32,7 +32,7 @@ const Page: NextPage<Props> = ({ jam }) => (
               font-family: 'Zangezi Sans';
               font-weight: 700;
               font-display: swap;
-              src: url('/fonts/zangezi-sans-0.8/ZangeziSans08-Black.woff2') format('woff2');
+              src: url('/fonts/zangezi-sans-0.9/ZangeziSans09-Black.woff2') format('woff2');
             }
 
             @font-face {

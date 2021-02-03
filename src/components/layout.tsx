@@ -13,7 +13,7 @@ const Layout: React.FC = ({ children }) => (
     <Head>
       <link
         rel='preload'
-        href='/fonts/zangezi-sans-0.8/ZangeziSans08-Black.woff2'
+        href='/fonts/zangezi-sans-0.9/ZangeziSans09-Black.woff2'
         as='font'
         type='font/woff2'
         crossOrigin='anonymous'
@@ -32,7 +32,7 @@ const Layout: React.FC = ({ children }) => (
               font-family: 'Zangezi Sans';
               font-weight: 700;
               font-display: swap;
-              src: url('/fonts/zangezi-sans-0.8/ZangeziSans08-Black.woff2') format('woff2');
+              src: url('/fonts/zangezi-sans-0.9/ZangeziSans09-Black.woff2') format('woff2');
             }
 
             @font-face {
