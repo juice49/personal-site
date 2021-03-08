@@ -35,7 +35,7 @@ const PostLayout: React.FC<Props> = ({ children, meta }) => {
       <Box>
         <StandardGrid>
           <StandardGridContent>
-            <Stack gap={2}>{children}</Stack>
+            <Stack gap={5}>{children}</Stack>
           </StandardGridContent>
         </StandardGrid>
       </Box>
