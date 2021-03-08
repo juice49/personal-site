@@ -15,6 +15,7 @@ const mdxRenderer = `
 const withMdx = require('@next/mdx')({
   options: {
     renderer: mdxRenderer,
+    remarkPlugins: [require('./src/lib/stack-wrapper')],
   },
 })
 
