@@ -30,7 +30,4 @@ module.exports = withMdx({
       'is5-ssl.mzstatic.com',
     ],
   },
-  future: {
-    webpack5: true,
-  },
 })
