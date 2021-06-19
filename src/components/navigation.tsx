@@ -89,3 +89,5 @@ export const NavigationLink = forwardRef<
     />
   )
 })
+
+NavigationLink.displayName = 'NavigationLink'

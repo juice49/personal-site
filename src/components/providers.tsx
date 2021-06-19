@@ -14,23 +14,37 @@ const theme: Theme = {
     [45, 'em'],
     [65, 'em'],
     [72, 'em'],
-  ]
+  ],
 }
 
 const MDXComponents = {
   wrapper: PostLayout,
   pre: ({ children }) => children,
-  code: ({ className, children }) => (
-    <Box mx={-2}>
-      <Code code={children} language={className.replace(/language-/, '')} />
-    </Box>
-  ),
-  h1: props => <Heading as='h1' {...props} />,
-  h2: props => <Heading as='h2' {...props} />,
-  h3: props => <Heading as='h3' {...props} />,
-  h4: props => <Heading as='h4' {...props} />,
-  h5: props => <Heading as='h5' {...props} />,
-  h6: props => <Heading as='h6' {...props} />,
+  code: function CodeComponent({ className, children }) {
+    return (
+      <Box mx={-2}>
+        <Code code={children} language={className.replace(/language-/, '')} />
+      </Box>
+    )
+  },
+  h1: function H1(props) {
+    return <Heading as='h1' {...props} />
+  },
+  h2: function H2(props) {
+    return <Heading as='h2' {...props} />
+  },
+  h3: function H3(props) {
+    return <Heading as='h3' {...props} />
+  },
+  h4: function H4(props) {
+    return <Heading as='h4' {...props} />
+  },
+  h5: function H5(props) {
+    return <Heading as='h5' {...props} />
+  },
+  h6: function H6(props) {
+    return <Heading as='h6' {...props} />
+  },
 }
 
 interface Props {

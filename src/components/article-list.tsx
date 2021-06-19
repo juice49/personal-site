@@ -72,19 +72,23 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   let BlockLink: React.FC<LinkProps> = props => <React.Fragment {...props} />
 
   if (link) {
-    BlockLink = ({ children, ...props }) => (
-      <Link {...props} passHref>
-        <ArticleLink>{children}</ArticleLink>
-      </Link>
-    )
+    BlockLink = function BlockLink({ children, ...props }) {
+      return (
+        <Link {...props} passHref>
+          <ArticleLink>{children}</ArticleLink>
+        </Link>
+      )
+    }
   }
 
   if (externalUrl) {
-    BlockLink = ({ children }) => (
-      <ArticleLink href={externalUrl} target='_blank' rel='noopener'>
-        {children}
-      </ArticleLink>
-    )
+    BlockLink = function BlockLink({ children }) {
+      return (
+        <ArticleLink href={externalUrl} target='_blank' rel='noopener'>
+          {children}
+        </ArticleLink>
+      )
+    }
   }
 
   return (
@@ -162,3 +166,5 @@ const ArticleLink = React.forwardRef<
     </div>
   </a>
 ))
+
+ArticleLink.displayName = 'ArticleLink'

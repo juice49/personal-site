@@ -262,7 +262,11 @@ const Contact: React.FC = () => (
           <ContactListItem>
             <Text weight='bold'>GitHub:</Text>
             &nbsp;
-            <a href='https://github.com/juice49' target='_blank' rel='noopener'>
+            <a
+              href='https://github.com/juice49'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               juice49
             </a>
           </ContactListItem>
@@ -272,7 +276,7 @@ const Contact: React.FC = () => (
             <a
               href='https://twitter.com/juice49'
               target='_blank'
-              rel='noopener'
+              rel='noopener noreferrer'
             >
               @juice49
             </a>

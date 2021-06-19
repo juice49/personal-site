@@ -11,7 +11,7 @@ import ArticleList, { ArticleListItem } from '../components/article-list'
 const Page: NextPage = () => (
   <Layout>
     <Box px={2}>
-      <Heading variant='alpha'>Hello, I'm Ash.</Heading>
+      <Heading variant='alpha'>Hello, I&apos;m Ash.</Heading>
     </Box>
     <StandardGrid>
       <StandardGridContent>
@@ -21,10 +21,10 @@ const Page: NextPage = () => (
             usually <em>for</em> the web.
           </Text>
           <p>
-            At the moment I'm most interested in jamstack and design systems. I
-            work with things like React, Next.js, node.js, and GraphQL. Although
-            there are parts of the stack I'm very focused on, I am most
-            passionate about <em>making stuff</em>.
+            At the moment I&apos;m most interested in jamstack and design
+            systems. I work with things like React, Next.js, node.js, and
+            GraphQL. Although there are parts of the stack I&apos;m very focused
+            on, I am most passionate about <em>making stuff</em>.
           </p>
         </Stack>
       </StandardGridContent>

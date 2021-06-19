@@ -61,7 +61,7 @@ const Footer: React.FC = () => (
               <a
                 href='https://twitter.com/juice49'
                 target='_blank'
-                rel='noopener'
+                rel='noopener noreferrer'
               >
                 Twitter
               </a>
@@ -70,7 +70,7 @@ const Footer: React.FC = () => (
               <a
                 href='https://github.com/juice49'
                 target='_blank'
-                rel='noopener'
+                rel='noopener noreferrer'
               >
                 GitHub
               </a>
@@ -79,18 +79,26 @@ const Footer: React.FC = () => (
               <a
                 href='https://instagram.com/juice49'
                 target='_blank'
-                rel='noopener'
+                rel='noopener noreferrer'
               >
                 Instagram
               </a>
             </li>
             <li>
-              <a href='https://codepen.com/ash' target='_blank' rel='noopener'>
+              <a
+                href='https://codepen.com/ash'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 Codepen
               </a>
             </li>
             <li>
-              <a href='https://dribbble.com/ash' target='_blank' rel='noopener'>
+              <a
+                href='https://dribbble.com/ash'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 Dribbble
               </a>
             </li>
