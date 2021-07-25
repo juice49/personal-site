@@ -38,7 +38,6 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
           content={`This is My Jam: ${title}`}
         />
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:site' content='@juice49' />
         <meta name='twitter:image' content={ogImageUrl} />
       </Head>
       <Box px={2}>
