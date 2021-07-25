@@ -11,7 +11,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <Head>
         <title>{title}</title>
         <meta name='twitter:site' content='@juice49' />
-        <meta property='og:title' content={title} />
+        <meta key='og:title' property='og:title' content={title} />
       </Head>
       <Component {...pageProps} />
     </Providers>
