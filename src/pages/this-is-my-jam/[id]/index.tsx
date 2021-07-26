@@ -29,12 +29,15 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
     <Layout>
       <Head>
         <title>{title} - This is My Jam - Ash</title>
-        <meta property='og:image' content={ogImageUrl} />
-        <meta property='og:image:width' content='2048' />
-        <meta property='og:image:height' content='1260' />
-        <meta property='og:title' content={`This is My Jam: ${title}`} />
+        <meta key='og:image' property='og:image' content={ogImageUrl} />
+        <meta key='og:image:width' property='og:image:width' content='2048' />
+        <meta key='og:image:height' property='og:image:height' content='1260' />
+        <meta
+          key='og:title'
+          property='og:title'
+          content={`This is My Jam: ${title}`}
+        />
         <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:site' content='@juice49' />
         <meta name='twitter:image' content={ogImageUrl} />
       </Head>
       <Box px={2}>
@@ -92,7 +95,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   return {
     notFound: typeof jam._id === 'undefined',
     props: {
-      ogImageUrl: `https://og-image.ash.gd/api/this-is-my-jam/${params.id}/og-image.png`,
+      ogImageUrl: `${process.env.NEXT_PUBLIC_OG_IMAGE_SERVICE_URL}/this-is-my-jam/${params.id}/og-image.png`,
       jam,
     },
     revalidate: 3600,
