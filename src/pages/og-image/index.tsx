@@ -1,6 +1,5 @@
-import { NextPage } from 'next'
+import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
 import styled, { createGlobalStyle } from 'styled-components'
 import { format } from 'date-fns'
 import GlobalStyle from '../../components/global-style'
@@ -14,21 +13,21 @@ const CustomGlobalStyle = createGlobalStyle`
   }
 `
 
-const Page: NextPage = () => {
-  const { query } = useRouter()
-  const [title] = [].concat(query.title)
-  const [date] = [].concat(query.date)
+interface Props {
+  title: string
+  date?: string
+}
 
-  return (
-    <DocumentOuter>
-      <GlobalStyle />
-      <CustomGlobalStyle />
-      <Head>
-        <meta name='robots' content='noindex' />
-        <style
-          type='text/css'
-          dangerouslySetInnerHTML={{
-            __html: `
+const Page: NextPage<Props> = ({ title, date }) => (
+  <DocumentOuter>
+    <GlobalStyle />
+    <CustomGlobalStyle />
+    <Head>
+      <meta name='robots' content='noindex' />
+      <style
+        type='text/css'
+        dangerouslySetInnerHTML={{
+          __html: `
             @font-face {
               font-family: 'Zangezi Sans';
               font-weight: 700;
@@ -48,54 +47,65 @@ const Page: NextPage = () => {
               src: url('/fonts/space-grotesk-1.1.6/variable/SpaceGroteskVariable.ttf') format('truetype');
             }
           `,
+        }}
+      />
+    </Head>
+    <Container>
+      <Box p={2} pb={0}>
+        <LogoContainer>
+          <LogoImage
+            src='http://gravatar.com/avatar/baa7a8ec68ea6c13a1f0691098872575?s=200'
+            alt='Photo of me'
+            width={34}
+            height={34}
+          />
+          <Text as='h2' weight='bold' size='milli'>
+            Ash
+          </Text>
+        </LogoContainer>
+      </Box>
+      <Box px={2}>
+        <Heading
+          as='h1'
+          dangerouslySetInnerHTML={{
+            __html: title,
           }}
         />
-      </Head>
-      <Container>
-        <Box p={2} pb={0}>
-          <LogoContainer>
-            <LogoImage
-              src='http://gravatar.com/avatar/baa7a8ec68ea6c13a1f0691098872575?s=200'
-              alt='Photo of me'
-              width={34}
-              height={34}
-            />
-            <Text as='h2' weight='bold' size='milli'>
-              Ash
-            </Text>
-          </LogoContainer>
+        {date && (
+          <Text variant='mono' size='micro' as='time' dateTime={date}>
+            {format(new Date(date), 'd MMMM yyyy')}
+          </Text>
+        )}
+      </Box>
+      <Footer>
+        <Box p={2}>
+          <Text size='micro'>@juice49</Text>
         </Box>
-        <Box px={2}>
-          <Heading
-            as='h1'
-            dangerouslySetInnerHTML={{
-              __html: title,
-            }}
-          />
-          {date && (
-            <Text variant='mono' size='micro' as='time' dateTime={date}>
-              {format(new Date(date), 'd MMMM yyyy')}
-            </Text>
-          )}
+        <Box p={2}>
+          <Text size='micro'>https://ash.gd</Text>
         </Box>
-        <Footer>
-          <Box p={2}>
-            <Text size='micro'>@juice49</Text>
-          </Box>
-          <Box p={2}>
-            <Text size='micro'>https://ash.gd</Text>
-          </Box>
-        </Footer>
-      </Container>
-    </DocumentOuter>
-  )
-}
+      </Footer>
+    </Container>
+  </DocumentOuter>
+)
 
 export default Page
 
-/* export const config = {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const props: Props = {
+    title: [].concat(query.title)[0],
+  }
+
+  if (query.date) {
+    props.date = [].concat(query.date)[0]
+  }
+
+  return { props }
+}
+
+export const config = {
   unstable_runtimeJS: false,
-} */
+}
 
 const DocumentOuter = styled.div`
   display: flex;
