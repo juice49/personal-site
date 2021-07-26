@@ -93,9 +93,9 @@ const Page: NextPage = () => {
 
 export default Page
 
-export const config = {
+/* export const config = {
   unstable_runtimeJS: false,
-}
+} */
 
 const DocumentOuter = styled.div`
   display: flex;
