@@ -139,7 +139,7 @@ const Container = styled.div`
   grid-template-columns: 6rem 1fr;
   grid-template-areas: 'image info';
   gap: var(--space2);
-  zoom: 3;
+  zoom: 1.75;
 `
 
 const ImageContainer = styled.div`
