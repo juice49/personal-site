@@ -8,6 +8,7 @@ import Stack from './stack'
 import Box from './box'
 import PostHeader from './post-header'
 import Tag from './tag'
+import OgImageMeta from './og-image-meta'
 
 interface Props {
   meta: PostMeta
@@ -23,6 +24,7 @@ const PostLayout: React.FC<Props> = ({ children, meta }) => {
         <title>{title}</title>
         <meta key='og:title' property='og:title' content={title} />
       </Head>
+      <OgImageMeta title={meta.title} date={meta.date} />
       <Box
         px={2}
         mw={1}
