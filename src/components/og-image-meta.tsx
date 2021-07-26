@@ -18,8 +18,8 @@ const OgImageMeta: React.FC<Props> = ({ title, date }) => {
   return (
     <Head>
       <meta key='og:image' property='og:image' content={url} />
-      <meta key='og:image:width' property='og:image:width' content='2048' />
-      <meta key='og:image:height' property='og:image:height' content='1260' />
+      <meta key='og:image:width' property='og:image:width' content='1200' />
+      <meta key='og:image:height' property='og:image:height' content='600' />
       <meta name='twitter:card' content='summary_large_image' />
       <meta name='twitter:image' content={url} />
     </Head>

@@ -78,10 +78,10 @@ const Page: NextPage<Props> = ({ title, date }) => (
         )}
       </Box>
       <Footer>
-        <Box p={2}>
+        <Box px={2} py={1}>
           <Text size='micro'>@juice49</Text>
         </Box>
-        <Box p={2}>
+        <Box px={2} py={1}>
           <Text size='micro'>https://ash.gd</Text>
         </Box>
       </Footer>
@@ -116,7 +116,7 @@ const DocumentOuter = styled.div`
 const Container = styled.div`
   display: grid;
   width: 100%;
-  zoom: 3;
+  zoom: 1.75;
   grid-template-rows: auto 1fr auto;
   align-items: center;
 `
