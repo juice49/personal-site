@@ -15,10 +15,13 @@ interface Props {
 }
 
 const PostLayout: React.FC<Props> = ({ children, meta }) => {
+  const title = `${meta.title} - Ash`
+
   return (
     <Layout>
       <Head>
-        <title>{meta.title} - Ash</title>
+        <title>{title}</title>
+        <meta key='og:title' property='og:title' content={title} />
       </Head>
       <Box
         px={2}
