@@ -1,0 +1,38 @@
+import miaKarmageddonOgImage from './img/mia-karmageddon-og-image.jpg'
+
+export const meta = {
+  title: 'I added dynamic Open Graph images to my site',
+  description: `Using Next.js and Puppeteer, I created a set of dynamic OG images that reuse the design system components from my site.`,
+  date: '2021-08-05',
+  tags: ['Open Graph Protocol', 'OG Image'],
+}
+
+Earlier this year, I started adding Open Graph (OG) images to my site. These are the preview images you see when you share a link, like on Twitter or in iMessage. I maintain a [collection of my favourite music](/this-is-my-jam), and I thought it would be cool to include the album art and track details when I share a link to a track.
+
+<image
+  src={miaKarmageddonOgImage}
+  alt='Screenshot showing the This is My Jam OG image as it appears on Twitter'
+  caption={
+    <>
+      The <em>This is My Jam</em> OG image when a track is{' '}
+      <a href='https://twitter.com/juice49/status/1383518779867500556'>
+        shared on Twitter
+      </a>
+      .
+    </>
+  }
+/>
+
+The OG image is generated dynamically for every track I post. The template is a regular Next.js page, which a serverless function captures as an image. You can [take a look at the template page here](/this-is-my-jam/b1683db8-5d7b-494b-be3f-61a4e6c5f8d0/og-image), and [its source code here](https://github.com/juice49/personal-site/blob/main/src/pages/this-is-my-jam/%5Bid%5D/og-image.tsx).
+
+I like this approach, because it means I can reuse design system components from the site to create the image. Using [the CSS zoom property](https://developer.mozilla.org/en-US/docs/Web/CSS/zoom), these components can be scaled to look great when captured at 1200x600 pixels. I love laying out web content with Flexbox and Grid, so why not use the same techniques for rendering an image?
+
+It should even be possible to use [media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/aspect-ratio) to adapt the template to different aspect ratios. The large preview images you see on your Twitter timeline are 2:1, but 1:1 is supported too. I haven't explored this yet, but I think it would work nicely.
+
+Another neat thing about using a Next.js page is that we can use the Next.js data fetching functions (like `getStaticProps`) to add dynamic content. I use the same data fetching function when rendering the OG image that I use when rendering [the track detail page](/this-is-my-jam/b1683db8-5d7b-494b-be3f-61a4e6c5f8d0).
+
+By customising the target path in the request URL, the serverless function can capture any page on the site. This means we can add many different OG image templates to a site by adding new Next.js pages. Alongside the specialised OG images for the _This is My Jam_ tracks, I created [a generic template](/og-image?title=Example+Open+Graph+image&date=2021-08-05) ([source code](https://github.com/juice49/personal-site/blob/main/src/pages/og-image/index.tsx)) that can be customised using the URL query string. The page linking to the OG image can provide a title and, optionally, a date, making it ideal for blog posts and pages.
+
+The serverless function uses Puppeteer to capture a 1200x600 pixel snapshot of the template page. The image is generated when it's first requested; no work is done at build-time. The generated image is cached by the CDN, so it doesn't have to be generated for every request.
+
+I created [the _Next OG Image_ project](https://github.com/juice49/next-og-image) that wraps this code up for use with any Next.js site. If you have any questions about it, please feel free to [send me a Tweet](https://twitter.com/juice49).
