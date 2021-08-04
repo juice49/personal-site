@@ -7,6 +7,7 @@ import PostLayout from '../components/post-layout'
 import Code from '../components/code'
 import Box from '../components/box'
 import Heading from '../components/heading'
+import ContentImage from '../components/content-image'
 
 const theme: Theme = {
   breakpoints: [
@@ -45,6 +46,7 @@ const MDXComponents = {
   h6: function H6(props) {
     return <Heading as='h6' {...props} />
   },
+  image: ContentImage,
 }
 
 interface Props {
