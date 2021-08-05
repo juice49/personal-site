@@ -12,7 +12,6 @@ import OgImageMeta from './og-image-meta'
 
 interface Props {
   meta: PostMeta
-  __nextSsgCodeBlocks: any
 }
 
 const PostLayout: React.FC<Props> = ({ children, meta }) => {

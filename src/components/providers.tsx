@@ -50,7 +50,9 @@ const MDXComponents = {
 }
 
 interface Props {
-  pageProps?: any
+  pageProps?: {
+    __nextSsgCodeBlocks?: NextSsgCodeBlock[]
+  }
 }
 
 const Providers: React.FC<Props> = ({ children, pageProps }) => (

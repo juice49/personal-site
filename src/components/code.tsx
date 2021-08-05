@@ -19,11 +19,9 @@ const Code: React.FC<Props> = ({ language, code }) => {
   const IS_SSG =
     typeof window === 'undefined' &&
     typeof global !== 'undefined' &&
-    // @ts-ignore
     global.__nextSsgCodeBlocks
 
   if (IS_SSG) {
-    // @ts-ignore
     global.__nextSsgCodeBlocks.push({
       code,
       language,
