@@ -1,4 +1,5 @@
 import miaKarmageddonOgImage from './img/mia-karmageddon-og-image.jpg'
+import blogPostOgImage from './img/blog-post-og-image.jpg'
 
 export const meta = {
   title: 'I added dynamic Open Graph images to my site',
@@ -32,6 +33,20 @@ It should even be possible to use [media queries](https://developer.mozilla.org/
 Another neat thing about using a Next.js page is that we can use the Next.js data fetching functions (like `getStaticProps`) to add dynamic content. I use the same data fetching function when rendering the OG image that I use when rendering [the track detail page](/this-is-my-jam/b1683db8-5d7b-494b-be3f-61a4e6c5f8d0).
 
 By customising the target path in the request URL, the serverless function can capture any page on the site. This means we can add many different OG image templates to a site by adding new Next.js pages. Alongside the specialised OG images for the _This is My Jam_ tracks, I created [a generic template](/og-image?title=Example+Open+Graph+image&date=2021-08-05) ([source code](https://github.com/juice49/personal-site/blob/main/src/pages/og-image/index.tsx)) that can be customised using the URL query string. The page linking to the OG image can provide a title and, optionally, a date, making it ideal for blog posts and pages.
+
+<image
+  src={blogPostOgImage}
+  alt='Screenshot showing the article OG image as it appears on Twitter'
+  caption={
+    <>
+      This very article when it's{' '}
+      <a href='https://twitter.com/juice49/status/1423176890265870337'>
+        shared on Twitter
+      </a>
+      .
+    </>
+  }
+/>
 
 The serverless function uses Puppeteer to capture a 1200x600 pixel snapshot of the template page. The image is generated when it's first requested; no work is done at build-time. The generated image is cached by the CDN, so it doesn't have to be generated for every request.
 
