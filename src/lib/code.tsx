@@ -18,7 +18,6 @@ export default async function getCodeBlockStaticProps(Page: NextPage) {
   // @ts-ignore
   const { renderToStaticMarkup } = require('react-dom/server')
 
-  // @ts-ignore
   global.__nextSsgCodeBlocks = []
 
   const props = {
@@ -40,7 +39,6 @@ export default async function getCodeBlockStaticProps(Page: NextPage) {
     theme: 'material-theme-palenight',
   })
 
-  // @ts-ignore
   global.__nextSsgCodeBlocks.forEach(({ code, language }) => {
     /* const tree = low.highlight('js', code).value
 

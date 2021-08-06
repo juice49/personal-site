@@ -5,6 +5,7 @@ import { MDXProvider } from '@mdx-js/react'
 import { CodeBlocksContext } from '../components/code'
 import PostLayout from '../components/post-layout'
 import Code from '../components/code'
+import InlineCode from '../components/inline-code'
 import Box from '../components/box'
 import Heading from '../components/heading'
 import ContentImage from '../components/content-image'
@@ -28,6 +29,7 @@ const MDXComponents = {
       </Box>
     )
   },
+  inlineCode: InlineCode,
   h1: function H1(props) {
     return <Heading as='h1' {...props} />
   },
@@ -50,7 +52,9 @@ const MDXComponents = {
 }
 
 interface Props {
-  pageProps?: any
+  pageProps?: {
+    __nextSsgCodeBlocks?: NextSsgCodeBlock[]
+  }
 }
 
 const Providers: React.FC<Props> = ({ children, pageProps }) => (
