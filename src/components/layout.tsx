@@ -22,11 +22,11 @@ const Layout: React.FC = ({ children }) => (
         type='text/css'
         dangerouslySetInnerHTML={{
           __html: `
-            /* @font-face {
+            @font-face {
               font-family: 'PT Root UI';
               font-display: swap;
               src: url('/fonts/pt-root-ui-vf/fonts/pt-root-ui-vf.woff2') format('woff2');
-            } */
+            }
             
             @font-face {
               font-family: 'Zangezi Sans';
@@ -39,12 +39,6 @@ const Layout: React.FC = ({ children }) => (
               font-family: 'JetBrains Mono';
               font-display: swap;
               src: url('/fonts/JetBrainsMono-1.0.3/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
-            }
-
-            @font-face {
-              font-family: Space Grotesk;
-              font-display: swap;
-              src: url('/fonts/space-grotesk-1.1.6/variable/SpaceGroteskVariable.ttf') format('truetype');
             }
           `,
         }}

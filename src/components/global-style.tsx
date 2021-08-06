@@ -17,10 +17,9 @@ export default createGlobalStyle`
     --accent-color-c: #e3fffd;
     --document-border-width: var(--space2);
 
-    font-family: /* 'PT Root UI', */ Space Grotesk, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-family: 'PT Root UI', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-variation-settings: 'wght' 430;
 
     font-size: 1.2rem;
     font-size: clamp(1.26rem, 1.8vw, 1.48rem);

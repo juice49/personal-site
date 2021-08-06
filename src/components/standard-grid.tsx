@@ -11,7 +11,7 @@ const StandardGrid = styled.div`
 
   grid-template-columns:
     minmax(var(--space2), auto)
-    minmax(0, 44ch)
+    minmax(0, 42ch)
     minmax(var(--space2), auto);
 
   --gutterAb: var(--space2);
@@ -30,7 +30,7 @@ const StandardGrid = styled.div`
       1fr
       minmax(auto, 15ch)
       var(--gutterAb)
-      minmax(auto, 52ch)
+      minmax(auto, 46ch)
       var(--gutterAb)
       minmax(auto, 15ch)
       1fr;

@@ -52,7 +52,7 @@ const Time: React.FC<DateProps> = ({ dateTime }) => {
         color: var(--body-color-subtle);
       `}
     >
-      {format(date, 'dd/MM/yyyy')}
+      {format(date, 'd MMMM yyyy')}
     </Text>
   )
 }
