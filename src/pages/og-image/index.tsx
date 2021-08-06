@@ -29,6 +29,12 @@ const Page: NextPage<Props> = ({ title, date }) => (
         dangerouslySetInnerHTML={{
           __html: `
             @font-face {
+              font-family: 'PT Root UI';
+              font-display: swap;
+              src: url('/fonts/pt-root-ui-vf/fonts/pt-root-ui-vf.woff2') format('woff2');
+            }
+
+            @font-face {
               font-family: 'Zangezi Sans';
               font-weight: 700;
               font-display: swap;
@@ -39,12 +45,6 @@ const Page: NextPage<Props> = ({ title, date }) => (
               font-family: 'JetBrains Mono';
               font-display: swap;
               src: url('/fonts/JetBrainsMono-1.0.3/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
-            }
-
-            @font-face {
-              font-family: Space Grotesk;
-              font-display: swap;
-              src: url('/fonts/space-grotesk-1.1.6/variable/SpaceGroteskVariable.ttf') format('truetype');
             }
           `,
         }}
