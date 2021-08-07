@@ -13,7 +13,7 @@ import ArticleList, { ArticleListItem } from '../components/article-list'
 import FeaturedSection from '../components/featured-section'
 
 const Page: NextPage = () => (
-  <Layout>
+  <Layout as='main'>
     <Head>
       <meta name='robots' content='noindex' />
     </Head>
