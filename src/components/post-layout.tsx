@@ -18,7 +18,7 @@ const PostLayout: React.FC<Props> = ({ children, meta }) => {
   const title = `${meta.title} - Ash`
 
   return (
-    <Layout>
+    <Layout as='main'>
       <Head>
         <title>{title}</title>
         <meta key='og:title' property='og:title' content={title} />
