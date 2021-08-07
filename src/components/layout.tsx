@@ -1,13 +1,19 @@
 import React from 'react'
 import Head from 'next/head'
 import styled from 'styled-components'
+import { CssValue, cssValueToString } from 'monstera'
 import GlobalStyle from './global-style'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import Box from './box'
 import Stack from './stack'
 
-const Layout: React.FC = ({ children }) => (
+interface Props {
+  as?: string | React.ComponentType<any>
+}
+
+const blockGap: CssValue = [15, 'vmin']
+
+const Layout: React.FC<Props> = ({ children, ...props }) => (
   <>
     <GlobalStyle />
     <Head>
@@ -46,12 +52,12 @@ const Layout: React.FC = ({ children }) => (
     </Head>
     <DocumentOuter>
       <DocumentInner>
-        <Box pb={[15, 'vmin']}>
-          <Stack gap={[15, 'vmin']}>
-            <Header />
+        <Stack gap={blockGap}>
+          <Header />
+          <Stack gap={blockGap} {...props}>
             {children}
           </Stack>
-        </Box>
+        </Stack>
       </DocumentInner>
       <Footer />
     </DocumentOuter>
@@ -68,5 +74,6 @@ const DocumentOuter = styled.div`
 
 const DocumentInner = styled.div`
   flex: 1;
+  padding-bottom: ${cssValueToString(blockGap)};
   background-color: var(--background-color);
 `
