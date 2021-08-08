@@ -94,7 +94,7 @@ const Page: NextPage<Props> = ({ posts }) => (
             </StandardGridContentSlightlyWide>
           </StandardGrid>
         </div>
-        <StandardGrid>
+        <StandardGrid as='main'>
           <StandardGridContent>
             <Stack gap={2}>
               <Text as='p' weight='bold'>

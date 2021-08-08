@@ -9,7 +9,7 @@ import StandardGrid, { StandardGridContent } from '../components/standard-grid'
 import ArticleList, { ArticleListItem } from '../components/article-list'
 
 const Page: NextPage = () => (
-  <Layout>
+  <Layout as='main'>
     <Box px={2}>
       <Heading variant='alpha'>Hello, I&apos;m Ash.</Heading>
     </Box>
