@@ -12,7 +12,7 @@ import StandardGrid, {
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 
 const Page: NextPage = () => (
-  <Layout>
+  <Layout as='main'>
     <Head>
       <title>Projects - Ash</title>
     </Head>
