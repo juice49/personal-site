@@ -34,7 +34,7 @@ function sortDescending([a]: any, [b]: any) {
 
 const Page: NextPage<Props> = ({ jamsByYear }) => {
   return (
-    <Layout>
+    <Layout as='main'>
       <Head>
         <title>This is My Jam - Ash</title>
       </Head>
