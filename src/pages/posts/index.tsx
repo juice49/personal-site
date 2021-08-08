@@ -29,7 +29,7 @@ const Page: NextPage<Props> = ({ posts }) => {
   )
 
   return (
-    <Layout>
+    <Layout as='main'>
       <Box px={2}>
         <Heading
           css={`
