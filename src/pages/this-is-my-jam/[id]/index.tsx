@@ -26,7 +26,7 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
     .join(', ')}`
 
   return (
-    <Layout>
+    <Layout as='main'>
       <Head>
         <title>{title} - This is My Jam - Ash</title>
         <meta key='og:image' property='og:image' content={ogImageUrl} />
