@@ -7,11 +7,15 @@ import Navigation, { NavigationItem, NavigationLink } from './navigation'
 
 const breakpoints: CssValue[] = [[36, 'em']]
 
-const Header = () => (
+interface Props {
+  isLogoH1?: boolean
+}
+
+const Header: React.FC<Props> = ({ isLogoH1 }) => (
   <Container>
     <Link href='/' passHref>
       <LogoLink>
-        <Logo />
+        <Logo as={isLogoH1 ? 'h1' : 'p'} />
       </LogoLink>
     </Link>
     <NavigationContainer>
@@ -56,8 +60,12 @@ const NavigationContainer = styled.div`
   margin-left: auto;
 `
 
-const Logo: React.FC = () => (
-  <Text as='p' weight='bold'>
+interface LogoProps {
+  as?: string | React.ComponentType<any>
+}
+
+const Logo: React.FC<LogoProps> = props => (
+  <Text weight='bold' {...props}>
     Ash
   </Text>
 )
