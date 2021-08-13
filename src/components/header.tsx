@@ -47,7 +47,7 @@ const Header: React.FC<Props> = ({ isLogoH1 }) => (
 
 export default Header
 
-const Container = styled.div`
+const Container = styled.header`
   display: flex;
   padding: var(--space3);
 
