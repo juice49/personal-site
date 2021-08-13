@@ -37,7 +37,7 @@ export const Article: React.FC<ArticleProps> = ({
     </Meta>
     <Link passHref {...link}>
       <ArticleLink>
-        <Heading as='h3'>{title}</Heading>
+        <Heading>{title}</Heading>
       </ArticleLink>
     </Link>
     <Text

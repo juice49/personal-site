@@ -2,7 +2,7 @@ import React from 'react'
 import Link, { LinkProps } from 'next/link'
 import Stack from './stack'
 import Box from './box'
-import Text from './text'
+import Text, { TextHeading } from './text'
 import ExternalLinkIcon from './external-link-icon'
 
 interface Props {
@@ -96,8 +96,7 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
       <BlockLink {...link}>
         <Stack gap={1}>
           {heading && (
-            <Text
-              as='h4'
+            <TextHeading
               size='milli'
               weight='bold'
               css={`
@@ -108,7 +107,7 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
                 <span>{heading}</span>
                 {externalUrl && <ExternalLinkIcon />}
               </Stack>
-            </Text>
+            </TextHeading>
           )}
           {description && (
             <Text

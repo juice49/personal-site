@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { Level } from 'react-accessible-headings'
 import work from '../data/work'
 import Layout from '../components/layout'
 import Box from '../components/box'
@@ -29,18 +30,20 @@ const Page: NextPage = () => (
         </Stack>
       </StandardGridContent>
     </StandardGrid>
-    <StandardGrid>
-      <StandardGridContent>
-        <Stack gap={2}>
-          <Heading as='h2'>Recent work</Heading>
-          <ArticleList columns>
-            {work.map((work, index) => (
-              <ArticleListItem key={index} description={work.description} />
-            ))}
-          </ArticleList>
-        </Stack>
-      </StandardGridContent>
-    </StandardGrid>
+    <Level>
+      <StandardGrid>
+        <StandardGridContent>
+          <Stack gap={2}>
+            <Heading>Recent work</Heading>
+            <ArticleList columns>
+              {work.map((work, index) => (
+                <ArticleListItem key={index} description={work.description} />
+              ))}
+            </ArticleList>
+          </Stack>
+        </StandardGridContent>
+      </StandardGrid>
+    </Level>
   </Layout>
 )
 

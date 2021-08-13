@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { format } from 'date-fns'
 import { stack } from 'monstera'
 import Jam from '../types/jam'
-import Text from './text'
+import Text, { TextHeading } from './text'
 import Stack from './stack'
 import ExternalLinkIcon from './external-link-icon'
 
@@ -42,9 +42,9 @@ const Track: React.FC<Props> = ({ jam }) => {
         `}
       >
         <div>
-          <Text as='h3' size='milli' weight='bold'>
+          <TextHeading size='milli' weight='bold'>
             {jam.track.name}
-          </Text>
+          </TextHeading>
           <Text as='p' size='micro' variant='mono'>
             {jam.track.artists.map(({ name }) => name).join(', ')}
           </Text>

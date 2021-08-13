@@ -2,6 +2,7 @@ import { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
 import groq from 'groq'
+import { Level } from 'react-accessible-headings'
 import Jam from '../../types/jam'
 import Layout from '../../components/layout'
 import TrackComponent from '../../components/track'
@@ -39,26 +40,28 @@ const Page: NextPage<Props> = ({ jamsByYear }) => {
         <title>This is My Jam - Ash</title>
       </Head>
       <Box px={2}>
-        <Heading as='h1' variant='alpha'>
-          This is My Jam
-        </Heading>
+        <Heading variant='alpha'>This is My Jam</Heading>
       </Box>
-      <StandardGrid>
-        <StandardGridContent>
-          <Stack gap={5}>
-            {jamsByYear.map(([year, jams]) => (
-              <Stack key={year} gap={2}>
-                <Heading as='h2'>{year}</Heading>
-                <List>
-                  {jams.map(jam => (
-                    <TrackComponent key={jam._id} jam={jam} />
-                  ))}
-                </List>
-              </Stack>
-            ))}
-          </Stack>
-        </StandardGridContent>
-      </StandardGrid>
+      <Level>
+        <StandardGrid>
+          <StandardGridContent>
+            <Stack gap={5}>
+              {jamsByYear.map(([year, jams]) => (
+                <Stack key={year} gap={2}>
+                  <Heading>{year}</Heading>
+                  <Level>
+                    <List>
+                      {jams.map(jam => (
+                        <TrackComponent key={jam._id} jam={jam} />
+                      ))}
+                    </List>
+                  </Level>
+                </Stack>
+              ))}
+            </Stack>
+          </StandardGridContent>
+        </StandardGrid>
+      </Level>
     </Layout>
   )
 }

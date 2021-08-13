@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
+import { Level } from 'react-accessible-headings'
 import projects from '../../data/projects'
 import misc from '../../data/misc'
 import Box from '../../components/box'
@@ -19,47 +20,53 @@ const Page: NextPage = () => (
     <StandardGrid>
       <StandardGridContent>
         <ListBox>
-          <Heading as='h1'>Projects</Heading>
-          <ArticleList columns>
-            {projects.map(project => (
-              <ArticleListItem
-                key={project.slug}
-                heading={project.name}
-                description={project.description}
-                link={
-                  project.slug &&
-                  !project.externalUrl && {
-                    href: `/projects/${project.slug}`,
+          <Heading>Projects</Heading>
+          <Level>
+            <ArticleList columns>
+              {projects.map(project => (
+                <ArticleListItem
+                  key={project.slug}
+                  heading={project.name}
+                  description={project.description}
+                  link={
+                    project.slug &&
+                    !project.externalUrl && {
+                      href: `/projects/${project.slug}`,
+                    }
                   }
-                }
-                externalUrl={project.externalUrl}
-              />
-            ))}
-          </ArticleList>
+                  externalUrl={project.externalUrl}
+                />
+              ))}
+            </ArticleList>
+          </Level>
         </ListBox>
       </StandardGridContent>
     </StandardGrid>
     <StandardGrid>
       <StandardGridContent>
-        <ListBox>
-          <Heading as='h1'>Misc</Heading>
-          <ArticleList columns>
-            {misc.map(misc => (
-              <ArticleListItem
-                key={misc.slug}
-                heading={misc.name}
-                description={misc.description}
-                link={
-                  misc.slug &&
-                  !misc.externalUrl && {
-                    href: `/projects/${misc.slug}`,
-                  }
-                }
-                externalUrl={misc.externalUrl}
-              />
-            ))}
-          </ArticleList>
-        </ListBox>
+        <Level>
+          <ListBox>
+            <Heading>Misc</Heading>
+            <Level>
+              <ArticleList columns>
+                {misc.map(misc => (
+                  <ArticleListItem
+                    key={misc.slug}
+                    heading={misc.name}
+                    description={misc.description}
+                    link={
+                      misc.slug &&
+                      !misc.externalUrl && {
+                        href: `/projects/${misc.slug}`,
+                      }
+                    }
+                    externalUrl={misc.externalUrl}
+                  />
+                ))}
+              </ArticleList>
+            </Level>
+          </ListBox>
+        </Level>
       </StandardGridContent>
     </StandardGrid>
   </Layout>
