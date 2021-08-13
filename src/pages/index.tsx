@@ -1,6 +1,7 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
 import Head from 'next/head'
+import { Level } from 'react-accessible-headings'
 import { PostMeta } from '../types/post'
 import projects from '../data/projects'
 import misc from '../data/misc'
@@ -31,179 +32,186 @@ interface Props {
 }
 
 const Page: NextPage<Props> = ({ posts }) => (
-  <Layout>
-    <Head>
-      <link
-        rel='preload'
-        as='image'
-        href='/img/me@1000x1494.jpg'
-        // @ts-ignore
-        imagesrcset={`
+  <Layout as='main' isLogoH1>
+    <Level>
+      <Head>
+        <link
+          rel='preload'
+          as='image'
+          href='/img/me@1000x1494.jpg'
+          // @ts-ignore
+          imagesrcset={`
           /img/me@600x897.webp 600w,
           /img/me@800x1196.webp 800w,
           /img/me@1000x1494.webp 1000w
         `}
-      />
-    </Head>
-    <Box>
-      <Stack gap={[10, 'vmin']}>
-        <div>
-          <Box
-            px={2}
-            mw={1}
-            css={`
-              position: relative;
-              z-index: 1;
-              margin-left: auto;
-              margin-right: auto;
-            `}
-          >
-            <Heading
-              as='p'
-              variant='alpha'
+        />
+      </Head>
+      <Box>
+        <Stack gap={[10, 'vmin']}>
+          <div>
+            <Box
+              px={2}
+              mw={1}
               css={`
-                margin-bottom: -0.42em;
+                position: relative;
+                z-index: 1;
+                margin-left: auto;
+                margin-right: auto;
               `}
             >
-              The Web and Stuff.
-            </Heading>
-          </Box>
-          <StandardGrid>
-            <StandardGridContentSlightlyWide>
-              <Image
-                src='/img/me@1000x1494.jpg'
-                previewSrc={
-                  require('url-loader!../../public/img/me-preview.jpg').default
-                }
-                srcSet={`
+              <Heading
+                as='p'
+                variant='alpha'
+                css={`
+                  margin-bottom: -0.42em;
+                `}
+              >
+                The Web and Stuff.
+              </Heading>
+            </Box>
+            <StandardGrid>
+              <StandardGridContentSlightlyWide>
+                <Image
+                  src='/img/me@1000x1494.jpg'
+                  previewSrc={
+                    require('url-loader!../../public/img/me-preview.jpg')
+                      .default
+                  }
+                  srcSet={`
                   /img/me@600x897.jpg 600w,
                   /img/me@800x1196.jpg 800w,
                   /img/me@1000x1494.jpg 1000w
                 `}
-                webpSrcSet={`
+                  webpSrcSet={`
                   /img/me@600x897.webp 600w,
                   /img/me@800x1196.webp 800w,
                   /img/me@1000x1494.webp 1000w
                 `}
-                alt='Me'
-                style={{
-                  '--width': 2698,
-                  '--height': 4032,
-                }}
-              />
-            </StandardGridContentSlightlyWide>
-          </StandardGrid>
-        </div>
-        <StandardGrid as='main'>
-          <StandardGridContent>
-            <Stack gap={2}>
-              <Text as='p' weight='bold'>
-                I like to make things&mdash;usually with web technologies, and
-                usually <em>for</em> the web.
-              </Text>
-              <p>
-                At the moment I&apos;m most interested in jamstack and design
-                systems. I work with things like React, Next.js, node.js, and
-                GraphQL. Although there are parts of the stack I&apos;m very
-                focused on, I am most passionate about <em>making stuff</em>.
-              </p>
-            </Stack>
-          </StandardGridContent>
-          <StandardGridMeta position={2}>
-            <Note as='p'>Blah blah blah I make websites.</Note>
-          </StandardGridMeta>
-        </StandardGrid>
-      </Stack>
-    </Box>
-    <Box mw={1} px={2} center>
-      <FeaturedSection>
-        <Stack gap={4}>
-          <Box as='header' px={4} pt={4}>
-            <FeaturedSectionHeading>Blog posts</FeaturedSectionHeading>
-          </Box>
-          <Box px={4}>
-            <Articles>
-              {posts.map(post => (
-                <Article
-                  key={post.slug}
-                  column={post.column ?? post?.tags?.[0]}
-                  date={post.date}
-                  title={post.title}
-                  description={post.description}
-                  link={{
-                    href: `/posts/${post.slug}`,
+                  alt='Me'
+                  style={{
+                    '--width': 2698,
+                    '--height': 4032,
                   }}
                 />
-              ))}
-            </Articles>
-          </Box>
-          <Box px={4} pb={4}>
-            <Link href='/posts' passHref>
-              <Button as='a' variant='large'>
-                View more posts
-              </Button>
-            </Link>
-          </Box>
+              </StandardGridContentSlightlyWide>
+            </StandardGrid>
+          </div>
+          <StandardGrid>
+            <StandardGridContent>
+              <Stack gap={2}>
+                <Text as='p' weight='bold'>
+                  I like to make things&mdash;usually with web technologies, and
+                  usually <em>for</em> the web.
+                </Text>
+                <p>
+                  At the moment I&apos;m most interested in jamstack and design
+                  systems. I work with things like React, Next.js, node.js, and
+                  GraphQL. Although there are parts of the stack I&apos;m very
+                  focused on, I am most passionate about <em>making stuff</em>.
+                </p>
+              </Stack>
+            </StandardGridContent>
+            <StandardGridMeta position={2}>
+              <Note as='p'>Blah blah blah I make websites.</Note>
+            </StandardGridMeta>
+          </StandardGrid>
         </Stack>
-      </FeaturedSection>
-    </Box>
-    <Box
-      px={2}
-      mw={1}
-      css={`
-        margin-left: auto;
-        margin-right: auto;
-      `}
-    >
-      <Articles>
-        <ListBox>
-          <Heading as='h2'>Projects</Heading>
-          <ArticleList>
-            {projects.map(project => (
-              <ArticleListItem
-                key={project.slug}
-                heading={project.name}
-                description={project.description}
-                link={
-                  project.slug &&
-                  !project.externalUrl && {
-                    href: `/projects/${project.slug}`,
+      </Box>
+      <Box mw={1} px={2} as='section' center>
+        <FeaturedSection>
+          <Stack gap={4}>
+            <Box as='header' px={4} pt={4}>
+              <FeaturedSectionHeading>Blog posts</FeaturedSectionHeading>
+            </Box>
+            <Level>
+              <Box px={4}>
+                <Articles>
+                  {posts.map(post => (
+                    <Article
+                      key={post.slug}
+                      column={post.column ?? post?.tags?.[0]}
+                      date={post.date}
+                      title={post.title}
+                      description={post.description}
+                      link={{
+                        href: `/posts/${post.slug}`,
+                      }}
+                    />
+                  ))}
+                </Articles>
+              </Box>
+              <Box px={4} pb={4}>
+                <Link href='/posts' passHref>
+                  <Button as='a' variant='large'>
+                    View more posts
+                  </Button>
+                </Link>
+              </Box>
+            </Level>
+          </Stack>
+        </FeaturedSection>
+      </Box>
+      <Box
+        px={2}
+        mw={1}
+        css={`
+          margin-left: auto;
+          margin-right: auto;
+        `}
+      >
+        <Articles>
+          <ListBox>
+            <Heading>Projects</Heading>
+            <Level>
+              <ArticleList>
+                {projects.map(project => (
+                  <ArticleListItem
+                    key={project.slug}
+                    heading={project.name}
+                    description={project.description}
+                    link={
+                      project.slug &&
+                      !project.externalUrl && {
+                        href: `/projects/${project.slug}`,
+                      }
+                    }
+                    externalUrl={project.externalUrl}
+                  />
+                ))}
+              </ArticleList>
+            </Level>
+          </ListBox>
+          <ListBox>
+            <Heading>Misc</Heading>
+            <ArticleList>
+              {misc.map(misc => (
+                <ArticleListItem
+                  key={misc.slug}
+                  heading={misc.name}
+                  description={misc.description}
+                  link={
+                    misc.slug &&
+                    !misc.externalUrl && {
+                      href: `/projects/${misc.slug}`,
+                    }
                   }
-                }
-                externalUrl={project.externalUrl}
-              />
-            ))}
-          </ArticleList>
-        </ListBox>
-        <ListBox>
-          <Heading as='h2'>Misc</Heading>
-          <ArticleList>
-            {misc.map(misc => (
-              <ArticleListItem
-                key={misc.slug}
-                heading={misc.name}
-                description={misc.description}
-                link={
-                  misc.slug &&
-                  !misc.externalUrl && {
-                    href: `/projects/${misc.slug}`,
-                  }
-                }
-                externalUrl={misc.externalUrl}
-              />
-            ))}
-          </ArticleList>
-        </ListBox>
-        <ListBox>
-          <Heading as='h2'>Recent work</Heading>
-          <ArticleList>
-            {work.map((item, index) => (
-              <ArticleListItem key={index} description={item.description} />
-            ))}
-          </ArticleList>
-        </ListBox>
-      </Articles>
-    </Box>
+                  externalUrl={misc.externalUrl}
+                />
+              ))}
+            </ArticleList>
+          </ListBox>
+          <ListBox>
+            <Heading>Recent work</Heading>
+            <ArticleList>
+              {work.map((item, index) => (
+                <ArticleListItem key={index} description={item.description} />
+              ))}
+            </ArticleList>
+          </ListBox>
+        </Articles>
+      </Box>
+    </Level>
   </Layout>
 )
 
