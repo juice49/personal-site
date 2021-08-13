@@ -9,11 +9,12 @@ import Stack from './stack'
 
 interface Props {
   as?: string | React.ComponentType<any>
+  isLogoH1?: boolean
 }
 
 const blockGap: CssValue = [15, 'vmin']
 
-const Layout: React.FC<Props> = ({ children, ...props }) => (
+const Layout: React.FC<Props> = ({ children, isLogoH1, ...props }) => (
   <>
     <GlobalStyle />
     <Head>
@@ -53,7 +54,7 @@ const Layout: React.FC<Props> = ({ children, ...props }) => (
     <DocumentOuter>
       <DocumentInner>
         <Stack gap={blockGap}>
-          <Header />
+          <Header isLogoH1={isLogoH1} />
           <Stack gap={blockGap} {...props}>
             {children}
           </Stack>
