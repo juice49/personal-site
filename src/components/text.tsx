@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import variants from '../lib/variants'
+import withHeading from '../lib/with-heading'
 
 const Text = styled.span`
   ${variants(
@@ -31,3 +32,5 @@ const Text = styled.span`
 `
 
 export default Text
+
+export const TextHeading = withHeading<Props>(Text)
