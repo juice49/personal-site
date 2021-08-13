@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import variants from '../lib/variants'
+import withHeading from '../lib/with-heading'
 
 type Variant = 'alpha'
 
@@ -15,12 +16,12 @@ const Heading = styled.h1<Props>`
 
   ${variants({
     alpha: `
-      font-size: 2.2rem;
-      font-size: clamp(2.6rem, 7.2vw, 5.6rem);
-      line-height: 1.08;
-      text-align: center;
-    `,
+    font-size: 2.2rem;
+    font-size: clamp(2.6rem, 7.2vw, 5.6rem);
+    line-height: 1.08;
+    text-align: center;
+  `,
   })}
 `
 
-export default Heading
+export default withHeading<Props>(Heading)
