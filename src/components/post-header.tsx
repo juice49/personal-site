@@ -57,7 +57,7 @@ const Time: React.FC<DateProps> = ({ dateTime }) => {
   )
 }
 
-const Heading = styled.p`
+const Heading = styled.h1`
   font-family: 'Zangezi Sans';
   font-weight: 700;
   color: var(--accent-color);
