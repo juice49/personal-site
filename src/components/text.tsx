@@ -2,7 +2,13 @@ import styled from 'styled-components'
 import variants from '../lib/variants'
 import withHeading from '../lib/with-heading'
 
-const Text = styled.span`
+interface Props {
+  size?: 'micro' | 'milli'
+  weight?: 'bold'
+  variant?: 'mono'
+}
+
+const Text = styled.span<Props>`
   ${variants(
     {
       micro: `
