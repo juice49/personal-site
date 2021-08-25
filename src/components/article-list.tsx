@@ -4,6 +4,7 @@ import Stack from './stack'
 import Box from './box'
 import Text from './text'
 import ExternalLinkIcon from './external-link-icon'
+import HeadingLevel from './heading-level'
 
 interface Props {
   columns?: boolean
@@ -96,19 +97,20 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
       <BlockLink {...link}>
         <Stack gap={1}>
           {heading && (
-            <Text
-              as='h4'
-              size='milli'
-              weight='bold'
-              css={`
-                color: var(--color);
-              `}
-            >
-              <Stack as='span' direction='inline' gap={1}>
-                <span>{heading}</span>
-                {externalUrl && <ExternalLinkIcon />}
-              </Stack>
-            </Text>
+            <HeadingLevel>
+              <Text
+                size='milli'
+                weight='bold'
+                css={`
+                  color: var(--color);
+                `}
+              >
+                <Stack as='span' direction='inline' gap={1}>
+                  <span>{heading}</span>
+                  {externalUrl && <ExternalLinkIcon />}
+                </Stack>
+              </Text>
+            </HeadingLevel>
           )}
           {description && (
             <Text

@@ -2,6 +2,7 @@ import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import groq from 'groq'
+import { Level } from 'react-accessible-headings'
 import Jam from '../../../types/jam'
 import Layout from '../../../components/layout'
 import Heading from '../../../components/heading'
@@ -9,6 +10,7 @@ import Box from '../../../components/box'
 import Stack from '../../../components/stack'
 import TrackComponent from '../../../components/track'
 import Button from '../../../components/button'
+import HeadingLevel from '../../../components/heading-level'
 import sanity from '../../../lib/sanity'
 
 import StandardGrid, {
@@ -41,17 +43,19 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
         <meta name='twitter:image' content={ogImageUrl} />
       </Head>
       <Box px={2}>
-        <Heading as='h1' variant='alpha'>
-          This is My Jam
-        </Heading>
+        <HeadingLevel>
+          <Heading variant='alpha'>This is My Jam</Heading>
+        </HeadingLevel>
       </Box>
-      <StandardGrid>
-        <StandardGridContent>
-          <Stack gap={4}>
-            <TrackComponent jam={jam} />
-          </Stack>
-        </StandardGridContent>
-      </StandardGrid>
+      <Level>
+        <StandardGrid>
+          <StandardGridContent>
+            <Stack gap={4}>
+              <TrackComponent jam={jam} />
+            </Stack>
+          </StandardGridContent>
+        </StandardGrid>
+      </Level>
       <StandardGrid>
         <StandardGridContent>
           <Link href='/this-is-my-jam' passHref>

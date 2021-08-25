@@ -15,11 +15,11 @@ const Heading = styled.h1<Props>`
 
   ${variants({
     alpha: `
-      font-size: 2.2rem;
-      font-size: clamp(2.6rem, 7.2vw, 5.6rem);
-      line-height: 1.08;
-      text-align: center;
-    `,
+    font-size: 2.2rem;
+    font-size: clamp(2.6rem, 7.2vw, 5.6rem);
+    line-height: 1.08;
+    text-align: center;
+  `,
   })}
 `
 

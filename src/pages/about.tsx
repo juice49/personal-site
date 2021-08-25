@@ -1,4 +1,5 @@
 import { NextPage } from 'next'
+import { Level } from 'react-accessible-headings'
 import work from '../data/work'
 import Layout from '../components/layout'
 import Box from '../components/box'
@@ -7,11 +8,14 @@ import Stack from '../components/stack'
 import Heading from '../components/heading'
 import StandardGrid, { StandardGridContent } from '../components/standard-grid'
 import ArticleList, { ArticleListItem } from '../components/article-list'
+import HeadingLevel from '../components/heading-level'
 
 const Page: NextPage = () => (
   <Layout as='main'>
     <Box px={2}>
-      <Heading variant='alpha'>Hello, I&apos;m Ash.</Heading>
+      <HeadingLevel>
+        <Heading variant='alpha'>Hello, I&apos;m Ash.</Heading>
+      </HeadingLevel>
     </Box>
     <StandardGrid>
       <StandardGridContent>
@@ -29,18 +33,22 @@ const Page: NextPage = () => (
         </Stack>
       </StandardGridContent>
     </StandardGrid>
-    <StandardGrid>
-      <StandardGridContent>
-        <Stack gap={2}>
-          <Heading as='h2'>Recent work</Heading>
-          <ArticleList columns>
-            {work.map((work, index) => (
-              <ArticleListItem key={index} description={work.description} />
-            ))}
-          </ArticleList>
-        </Stack>
-      </StandardGridContent>
-    </StandardGrid>
+    <Level>
+      <StandardGrid>
+        <StandardGridContent>
+          <Stack gap={2}>
+            <HeadingLevel>
+              <Heading>Recent work</Heading>
+            </HeadingLevel>
+            <ArticleList columns>
+              {work.map((work, index) => (
+                <ArticleListItem key={index} description={work.description} />
+              ))}
+            </ArticleList>
+          </Stack>
+        </StandardGridContent>
+      </StandardGrid>
+    </Level>
   </Layout>
 )
 

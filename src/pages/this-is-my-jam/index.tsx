@@ -2,12 +2,14 @@ import { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import styled from 'styled-components'
 import groq from 'groq'
+import { Level } from 'react-accessible-headings'
 import Jam from '../../types/jam'
 import Layout from '../../components/layout'
 import TrackComponent from '../../components/track'
 import Heading from '../../components/heading'
 import Box from '../../components/box'
 import Stack from '../../components/stack'
+import HeadingLevel from '../../components/heading-level'
 import sanity from '../../lib/sanity'
 
 import StandardGrid, {
@@ -39,26 +41,32 @@ const Page: NextPage<Props> = ({ jamsByYear }) => {
         <title>This is My Jam - Ash</title>
       </Head>
       <Box px={2}>
-        <Heading as='h1' variant='alpha'>
-          This is My Jam
-        </Heading>
+        <HeadingLevel>
+          <Heading variant='alpha'>This is My Jam</Heading>
+        </HeadingLevel>
       </Box>
-      <StandardGrid>
-        <StandardGridContent>
-          <Stack gap={5}>
-            {jamsByYear.map(([year, jams]) => (
-              <Stack key={year} gap={2}>
-                <Heading as='h2'>{year}</Heading>
-                <List>
-                  {jams.map(jam => (
-                    <TrackComponent key={jam._id} jam={jam} />
-                  ))}
-                </List>
-              </Stack>
-            ))}
-          </Stack>
-        </StandardGridContent>
-      </StandardGrid>
+      <Level>
+        <StandardGrid>
+          <StandardGridContent>
+            <Stack gap={5}>
+              {jamsByYear.map(([year, jams]) => (
+                <Stack key={year} gap={2}>
+                  <HeadingLevel>
+                    <Heading>{year}</Heading>
+                  </HeadingLevel>
+                  <Level>
+                    <List>
+                      {jams.map(jam => (
+                        <TrackComponent key={jam._id} jam={jam} />
+                      ))}
+                    </List>
+                  </Level>
+                </Stack>
+              ))}
+            </Stack>
+          </StandardGridContent>
+        </StandardGrid>
+      </Level>
     </Layout>
   )
 }
