@@ -2,8 +2,9 @@ import React from 'react'
 import Link, { LinkProps } from 'next/link'
 import Stack from './stack'
 import Box from './box'
-import Text, { TextHeading } from './text'
+import Text from './text'
 import ExternalLinkIcon from './external-link-icon'
+import HeadingLevel from './heading-level'
 
 interface Props {
   columns?: boolean
@@ -96,18 +97,20 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
       <BlockLink {...link}>
         <Stack gap={1}>
           {heading && (
-            <TextHeading
-              size='milli'
-              weight='bold'
-              css={`
-                color: var(--color);
-              `}
-            >
-              <Stack as='span' direction='inline' gap={1}>
-                <span>{heading}</span>
-                {externalUrl && <ExternalLinkIcon />}
-              </Stack>
-            </TextHeading>
+            <HeadingLevel>
+              <Text
+                size='milli'
+                weight='bold'
+                css={`
+                  color: var(--color);
+                `}
+              >
+                <Stack as='span' direction='inline' gap={1}>
+                  <span>{heading}</span>
+                  {externalUrl && <ExternalLinkIcon />}
+                </Stack>
+              </Text>
+            </HeadingLevel>
           )}
           {description && (
             <Text

@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import variants from '../lib/variants'
-import withHeading from '../lib/with-heading'
 
 interface Props {
   size?: 'micro' | 'milli'
@@ -38,5 +37,3 @@ const Text = styled.span<Props>`
 `
 
 export default Text
-
-export const TextHeading = withHeading<Props>(Text)

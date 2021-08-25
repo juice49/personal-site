@@ -5,6 +5,7 @@ import Stack from './stack'
 import Tag from './tag'
 import Text from './text'
 import FeaturedSection from './featured-section'
+import HeadingLevel from './heading-level'
 
 interface Props {
   date?: string
@@ -19,7 +20,9 @@ const PostHeader: React.FC<Props> = ({ children, date, column }) => (
           <Time dateTime={date}>{date}</Time>
         </div>
       )}
-      <Heading>{children}</Heading>
+      <HeadingLevel>
+        <Heading>{children}</Heading>
+      </HeadingLevel>
       {column && (
         <div>
           <Tag>{column}</Tag>

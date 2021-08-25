@@ -10,6 +10,7 @@ import Box from '../../../components/box'
 import Stack from '../../../components/stack'
 import TrackComponent from '../../../components/track'
 import Button from '../../../components/button'
+import HeadingLevel from '../../../components/heading-level'
 import sanity from '../../../lib/sanity'
 
 import StandardGrid, {
@@ -42,7 +43,9 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
         <meta name='twitter:image' content={ogImageUrl} />
       </Head>
       <Box px={2}>
-        <Heading variant='alpha'>This is My Jam</Heading>
+        <HeadingLevel>
+          <Heading variant='alpha'>This is My Jam</Heading>
+        </HeadingLevel>
       </Box>
       <Level>
         <StandardGrid>

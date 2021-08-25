@@ -12,6 +12,7 @@ import Heading from '../components/heading'
 import StandardGrid, { StandardGridContent } from '../components/standard-grid'
 import ArticleList, { ArticleListItem } from '../components/article-list'
 import FeaturedSection from '../components/featured-section'
+import HeadingLevel from '../components/heading-level'
 
 const Page: NextPage = () => (
   <Layout as='main'>
@@ -22,7 +23,9 @@ const Page: NextPage = () => (
       <StandardGridContent>
         <Stack gap={4}>
           <Stack as='header' gap={1}>
-            <Heading>Ash Stevens</Heading>
+            <HeadingLevel>
+              <Heading>Ash Stevens</Heading>
+            </HeadingLevel>
             <Text as='p' variant='mono' size='micro'>
               Full stack web developer.
             </Text>
@@ -47,7 +50,9 @@ const Page: NextPage = () => (
         <StandardGridContent>
           <Stack gap={2}>
             <Stack gap={2}>
-              <Heading>Skills</Heading>
+              <HeadingLevel>
+                <Heading>Skills</Heading>
+              </HeadingLevel>
               <Level>
                 <ArticleList columns>
                   <ArticleListItem
@@ -132,7 +137,9 @@ const Page: NextPage = () => (
       <Level>
         <StandardGridContent>
           <Stack gap={2}>
-            <Heading>Experience</Heading>
+            <HeadingLevel>
+              <Heading>Experience</Heading>
+            </HeadingLevel>
             <Level>
               <ArticleList>
                 <ArticleListItem
@@ -212,7 +219,9 @@ const Page: NextPage = () => (
       <Level>
         <StandardGridContent>
           <Stack gap={2}>
-            <Heading>Recent work</Heading>
+            <HeadingLevel>
+              <Heading>Recent work</Heading>
+            </HeadingLevel>
             <Level>
               <ArticleList columns>
                 {work.map((work, index) => (
@@ -228,7 +237,9 @@ const Page: NextPage = () => (
       <Level>
         <StandardGridContent>
           <Stack gap={2}>
-            <Heading>Education</Heading>
+            <HeadingLevel>
+              <Heading>Education</Heading>
+            </HeadingLevel>
             <Level>
               <ArticleList>
                 <ArticleListItem

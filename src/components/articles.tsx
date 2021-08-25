@@ -6,6 +6,7 @@ import Stack from './stack'
 import Tag from './tag'
 import Text from './text'
 import Heading from './heading'
+import HeadingLevel from './heading-level'
 
 const Articles = styled.div`
   display: grid;
@@ -37,7 +38,9 @@ export const Article: React.FC<ArticleProps> = ({
     </Meta>
     <Link passHref {...link}>
       <ArticleLink>
-        <Heading>{title}</Heading>
+        <HeadingLevel>
+          <Heading>{title}</Heading>
+        </HeadingLevel>
       </ArticleLink>
     </Link>
     <Text

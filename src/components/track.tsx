@@ -4,9 +4,10 @@ import Image from 'next/image'
 import { format } from 'date-fns'
 import { stack } from 'monstera'
 import Jam from '../types/jam'
-import Text, { TextHeading } from './text'
+import Text from './text'
 import Stack from './stack'
 import ExternalLinkIcon from './external-link-icon'
+import HeadingLevel from './heading-level'
 
 interface Props {
   jam: Jam
@@ -42,9 +43,11 @@ const Track: React.FC<Props> = ({ jam }) => {
         `}
       >
         <div>
-          <TextHeading size='milli' weight='bold'>
-            {jam.track.name}
-          </TextHeading>
+          <HeadingLevel>
+            <Text size='milli' weight='bold'>
+              {jam.track.name}
+            </Text>
+          </HeadingLevel>
           <Text as='p' size='micro' variant='mono'>
             {jam.track.artists.map(({ name }) => name).join(', ')}
           </Text>

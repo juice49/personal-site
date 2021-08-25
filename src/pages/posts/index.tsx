@@ -6,7 +6,7 @@ import { PostMeta } from '../../types/post'
 import * as postApi from '../../lib/post-api'
 import usePostsByYear from '../../lib/use-posts-by-year'
 import Heading from '../../components/heading'
-import Text, { TextHeading } from '../../components/text'
+import Text from '../../components/text'
 import Layout from '../../components/layout'
 import StandardGrid, {
   StandardGridContent,
@@ -17,6 +17,7 @@ import FeaturedSection, {
   FeaturedSectionHeading,
 } from '../../components/featured-section'
 import Articles, { Article } from '../../components/articles'
+import HeadingLevel from '../../components/heading-level'
 
 interface Props {
   posts: PostMeta[]
@@ -32,15 +33,17 @@ const Page: NextPage<Props> = ({ posts }) => {
   return (
     <Layout as='main'>
       <Box px={2}>
-        <Heading
-          css={`
-            position: relative;
-            z-index: 1;
-          `}
-          variant='alpha'
-        >
-          Posts
-        </Heading>
+        <HeadingLevel>
+          <Heading
+            css={`
+              position: relative;
+              z-index: 1;
+            `}
+            variant='alpha'
+          >
+            Posts
+          </Heading>
+        </HeadingLevel>
       </Box>
       <Level>
         <Box
@@ -84,7 +87,9 @@ const Page: NextPage<Props> = ({ posts }) => {
               {sortedYears.map(year => (
                 <article key={year}>
                   <Stack gap={1}>
-                    <TextHeading>{year}</TextHeading>
+                    <HeadingLevel>
+                      <Text>{year}</Text>
+                    </HeadingLevel>
                     <Level>
                       <div>
                         {postsByYear[year].map(post => (
@@ -94,7 +99,9 @@ const Page: NextPage<Props> = ({ posts }) => {
                               as={`/posts/${post.slug}`}
                             >
                               <a>
-                                <TextHeading>{post.title}</TextHeading>
+                                <HeadingLevel>
+                                  <Text>{post.title}</Text>
+                                </HeadingLevel>
                               </a>
                             </Link>
                           </article>

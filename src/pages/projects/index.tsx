@@ -11,6 +11,7 @@ import StandardGrid, {
   StandardGridContent,
 } from '../../components/standard-grid'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
+import HeadingLevel from '../../components/heading-level'
 
 const Page: NextPage = () => (
   <Layout as='main'>
@@ -20,7 +21,9 @@ const Page: NextPage = () => (
     <StandardGrid>
       <StandardGridContent>
         <ListBox>
-          <Heading>Projects</Heading>
+          <HeadingLevel>
+            <Heading>Projects</Heading>
+          </HeadingLevel>
           <Level>
             <ArticleList columns>
               {projects.map(project => (
@@ -46,7 +49,9 @@ const Page: NextPage = () => (
       <StandardGridContent>
         <Level>
           <ListBox>
-            <Heading>Misc</Heading>
+            <HeadingLevel>
+              <Heading>Misc</Heading>
+            </HeadingLevel>
             <Level>
               <ArticleList columns>
                 {misc.map(misc => (

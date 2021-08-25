@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Box from './box'
-import { TextHeading } from './text'
+import Text from './text'
+import HeadingLevel from './heading-level'
 
 const FeaturedSection: React.FC = ({ children }) => (
   <FeaturedSectionBox>
@@ -39,8 +40,10 @@ export const FeaturedSectionHeading: React.FC = ({ children }) => (
       border-bottom: 1px dashed currentColor;
     `}
   >
-    <TextHeading variant='mono' size='milli'>
-      {children}
-    </TextHeading>
+    <HeadingLevel>
+      <Text variant='mono' size='milli'>
+        {children}
+      </Text>
+    </HeadingLevel>
   </Box>
 )

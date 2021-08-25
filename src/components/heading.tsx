@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import variants from '../lib/variants'
-import withHeading from '../lib/with-heading'
 
 type Variant = 'alpha'
 
@@ -24,4 +23,4 @@ const Heading = styled.h1<Props>`
   })}
 `
 
-export default withHeading<Props>(Heading)
+export default Heading

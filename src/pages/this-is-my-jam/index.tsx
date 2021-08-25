@@ -9,6 +9,7 @@ import TrackComponent from '../../components/track'
 import Heading from '../../components/heading'
 import Box from '../../components/box'
 import Stack from '../../components/stack'
+import HeadingLevel from '../../components/heading-level'
 import sanity from '../../lib/sanity'
 
 import StandardGrid, {
@@ -40,7 +41,9 @@ const Page: NextPage<Props> = ({ jamsByYear }) => {
         <title>This is My Jam - Ash</title>
       </Head>
       <Box px={2}>
-        <Heading variant='alpha'>This is My Jam</Heading>
+        <HeadingLevel>
+          <Heading variant='alpha'>This is My Jam</Heading>
+        </HeadingLevel>
       </Box>
       <Level>
         <StandardGrid>
@@ -48,7 +51,9 @@ const Page: NextPage<Props> = ({ jamsByYear }) => {
             <Stack gap={5}>
               {jamsByYear.map(([year, jams]) => (
                 <Stack key={year} gap={2}>
-                  <Heading>{year}</Heading>
+                  <HeadingLevel>
+                    <Heading>{year}</Heading>
+                  </HeadingLevel>
                   <Level>
                     <List>
                       {jams.map(jam => (

@@ -20,6 +20,7 @@ import FeaturedSection, {
 } from '../components/featured-section'
 import Articles, { Article } from '../components/articles'
 import ArticleList, { ArticleListItem } from '../components/article-list'
+import HeadingLevel from '../components/heading-level'
 
 import StandardGrid, {
   StandardGridContent,
@@ -162,7 +163,9 @@ const Page: NextPage<Props> = ({ posts }) => (
       >
         <Articles>
           <ListBox>
-            <Heading>Projects</Heading>
+            <HeadingLevel>
+              <Heading>Projects</Heading>
+            </HeadingLevel>
             <Level>
               <ArticleList>
                 {projects.map(project => (
@@ -183,7 +186,9 @@ const Page: NextPage<Props> = ({ posts }) => (
             </Level>
           </ListBox>
           <ListBox>
-            <Heading>Misc</Heading>
+            <HeadingLevel>
+              <Heading>Misc</Heading>
+            </HeadingLevel>
             <ArticleList>
               {misc.map(misc => (
                 <ArticleListItem
@@ -202,7 +207,9 @@ const Page: NextPage<Props> = ({ posts }) => (
             </ArticleList>
           </ListBox>
           <ListBox>
-            <Heading>Recent work</Heading>
+            <HeadingLevel>
+              <Heading>Recent work</Heading>
+            </HeadingLevel>
             <ArticleList>
               {work.map((item, index) => (
                 <ArticleListItem key={index} description={item.description} />
