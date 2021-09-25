@@ -4,7 +4,7 @@ import Box from '../components/box'
 import Stack from '../components/stack'
 import Note from '../components/note'
 
-type Props = {
+interface Props {
   cite?: string
   citeUrl?: string
   author?: string
