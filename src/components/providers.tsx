@@ -9,6 +9,7 @@ import InlineCode from '../components/inline-code'
 import Box from '../components/box'
 import Heading from '../components/heading'
 import ContentImage from '../components/content-image'
+import Blockquote from '../components/blockquote'
 
 const theme: Theme = {
   breakpoints: [
@@ -49,6 +50,7 @@ const MDXComponents = {
     return <Heading as='h6' {...props} />
   },
   image: ContentImage,
+  blockquote: Blockquote,
 }
 
 interface Props {
