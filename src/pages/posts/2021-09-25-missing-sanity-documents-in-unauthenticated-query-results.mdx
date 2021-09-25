@@ -1,0 +1,128 @@
+import publishedSanityDocuments from './img/published-sanity-documents.png'
+
+export const meta = {
+  title: 'Missing Sanity documents in unauthenticated query results',
+  description: `If you notice documents missing from the results of unauthenticated Sanity queries, check whether the affected document ids are a path (a string segmented by periods).`,
+  date: '2021-09-25',
+  tags: ['Sanity'],
+}
+
+The other day I realised that one of my Next.js and Sanity projects was accidentally displaying draft documents. The project was using authenticated API access, but I hadn't filtered drafts in my queries. I'm still learning Sanity, and this is a pretty easy mistake to make. The simplest way to automatically exclude drafts from query results is to switch to unauthenticated API access. When querying Sanity without authentication, drafts will never be included in results.
+
+According to [the Sanity documentation](https://www.sanity.io/docs/http-auth), authentication isn't required to read the data in a public dataset. My Next.js project only displays data (it doesn't need to update any data in Sanity), so I didn't expect removing the API token would cause any issues.
+
+However, as soon as I removed the API token from the Sanity client configuration, my queries began returning incomplete data. On closer inspection, I realised that one particular document type was omitted from results. Whenever I tried to query this document type, either directly or via a join, the results were empty. All of the other document types continued to work like they had before.
+
+Here's an example result from a query made using the authenticated API. The `mosaic` data is fetched from a join to the `album` document type:
+
+```js
+{
+  _id: "636bbc19-d9a5-4d79-8da4-c5f24edc334b",
+  curators: [
+    {
+      person: {
+        firstName: "Ash",
+        lastName: "Stevens",
+      },
+    },
+  ],
+  mosaic: [
+    {
+      albumName: "Bipp - Single",
+      color: "#b0c1d8",
+      imageUrl:
+        "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/54/da/78/54da780c-c3c5-db3f-5bfe-8e0ec1dc910a",
+    },
+    {
+      albumName: "Government Plates",
+      color: "#cac6b0",
+      imageUrl:
+        "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/0d/44/35/0d4435fd-edf5-c020-2340-e895a36bcdf8",
+    },
+    {
+      albumName: "Kala (Deluxe Edition)",
+      color: "#8f6b98",
+      imageUrl:
+        "https://is4-ssl.mzstatic.com/image/thumb/Music115/v4/5e/9c/31/5e9c31b3-d510-c737-4419-6757d7b6457d",
+    },
+    {
+      albumName: "Because the Internet",
+      color: "#ad565a",
+      imageUrl:
+        "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/ff/76/03/ff760377-ff58-7789-2dac-758356f11d55",
+    },
+  ],
+  name: "QLBs",
+  slug: "qlbs",
+}
+```
+
+But the results of the same query made without authentication omit the `album` data:
+
+```js
+{
+  _id: "636bbc19-d9a5-4d79-8da4-c5f24edc334b",
+  curators: [
+    {
+      person: {
+        firstName: "Ash",
+        lastName: "Stevens",
+      },
+    },
+  ],
+  mosaic: [
+    {
+      albumName: null,
+      color: null,
+      imageUrl: null,
+    },
+    {
+      albumName: null,
+      color: null,
+      imageUrl: null,
+    },
+    {
+      albumName: null,
+      color: null,
+      imageUrl: null,
+    },
+    {
+      albumName: null,
+      color: null,
+      imageUrl: null,
+    },
+  ],
+  name: "QLBs",
+  slug: "qlbs",
+}
+```
+
+My first suspicion was that I'd accidentally made all the affected documents drafts, which would mean they aren't publicly accessible. But, nope, all of the documents were published. Maybe I'd made a mistake in the schema definition? I checked, but the schema seemed fine too.
+
+<image
+  src={publishedSanityDocuments}
+  alt='Screenshot showing the published documents in Sanity studio'
+  caption={`The affected documents in Sanity Studio. They've definitely been published!`}
+/>
+
+Eventually I found a difference. Not in the schema, but in the documents themselves. Instead of manually creating them in Sanity Studio, I had created them using a script connected to the Sanity API. To avoid id collisions, I namespaced the ids of these documents, which looked like this: `album.1253203484`.
+
+In Sanity, an [id segmented by periods is known as a _path_](https://www.sanity.io/docs/ids#fdc25ada5db2), and paths do more than just help avoid collisions. Paths are used to put documents into groups that can be filtered in a query using the `path()` function. And paths have one other notable behaviour... by default, they aren't publicly accessible.
+
+<blockquote
+  cite='Sanity documentation'
+  citeUrl='https://www.sanity.io/docs/ids'
+>
+  <p>
+    The default, fixed access control rules give unauthenticated users read
+    access to documents under the root path only, which means that it is not
+    possible to make documents under a sub-path (i.e. containing a . in the ID)
+    publicly available.
+  </p>
+</blockquote>
+
+Aha! That explains the problem. When I namespaced the document ids, I inadvertently made them private.
+
+This is a pretty big gotcha, and it wasn't immediately obvious to me. For my use case, I don't need any of the functionality provided by paths, I just need a way to avoid collisions in ids. I'll probably update the ids to use a character other than a period to separate the namespace. `-` and `_` characters are both allowed in ids. Removing the path segments from the id will move the document back into the root path, which is publicly accessible.
+
+If you notice documents missing from the results of unauthenticated Sanity queries, check whether the affected document ids are a [_path_](https://www.sanity.io/docs/ids#fdc25ada5db2) (a string segmented by periods).
