@@ -10,6 +10,7 @@ export interface PostMeta {
 interface Post {
   meta: PostMeta
   default: string
+  source: string
 }
 
 export default Post
