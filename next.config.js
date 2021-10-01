@@ -30,4 +30,7 @@ module.exports = withMdx({
       'is5-ssl.mzstatic.com',
     ],
   },
+  experimental: {
+    outputFileTracing: true,
+  },
 })
