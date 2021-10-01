@@ -2,9 +2,12 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { MDXProvider } from '@mdx-js/react'
+import Box from '../components/box'
 import Providers from '../components/providers'
 import OgImageMeta from '../components/og-image-meta'
 import PostLayout from '../components/post-layout'
+import ContentImage from '../components/content-image'
+import Code from '../components/code'
 import MDXComponents from '../mdx-components'
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
@@ -12,7 +15,23 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <Providers pageProps={pageProps}>
-      <MDXProvider components={{ ...MDXComponents, wrapper: PostLayout }}>
+      <MDXProvider
+        components={{
+          ...MDXComponents,
+          wrapper: PostLayout,
+          image: ContentImage,
+          code: function CodeComponent({ className, children }) {
+            return (
+              <Box mx={-2}>
+                <Code
+                  code={children}
+                  language={className.replace(/language-/, '')}
+                />
+              </Box>
+            )
+          },
+        }}
+      >
         <Head>
           <title>{title}</title>
           <meta name='twitter:site' content='@juice49' />
