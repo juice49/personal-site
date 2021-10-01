@@ -36,6 +36,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           <title>{title}</title>
           <meta name='twitter:site' content='@juice49' />
           <meta key='og:title' property='og:title' content={title} />
+          <link rel='alternate' type='application/feed+json' href='/feed' />
         </Head>
         <OgImageMeta title='I like to make things&mdash;usually with web technologies, and usually <em>for</em> the web.' />
         <Component {...pageProps} />
