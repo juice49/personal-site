@@ -1,0 +1,42 @@
+export const meta = {
+  title: 'JSON Feed Types',
+  description: `I've been working on adding JSON Feed to my blog, but I was surprised to discover that nobody has published JSON Feed TypeScript types yet. So I made some.`,
+  date: '2021-10-01',
+  tags: ['JSON Feed', 'TypeScript'],
+}
+
+I've been working on adding [JSON Feed](https://www.jsonfeed.org) to my blog, but I was surprised to discover that nobody has published JSON Feed TypeScript types yet. [So I made some](https://github.com/juice49/json-feed-types).
+
+The types will give you confidence that your feed complies with the JSON Feed spec _and_ give you documentation from the spec itself in your editor. Pretty cool!
+
+I've only typed version `1.1` of the spec so far. You can get the types from npm:
+
+```bash
+npm install --save-dev @json-feed-types/1_1
+```
+
+And then use them to type your feed data:
+
+```js
+import Feed from '@json-feed-types/1_1'
+
+const feed: Feed = {
+  version: 'https://jsonfeed.org/version/1.1',
+  title: 'JSON Feed',
+  icon: 'https://micro.blog/jsonfeed/avatar.jpg',
+  home_page_url: 'https://www.jsonfeed.org/',
+  feed_url: 'https://www.jsonfeed.org/feed.json',
+  items: [
+    {
+      id: 'http://jsonfeed.micro.blog/2020/08/07/json-feed-version.html',
+      title: 'JSON Feed version 1.1',
+      content_html:
+        '<p>We&rsquo;ve updated the spec to <a href="https://jsonfeed.org/version/1.1">version 1.1</a>. Itâ€™s a minor update to JSON Feed, clarifying a few things in the spec and adding a couple new fields such as <code>authors</code> and <code>language</code>.</p>\n\n<p>For version 1.1, we&rsquo;re starting to move to the more specific MIME type <code>application/feed+json</code>. Clients that parse HTML to discover feeds should prefer that MIME type, while still falling back to accepting <code>application/json</code> too.</p>\n\n<p>The <a href="https://jsonfeed.org/code/">code page</a> has also been updated with several new code libraries and apps that support JSON Feed.</p>\n',
+      date_published: '2020-08-07T11:44:36-05:00',
+      url: 'https://www.jsonfeed.org/2020/08/07/json-feed-version.html',
+    },
+  ],
+}
+```
+
+The types support extensions, too. You can [find out more in the readme](https://github.com/juice49/json-feed-types).
