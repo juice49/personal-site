@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import styled from 'styled-components'
+import djb2a from 'djb2a'
 import Box from './box'
 
 export const CodeBlocksContext = createContext({})
@@ -11,11 +12,12 @@ interface Props {
 
 const Code: React.FC<Props> = ({ language, code }) => {
   const codeBlocks = useContext(CodeBlocksContext)
+  const hash = djb2a(code)
 
-  if (typeof codeBlocks[code] !== 'undefined') {
+  if (typeof codeBlocks[hash] !== 'undefined') {
     return (
       <Container
-        dangerouslySetInnerHTML={{ __html: codeBlocks[code] }}
+        dangerouslySetInnerHTML={{ __html: codeBlocks[hash] }}
         tabIndex={0}
       />
     )

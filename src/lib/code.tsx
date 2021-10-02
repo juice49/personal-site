@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import { MDXProvider } from '@mdx-js/react'
+import djb2a from 'djb2a'
 import Providers from '../components/providers'
 import Code from '../components/code'
 
@@ -48,7 +49,8 @@ export default async function getCodeBlockStaticProps(Page: NextPage) {
   })
 
   global.__nextSsgCodeBlocks.forEach(({ code, language }) => {
-    props.__nextSsgCodeBlocks[code] = highlighter.codeToHtml(code, language)
+    const hash = djb2a(code)
+    props.__nextSsgCodeBlocks[hash] = highlighter.codeToHtml(code, language)
   })
 
   return props
