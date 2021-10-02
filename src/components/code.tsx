@@ -13,7 +13,12 @@ const Code: React.FC<Props> = ({ language, code }) => {
   const codeBlocks = useContext(CodeBlocksContext)
 
   if (typeof codeBlocks[code] !== 'undefined') {
-    return <Container dangerouslySetInnerHTML={{ __html: codeBlocks[code] }} />
+    return (
+      <Container
+        dangerouslySetInnerHTML={{ __html: codeBlocks[code] }}
+        tabIndex={0}
+      />
+    )
   }
 
   const IS_SSG =
@@ -39,6 +44,11 @@ const Container = styled(Box)`
   font-size: 0.8rem;
   color: #fff;
   overflow: auto;
+
+  &:focus {
+    outline: 2px auto Highlight;
+    outline: 0 auto -webkit-focus-ring-color;
+  }
 
   .shiki {
     background-color: transparent !important;
