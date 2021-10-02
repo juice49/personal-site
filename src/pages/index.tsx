@@ -1,4 +1,4 @@
-import { NextPage } from 'next'
+import { NextPage, GetStaticProps } from 'next'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Level } from 'react-accessible-headings'
@@ -226,12 +226,12 @@ export default Page
 
 const ListBox: React.FC = ({ children }) => <Stack gap={2}>{children}</Stack>
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const posts = await postApi.getAll()
 
   return {
     props: {
-      posts: posts.slice(0, 6),
+      posts: posts.slice(0, 6).map(post => post.meta),
     },
   }
 }
