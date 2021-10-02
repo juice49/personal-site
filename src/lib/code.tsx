@@ -51,7 +51,7 @@ export default async function getCodeBlockStaticProps(Page: NextPage) {
   )
 
   const highlighter = await getHighlighter({
-    theme: 'material-theme-palenight',
+    theme: 'material-palenight',
   })
 
   global.__nextSsgCodeBlocks.forEach(({ code, language }) => {
