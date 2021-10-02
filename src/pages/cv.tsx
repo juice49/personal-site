@@ -33,7 +33,7 @@ const Page: NextPage = () => (
           <LoveList>
             {[
               'I love making stuff for the web',
-              'JavaScript',
+              'TypeScript',
               'React',
               'Jamstack',
               'Responsive Web Design',
