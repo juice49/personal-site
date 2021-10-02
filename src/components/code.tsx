@@ -1,5 +1,6 @@
 import React, { createContext, useContext } from 'react'
 import styled from 'styled-components'
+import djb2a from 'djb2a'
 import Box from './box'
 
 export const CodeBlocksContext = createContext({})
@@ -11,9 +12,15 @@ interface Props {
 
 const Code: React.FC<Props> = ({ language, code }) => {
   const codeBlocks = useContext(CodeBlocksContext)
+  const hash = djb2a(code)
 
-  if (typeof codeBlocks[code] !== 'undefined') {
-    return <Container dangerouslySetInnerHTML={{ __html: codeBlocks[code] }} />
+  if (typeof codeBlocks[hash] !== 'undefined') {
+    return (
+      <Container
+        dangerouslySetInnerHTML={{ __html: codeBlocks[hash] }}
+        tabIndex={0}
+      />
+    )
   }
 
   const IS_SSG =
@@ -39,6 +46,11 @@ const Container = styled(Box)`
   font-size: 0.8rem;
   color: #fff;
   overflow: auto;
+
+  &:focus {
+    outline: 2px auto Highlight;
+    outline: 0 auto -webkit-focus-ring-color;
+  }
 
   .shiki {
     background-color: transparent !important;
