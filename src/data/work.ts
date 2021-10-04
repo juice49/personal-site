@@ -6,23 +6,25 @@ interface Work {
 const work: Work[] = [
   {
     description:
-      'Implemented Incremental Static Regeneration for a Next.js site.',
+      'Created a song picker for Sanity CMS using serverless functions, Sanity UI, the iTunes API, and the Odesli API.',
   },
   {
     description:
-      'Built a GraphQL API layer over an old and inconsistent REST-ish API.',
+      'Created React Native apps with realtime maps and complicated backend API integrations.',
   },
   {
-    description: 'Built a CSS-in-JS helper library.',
+    description:
+      'Built a GraphQL API layer over an old and inconsistent REST API.',
   },
   {
-    description: 'Built a headless site builder with WordPress and Next.js.',
+    description: 'Created TypeScript types for the JSON Feed spec.',
   },
   {
-    description: 'Configured Next.js preview mode with WordPress.',
+    description:
+      'Created a helper library for generating Open Graph preview images with serverless functions.',
   },
   {
-    description: 'Created a Connect 4 game in TypeScript and React.',
+    description: 'Created a headless site builder with WordPress and Next.js.',
   },
 ]
 

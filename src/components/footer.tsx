@@ -18,7 +18,7 @@ const Footer: React.FC = () => (
           >
             Made by Ash.
           </p>
-          <p>Figuring shit out 2008&thinsp;&ndash;&thinsp;??</p>
+          <p>The Web and Stuff 2008&thinsp;&ndash;&thinsp;??</p>
         </Stack>
       </Main>
       <MetaA>
