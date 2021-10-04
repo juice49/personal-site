@@ -168,7 +168,7 @@ const Page: NextPage = () => (
                       as Next.js and Gatsby.
                     </Text>
                     <Text as='p' size='milli'>
-                      Created normalisation layers for our clients' APIs.
+                      Created normalisation layers for our clients&apos; APIs.
                     </Text>
                     <Text as='p' size='milli'>
                       Created backends in node.js.
