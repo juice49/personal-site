@@ -30,15 +30,4 @@ module.exports = withMdx({
       'is5-ssl.mzstatic.com',
     ],
   },
-  async rewrites() {
-    return [
-      {
-        source: '/feed',
-        destination: '/api/feed',
-      },
-    ]
-  },
-  experimental: {
-    outputFileTracing: true,
-  },
 })
