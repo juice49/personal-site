@@ -1,8 +1,6 @@
 import { NextPage } from 'next'
-import { MDXProvider } from '@mdx-js/react'
 import djb2a from 'djb2a'
 import Providers from '../components/providers'
-import Code from '../components/code'
 
 // So, how does this work?
 //
@@ -27,20 +25,7 @@ export default async function getCodeBlockStaticProps(Page: NextPage) {
 
   renderToStaticMarkup(
     <Providers>
-      <MDXProvider
-        components={{
-          code: function CodeComponent({ className, children }) {
-            return (
-              <Code
-                code={children}
-                language={className.replace(/language-/, '')}
-              />
-            )
-          },
-        }}
-      >
-        <Page />
-      </MDXProvider>
+      <Page />
     </Providers>,
   )
 

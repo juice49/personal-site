@@ -1,8 +1,8 @@
 import { promises as fs } from 'fs'
 import path from 'path'
-import Post from '../types/post'
+import Post, { PostMeta } from '../types/post'
 
-export async function getAll(): Promise<Post[]> {
+export async function getAll(): Promise<PostMeta[]> {
   if (typeof process.env.POSTS_PATH === 'undefined') {
     throw new Error('`POSTS_PATH` is not defined.')
   }
@@ -13,11 +13,21 @@ export async function getAll(): Promise<Post[]> {
 
   const allPosts = await Promise.all(postImports)
 
-  return allPosts.sort(sortChronologically)
+  return allPosts
+    .map<PostMeta>((post: Post) => post.meta)
+    .sort(sortChronologically)
 }
 
-function sortChronologically(a: Post, b: Post) {
-  return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime()
+function sortChronologically(a: PostMeta, b: PostMeta) {
+  if (a.date < b.date) {
+    return 1
+  }
+
+  if (a.date > b.date) {
+    return -1
+  }
+
+  return 0
 }
 
 function filterExtname(extname) {
@@ -35,6 +45,5 @@ async function importPost(filename: string): Promise<Post> {
       ...module.meta,
       slug: path.basename(filename, path.extname(filename)),
     },
-    source: module.default,
   }
 }
