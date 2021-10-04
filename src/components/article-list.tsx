@@ -58,6 +58,7 @@ export default ArticleList
 
 interface ArticleListItemProps {
   heading?: string
+  headingGap?: number
   description?: string
   link?: LinkProps
   externalUrl?: string
@@ -66,6 +67,7 @@ interface ArticleListItemProps {
 export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   children,
   heading,
+  headingGap = 1,
   description,
   link,
   externalUrl,
@@ -96,34 +98,36 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
     <Box as='li' px={1}>
       <BlockLink {...link}>
         <Stack gap={1}>
-          {heading && (
-            <HeadingLevel>
+          <Stack gap={headingGap}>
+            {heading && (
+              <HeadingLevel>
+                <Text
+                  size='milli'
+                  weight='bold'
+                  css={`
+                    color: var(--color);
+                  `}
+                >
+                  <Stack as='span' direction='inline' gap={1}>
+                    <span>{heading}</span>
+                    {externalUrl && <ExternalLinkIcon />}
+                  </Stack>
+                </Text>
+              </HeadingLevel>
+            )}
+            {description && (
               <Text
-                size='milli'
-                weight='bold'
+                as='p'
+                size='micro'
+                variant='mono'
                 css={`
-                  color: var(--color);
+                  color: var(--color, var(--body-color-subtle));
                 `}
               >
-                <Stack as='span' direction='inline' gap={1}>
-                  <span>{heading}</span>
-                  {externalUrl && <ExternalLinkIcon />}
-                </Stack>
+                {description}
               </Text>
-            </HeadingLevel>
-          )}
-          {description && (
-            <Text
-              as='p'
-              size='micro'
-              variant='mono'
-              css={`
-                color: var(--color, var(--body-color-subtle));
-              `}
-            >
-              {description}
-            </Text>
-          )}
+            )}
+          </Stack>
           {children}
         </Stack>
       </BlockLink>
