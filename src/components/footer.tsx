@@ -32,6 +32,9 @@ const Footer: React.FC = () => (
           </p>
           <MetaList>
             <li>
+              <a href='/feed'>Subscribe with JSON Feed</a>
+            </li>
+            <li>
               <a href='#'>
                 <del>About this site</del>
               </a>
