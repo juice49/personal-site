@@ -1,20 +1,15 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import { NextApiHandler } from 'next'
 import Feed from '@json-feed-types/1_1'
 import { MDXProvider } from '@mdx-js/react'
-import * as postApi from '../../lib/post-api'
-import Providers from '../../components/providers'
-import NextPlainImage from '../../components/next-plain-image'
-import MDXComponents from '../../mdx-components'
-
-const handler: NextApiHandler<Feed> = async (req, res) => {
+import * as postApi from '../lib/post-api'
+import Providers from '../components/providers'
+import NextPlainImage from '../components/next-plain-image'
+import MDXComponents from '../mdx-components'
+;(async () => {
   const posts = await postApi.getAll()
 
-  res.setHeader('Content-Type', ['application/feed+json', 'charset=utf-8'])
-  res.setHeader('Cache-Control', ['s-maxage=3600', 'max-age=3600', 'public'])
-
-  res.send({
+  const feed: Feed = {
     version: 'https://jsonfeed.org/version/1.1',
     title: 'Ash',
     home_page_url: 'https://ash.gd',
@@ -49,10 +44,10 @@ const handler: NextApiHandler<Feed> = async (req, res) => {
         </Providers>,
       ),
     })),
-  })
-}
+  }
 
-export default handler
+  process.stdout.write(JSON.stringify(feed, null, 2) + '\n')
+})()
 
 const Code: React.FC = ({ children }) => (
   <pre>

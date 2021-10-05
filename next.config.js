@@ -1,3 +1,5 @@
+const { merge } = require('webpack-merge')
+
 const mdxRenderer = `
   import React from 'react'
   import { mdx } from '@mdx-js/react'
@@ -34,11 +36,37 @@ module.exports = withMdx({
     return [
       {
         source: '/feed',
-        destination: '/api/feed',
+        destination: '/feed.json',
       },
     ]
   },
-  experimental: {
-    outputFileTracing: true,
+  async headers() {
+    return [
+      {
+        source: '/feed',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/feed+json; charset=utf-8',
+          },
+        ],
+      },
+    ]
+  },
+  webpack: (config, options) => {
+    return merge(config, {
+      async entry() {
+        if (!options.isServer) {
+          return config.entry
+        }
+
+        const entry = await config.entry()
+
+        return {
+          ...entry,
+          'render-json-feed': './src/scripts/render-json-feed.tsx',
+        }
+      },
+    })
   },
 })
