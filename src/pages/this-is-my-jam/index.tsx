@@ -1,14 +1,13 @@
 import { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
-import styled from 'styled-components'
 import groq from 'groq'
 import { Level } from 'react-accessible-headings'
+import { styled } from '../../stitches.config'
 import Jam from '../../types/jam'
 import Layout from '../../components/layout'
 import TrackComponent from '../../components/track'
 import Heading from '../../components/heading'
 import Box from '../../components/box'
-import Stack from '../../components/stack'
 import HeadingLevel from '../../components/heading-level'
 import sanity from '../../lib/sanity'
 
@@ -40,7 +39,11 @@ const Page: NextPage<Props> = ({ jamsByYear }) => {
       <Head>
         <title>This is My Jam - Ash</title>
       </Head>
-      <Box px={2}>
+      <Box
+        css={{
+          paddingInline: '$medium',
+        }}
+      >
         <HeadingLevel>
           <Heading variant='alpha'>This is My Jam</Heading>
         </HeadingLevel>
@@ -48,9 +51,18 @@ const Page: NextPage<Props> = ({ jamsByYear }) => {
       <Level>
         <StandardGrid>
           <StandardGridContent>
-            <Stack gap={5}>
+            <Box
+              css={{
+                stackBlock: '$5',
+              }}
+            >
               {jamsByYear.map(([year, jams]) => (
-                <Stack key={year} gap={2}>
+                <Box
+                  key={year}
+                  css={{
+                    stackBlock: '$medium',
+                  }}
+                >
                   <HeadingLevel>
                     <Heading>{year}</Heading>
                   </HeadingLevel>
@@ -61,9 +73,9 @@ const Page: NextPage<Props> = ({ jamsByYear }) => {
                       ))}
                     </List>
                   </Level>
-                </Stack>
+                </Box>
               ))}
-            </Stack>
+            </Box>
           </StandardGridContent>
         </StandardGrid>
       </Level>
@@ -110,10 +122,10 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   }
 }
 
-const List = styled.div`
-  & > * + * {
-    margin-top: calc(var(--space4) * 0.5);
-    padding-top: calc(var(--space4) * 0.5);
-    border-top: 1px dashed var(--body-color-subtle);
-  }
-`
+const List = styled('div', {
+  '& > * + *': {
+    marginBlockStart: 'calc($4 * 0.5)',
+    paddingBlockStart: 'calc($4 * 0.5)',
+    borderBlockStart: '1px dashed $bodySubtle',
+  },
+})

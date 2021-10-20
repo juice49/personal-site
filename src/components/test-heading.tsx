@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import { styled } from '../stitches.config'
 
-const TestHeading = styled.h1`
-  color: red;
-`
+const TestHeading = styled('h1', {
+  color: 'red',
+})
 
 export default TestHeading

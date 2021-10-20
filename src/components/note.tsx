@@ -1,11 +1,12 @@
-import styled from 'styled-components'
+import { styled } from '../stitches.config'
 import Text from './text'
 
-const Note = styled(Text).attrs(() => ({
-  size: 'micro',
-  variant: 'mono',
-}))`
-  color: var(--body-color-subtle);
-`
+const Note = styled(Text, {
+  color: '$bodySubtle',
+  defaultVariants: {
+    size: 'micro',
+    variant: 'mono',
+  },
+})
 
 export default Note

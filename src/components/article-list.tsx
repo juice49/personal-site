@@ -1,64 +1,44 @@
 import React from 'react'
 import Link, { LinkProps } from 'next/link'
-import Stack from './stack'
+import { CSS } from '@stitches/react'
+import { styled, config } from '../stitches.config'
 import Box from './box'
 import Text from './text'
 import ExternalLinkIcon from './external-link-icon'
 import HeadingLevel from './heading-level'
 
-interface Props {
-  columns?: boolean
+const border: CSS<typeof config> = {
+  borderTop: '1px dashed $bodySubtle',
+  marginTop: 'calc($2 * 0.5)',
+  paddingTop: 'calc($2 * 0.5)',
 }
 
-const border = `
-  border-top: 1px dashed var(--body-color-subtle);
-  margin-top: calc(var(--space2) * 0.5);
-  padding-top: calc(var(--space2) * 0.5);
-`
+const Container = styled('ul', {
+  listStyle: 'circle',
+  marginInlineStart: '$2',
+  variants: {
+    columns: {
+      true: {
+        display: 'grid',
+        gap: '$2',
+        gridTemplateColumns: '1fr 1fr',
+        '& > *': border,
+      },
+      false: {
+        '& > * + *': border,
+      },
+    },
+  },
+  defaultVariants: {
+    columns: false,
+  },
+})
 
-const ArticleList: React.FC<Props> = ({ children, columns }) => (
-  <Stack
-    as='ul'
-    gap={0}
-    columns={columns}
-    css={`
-      list-style: circle;
-      margin-left: var(--space2);
-
-      ${props =>
-        props.columns &&
-        `
-        display: grid;
-        grid-gap: var(--space2);
-        grid-template-columns: 1fr 1fr;
-      `}
-
-      ${props =>
-        !props.columns &&
-        `
-        > * + * {
-          ${border}
-        }
-      `}
-
-      ${props =>
-        props.columns &&
-        `
-        > * {
-          ${border}
-        }
-      `}
-    `}
-  >
-    {children}
-  </Stack>
-)
-
-export default ArticleList
+export default Container
 
 interface ArticleListItemProps {
   heading?: string
-  headingGap?: number
+  headingGap?: boolean
   description?: string
   link?: LinkProps
   externalUrl?: string
@@ -67,7 +47,7 @@ interface ArticleListItemProps {
 export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   children,
   heading,
-  headingGap = 1,
+  headingGap = true,
   description,
   link,
   externalUrl,
@@ -95,23 +75,41 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   }
 
   return (
-    <Box as='li' px={1}>
+    <Box
+      as='li'
+      css={{
+        paddingInline: '$small',
+      }}
+    >
       <BlockLink {...link}>
-        <Stack gap={1}>
-          <Stack gap={headingGap}>
+        <Box
+          css={{
+            stackBlock: '$small',
+          }}
+        >
+          <Box
+            css={{
+              stackBlock: headingGap ? '$small' : undefined,
+            }}
+          >
             {heading && (
               <HeadingLevel>
                 <Text
                   size='milli'
                   weight='bold'
-                  css={`
-                    color: var(--color);
-                  `}
+                  css={{
+                    color: 'var(--color)',
+                  }}
                 >
-                  <Stack as='span' direction='inline' gap={1}>
+                  <Box
+                    as='span'
+                    css={{
+                      stackInline: '$small',
+                    }}
+                  >
                     <span>{heading}</span>
                     {externalUrl && <ExternalLinkIcon />}
-                  </Stack>
+                  </Box>
                 </Text>
               </HeadingLevel>
             )}
@@ -120,57 +118,51 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
                 as='p'
                 size='micro'
                 variant='mono'
-                css={`
-                  color: var(--color, var(--body-color-subtle));
-                `}
+                css={{
+                  color: 'var(--color, $bodySubtle)',
+                }}
               >
                 {description}
               </Text>
             )}
-          </Stack>
+          </Box>
           {children}
-        </Stack>
+        </Box>
       </BlockLink>
     </Box>
   )
 }
 
+const ArticleLinkOuter = styled('a', {
+  display: 'block',
+  position: 'relative',
+  '&:hover': {
+    '--color': '#fff',
+  },
+  '&:hover:before': {
+    position: 'absolute',
+    zIndex: 0,
+    top: 0,
+    right: 'calc($1 * -1)',
+    bottom: 'calc($1 * -1)',
+    left: 0,
+    backgroundColor: '$accentA',
+    transform: 'skew(0.7deg, 0.7deg)',
+    content: '',
+  },
+})
+
+const ArticleLinkInner = styled('div', {
+  position: 'relative',
+})
+
 const ArticleLink = React.forwardRef<
   HTMLAnchorElement,
   React.AnchorHTMLAttributes<HTMLAnchorElement>
 >(({ children, ...props }, ref) => (
-  <a
-    ref={ref}
-    {...props}
-    css={`
-      display: block;
-      position: relative;
-
-      &:hover {
-        --color: #fff;
-      }
-
-      &:hover:before {
-        position: absolute;
-        z-index: 0;
-        top: 0;
-        right: calc(var(--space1) * -1);
-        bottom: calc(var(--space1) * -1);
-        left: 0;
-        background-color: var(--accent-color);
-        transform: skew(0.7deg, 0.7deg);
-        content: '';
-      }
-    `}
-  >
-    <div
-      css={`
-        position: relative;
-      `}
-    >
-      {children}
-    </div>
-  </a>
+  <ArticleLinkOuter ref={ref} {...props}>
+    <ArticleLinkInner>{children}</ArticleLinkInner>
+  </ArticleLinkOuter>
 ))
 
 ArticleLink.displayName = 'ArticleLink'

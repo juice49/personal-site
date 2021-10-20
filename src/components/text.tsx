@@ -1,39 +1,26 @@
-import styled from 'styled-components'
-import variants from '../lib/variants'
+import { styled } from '../stitches.config'
 
-interface Props {
-  size?: 'micro' | 'milli'
-  weight?: 'bold'
-  variant?: 'mono'
-}
-
-const Text = styled.span<Props>`
-  ${variants(
-    {
-      micro: `
-      font-size: 0.6rem;
-    `,
-      milli: `
-      font-size: 0.8rem;
-    `,
+const Text = styled('span', {
+  variants: {
+    size: {
+      micro: {
+        fontSize: '0.6rem',
+      },
+      milli: {
+        fontSize: '0.8rem',
+      },
     },
-    'size',
-  )}
-
-  ${variants(
-    {
-      bold: `
-      font-variation-settings: 'wght' 680;
-    `,
+    weight: {
+      bold: {
+        fontVariationSettings: `'wght' 680`,
+      },
     },
-    'weight',
-  )}
-
-  ${variants({
-    mono: `
-      font-family: 'JetBrains Mono', SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-    `,
-  })}
-`
+    variant: {
+      mono: {
+        fontFamily: `'JetBrains Mono', SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace`,
+      },
+    },
+  },
+})
 
 export default Text

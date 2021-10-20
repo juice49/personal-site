@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import * as CSS from 'csstype'
-import styled from 'styled-components'
+import { styled } from '../stitches.config'
 
 interface Props {
   src: string
@@ -47,48 +47,40 @@ const Image: React.FC<Props> = ({
 
 export default Image
 
-const ImageBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
+const ImageBox = styled('div', {
+  position: 'relative',
+  width: '100%',
+  height: 'auto',
+  overflow: 'hidden',
+  '&:before': {
+    display: 'block',
+    paddingBlockStart: 'calc((var(--height) / var(--width)) * 100%)',
+    content: '',
+  },
+})
 
-  &:before {
-    display: block;
-    padding-top: calc((var(--height) / var(--width)) * 100%);
-    content: '';
-  }
-`
-
-interface ImageContentProps {
-  isPreview?: boolean
-  hasLoaded?: boolean
-}
-
-const ImageContent = styled.img<ImageContentProps>`
-  position: absolute;
-  left: 0;
-  top: 0;
-  transition-property: opacity;
-  transition-duration: var(--transition-duration, 500ms);
-
-  &,
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  ${props =>
-    props.isPreview &&
-    `
-    filter: blur(var(--blur, 20px));
-  `}
-
-  ${props =>
-    props.hasLoaded === false &&
-    `
-    opacity: 0;
-  `}
-`
+const ImageContent = styled('img', {
+  position: 'absolute',
+  left: 0,
+  top: 0,
+  transitionProperty: 'opacity',
+  transitionDuration: 'var(--transition-duration, 500ms)',
+  '&, img': {
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  },
+  variants: {
+    isPreview: {
+      true: {
+        filter: 'blur(var(--blur, 20px))',
+      },
+    },
+    hasLoaded: {
+      false: {
+        opacity: 0,
+      },
+    },
+  },
+})

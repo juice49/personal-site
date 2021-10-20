@@ -1,7 +1,7 @@
 import React from 'react'
-import styled from 'styled-components'
 import { format } from 'date-fns'
-import Stack from './stack'
+import { styled } from '../stitches.config'
+import Box from './box'
 import Tag from './tag'
 import Text from './text'
 import FeaturedSection from './featured-section'
@@ -14,7 +14,11 @@ interface Props {
 
 const PostHeader: React.FC<Props> = ({ children, date, column }) => (
   <Container>
-    <Stack gap={2}>
+    <Box
+      css={{
+        stackBlock: '$medium',
+      }}
+    >
       {date && (
         <div>
           <Time dateTime={date}>{date}</Time>
@@ -28,15 +32,15 @@ const PostHeader: React.FC<Props> = ({ children, date, column }) => (
           <Tag>{column}</Tag>
         </div>
       )}
-    </Stack>
+    </Box>
   </Container>
 )
 
 export default PostHeader
 
-const Container = styled.header`
-  text-align: center;
-`
+const Container = styled('header', {
+  textAlign: 'center',
+})
 
 interface DateProps {
   dateTime: string
@@ -51,21 +55,20 @@ const Time: React.FC<DateProps> = ({ dateTime }) => {
       dateTime={dateTime}
       variant='mono'
       size='micro'
-      css={`
-        color: var(--body-color-subtle);
-      `}
+      css={{
+        color: '$bodySubtle',
+      }}
     >
       {format(date, 'd MMMM yyyy')}
     </Text>
   )
 }
 
-const Heading = styled.h1`
-  font-family: 'Zangezi Sans';
-  font-weight: 700;
-  color: var(--accent-color);
-  line-height: 1.06;
-  font-size: 2.2rem;
-  font-size: clamp(2.6rem, 7.2vw, 5.6rem);
-  text-align: center;
-`
+const Heading = styled('h1', {
+  fontFamily: 'Zangezi Sans',
+  fontWeight: 700,
+  color: '$accentA',
+  lineHeight: 1.06,
+  fontSize: 'clamp(2.6rem, 7.2vw, 5.6rem)',
+  textAlign: 'center',
+})

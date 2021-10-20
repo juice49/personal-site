@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react'
-import styled from 'styled-components'
 import djb2a from 'djb2a'
+import { styled } from '../stitches.config'
 import Box from './box'
 
 export const CodeBlocksContext = createContext({})
@@ -40,33 +40,32 @@ const Code: React.FC<Props> = ({ language, code }) => {
 
 export default Code
 
-const Container = styled(Box)`
-  padding: var(--space2);
-  background-color: #131313;
-  font-size: 0.8rem;
-  color: #fff;
-  overflow: auto;
-
-  &:focus {
-    outline: 2px auto Highlight;
-    outline: 0 auto -webkit-focus-ring-color;
-  }
-
-  .shiki {
-    background-color: transparent !important;
-  }
-
-  code {
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    word-wrap: normal;
-    hyphens: none;
-    tab-size: 2;
-    font: inherit;
-    font-family: Arnold;
-    font-family: 'JetBrains Mono';
-  }
+const Container = styled(Box, {
+  padding: '$2',
+  backgroundColor: '#131313',
+  fontSize: '0.8rem',
+  color: '#fff',
+  overflow: 'auto',
+  '&:focus': {
+    outline: `
+      2px auto Highlight;
+      0 auto -webkit-focus-ring-color;
+    `,
+  },
+  '.shiki': {
+    backgroundColor: 'transparent !important',
+  },
+  code: {
+    whiteSpace: 'pre',
+    wordSpacing: 'normal',
+    wordBreak: 'normal',
+    wordWrap: 'normal',
+    hyphens: 'none',
+    tabSize: 2,
+    font: 'inherit',
+    // fontFamily: 'Arnold',
+    fontFamily: 'JetBrains Mono',
+  },
 
   /* .hljs-comment {
     color: #868e96;
@@ -91,4 +90,4 @@ const Container = styled(Box)`
   .hljs-punctuation {
     color: #ffe066;
   } */
-`
+})
