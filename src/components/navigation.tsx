@@ -62,18 +62,16 @@ export const NavigationLink = forwardRef<
           position: 'absolute',
           height: '2px',
           backgroundColor: '$accentA',
+          content: '',
           [`@media (max-width: calc(${breakpoints[0]} - 0.001em))`]: {
-            width: '$2',
-            left: 0,
-            top: 'calc(50% - 1px)',
+            insetInlineStart: 0,
+            insetBlockStart: 'calc(50% - 1px)',
             transform: 'translate(-100%, -50%)',
           },
           [`@media (min-width: calc(${breakpoints[0]}))`]: {
-            left: '$1',
-            right: '$1',
-            bottom: 'calc(($1 * 0.5) + 1px)',
+            insetInline: '$1',
+            insetBlockEnd: 'calc(($1 * 0.5) + 1px)',
           },
-          content: '',
         },
       }}
     />

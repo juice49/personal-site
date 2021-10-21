@@ -61,8 +61,8 @@ const ImageBox = styled('div', {
 
 const ImageContent = styled('img', {
   position: 'absolute',
-  left: 0,
-  top: 0,
+  insetInlineStart: 0,
+  insetBlockStart: 0,
   transitionProperty: 'opacity',
   transitionDuration: 'var(--transition-duration, 500ms)',
   '&, img': {

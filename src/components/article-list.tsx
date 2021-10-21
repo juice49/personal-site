@@ -8,9 +8,9 @@ import ExternalLinkIcon from './external-link-icon'
 import HeadingLevel from './heading-level'
 
 const border: CSS<typeof config> = {
-  borderTop: '1px dashed $bodySubtle',
-  marginTop: 'calc($2 * 0.5)',
-  paddingTop: 'calc($2 * 0.5)',
+  borderBlockStart: '1px dashed $bodySubtle',
+  marginBlockStart: 'calc($2 * 0.5)',
+  paddingBlockStart: 'calc($2 * 0.5)',
 }
 
 const Container = styled('ul', {
@@ -142,10 +142,7 @@ const ArticleLinkOuter = styled('a', {
   '&:hover:before': {
     position: 'absolute',
     zIndex: 0,
-    top: 0,
-    right: 'calc($1 * -1)',
-    bottom: 'calc($1 * -1)',
-    left: 0,
+    inset: '0 calc($1 * -1) calc($1 * -1) 0',
     backgroundColor: '$accentA',
     transform: 'skew(0.7deg, 0.7deg)',
     content: '',

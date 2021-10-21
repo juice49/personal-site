@@ -82,6 +82,6 @@ const DocumentOuter = styled('div', {
 
 const DocumentInner = styled('div', {
   flex: 1,
-  paddingBottom: '$page ',
+  paddingBlockEnd: '$page',
   backgroundColor: '$background',
 })

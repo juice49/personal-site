@@ -13,7 +13,7 @@ const StandardGrid = styled('div', {
   '--gutterAb': '$space$2',
   '@belowI2': {
     '& > * + *': {
-      marginTop: '$2',
+      marginBlockStart: '$2',
     },
   },
   '@i3': {

@@ -67,7 +67,7 @@ const Page: NextPage<Props> = ({ posts }) => (
                 as='p'
                 variant='alpha'
                 css={{
-                  marginBottom: '-0.42em',
+                  marginBlockEnd: '-0.42em',
                 }}
               >
                 The Web and Stuff.

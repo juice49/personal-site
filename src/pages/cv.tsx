@@ -381,7 +381,7 @@ const ContactListItem = styled('li', Text, {
   '& a': {
     display: 'inline-block',
     color: '$accentB',
-    borderBottom: '1px dashed currentColor',
+    borderBlockEnd: '1px dashed currentColor',
     '&:hover, &:focus': {
       backgroundColor: '$accentB',
       color: '$accentA',
