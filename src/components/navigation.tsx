@@ -52,7 +52,7 @@ export const NavigationLink = forwardRef<
         position: 'relative',
         padding: 'calc($1 / 2) $1 ',
         color: 'inherit',
-        texDdecoration: 'none',
+        textDecoration: 'none',
         '&:hover': {
           backgroundColor: 'initial',
           color: '$accentA',
