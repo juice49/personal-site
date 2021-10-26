@@ -7,7 +7,6 @@ import Jam from '../../../types/jam'
 import Layout from '../../../components/layout'
 import Heading from '../../../components/heading'
 import Box from '../../../components/box'
-import Stack from '../../../components/stack'
 import TrackComponent from '../../../components/track'
 import Button from '../../../components/button'
 import HeadingLevel from '../../../components/heading-level'
@@ -42,7 +41,11 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:image' content={ogImageUrl} />
       </Head>
-      <Box px={2}>
+      <Box
+        css={{
+          paddingInline: '$medium',
+        }}
+      >
         <HeadingLevel>
           <Heading variant='alpha'>This is My Jam</Heading>
         </HeadingLevel>
@@ -50,9 +53,13 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
       <Level>
         <StandardGrid>
           <StandardGridContent>
-            <Stack gap={4}>
+            <Box
+              css={{
+                stackBlock: '$4',
+              }}
+            >
               <TrackComponent jam={jam} />
-            </Stack>
+            </Box>
           </StandardGridContent>
         </StandardGrid>
       </Level>

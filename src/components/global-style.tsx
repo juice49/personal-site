@@ -1,60 +1,41 @@
-import { createGlobalStyle } from 'styled-components'
-import { generateCustomPropRange } from 'monstera'
+import { globalCss, theme } from '../stitches.config'
 
-export default createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-  }
-
-  :root {
-    --document-border-color: #fff;
-    --body-color: #020202;
-    --body-color-subtle: rgb(69, 68, 68);
-    --background-color: rgb(253, 206, 245);
-    --accent-color: #090efe;
-    --accent-color-b: #f8ce03;
-    --accent-color-c: #e3fffd;
-    --document-border-width: var(--space2);
-
-    font-family: 'PT Root UI', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    font-size: 1.2rem;
-    font-size: clamp(1.26rem, 1.8vw, 1.48rem);
-    line-height: 1.44;
-    text-size-adjust: 100%;
-
-    background-color: var(--document-border-color);
-    color: var(--body-color);
-
-    margin: var(--document-border-width);
-
-    ${props =>
-      generateCustomPropRange(
-        'space',
-        [[[0.5, 'rem'], [1, 'rem'], 1.25, 1.5, 1.5], 1.25, 1.25],
-        props.theme.breakpoints,
-      )}
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-size: 1rem;
-    font-weight: normal;
-  }
-
-  a {
-    color: var(--accent-color);
-    text-decoration: none;
-
-    /* &:hover {
-      background-color: rgb(249, 247, 215);
-    }
-
-    &:focus {
-      outline: 2px solid var(--link-focus-outline-color, var(--accent-color));
-      outline-offset: 0.25em;
-    } */
-  }
-`
+export default globalCss({
+  '*': {
+    margin: 0,
+    padding: 0,
+  },
+  ':root': {
+    '@i1': {
+      [theme.space[1].variable]: '0.625rem',
+      [theme.space[2].variable]: '1.25rem',
+      [theme.space[3].variable]: '1.5625rem',
+      [theme.space[4].variable]: '2.34375rem',
+      [theme.space[5].variable]: '3.515625rem',
+    },
+    '@i2': {
+      [theme.space[1].variable]: '0.78125rem',
+      [theme.space[2].variable]: '1.5625rem',
+      [theme.space[3].variable]: '1.953125rem',
+      [theme.space[4].variable]: '2.9296875rem',
+      [theme.space[5].variable]: '4.39453125rem',
+    },
+    fontFamily: '$body',
+    '-webkit-font-smoothing': 'antialiased',
+    '-moz-osx-font-smoothing': 'grayscale',
+    fontSize: 'clamp(1.26rem, 1.8vw, 1.48rem)',
+    lineHeight: 1.44,
+    textSizeAdjust: '100%',
+    backgroundColor: '$documentBorder',
+    color: '$body',
+    margin: '$documentBorderWidth',
+  },
+  'h1, h2, h3, h4, h5, h6': {
+    fontSize: '1rem',
+    fontWeight: 'normal',
+  },
+  a: {
+    color: '$accentA',
+    textDecoration: 'none',
+  },
+})

@@ -1,11 +1,10 @@
 import React from 'react'
 import Link from 'next/link'
-import styled from 'styled-components'
-import { CssValue, cssValueToString } from 'monstera'
+import { styled } from '../stitches.config'
 import Text from './text'
 import Navigation, { NavigationItem, NavigationLink } from './navigation'
 
-const breakpoints: CssValue[] = [[36, 'em']]
+const breakpoints = ['36em']
 
 interface Props {
   isLogoH1?: boolean
@@ -47,18 +46,17 @@ const Header: React.FC<Props> = ({ isLogoH1 }) => (
 
 export default Header
 
-const Container = styled.header`
-  display: flex;
-  padding: var(--space3);
+const Container = styled('header', {
+  display: 'flex',
+  padding: '$3',
+  [`@media (min-width: ${breakpoints[0]})`]: {
+    alignItems: 'center',
+  },
+})
 
-  @media (min-width: ${cssValueToString(breakpoints[0])}) {
-    align-items: center;
-  }
-`
-
-const NavigationContainer = styled.div`
-  margin-left: auto;
-`
+const NavigationContainer = styled('div', {
+  marginInlineStart: 'auto',
+})
 
 interface LogoProps {
   as?: string | React.ComponentType<any>
@@ -70,14 +68,12 @@ const Logo: React.FC<LogoProps> = props => (
   </Text>
 )
 
-const LogoLink = styled.a`
-  text-decoration: none;
+const LogoLink = styled('a', {
+  textDecoration: 'none',
   /* color: var(--accent-color); */
-  color: var(--body-color);
-
-  &:hover,
-  &:focus {
-    color: var(--accent-color);
-    background-color: initial;
-  }
-`
+  color: '$body',
+  '&:hover, &:focus': {
+    color: '$accentA',
+    backgroundColor: 'initial',
+  },
+})

@@ -1,33 +1,35 @@
 import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
-import styled, { createGlobalStyle } from 'styled-components'
 import { format } from 'date-fns'
-import GlobalStyle from '../../components/global-style'
+import { styled, globalCss, theme } from '../../stitches.config'
+import globalStyle from '../../components/global-style'
 import Box from '../../components/box'
 import Text from '../../components/text'
 import Heading from '../../components/heading'
 
-const CustomGlobalStyle = createGlobalStyle`
-  :root {
-    --document-border-width: 0;
-  }
-`
+const customGlobalStyle = globalCss({
+  ':root': {
+    [theme.space.documentBorderWidth.variable]: 0,
+  },
+})
 
 interface Props {
   title: string
   date?: string
 }
 
-const Page: NextPage<Props> = ({ title, date }) => (
-  <DocumentOuter>
-    <GlobalStyle />
-    <CustomGlobalStyle />
-    <Head>
-      <meta name='robots' content='noindex' />
-      <style
-        type='text/css'
-        dangerouslySetInnerHTML={{
-          __html: `
+const Page: NextPage<Props> = ({ title, date }) => {
+  globalStyle()
+  customGlobalStyle()
+
+  return (
+    <DocumentOuter>
+      <Head>
+        <meta name='robots' content='noindex' />
+        <style
+          type='text/css'
+          dangerouslySetInnerHTML={{
+            __html: `
             @font-face {
               font-family: 'PT Root UI';
               font-display: swap;
@@ -47,47 +49,67 @@ const Page: NextPage<Props> = ({ title, date }) => (
               src: url('/fonts/JetBrainsMono-1.0.3/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
             }
           `,
-        }}
-      />
-    </Head>
-    <Container>
-      <Box p={2} pb={0}>
-        <LogoContainer>
-          <LogoImage
-            src='http://gravatar.com/avatar/baa7a8ec68ea6c13a1f0691098872575?s=200'
-            alt='Photo of me'
-            width={34}
-            height={34}
-          />
-          <Text as='h2' weight='bold' size='milli'>
-            Ash
-          </Text>
-        </LogoContainer>
-      </Box>
-      <Box px={2}>
-        <Heading
-          as='h1'
-          dangerouslySetInnerHTML={{
-            __html: title,
           }}
         />
-        {date && (
-          <Text variant='mono' size='micro' as='time' dateTime={date}>
-            {format(new Date(date), 'd MMMM yyyy')}
-          </Text>
-        )}
-      </Box>
-      <Footer>
-        <Box px={2} py={1}>
-          <Text size='micro'>@juice49</Text>
+      </Head>
+      <Container>
+        <Box
+          css={{
+            padding: '$2',
+            paddingBlockEnd: 0,
+          }}
+        >
+          <LogoContainer>
+            <LogoImage
+              src='http://gravatar.com/avatar/baa7a8ec68ea6c13a1f0691098872575?s=200'
+              alt='Photo of me'
+              width={34}
+              height={34}
+            />
+            <Text as='h2' weight='bold' size='milli'>
+              Ash
+            </Text>
+          </LogoContainer>
         </Box>
-        <Box px={2} py={1}>
-          <Text size='micro'>https://ash.gd</Text>
+        <Box
+          css={{
+            paddingInline: '$2',
+          }}
+        >
+          <Heading
+            as='h1'
+            dangerouslySetInnerHTML={{
+              __html: title,
+            }}
+          />
+          {date && (
+            <Text variant='mono' size='micro' as='time' dateTime={date}>
+              {format(new Date(date), 'd MMMM yyyy')}
+            </Text>
+          )}
         </Box>
-      </Footer>
-    </Container>
-  </DocumentOuter>
-)
+        <Footer>
+          <Box
+            css={{
+              paddingInline: '$2',
+              paddingBlock: '$1',
+            }}
+          >
+            <Text size='micro'>@juice49</Text>
+          </Box>
+          <Box
+            css={{
+              paddingInline: '$2',
+              paddingBlock: '$1',
+            }}
+          >
+            <Text size='micro'>https://ash.gd</Text>
+          </Box>
+        </Footer>
+      </Container>
+    </DocumentOuter>
+  )
+}
 
 export default Page
 
@@ -107,34 +129,34 @@ export const config = {
   unstable_runtimeJS: false,
 }
 
-const DocumentOuter = styled.div`
-  display: flex;
-  min-height: 100vh;
-  background-color: var(--background-color);
-`
+const DocumentOuter = styled('div', {
+  display: 'flex',
+  minHeight: '100vh',
+  backgroundColor: '$background',
+})
 
-const Container = styled.div`
-  display: grid;
-  width: 100%;
-  zoom: 1.75;
-  grid-template-rows: auto 1fr auto;
-  align-items: center;
-`
+const Container = styled('div', {
+  display: 'grid',
+  width: '100%',
+  zoom: 1.75,
+  gridTemplateRows: 'auto 1fr auto',
+  alignItems: 'center',
+})
 
-const Footer = styled.footer`
-  display: flex;
-  justify-content: space-between;
-  background-color: #fff;
-  color: var(--body-color-subtle);
-`
+const Footer = styled('footer', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  backgroundColor: '#fff',
+  color: '$bodySubtle',
+})
 
-const LogoContainer = styled.div`
-  display: flex;
-  gap: var(--space1);
-  align-items: center;
-`
+const LogoContainer = styled('div', {
+  display: 'flex',
+  gap: '$1',
+  alignItems: 'center',
+})
 
-const LogoImage = styled.img`
-  display: block;
-  border-radius: 50%;
-`
+const LogoImage = styled('img', {
+  display: 'block',
+  borderRadius: '50%',
+})

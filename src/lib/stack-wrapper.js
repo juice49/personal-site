@@ -4,7 +4,7 @@ module.exports = function () {
   return function (tree) {
     tree.children.splice(0, 0, {
       type: 'import',
-      value: `import Stack from '../../components/stack'`,
+      value: `import Box from '../../components/box'`,
     })
 
     const sectionIndexes = new Set()
@@ -33,12 +33,17 @@ module.exports = function () {
           ...children,
           {
             type: 'jsx',
-            value: '<Stack>',
+            value: `
+              <Box
+                css={{
+                  stackBlock: '$medium'
+                }}
+              >`,
           },
           ...tree.children.slice(sectionIndex, nextSectionIndex),
           {
             type: 'jsx',
-            value: '</Stack>',
+            value: '</Box>',
           },
         ]
       },

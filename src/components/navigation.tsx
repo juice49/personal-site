@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react'
 import { useRouter } from 'next/router'
-import styled from 'styled-components'
-import { CssValue, cssValueToString } from 'monstera'
+import { styled } from '../stitches.config'
 import Text from './text'
 
 const Navigation: React.FC = ({ children }) => (
@@ -12,20 +11,18 @@ const Navigation: React.FC = ({ children }) => (
 
 export default Navigation
 
-const breakpoints: CssValue[] = [[36, 'em']]
+const breakpoints = ['36em']
 
-const NavigationList = styled.ul`
-  margin: calc(var(--space1) * -1);
-  list-style: none;
-
-  @media (max-width: calc(${cssValueToString(breakpoints[0])} - 0.001em)) {
-    text-align: right;
-  }
-
-  @media (min-width: ${cssValueToString(breakpoints[0])}) {
-    display: flex;
-  }
-`
+const NavigationList = styled('ul', {
+  margin: 'calc($1 * -1)',
+  listStyle: 'none',
+  [`@media (max-width: calc(${breakpoints[0]} - 0.001em))`]: {
+    textAlign: 'right',
+  },
+  [`@media (min-width: calc(${breakpoints[0]}))`]: {
+    display: 'flex',
+  },
+})
 
 export const NavigationItem = 'li'
 
@@ -49,43 +46,35 @@ export const NavigationLink = forwardRef<
       {...props}
       ref={ref}
       className={activeClassName}
-      weight={isActive && 'bold'}
-      css={`
-        display: inline-block;
-        position: relative;
-        padding: calc(var(--space1) / 2) var(--space1);
-        color: inherit;
-        text-decoration: none;
-
-        &:hover {
-          background-color: initial;
-          color: var(--accent-color);
-        }
-
-        &.is-active::after {
-          display: block;
-          position: absolute;
-          height: 2px;
-          background-color: var(--accent-color);
-
-          @media (max-width: calc(${cssValueToString(
-              breakpoints[0],
-            )} - 0.001em)) {
-            width: var(--space2);
-            left: 0;
-            top: calc(50% - 1px);
-            transform: translate(-100%, -50%);
-          }
-
-          @media (min-width: ${cssValueToString(breakpoints[0])}) {
-            left: var(--space1);
-            right: var(--space1);
-            bottom: calc((var(--space1) * 0.5) + 1px);
-          }
-
-          content: '';
-        }
-      `}
+      weight={isActive ? 'bold' : undefined}
+      css={{
+        display: 'inline-block',
+        position: 'relative',
+        padding: 'calc($1 / 2) $1 ',
+        color: 'inherit',
+        textDecoration: 'none',
+        '&:hover': {
+          backgroundColor: 'initial',
+          color: '$accentA',
+        },
+        '&.is-active::after': {
+          display: 'block',
+          position: 'absolute',
+          height: '2px',
+          backgroundColor: '$accentA',
+          content: '',
+          [`@media (max-width: calc(${breakpoints[0]} - 0.001em))`]: {
+            width: '$space$2',
+            insetInlineStart: 0,
+            insetBlockStart: 'calc(50% - 1px)',
+            transform: 'translate(-100%, -50%)',
+          },
+          [`@media (min-width: calc(${breakpoints[0]}))`]: {
+            insetInline: '$1',
+            insetBlockEnd: 'calc(($1 * 0.5) + 1px)',
+          },
+        },
+      }}
     />
   )
 })

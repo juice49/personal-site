@@ -4,7 +4,6 @@ import work from '../data/work'
 import Layout from '../components/layout'
 import Box from '../components/box'
 import Text from '../components/text'
-import Stack from '../components/stack'
 import Heading from '../components/heading'
 import StandardGrid, { StandardGridContent } from '../components/standard-grid'
 import ArticleList, { ArticleListItem } from '../components/article-list'
@@ -12,14 +11,22 @@ import HeadingLevel from '../components/heading-level'
 
 const Page: NextPage = () => (
   <Layout as='main'>
-    <Box px={2}>
+    <Box
+      css={{
+        paddingInline: '$medium',
+      }}
+    >
       <HeadingLevel>
         <Heading variant='alpha'>Hello, I&apos;m Ash.</Heading>
       </HeadingLevel>
     </Box>
     <StandardGrid>
       <StandardGridContent>
-        <Stack gap={2}>
+        <Box
+          css={{
+            stackBlock: '$medium',
+          }}
+        >
           <Text as='p' weight='bold'>
             I like to make things&mdash;usually with web technologies, and
             usually <em>for</em> the web.
@@ -30,13 +37,17 @@ const Page: NextPage = () => (
             GraphQL. Although there are parts of the stack I&apos;m very focused
             on, I am most passionate about <em>making stuff</em>.
           </p>
-        </Stack>
+        </Box>
       </StandardGridContent>
     </StandardGrid>
     <Level>
       <StandardGrid>
         <StandardGridContent>
-          <Stack gap={2}>
+          <Box
+            css={{
+              stackBlock: '$medium',
+            }}
+          >
             <HeadingLevel>
               <Heading>Recent work</Heading>
             </HeadingLevel>
@@ -45,7 +56,7 @@ const Page: NextPage = () => (
                 <ArticleListItem key={index} description={work.description} />
               ))}
             </ArticleList>
-          </Stack>
+          </Box>
         </StandardGridContent>
       </StandardGrid>
     </Level>

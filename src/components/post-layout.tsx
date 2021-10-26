@@ -1,10 +1,9 @@
 import Head from 'next/head'
-import styled from 'styled-components'
 import React from 'react'
+import { styled } from '../stitches.config'
 import { PostMeta } from '../types/post'
 import Layout from './layout'
 import StandardGrid, { StandardGridContent } from './standard-grid'
-import Stack from './stack'
 import Box from './box'
 import PostHeader from './post-header'
 import Tag from './tag'
@@ -25,12 +24,11 @@ const PostLayout: React.FC<Props> = ({ children, meta }) => {
       </Head>
       <OgImageMeta title={meta.title} date={meta.date} />
       <Box
-        px={2}
-        mw={1}
-        css={`
-          margin-left: auto;
-          margin-right: auto;
-        `}
+        mw='1'
+        css={{
+          marginInline: 'auto',
+          paddingInline: '$medium',
+        }}
       >
         <PostHeader date={meta.date} column={meta.column}>
           {meta.title}
@@ -39,16 +37,20 @@ const PostLayout: React.FC<Props> = ({ children, meta }) => {
       <Box>
         <StandardGrid>
           <StandardGridContent>
-            <Stack gap={5}>{children}</Stack>
+            <Box
+              css={{
+                stackBlock: '$5',
+              }}
+            >
+              {children}
+            </Box>
           </StandardGridContent>
         </StandardGrid>
       </Box>
       <Tags>
-        <Stack direction='inline' gap={1}>
-          {(meta.tags ?? []).map(tag => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </Stack>
+        {(meta.tags ?? []).map(tag => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
       </Tags>
     </Layout>
   )
@@ -56,6 +58,7 @@ const PostLayout: React.FC<Props> = ({ children, meta }) => {
 
 export default PostLayout
 
-const Tags = styled.div`
-  text-align: center;
-`
+const Tags = styled('div', {
+  textAlign: 'center',
+  stackInline: '$small',
+})

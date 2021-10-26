@@ -1,12 +1,12 @@
-import styled from 'styled-components'
+import { styled } from '../stitches.config'
 
-const InlineCode = styled.code`
-  background-color: rgb(255 255 255 / 0.6);
-  padding: 0.18em 0.48em;
-  font-size: 0.7rem;
-  color: var(--body-color-subtle);
-  font-family: 'JetBrains Mono';
-  border-radius: 0.25em;
-`
+const InlineCode = styled('code', {
+  backgroundColor: 'rgb(255 255 255 / 0.6)',
+  padding: '0.18em 0.48em',
+  fontSize: '0.7rem',
+  color: '$bodySubtle',
+  fontFamily: 'JetBrains Mono',
+  borderRadius: '0.25em',
+})
 
 export default InlineCode
