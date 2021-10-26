@@ -31,6 +31,7 @@ module.exports = withMdx({
       'is4-ssl.mzstatic.com',
       'is5-ssl.mzstatic.com',
     ],
+    formats: ['image/avif', 'image/webp'],
   },
   async rewrites() {
     return [
