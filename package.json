@@ -23,7 +23,7 @@
     "dotenv": "^10.0.0",
     "groq": "^2.1.4",
     "lodash.upperfirst": "^4.3.1",
-    "next": "^11.1.2",
+    "next": "^12.0.0",
     "react": "^17.0.1",
     "react-accessible-headings": "^2.3.0",
     "react-dom": "^17.0.1",
