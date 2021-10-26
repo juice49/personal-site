@@ -10,7 +10,6 @@ import * as postApi from '../lib/post-api'
 import Layout from '../components/layout'
 import Box from '../components/box'
 import Text from '../components/text'
-import Stack from '../components/stack'
 import Heading from '../components/heading'
 import Image from '../components/image'
 import Button from '../components/button'
@@ -49,24 +48,27 @@ const Page: NextPage<Props> = ({ posts }) => (
         />
       </Head>
       <Box>
-        <Stack gap={[10, 'vmin']}>
+        <Box
+          css={{
+            stackBlock: '10vmin',
+          }}
+        >
           <div>
             <Box
-              px={2}
-              mw={1}
-              css={`
-                position: relative;
-                z-index: 1;
-                margin-left: auto;
-                margin-right: auto;
-              `}
+              mw='1'
+              css={{
+                position: 'relative',
+                zIndex: 1,
+                marginInline: 'auto',
+                paddingInline: '$medium',
+              }}
             >
               <Heading
                 as='p'
                 variant='alpha'
-                css={`
-                  margin-bottom: -0.42em;
-                `}
+                css={{
+                  marginBlockEnd: '-0.42em',
+                }}
               >
                 The Web and Stuff.
               </Heading>
@@ -100,7 +102,11 @@ const Page: NextPage<Props> = ({ posts }) => (
           </div>
           <StandardGrid>
             <StandardGridContent>
-              <Stack gap={2}>
+              <Box
+                css={{
+                  stackBlock: '$medium',
+                }}
+              >
                 <Text as='p' weight='bold'>
                   I like to make things&mdash;usually with web technologies, and
                   usually <em>for</em> the web.
@@ -111,22 +117,43 @@ const Page: NextPage<Props> = ({ posts }) => (
                   GraphQL. Although there are parts of the stack I&apos;m very
                   focused on, I am most passionate about <em>making stuff</em>.
                 </p>
-              </Stack>
+              </Box>
             </StandardGridContent>
             <StandardGridMeta position={2}>
               <Note as='p'>Blah blah blah I make websites.</Note>
             </StandardGridMeta>
           </StandardGrid>
-        </Stack>
+        </Box>
       </Box>
-      <Box mw={1} px={2} as='section' center>
+      <Box
+        mw='1'
+        as='section'
+        css={{
+          paddingInline: '$medium',
+        }}
+        center
+      >
         <FeaturedSection>
-          <Stack gap={4}>
-            <Box as='header' px={4} pt={4}>
+          <Box
+            css={{
+              stackBlock: '$4',
+            }}
+          >
+            <Box
+              as='header'
+              css={{
+                paddingInline: '$4',
+                paddingBlockStart: '$4',
+              }}
+            >
               <FeaturedSectionHeading>Blog posts</FeaturedSectionHeading>
             </Box>
             <Level>
-              <Box px={4}>
+              <Box
+                css={{
+                  paddingInline: '$4',
+                }}
+              >
                 <Articles>
                   {posts.map(post => (
                     <Article
@@ -142,7 +169,12 @@ const Page: NextPage<Props> = ({ posts }) => (
                   ))}
                 </Articles>
               </Box>
-              <Box px={4} pb={4}>
+              <Box
+                css={{
+                  paddingInline: '$4',
+                  paddingBlockEnd: '$4',
+                }}
+              >
                 <Link href='/posts' passHref>
                   <Button as='a' variant='large'>
                     View more posts
@@ -150,16 +182,15 @@ const Page: NextPage<Props> = ({ posts }) => (
                 </Link>
               </Box>
             </Level>
-          </Stack>
+          </Box>
         </FeaturedSection>
       </Box>
       <Box
-        px={2}
-        mw={1}
-        css={`
-          margin-left: auto;
-          margin-right: auto;
-        `}
+        mw='1'
+        css={{
+          marginInline: 'auto',
+          paddingInline: '$medium',
+        }}
       >
         <Articles>
           <ListBox>
@@ -224,7 +255,15 @@ const Page: NextPage<Props> = ({ posts }) => (
 
 export default Page
 
-const ListBox: React.FC = ({ children }) => <Stack gap={2}>{children}</Stack>
+const ListBox: React.FC = ({ children }) => (
+  <Box
+    css={{
+      stackBlock: '$medium',
+    }}
+  >
+    {children}
+  </Box>
+)
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const posts = await postApi.getAll()

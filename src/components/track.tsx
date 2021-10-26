@@ -1,11 +1,10 @@
 import React from 'react'
-import styled from 'styled-components'
 import Image from 'next/image'
 import { format } from 'date-fns'
-import { stack } from 'monstera'
+import { styled } from '../stitches.config'
 import Jam from '../types/jam'
+import Box from './box'
 import Text from './text'
-import Stack from './stack'
 import ExternalLinkIcon from './external-link-icon'
 import HeadingLevel from './heading-level'
 
@@ -16,13 +15,13 @@ interface Props {
 const Track: React.FC<Props> = ({ jam }) => {
   return (
     <Container>
-      <div
+      <Box
         style={{
           color: jam.track.album.color,
         }}
-        css={`
-          grid-area: image;
-        `}
+        css={{
+          gridArea: 'image',
+        }}
       >
         <ImageContainer>
           <Image
@@ -35,12 +34,12 @@ const Track: React.FC<Props> = ({ jam }) => {
             height={140}
           />
         </ImageContainer>
-      </div>
-      <Stack
-        gap={1}
-        css={`
-          grid-area: info;
-        `}
+      </Box>
+      <Box
+        css={{
+          gridArea: 'info',
+          stackBlock: '$small',
+        }}
       >
         <div>
           <HeadingLevel>
@@ -57,10 +56,10 @@ const Track: React.FC<Props> = ({ jam }) => {
           dateTime={jam.date}
           size='micro'
           variant='mono'
-          css={`
-            display: block;
-            color: var(--color, var(--body-color-subtle));
-          `}
+          css={{
+            display: 'block',
+            color: 'var(--color, $bodySubtle)',
+          }}
         >
           {format(new Date(jam.date), 'd MMMM yyyy')}
         </Text>
@@ -87,60 +86,45 @@ const Track: React.FC<Props> = ({ jam }) => {
             </Text>
           )}
         </ActionList>
-      </Stack>
+      </Box>
     </Container>
   )
 }
 
 export default Track
 
-const Container = styled.article`
-  display: grid;
-  grid-template-columns: minmax(3rem, 0.18fr) 1fr;
-  grid-template-areas: 'image info';
-  gap: var(--space2);
-`
+const Container = styled('article', {
+  display: 'grid',
+  gridTemplateColumns: 'minmax(3rem, 0.18fr) 1fr',
+  gridTemplateAreas: `'image info'`,
+  gap: '$2',
+})
 
-const ActionList = styled.ul`
-  list-style: none;
+const ActionList = styled('ul', {
+  listStyle: 'none',
+  '@belowI1': {
+    stackBlock: '0.25rem',
+  },
+  '@i1': {
+    display: 'flex',
+    flexWrap: 'wrap',
+    stackInline: '$2',
+  },
+  'a:hover, a:focus': {
+    backgroundColor: '$accentA',
+    color: '#fff',
+  },
+})
 
-  @media (max-width: calc(${props => props.theme.breakpoints[0]} - 0.001em)) {
-    ${props =>
-      stack({
-        gap: [0.25, 'rem'],
-        direction: 'block',
-        theme: props.theme,
-      })}
-  }
-
-  @media (min-width: ${props => props.theme.breakpoints[0]}) {
-    display: flex;
-    flex-wrap: wrap;
-
-    ${props =>
-      stack({
-        gap: 2,
-        direction: 'inline',
-        theme: props.theme,
-      })}
-  }
-
-  a:hover,
-  a:focus {
-    background-color: var(--accent-color);
-    color: #fff;
-  }
-`
-
-const ImageContainer = styled.div`
-  background-color: currentColor;
-  clip-path: polygon(
+const ImageContainer = styled('div', {
+  backgroundColor: 'currentColor',
+  clipPath: `polygon(
     0 0,
     calc(100% - 4px) 4px,
     100% 100%,
     4px calc(100% - 4px)
-  );
-`
+  )`,
+})
 
 type AppleMusicImageDimensions =
   | 30

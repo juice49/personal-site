@@ -4,7 +4,6 @@ import { Level } from 'react-accessible-headings'
 import projects from '../../data/projects'
 import misc from '../../data/misc'
 import Box from '../../components/box'
-import Stack from '../../components/stack'
 import Layout from '../../components/layout'
 import Heading from '../../components/heading'
 import StandardGrid, {
@@ -79,4 +78,12 @@ const Page: NextPage = () => (
 
 export default Page
 
-const ListBox: React.FC = ({ children }) => <Stack gap={2}>{children}</Stack>
+const ListBox: React.FC = ({ children }) => (
+  <Box
+    css={{
+      stackBlock: '$medium',
+    }}
+  >
+    {children}
+  </Box>
+)

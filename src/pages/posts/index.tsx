@@ -12,7 +12,6 @@ import StandardGrid, {
   StandardGridContent,
 } from '../../components/standard-grid'
 import Box from '../../components/box'
-import Stack from '../../components/stack'
 import FeaturedSection, {
   FeaturedSectionHeading,
 } from '../../components/featured-section'
@@ -32,13 +31,17 @@ const Page: NextPage<Props> = ({ posts }) => {
 
   return (
     <Layout as='main'>
-      <Box px={2}>
+      <Box
+        css={{
+          paddingInline: '$medium',
+        }}
+      >
         <HeadingLevel>
           <Heading
-            css={`
-              position: relative;
-              z-index: 1;
-            `}
+            css={{
+              position: 'relative',
+              zIndex: 1,
+            }}
             variant='alpha'
           >
             Posts
@@ -47,20 +50,34 @@ const Page: NextPage<Props> = ({ posts }) => {
       </Box>
       <Level>
         <Box
-          mw={1}
-          px={2}
-          css={`
-            margin-left: auto;
-            margin-right: auto;
-          `}
+          mw='1'
+          css={{
+            marginInline: 'auto',
+            paddingInline: '$medium',
+          }}
         >
           <FeaturedSection>
-            <Stack gap={4}>
-              <Box as='header' px={4} pt={4}>
+            <Box
+              css={{
+                stackBlock: '$4',
+              }}
+            >
+              <Box
+                as='header'
+                css={{
+                  paddingInline: '$4',
+                  paddingBlockStart: '$4',
+                }}
+              >
                 <FeaturedSectionHeading>Recent</FeaturedSectionHeading>
               </Box>
               <Level>
-                <Box px={4} pb={4}>
+                <Box
+                  css={{
+                    paddingInline: '$4',
+                    paddingBlockEnd: '$4',
+                  }}
+                >
                   <Articles>
                     {posts.slice(0, featurePostLimit).map(post => (
                       <Article
@@ -77,16 +94,24 @@ const Page: NextPage<Props> = ({ posts }) => {
                   </Articles>
                 </Box>
               </Level>
-            </Stack>
+            </Box>
           </FeaturedSection>
         </Box>
 
         <StandardGrid>
           <StandardGridContent>
-            <Stack gap={2}>
+            <Box
+              css={{
+                stackBlock: '$medium',
+              }}
+            >
               {sortedYears.map(year => (
                 <article key={year}>
-                  <Stack gap={1}>
+                  <Box
+                    css={{
+                      stackBlock: '$small',
+                    }}
+                  >
                     <HeadingLevel>
                       <Text>{year}</Text>
                     </HeadingLevel>
@@ -108,10 +133,10 @@ const Page: NextPage<Props> = ({ posts }) => {
                         ))}
                       </div>
                     </Level>
-                  </Stack>
+                  </Box>
                 </article>
               ))}
-            </Stack>
+            </Box>
           </StandardGridContent>
         </StandardGrid>
       </Level>

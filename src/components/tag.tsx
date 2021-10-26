@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import { styled } from '../stitches.config'
 import Text from './text'
 
 const Tag: React.FC = ({ children }) => (
@@ -10,9 +10,9 @@ const Tag: React.FC = ({ children }) => (
 
 export default Tag
 
-const TagBox = styled.span`
-  display: inline-block;
-  padding: 0.25rem;
-  background-color: #000;
-  color: #fff;
-`
+const TagBox = styled('span', {
+  display: 'inline-block',
+  padding: '0.25rem',
+  backgroundColor: '#000',
+  color: '#fff',
+})

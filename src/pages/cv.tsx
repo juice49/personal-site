@@ -1,13 +1,11 @@
-import styled from 'styled-components'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { cssValueToString } from 'monstera'
 import { Level } from 'react-accessible-headings'
+import { styled } from '../stitches.config'
 import work from '../data/work'
 import Layout from '../components/layout'
 import Box from '../components/box'
 import Text from '../components/text'
-import Stack from '../components/stack'
 import Heading from '../components/heading'
 import StandardGrid, { StandardGridContent } from '../components/standard-grid'
 import ArticleList, { ArticleListItem } from '../components/article-list'
@@ -21,38 +19,55 @@ const Page: NextPage = () => (
     </Head>
     <StandardGrid>
       <StandardGridContent>
-        <Stack gap={4}>
-          <Stack as='header' gap={1}>
+        <Box
+          css={{
+            stackBlock: '$4',
+          }}
+        >
+          <Box
+            as='header'
+            css={{
+              stackBlock: '$1',
+            }}
+          >
             <HeadingLevel>
               <Heading>Ash Stevens</Heading>
             </HeadingLevel>
             <Text as='p' variant='mono' size='micro'>
               Full stack web developer.
             </Text>
-          </Stack>
+          </Box>
           <Text as='p' weight='bold'>
             I{' '}
-            <span
-              css={`
-                color: #f81de6;
-              `}
+            <Text
+              css={{
+                color: '#f81de6',
+              }}
               role='img'
               aria-label='love'
             >
               &hearts;
-            </span>{' '}
+            </Text>{' '}
             making things for the web. TypeScript, React, node.js, and
             Responsive Web Design are some of my favourite tools and techniques.
           </Text>
           <Contact />
-        </Stack>
+        </Box>
       </StandardGridContent>
     </StandardGrid>
     <StandardGrid>
       <Level>
         <StandardGridContent>
-          <Stack gap={2}>
-            <Stack gap={2}>
+          <Box
+            css={{
+              stackBlock: '$medium',
+            }}
+          >
+            <Box
+              css={{
+                stackBlock: '$medium',
+              }}
+            >
               <HeadingLevel>
                 <Heading>Skills</Heading>
               </HeadingLevel>
@@ -138,15 +153,19 @@ const Page: NextPage = () => (
                   />
                 </ArticleList>
               </Level>
-            </Stack>
-          </Stack>
+            </Box>
+          </Box>
         </StandardGridContent>
       </Level>
     </StandardGrid>
     <StandardGrid>
       <Level>
         <StandardGridContent>
-          <Stack gap={2}>
+          <Box
+            css={{
+              stackBlock: '$medium',
+            }}
+          >
             <HeadingLevel>
               <Heading>Experience</Heading>
             </HeadingLevel>
@@ -154,10 +173,14 @@ const Page: NextPage = () => (
               <ArticleList>
                 <ArticleListItem
                   heading='Si digital: Web Developer'
-                  headingGap={0}
+                  headingGap={false}
                   description='2014&thinsp;-&thinsp;Present'
                 >
-                  <Stack gap={1}>
+                  <Box
+                    css={{
+                      stackBlock: '$small',
+                    }}
+                  >
                     <Text as='p' size='milli'>
                       Led multiple full stack projects including PWAs, React
                       Native apps, APIs (REST and GraphQL), and CMS
@@ -179,14 +202,18 @@ const Page: NextPage = () => (
                     <Text as='p' size='milli'>
                       Mentored teammates and written blog posts.
                     </Text>
-                  </Stack>
+                  </Box>
                 </ArticleListItem>
                 <ArticleListItem
                   heading='Chichester Design: Web Developer'
-                  headingGap={0}
+                  headingGap={false}
                   description='2009&thinsp;&ndash;&thinsp;2014'
                 >
-                  <Stack gap={1}>
+                  <Box
+                    css={{
+                      stackBlock: '$small',
+                    }}
+                  >
                     <Text as='p' size='milli'>
                       Led and completed multiple full stack web development
                       projects.
@@ -196,11 +223,11 @@ const Page: NextPage = () => (
                       marketing websites to web apps and realtime data
                       visualisations.
                     </Text>
-                  </Stack>
+                  </Box>
                 </ArticleListItem>
                 <ArticleListItem
                   heading='Strawberrysoup: Freelance Copywriter'
-                  headingGap={0}
+                  headingGap={false}
                   description='2006&thinsp;&ndash;&thinsp;2007'
                 >
                   <Text as='p' size='milli'>
@@ -209,7 +236,7 @@ const Page: NextPage = () => (
                 </ArticleListItem>
                 <ArticleListItem
                   heading='Freelance Web Designer and Developer'
-                  headingGap={0}
+                  headingGap={false}
                   description='2005&thinsp;&ndash;&thinsp;2008'
                 >
                   <Text as='p' size='milli'>
@@ -219,14 +246,18 @@ const Page: NextPage = () => (
                 </ArticleListItem>
               </ArticleList>
             </Level>
-          </Stack>
+          </Box>
         </StandardGridContent>
       </Level>
     </StandardGrid>
     <StandardGrid>
       <Level>
         <StandardGridContent>
-          <Stack gap={2}>
+          <Box
+            css={{
+              stackBlock: '$medium',
+            }}
+          >
             <HeadingLevel>
               <Heading>Recent work</Heading>
             </HeadingLevel>
@@ -237,14 +268,18 @@ const Page: NextPage = () => (
                 ))}
               </ArticleList>
             </Level>
-          </Stack>
+          </Box>
         </StandardGridContent>
       </Level>
     </StandardGrid>
     <StandardGrid>
       <Level>
         <StandardGridContent>
-          <Stack gap={2}>
+          <Box
+            css={{
+              stackBlock: '$medium',
+            }}
+          >
             <HeadingLevel>
               <Heading>Education</Heading>
             </HeadingLevel>
@@ -252,7 +287,7 @@ const Page: NextPage = () => (
               <ArticleList>
                 <ArticleListItem
                   heading='Bishop Luffa school'
-                  headingGap={0}
+                  headingGap={false}
                   description='2003&thinsp;&ndash;&thinsp;2009'
                 >
                   <Text as='p' size='milli'>
@@ -262,7 +297,7 @@ const Page: NextPage = () => (
                 </ArticleListItem>
               </ArticleList>
             </Level>
-          </Stack>
+          </Box>
         </StandardGridContent>
       </Level>
     </StandardGrid>
@@ -276,20 +311,28 @@ const Page: NextPage = () => (
 
 export default Page
 
-const SkillList = styled(Text).attrs(() => ({
-  size: 'micro',
-  variant: 'mono',
-  as: 'ul',
-}))`
-  margin-left: var(--space2);
-  list-style: square;
-  color: var(--body-color-subtle);
-`
+const SkillList = styled('ul', Text, {
+  marginInlineStart: '$2',
+  listStyle: 'square',
+  color: '$bodySubtle',
+  defaultVariants: {
+    size: 'micro',
+    variant: 'mono',
+  },
+})
 
 const Contact: React.FC = () => (
-  <Box mx={-2}>
+  <Box
+    css={{
+      marginInline: 'calc($medium * -1)',
+    }}
+  >
     <FeaturedSection>
-      <Box p={2}>
+      <Box
+        css={{
+          padding: '$medium',
+        }}
+      >
         <ContactList>
           <ContactListItem>
             <Text weight='bold'>Email:</Text>
@@ -324,30 +367,27 @@ const Contact: React.FC = () => (
   </Box>
 )
 
-const ContactList = styled.ul`
-  display: grid;
-  grid-gap: var(--space1);
-  list-style: none;
-  color: #fff;
+const ContactList = styled('ul', {
+  display: 'grid',
+  gap: '$1',
+  listStyle: 'none',
+  color: '#fff',
+  '@i2': {
+    gridTemplateColumns: 'repeat(3, auto)',
+  },
+})
 
-  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[1])}) {
-    grid-template-columns: repeat(3, auto);
-  }
-`
-
-const ContactListItem = styled(Text).attrs(() => ({
-  as: 'li',
-  size: 'milli',
-}))`
-  a {
-    display: inline-block;
-    color: var(--accent-color-b);
-    border-bottom: 1px dashed currentColor;
-
-    &:hover,
-    &:focus {
-      background-color: var(--accent-color-b);
-      color: var(--accent-color);
-    }
-  }
-`
+const ContactListItem = styled('li', Text, {
+  '& a': {
+    display: 'inline-block',
+    color: '$accentB',
+    borderBlockEnd: '1px dashed currentColor',
+    '&:hover, &:focus': {
+      backgroundColor: '$accentB',
+      color: '$accentA',
+    },
+  },
+  defaultVariants: {
+    size: 'milli',
+  },
+})

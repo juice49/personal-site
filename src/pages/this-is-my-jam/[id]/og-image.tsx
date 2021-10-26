@@ -1,9 +1,10 @@
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import Head from 'next/head'
-import styled, { createGlobalStyle } from 'styled-components'
 import groq from 'groq'
+import { styled, theme, globalCss } from '../../../stitches.config'
+import globalStyle from '../../../components/global-style'
 import Jam from '../../../types/jam'
-import GlobalStyle from '../../../components/global-style'
+import Box from '../../../components/box'
 import Text from '../../../components/text'
 import Heading from '../../../components/heading'
 import sanity from '../../../lib/sanity'
@@ -12,22 +13,24 @@ interface Props {
   jam: Jam
 }
 
-const CustomGlobalStyle = createGlobalStyle`
-  :root {
-    --document-border-width: 0;
-  }
-`
+const customGlobalStyle = globalCss({
+  ':root': {
+    [theme.space.documentBorderWidth.variable]: 0,
+  },
+})
 
-const Page: NextPage<Props> = ({ jam }) => (
-  <DocumentOuter>
-    <GlobalStyle />
-    <CustomGlobalStyle />
-    <Head>
-      <meta name='robots' content='noindex' />
-      <style
-        type='text/css'
-        dangerouslySetInnerHTML={{
-          __html: `
+const Page: NextPage<Props> = ({ jam }) => {
+  globalStyle()
+  customGlobalStyle()
+
+  return (
+    <DocumentOuter>
+      <Head>
+        <meta name='robots' content='noindex' />
+        <style
+          type='text/css'
+          dangerouslySetInnerHTML={{
+            __html: `
             @font-face {
               font-family: 'Zangezi Sans';
               font-weight: 700;
@@ -41,45 +44,49 @@ const Page: NextPage<Props> = ({ jam }) => (
               src: url('/fonts/JetBrainsMono-1.0.3/web/woff2/JetBrainsMono-Regular.woff2') format('woff2');
             }
           `,
-        }}
-      />
-    </Head>
-    <Container>
-      <div
-        css={`
-          display: flex;
-          grid-area: image;
-          flex-direction: column;
-          justify-content: center;
-        `}
-      >
-        <ImageContainer>
-          <Image
-            src={getAppleMusicImageUrl(jam.track.album.appleMusicImageUrl, 600)}
-            alt={`The album art for "${
-              jam.track.album.name
-            }" by ${jam.track.artists.map(({ name }) => name).join(', ')}`}
-          />
-        </ImageContainer>
-      </div>
-      <div
-        css={`
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          grid-area: info;
-        `}
-      >
-        <div>
-          <Heading as='h1'>{jam.track.name}</Heading>
-          <Text size='micro' variant='mono'>
-            {jam.track.artists.map(({ name }) => name).join(', ')}
-          </Text>
-        </div>
-      </div>
-    </Container>
-  </DocumentOuter>
-)
+          }}
+        />
+      </Head>
+      <Container>
+        <Box
+          css={{
+            display: 'flex',
+            gridArea: 'image',
+            flexDirection: 'column',
+            justifyContent: 'center',
+          }}
+        >
+          <ImageContainer>
+            <Image
+              src={getAppleMusicImageUrl(
+                jam.track.album.appleMusicImageUrl,
+                600,
+              )}
+              alt={`The album art for "${
+                jam.track.album.name
+              }" by ${jam.track.artists.map(({ name }) => name).join(', ')}`}
+            />
+          </ImageContainer>
+        </Box>
+        <Box
+          css={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gridArea: 'info',
+          }}
+        >
+          <div>
+            <Heading as='h1'>{jam.track.name}</Heading>
+            <Text size='micro' variant='mono'>
+              {jam.track.artists.map(({ name }) => name).join(', ')}
+            </Text>
+          </div>
+        </Box>
+      </Container>
+    </DocumentOuter>
+  )
+}
 
 export default Page
 
@@ -125,38 +132,38 @@ export const config = {
   unstable_runtimeJS: false,
 }
 
-const DocumentOuter = styled.div`
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--background-color);
-`
+const DocumentOuter = styled('div', {
+  display: 'flex',
+  minHeight: '100vh',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: '$background',
+})
 
-const Container = styled.div`
-  display: grid;
-  padding: var(--space2);
-  grid-template-columns: 6rem 1fr;
-  grid-template-areas: 'image info';
-  gap: var(--space2);
-  zoom: 1.75;
-`
+const Container = styled('div', {
+  display: 'grid',
+  padding: '$2',
+  gridTemplateColumns: '6rem 1fr',
+  gridTemplateAreas: `'image info'`,
+  gap: '$2',
+  zoom: 1.75,
+})
 
-const ImageContainer = styled.div`
-  background-color: currentColor;
-  clip-path: polygon(
+const ImageContainer = styled('div', {
+  backgroundColor: 'currentColor',
+  clipPath: `polygon(
     0 0,
     calc(100% - 4px) 4px,
     100% 100%,
     4px calc(100% - 4px)
-  );
-`
+  )`,
+})
 
-const Image = styled.img`
-  display: block;
-  width: 100%;
-  height: auto;
-`
+const Image = styled('img', {
+  display: 'block',
+  width: '100%',
+  height: 'auto',
+})
 
 type AppleMusicImageDimensions =
   | 30

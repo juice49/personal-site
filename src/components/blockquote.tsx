@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
-import styled from 'styled-components'
+import { styled } from '../stitches.config'
 import Box from '../components/box'
-import Stack from '../components/stack'
 import Note from '../components/note'
 
 interface Props {
@@ -17,18 +16,33 @@ const Blockquote: React.FC<Props> = ({ children, cite, citeUrl, author }) => {
     citeUrl ? <a {...props} /> : <Fragment>{props.children}</Fragment>
 
   return (
-    <Stack as='figure' gap={1}>
-      <Box mx={[0, 0, -2]} as='blockquote' cite={citeUrl}>
+    <Box
+      as='figure'
+      css={{
+        stackBlock: '$small',
+      }}
+    >
+      <Box
+        css={{
+          '@i3': {
+            marginInline: 'calc($medium * -1)',
+          },
+        }}
+        as='blockquote'
+        cite={citeUrl}
+      >
         <BlockquoteText>{children}</BlockquoteText>
       </Box>
       {(author || cite) && (
         <Note as='figcaption'>
           &mdash;&thinsp;
           <AttributionContainer href={citeUrl}>
-            {([
-              author,
-              cite ? <cite key='cite'>{cite}</cite> : undefined,
-            ] as React.ReactNode[])
+            {(
+              [
+                author,
+                cite ? <cite key='cite'>{cite}</cite> : undefined,
+              ] as React.ReactNode[]
+            )
               .filter(segment => typeof segment !== 'undefined')
               .map((segment, index) => (
                 <Fragment key={index}>
@@ -39,15 +53,15 @@ const Blockquote: React.FC<Props> = ({ children, cite, citeUrl, author }) => {
           </AttributionContainer>
         </Note>
       )}
-    </Stack>
+    </Box>
   )
 }
 
 export default Blockquote
 
-const BlockquoteText = styled.div`
-  font-size: 1.4rem;
-  font-family: 'Zangezi Sans';
-  line-height: 1.2;
-  color: var(--accent-color);
-`
+const BlockquoteText = styled('div', {
+  fontSize: '1.4rem',
+  fontFamily: 'Zangezi Sans',
+  lineHeight: 1.2,
+  color: '$accentA',
+})

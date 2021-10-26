@@ -1,79 +1,72 @@
-import styled from 'styled-components'
-import { cssValueToString } from 'monstera'
+import { styled } from '../stitches.config'
 
-const StandardGrid = styled.div`
-  display: grid;
-
-  grid-template-areas:
+const StandardGrid = styled('div', {
+  display: 'grid',
+  gridTemplateAreas: `
     'gutter1 content gutter2'
     'gutter1 meta1 gutter2'
-    'gutter1 meta2 gutter2';
-
-  grid-template-columns:
-    minmax(var(--space2), auto)
+    'gutter1 meta2 gutter2'`,
+  gridTemplateColumns: `
+    minmax($space$2, auto)
     minmax(0, 42ch)
-    minmax(var(--space2), auto);
-
-  --gutterAb: var(--space2);
-
-  @media (max-width: calc(${props =>
-      cssValueToString(props.theme.breakpoints[2])} - 0.001em)) {
-    > * + * {
-      margin-top: var(--space2);
-    }
-  }
-
-  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[2])}) {
-    grid-template-areas: 'gutter1 meta1 gutterA content gutterB meta2 gutter2';
-
-    grid-template-columns:
+    minmax($space$2, auto)`,
+  '--gutterAb': '$space$2',
+  '@belowI2': {
+    '& > * + *': {
+      marginBlockStart: '$2',
+    },
+  },
+  '@i3': {
+    gridTemplateAreas: `'gutter1 meta1 gutterA content gutterB meta2 gutter2'`,
+    gridTemplateColumns: `
       1fr
       minmax(auto, 15ch)
       var(--gutterAb)
       minmax(auto, 46ch)
       var(--gutterAb)
       minmax(auto, 15ch)
-      1fr;
-  }
-
-  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[3])}) {
-    --gutterAb: var(--space4);
-  }
-`
+      1fr`,
+  },
+  '@i4': {
+    '--gutterAb': '$space$4',
+  },
+})
 
 export default StandardGrid
 
-export const StandardGridContent = styled.div`
-  grid-area: content;
-`
+export const StandardGridContent = styled('div', {
+  gridArea: 'content',
+})
 
-export const StandardGridContentSlightlyWide = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  grid-area: content;
+export const StandardGridContentSlightlyWide = styled('div', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+  gridArea: 'content',
+  '@i3': {
+    gridArea: '1 / gutterA / 1 / gutterB',
+  },
+})
 
-  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[2])}) {
-    grid-area: 1 / gutterA / 1 / gutterB;
-  }
-`
+export const StandardGridContentWide = styled('div', {
+  gridArea: 'content',
+  '@i3': {
+    gridArea: '1 / meta1 / 1 / meta2',
+  },
+})
 
-export const StandardGridContentWide = styled.div`
-  grid-area: content;
-
-  @media (min-width: ${props => cssValueToString(props.theme.breakpoints[2])}) {
-    grid-area: 1 / meta1 / 1 / meta2;
-  }
-`
-
-interface StandardGridMetaProps {
-  position: 1 | 2
-}
-
-export const StandardGridMeta = styled.div<StandardGridMetaProps>`
-  grid-area: ${(props: StandardGridMetaProps) => `meta${props.position}`};
-`
-
-StandardGridMeta.defaultProps = {
-  position: 1,
-}
+export const StandardGridMeta = styled('div', {
+  variants: {
+    position: {
+      1: {
+        gridArea: 'meta1',
+      },
+      2: {
+        gridArea: 'meta2',
+      },
+    },
+  },
+  defaultVariants: {
+    position: 1,
+  },
+})

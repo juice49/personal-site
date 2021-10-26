@@ -1,30 +1,21 @@
-import styled from 'styled-components'
-import { space } from 'monstera'
+import { styled } from '../stitches.config'
 
-// TODO: Add Monstera props.
-interface Props {
-  mw: number
-  center?: boolean
-}
-
-// TODO: Move max width handling to Monstera.
-const mw = ['44ch', '75rem']
-
-const Box = styled.div<Props>`
-  ${space}
-
-  ${props =>
-    typeof mw[props.mw] !== 'undefined' &&
-    `
-    max-width: ${mw[props.mw]};
-  `}
-
-  ${props =>
-    props.center &&
-    `
-    margin-left: auto;
-    margin-right: auto;
-  `}
-`
+const Box = styled('div', {
+  variants: {
+    center: {
+      true: {
+        marginInline: 'auto',
+      },
+    },
+    mw: {
+      0: {
+        maxWidth: '44ch',
+      },
+      1: {
+        maxWidth: '75rem',
+      },
+    },
+  },
+})
 
 export default Box

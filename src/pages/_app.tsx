@@ -22,7 +22,11 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           image: ContentImage,
           code: function CodeComponent({ className, children }) {
             return (
-              <Box mx={-2}>
+              <Box
+                css={{
+                  marginInline: 'calc($medium * -1)',
+                }}
+              >
                 <Code
                   code={children}
                   language={className.replace(/language-/, '')}

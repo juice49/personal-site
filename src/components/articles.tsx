@@ -1,18 +1,18 @@
 import Link, { LinkProps } from 'next/link'
 import React from 'react'
-import styled from 'styled-components'
 import { format } from 'date-fns'
-import Stack from './stack'
+import { styled } from '../stitches.config'
+import Box from './box'
 import Tag from './tag'
 import Text from './text'
 import Heading from './heading'
 import HeadingLevel from './heading-level'
 
-const Articles = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
-  grid-gap: var(--space4);
-`
+const Articles = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(min(14rem, 100%), 1fr))',
+  gap: '$4',
+})
 
 export default Articles
 
@@ -31,8 +31,17 @@ export const Article: React.FC<ArticleProps> = ({
   title,
   description,
 }) => (
-  <Stack gap={1}>
-    <Meta as={Stack} direction='inline' gap={1}>
+  <Box
+    css={{
+      stackBlock: '$small',
+    }}
+  >
+    <Meta
+      as={Box}
+      css={{
+        stackInline: '$small',
+      }}
+    >
       {column && <Tag>{column}</Tag>}
       <DateTime dateTime={date} />
     </Meta>
@@ -46,13 +55,13 @@ export const Article: React.FC<ArticleProps> = ({
     <Text
       as='p'
       size='milli'
-      css={`
-        color: var(--accent-color-c);
-      `}
+      css={{
+        color: '$accentC',
+      }}
     >
       {description}
     </Text>
-  </Stack>
+  </Box>
 )
 
 interface DateTimeProps {
@@ -68,29 +77,27 @@ const DateTime: React.FC<DateTimeProps> = ({ dateTime }) => {
       variant='mono'
       size='micro'
       dateTime={dateTime}
-      css={`
-        color: #fff;
-      `}
+      css={{
+        color: '#fff',
+      }}
     >
       {format(date, 'd MMMM yyyy')}
     </Text>
   )
 }
 
-const ArticleLink = styled.a`
-  ${Heading} {
-    color: var(--accent-color-c);
-  }
+const ArticleLink = styled('a', {
+  [`& ${Heading}`]: {
+    color: '$accentC',
+  },
+  '&:hover, &:focus': {
+    [`& ${Heading}`]: {
+      color: '$accentB',
+    },
+  },
+})
 
-  &:hover,
-  &:focus {
-    ${Heading} {
-      color: var(--accent-color-b);
-    }
-  }
-`
-
-const Meta = styled.div`
-  display: flex;
-  align-items: center;
-`
+const Meta = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+})
