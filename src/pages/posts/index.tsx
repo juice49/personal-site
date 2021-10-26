@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { NextPage } from 'next'
+import { NextPage, GetStaticProps } from 'next'
 import { Level } from 'react-accessible-headings'
 import { PostMeta } from '../../types/post'
 import * as postApi from '../../lib/post-api'
@@ -121,12 +121,12 @@ const Page: NextPage<Props> = ({ posts }) => {
 
 export default Page
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const posts = await postApi.getAll()
 
   return {
     props: {
-      posts,
+      posts: posts.map(post => post.meta),
     },
   }
 }

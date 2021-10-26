@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next",
     "build": "next build",
+    "postbuild": "node -r dotenv/config ./.next/server/render-json-feed > ./public/feed.json",
     "start": "next start",
     "lint": "next lint"
   },
@@ -18,10 +19,11 @@
     "@sanity/client": "^2.0.9",
     "date-fns": "^2.16.1",
     "djb2a": "^2.0.0",
+    "dotenv": "^10.0.0",
     "groq": "^2.1.4",
     "lodash.upperfirst": "^4.3.1",
     "monstera": "^2.0.0",
-    "next": "^11.0.0",
+    "next": "^11.1.2",
     "react": "^17.0.1",
     "react-accessible-headings": "^2.3.0",
     "react-dom": "^17.0.1",
@@ -35,6 +37,7 @@
     "unist-util-visit": "^2.0.3"
   },
   "devDependencies": {
+    "@json-feed-types/1_1": "^1.0.1",
     "@types/node": "^16.4.14",
     "@types/react": "^17.0.0",
     "@types/resize-observer-browser": "^0.1.4",
@@ -48,7 +51,8 @@
     "prettier": "^2.1.2",
     "typescript": "^4.0.5",
     "url-loader": "^4.1.1",
-    "webpack": "^5.4.0"
+    "webpack": "^5.4.0",
+    "webpack-merge": "^5.8.0"
   },
   "husky": {
     "hooks": {
