@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@mdx-js/loader": "^1.6.21",
-    "@next/mdx": "^11.0.0",
+    "@next/mdx": "^12.0.3",
     "@sanity/client": "^2.0.9",
     "@stitches/react": "^1.2.4",
     "date-fns": "^2.16.1",
