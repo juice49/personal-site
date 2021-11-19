@@ -1,6 +1,6 @@
-const visit = require('unist-util-visit')
+import { visit } from 'unist-util-visit'
 
-module.exports = function () {
+export default function () {
   return function (tree) {
     tree.children.splice(0, 0, {
       type: 'import',

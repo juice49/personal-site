@@ -1,4 +1,6 @@
-const { merge } = require('webpack-merge')
+import { merge } from 'webpack-merge'
+import mdx from '@next/mdx'
+import stackWrapper from './src/lib/stack-wrapper.mjs'
 
 const mdxRenderer = `
   import React from 'react'
@@ -14,14 +16,14 @@ const mdxRenderer = `
   }
 `
 
-const withMdx = require('@next/mdx')({
+const withMdx = mdx({
   options: {
     renderer: mdxRenderer,
-    remarkPlugins: [require('./src/lib/stack-wrapper')],
+    remarkPlugins: [stackWrapper],
   },
 })
 
-module.exports = withMdx({
+export default withMdx({
   pageExtensions: ['ts', 'tsx', 'mdx'],
   images: {
     domains: [
