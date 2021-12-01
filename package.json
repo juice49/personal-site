@@ -17,6 +17,7 @@
     "@mdx-js/loader": "^1.6.21",
     "@next/mdx": "^12.0.3",
     "@sanity/client": "^2.0.9",
+    "@sanity/webhook": "^1.0.2",
     "@stitches/react": "^1.2.4",
     "date-fns": "^2.16.1",
     "djb2a": "^2.0.0",
@@ -24,6 +25,7 @@
     "groq": "^2.1.4",
     "lodash.upperfirst": "^4.3.1",
     "next": "^12.0.0",
+    "planetscale-node": "^0.3.0",
     "react": "^17.0.1",
     "react-accessible-headings": "^3.0.0",
     "react-dom": "^17.0.1",
@@ -33,6 +35,7 @@
     "remark-react": "^9.0.1",
     "resize-observer-polyfill": "^1.5.1",
     "shiki": "^0.9.11",
+    "twitter-api-v2": "^1.7.0",
     "unist-util-visit": "^4.1.0"
   },
   "devDependencies": {
