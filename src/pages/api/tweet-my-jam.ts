@@ -57,7 +57,7 @@ const tweetMyJam: NextApiHandler = async (req, res) => {
     return
   }
 
-  if (webhookReceiptExists(idempotencyKey)) {
+  if (await webhookReceiptExists(idempotencyKey)) {
     res.status(422).setHeader(...idempotencyErrorHeader)
     res.end()
     return
