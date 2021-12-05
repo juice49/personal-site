@@ -14,7 +14,7 @@ import Code from '../components/code'
 // 6. During a client render, the code block component grabs the code block HTML from the context.
 
 export default async function getCodeBlockStaticProps(Page: NextPage) {
-  const { getHighlighter } = require('shiki')
+  const { getHighlighter, BUNDLED_LANGUAGES } = require('shiki')
 
   // @ts-ignore
   const { renderToStaticMarkup } = require('react-dom/server')
@@ -46,6 +46,14 @@ export default async function getCodeBlockStaticProps(Page: NextPage) {
 
   const highlighter = await getHighlighter({
     theme: 'material-palenight',
+    langs: [
+      ...BUNDLED_LANGUAGES,
+      {
+        id: 'groq',
+        scopeName: 'source.groq',
+        path: '../../vscode-sanity/grammars/groq.json',
+      },
+    ],
   })
 
   global.__nextSsgCodeBlocks.forEach(({ code, language }) => {
