@@ -1,0 +1,3 @@
+[submodule "vscode-sanity"]
+	path = vscode-sanity
+	url = git@github.com:sanity-io/vscode-sanity.git
