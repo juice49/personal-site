@@ -15,7 +15,7 @@
     "jsx": "preserve",
     "downlevelIteration": true
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "vscode-sanity"],
   "include": [
     "next-env.d.ts",
     "mdx.d.ts",
