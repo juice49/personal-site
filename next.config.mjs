@@ -1,5 +1,8 @@
 import { merge } from 'webpack-merge'
 import mdx from '@next/mdx'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import { h } from 'hastscript'
 import stackWrapper from './src/lib/stack-wrapper.mjs'
 
 const mdxRenderer = `
@@ -20,6 +23,20 @@ const withMdx = mdx({
   options: {
     renderer: mdxRenderer,
     remarkPlugins: [stackWrapper],
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          content: h('span', '#'),
+          properties: {
+            ariaHidden: true,
+            tabIndex: -1,
+            class: 'heading-anchor-link',
+          },
+        },
+      ],
+    ],
   },
 })
 
