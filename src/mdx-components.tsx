@@ -23,7 +23,7 @@ const MDXComponents = {
   h6: function H6(props) {
     return <Heading as='h6' {...props} />
   },
-  blockquote: Blockquote,
+  Blockquote: Blockquote,
 }
 
 export default MDXComponents

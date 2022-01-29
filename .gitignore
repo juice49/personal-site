@@ -1,6 +1,7 @@
 .now
 .next
 .env.local
+public/feed.json
 
 # Created by https://www.gitignore.io/api/node,macos
 # Edit at https://www.gitignore.io/?templates=node,macos
