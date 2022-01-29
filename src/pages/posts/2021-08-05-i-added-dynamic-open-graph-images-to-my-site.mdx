@@ -10,7 +10,7 @@ export const meta = {
 
 Earlier this year, I started adding Open Graph (OG) images to my site. These are the preview images you see when you share a link, like on Twitter or in iMessage. I maintain a [collection of my favourite music](/this-is-my-jam), and I thought it would be cool to include the album art and track details when I share a link to a track.
 
-<image
+<Image
   src={miaKarmageddonOgImage}
   alt='Screenshot showing the This is My Jam OG image as it appears on Twitter'
   caption={
@@ -34,7 +34,7 @@ Another neat thing about using a Next.js page is that we can use the Next.js dat
 
 By customising the target path in the request URL, the serverless function can capture any page on the site. This means we can add many different OG image templates to a site by adding new Next.js pages. Alongside the specialised OG images for the _This is My Jam_ tracks, I created [a generic template](/og-image?title=Example+Open+Graph+image&date=2021-08-05) ([source code](https://github.com/juice49/personal-site/blob/main/src/pages/og-image/index.tsx)) that can be customised using the URL query string. The page linking to the OG image can provide a title and, optionally, a date, making it ideal for blog posts and pages.
 
-<image
+<Image
   src={blogPostOgImage}
   alt='Screenshot showing the article OG image as it appears on Twitter'
   caption={

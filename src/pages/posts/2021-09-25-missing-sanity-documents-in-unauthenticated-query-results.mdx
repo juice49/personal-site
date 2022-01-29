@@ -99,7 +99,7 @@ But the results of the same query made without authentication omit the `album` d
 
 My first suspicion was that I'd accidentally made all the affected documents drafts, which would mean they aren't publicly accessible. But, nope, all of the documents were published. Maybe I'd made a mistake in the schema definition? I checked, but the schema seemed fine too.
 
-<image
+<Image
   src={publishedSanityDocuments}
   alt='Screenshot showing the published documents in Sanity studio'
   caption={`The affected documents in Sanity Studio. They've definitely been published!`}
@@ -109,7 +109,7 @@ Eventually I found a difference. Not in the schema, but in the documents themsel
 
 In Sanity, an [id segmented by periods is known as a _path_](https://www.sanity.io/docs/ids#fdc25ada5db2), and paths do more than just help avoid collisions. Paths are used to put documents into groups that can be filtered in a query using the `path()` function. And paths have one other notable behaviour... by default, they aren't publicly accessible.
 
-<blockquote
+<Blockquote
   cite='Sanity documentation'
   citeUrl='https://www.sanity.io/docs/ids'
 >
@@ -119,7 +119,7 @@ In Sanity, an [id segmented by periods is known as a _path_](https://www.sanity.
     possible to make documents under a sub-path (i.e. containing a . in the ID)
     publicly available.
   </p>
-</blockquote>
+</Blockquote>
 
 Aha! That explains the problem. When I namespaced the document ids, I inadvertently made them private.
 
