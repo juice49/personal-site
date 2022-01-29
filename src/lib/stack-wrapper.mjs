@@ -1,10 +1,16 @@
 import { visit } from 'unist-util-visit'
+import { u } from 'unist-builder'
+import { parse } from 'acorn'
 
 export default function () {
   return function (tree) {
     tree.children.splice(0, 0, {
-      type: 'import',
-      value: `import Box from '../../components/box'`,
+      type: 'mdxjsEsm',
+      data: {
+        estree: parse(`import Box from '../../components/box'`, {
+          sourceType: 'module',
+        }),
+      },
     })
 
     const sectionIndexes = new Set()
@@ -32,18 +38,41 @@ export default function () {
         return [
           ...children,
           {
-            type: 'jsx',
-            value: `
-              <Box
-                css={{
-                  stackBlock: '$medium'
-                }}
-              >`,
-          },
-          ...tree.children.slice(sectionIndex, nextSectionIndex),
-          {
-            type: 'jsx',
-            value: '</Box>',
+            type: 'mdxJsxFlowElement',
+            name: 'Box',
+            children: tree.children.slice(sectionIndex, nextSectionIndex),
+            attributes: [
+              u('mdxJsxAttribute', {
+                name: 'css',
+                value: u('mdxJsxAttributeValueExpression', {
+                  data: {
+                    estree: {
+                      type: 'Program',
+                      sourceType: 'module',
+                      comments: [],
+                      body: [
+                        {
+                          type: 'ExpressionStatement',
+                          expression: u('ObjectExpression', {
+                            properties: [
+                              u('Property', {
+                                key: u('Identifier', {
+                                  name: 'stackBlock',
+                                }),
+                                value: u('Literal', {
+                                  value: '$medium',
+                                }),
+                                kind: 'init',
+                              }),
+                            ],
+                          }),
+                        },
+                      ],
+                    },
+                  },
+                }),
+              }),
+            ],
           },
         ]
       },

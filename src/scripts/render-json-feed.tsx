@@ -3,7 +3,6 @@ import ReactDOMServer from 'react-dom/server'
 import Feed from '@json-feed-types/1_1'
 import { MDXProvider } from '@mdx-js/react'
 import * as postApi from '../lib/post-api'
-import Providers from '../components/providers'
 import NextPlainImage from '../components/next-plain-image'
 import MDXComponents from '../mdx-components'
 ;(async () => {
@@ -31,26 +30,33 @@ import MDXComponents from '../mdx-components'
       date_published: post.meta.date,
       tags: post.meta.tags,
       content_html: ReactDOMServer.renderToStaticMarkup(
-        <Providers>
-          <MDXProvider
-            components={{
-              ...MDXComponents,
-              image: NextPlainImage,
-              code: Code,
-            }}
-          >
-            <post.source />
-          </MDXProvider>
-        </Providers>,
+        <MDXProvider
+          components={{
+            ...MDXComponents,
+            Image: NextPlainImage,
+            code: function CodeComponent({ children, ...props }) {
+              if (typeof props['data-language'] === 'undefined') {
+                return <code>{children}</code>
+              }
+
+              return (
+                <pre>
+                  <code>{children}</code>
+                </pre>
+              )
+            },
+            Blockquote: ({ children }) => (
+              <blockquote>
+                <p>{children}</p>
+              </blockquote>
+            ),
+          }}
+        >
+          <post.source />
+        </MDXProvider>,
       ),
     })),
   }
 
   process.stdout.write(JSON.stringify(feed, null, 2) + '\n')
 })()
-
-const Code: React.FC = ({ children }) => (
-  <pre>
-    <code>{children}</code>
-  </pre>
-)

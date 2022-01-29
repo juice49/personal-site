@@ -1,27 +1,16 @@
 import { merge } from 'webpack-merge'
 import mdx from '@next/mdx'
+import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki'
+import { parse } from 'acorn'
 import { h } from 'hastscript'
 import stackWrapper from './src/lib/stack-wrapper.mjs'
 
-const mdxRenderer = `
-  import React from 'react'
-  import { mdx } from '@mdx-js/react'
-  import getCodeBlockStaticProps from '../../lib/code'
-
-  export async function getStaticProps () {
-    const props = await getCodeBlockStaticProps(MDXContent)
-
-    return {
-      props
-    }
-  }
-`
-
 const withMdx = mdx({
   options: {
-    renderer: mdxRenderer,
+    providerImportSource: '@mdx-js/react',
     remarkPlugins: [stackWrapper],
     rehypePlugins: [
       rehypeSlug,
@@ -36,9 +25,60 @@ const withMdx = mdx({
           },
         },
       ],
+      [
+        createNextStaticProps,
+        `{
+          meta,
+        }`,
+      ],
+      [
+        rehypePrettyCode,
+        {
+          theme: 'material-palenight',
+          getHighlighter: options =>
+            getHighlighter({
+              ...options,
+              langs: [
+                ...BUNDLED_LANGUAGES,
+                {
+                  id: 'groq',
+                  scopeName: 'source.groq',
+                  path: '../../vscode-sanity/grammars/groq.json',
+                },
+              ],
+            }),
+          onVisitLine(node) {
+            // Prevent lines from collapsing in `display: grid` mode, and allow
+            // empty lines to be copy/pasted.
+            if (node.children.length === 0) {
+              node.children = [{ type: 'text', value: ' ' }]
+            }
+          },
+        },
+      ],
     ],
   },
 })
+
+function createNextStaticProps(map) {
+  return function transformer(tree) {
+    tree.children.push({
+      type: 'mdxjsEsm',
+      data: {
+        estree: parse(
+          `
+          export const getStaticProps = () => ({
+            props: ${map},
+          })
+          `,
+          {
+            sourceType: 'module',
+          },
+        ),
+      },
+    })
+  }
+}
 
 export default withMdx({
   pageExtensions: ['ts', 'tsx', 'mdx'],
@@ -73,8 +113,8 @@ export default withMdx({
       },
     ]
   },
-  webpack: (config, options) => {
-    return merge(config, {
+  webpack: (config, options) =>
+    merge(config, {
       async entry() {
         if (!options.isServer) {
           return config.entry
@@ -87,6 +127,5 @@ export default withMdx({
           'render-json-feed': './src/scripts/render-json-feed.tsx',
         }
       },
-    })
-  },
+    }),
 })

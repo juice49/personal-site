@@ -1,42 +1,12 @@
-import React, { createContext, useContext } from 'react'
-import djb2a from 'djb2a'
+import React from 'react'
 import { styled } from '../stitches.config'
 import Box from './box'
 
-export const CodeBlocksContext = createContext({})
-
-interface Props {
-  code: string
-  language: string
-}
-
-const Code: React.FC<Props> = ({ language, code }) => {
-  const codeBlocks = useContext(CodeBlocksContext)
-  const hash = djb2a(code)
-
-  if (typeof codeBlocks[hash] !== 'undefined') {
-    return (
-      <Container
-        dangerouslySetInnerHTML={{ __html: codeBlocks[hash] }}
-        tabIndex={0}
-      />
-    )
-  }
-
-  const IS_SSG =
-    typeof window === 'undefined' &&
-    typeof global !== 'undefined' &&
-    global.__nextSsgCodeBlocks
-
-  if (IS_SSG) {
-    global.__nextSsgCodeBlocks.push({
-      code,
-      language,
-    })
-  }
-
-  return null
-}
+const Code: React.FC = ({ children }) => (
+  <Container tabIndex={0} as='pre'>
+    <code>{children}</code>
+  </Container>
+)
 
 export default Code
 
@@ -52,10 +22,8 @@ const Container = styled(Box, {
       0 auto -webkit-focus-ring-color;
     `,
   },
-  '.shiki': {
-    backgroundColor: 'transparent !important',
-  },
   code: {
+    display: 'grid',
     whiteSpace: 'pre',
     wordSpacing: 'normal',
     wordBreak: 'normal',
