@@ -18,11 +18,7 @@ interface Props {
   tableOfContents: Toc
 }
 
-const PostLayout: React.FC<Props> = ({
-  children,
-  meta,
-  tableOfContents = [],
-}) => {
+const PostLayout: React.FC<Props> = ({ children, meta, tableOfContents }) => {
   const title = `${meta.title} - Ash`
 
   return (
