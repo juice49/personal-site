@@ -3,6 +3,8 @@ import mdx from '@next/mdx'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeToc from '@stefanprobst/rehype-extract-toc'
+import rehypeTocExport from '@stefanprobst/rehype-extract-toc/mdx'
 import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki'
 import { parse } from 'acorn'
 import { h } from 'hastscript'
@@ -29,6 +31,7 @@ const withMdx = mdx({
         createNextStaticProps,
         `{
           meta,
+          tableOfContents,
         }`,
       ],
       [
@@ -56,6 +59,8 @@ const withMdx = mdx({
           },
         },
       ],
+      rehypeToc,
+      rehypeTocExport,
     ],
   },
 })
