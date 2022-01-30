@@ -33,7 +33,7 @@ export default TableOfContents
 const ListContainer: React.FC<Props> = ({ children }) => (
   <List>
     {children.map(entry => (
-      <Item as='li'>
+      <Item key={entry.id} as='li'>
         <a href={`#${entry.id}`}>{entry.value}</a>
         {entry.children && <ListContainer>{entry.children}</ListContainer>}
       </Item>
