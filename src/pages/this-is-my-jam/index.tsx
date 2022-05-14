@@ -93,7 +93,10 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
       name,
       album->{
         name,
-        appleMusicImageUrl,
+        "appleMusicImageUrl": coalesce(
+          appleMusicImageUrl,
+          image.asset->url
+        ),
         'color': image.asset->metadata.palette.dominant.background,
       },
       artists[]->{

@@ -155,5 +155,15 @@ function getAppleMusicImageUrl(
   baseUrl: string,
   dimensions: AppleMusicImageDimensions,
 ): string {
+  const APPLE_MUSIC_DOMAIN = 'mzstatic.com'
+
+  if (!baseUrl.includes(APPLE_MUSIC_DOMAIN)) {
+    const params = new URLSearchParams({
+      w: '160',
+    })
+
+    return `${baseUrl}?${params}`
+  }
+
   return `${baseUrl}/${dimensions}x${dimensions}bb.jpg`
 }
