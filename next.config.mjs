@@ -89,6 +89,7 @@ export default withMdx({
   pageExtensions: ['ts', 'tsx', 'mdx'],
   images: {
     domains: [
+      'cdn.sanity.io',
       'is1-ssl.mzstatic.com',
       'is2-ssl.mzstatic.com',
       'is3-ssl.mzstatic.com',
