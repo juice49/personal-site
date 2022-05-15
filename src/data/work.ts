@@ -6,6 +6,10 @@ interface Work {
 const work: Work[] = [
   {
     description:
+      'Added a Google Cloud Pub/Sub layer to improve the reliability of a service that ingests data from webhooks.',
+  },
+  {
+    description:
       'Created a song picker for Sanity CMS using serverless functions, Sanity UI, the iTunes API, and the Odesli API.',
   },
   {
