@@ -172,9 +172,27 @@ const Page: NextPage = () => (
             <Level>
               <ArticleList>
                 <ArticleListItem
+                  heading='Sanity: Full Stack Engineer'
+                  headingGap={false}
+                  description='2022&thinsp;-&thinsp;Present'
+                >
+                  <Box
+                    css={{
+                      stackBlock: '$small',
+                    }}
+                  >
+                    <Text as='p' size='milli'>
+                      Developed tooling for the support team.
+                    </Text>
+                    <Text as='p' size='milli'>
+                      Provided support to developers using the Sanity platform.
+                    </Text>
+                  </Box>
+                </ArticleListItem>
+                <ArticleListItem
                   heading='Si digital: Web Developer'
                   headingGap={false}
-                  description='2014&thinsp;-&thinsp;Present'
+                  description='2014&thinsp;-&thinsp;2022'
                 >
                   <Box
                     css={{
