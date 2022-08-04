@@ -98,6 +98,11 @@ export default withMdx({
     ],
     formats: ['image/avif', 'image/webp'],
   },
+  experimental: {
+    images: {
+      allowFutureImage: true,
+    },
+  },
   async rewrites() {
     return [
       {

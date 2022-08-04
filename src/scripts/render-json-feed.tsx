@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import Image from 'next/future/image'
 import Feed from '@json-feed-types/1_1'
 import { MDXProvider } from '@mdx-js/react'
 import * as postApi from '../lib/post-api'
-import NextPlainImage from '../components/next-plain-image'
 import MDXComponents from '../mdx-components'
 ;(async () => {
   const posts = await postApi.getAll()
@@ -33,7 +33,6 @@ import MDXComponents from '../mdx-components'
         <MDXProvider
           components={{
             ...MDXComponents,
-            Image: NextPlainImage,
             code: function CodeComponent({ children, ...props }) {
               if (typeof props['data-language'] === 'undefined') {
                 return <code>{children}</code>
@@ -50,6 +49,7 @@ import MDXComponents from '../mdx-components'
                 <p>{children}</p>
               </blockquote>
             ),
+            Image,
           }}
         >
           <post.source />
