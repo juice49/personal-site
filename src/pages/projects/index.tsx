@@ -1,3 +1,4 @@
+import { FC, PropsWithChildren } from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { Level } from 'react-accessible-headings'
@@ -78,7 +79,7 @@ const Page: NextPage = () => (
 
 export default Page
 
-const ListBox: React.FC = ({ children }) => (
+const ListBox: FC<PropsWithChildren> = ({ children }) => (
   <Box
     css={{
       stackBlock: '$medium',

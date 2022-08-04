@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { styled } from '../stitches.config'
 import Box from './box'
 import Text from './text'
 import HeadingLevel from './heading-level'
 
-const FeaturedSection: React.FC = ({ children }) => (
+const FeaturedSection: FC<PropsWithChildren> = ({ children }) => (
   <FeaturedSectionBox>
     <Inner>{children}</Inner>
   </FeaturedSectionBox>
@@ -27,7 +27,7 @@ const Inner = styled('div', {
   position: 'relative',
 })
 
-export const FeaturedSectionHeading: React.FC = ({ children }) => (
+export const FeaturedSectionHeading: FC<PropsWithChildren> = ({ children }) => (
   <Box
     css={{
       paddingBlockEnd: '$small',

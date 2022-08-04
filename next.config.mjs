@@ -98,6 +98,11 @@ export default withMdx({
     ],
     formats: ['image/avif', 'image/webp'],
   },
+  experimental: {
+    images: {
+      allowFutureImage: true,
+    },
+  },
   async rewrites() {
     return [
       {
@@ -122,7 +127,7 @@ export default withMdx({
   webpack: (config, options) =>
     merge(config, {
       async entry() {
-        if (!options.isServer) {
+        if (!options.isServer || options.nextRuntime !== 'nodejs') {
           return config.entry
         }
 

@@ -27,7 +27,7 @@ const revalidate: NextApiHandler = async (req, res) => {
 
   try {
     const pathList = await strategy(req.body)
-    await Promise.all(pathList.map(path => res.unstable_revalidate(path)))
+    await Promise.all(pathList.map(path => res.revalidate(path)))
 
     res.json({
       success: true,

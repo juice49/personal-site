@@ -99,12 +99,7 @@ During this extra render, the endpoints of all nested `<CMS />` components are [
                     └─────────────────────────────────────────────────────────────┘
 ```
 
-<Note as='p'>
-  Gathering static props before pre-render. Each CMS component pushes its
-  assigned endpoint to a global array. Once the required endpoints have been
-  lifted up to the getStaticProps function, they are fetched in parallel. The
-  fetched data is passed into the page props when Next.js pre-renders the page.
-</Note>
+<Note as='p'>Gathering static props before pre-render. Each CMS component pushes its assigned endpoint to a global array. Once the required endpoints have been lifted up to the getStaticProps function, they are fetched in parallel. The fetched data is passed into the page props when Next.js pre-renders the page.</Note>
 
 The fetched data is [added to an object](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/lib/get-cms-static-props.js#L32), where its key is the requested endpoint. This object is [passed into the page props](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/pages/index.js#L25). Because the key is the requested endpoint, it can be mapped back to the relevant `<CMS />` component when the page is rendered.
 
@@ -145,9 +140,7 @@ The `withCMSPage` _higher order component_ wraps the page in [a React Context](h
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-<Note as='p'>
-  The fetched data is injected into the CMS components using React Context.
-</Note>
+<Note as='p'>The fetched data is injected into the CMS components using React Context.</Note>
 
 ### 3. The CMS component
 

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { styled } from '../stitches.config'
 import Box from './box'
 
-const Code: React.FC = ({ children }) => (
+const Code: FC<PropsWithChildren> = ({ children }) => (
   <Container tabIndex={0} as='pre'>
     <code>{children}</code>
   </Container>
