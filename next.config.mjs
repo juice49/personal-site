@@ -122,7 +122,7 @@ export default withMdx({
   webpack: (config, options) =>
     merge(config, {
       async entry() {
-        if (!options.isServer) {
+        if (!options.isServer || options.nextRuntime !== 'nodejs') {
           return config.entry
         }
 
