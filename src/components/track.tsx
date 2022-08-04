@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import { format } from 'date-fns'
 import { styled } from '../stitches.config'
 import Jam from '../types/jam'
@@ -23,17 +23,14 @@ const Track: React.FC<Props> = ({ jam }) => {
           gridArea: 'image',
         }}
       >
-        <ImageContainer>
-          <Image
-            src={getAppleMusicImageUrl(jam.track.album.appleMusicImageUrl, 160)}
-            alt={`The album art for "${
-              jam.track.album.name
-            }" by ${jam.track.artists.map(({ name }) => name).join(', ')}`}
-            layout='responsive'
-            width={140}
-            height={140}
-          />
-        </ImageContainer>
+        <AlbumArtwork
+          src={getAppleMusicImageUrl(jam.track.album.appleMusicImageUrl, 160)}
+          alt={`The album art for "${
+            jam.track.album.name
+          }" by ${jam.track.artists.map(({ name }) => name).join(', ')}`}
+          width={140}
+          height={140}
+        />
       </Box>
       <Box
         css={{
@@ -116,7 +113,10 @@ const ActionList = styled('ul', {
   },
 })
 
-const ImageContainer = styled('div', {
+const AlbumArtwork = styled(Image, {
+  display: 'block',
+  width: '100%',
+  height: 'auto',
   backgroundColor: 'currentColor',
   clipPath: `polygon(
     0 0,
