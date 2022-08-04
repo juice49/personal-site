@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { styled } from '../stitches.config'
 import Text from './text'
 
-const Tag: React.FC = ({ children }) => (
+const Tag: FC<PropsWithChildren> = ({ children }) => (
   <Text as={TagBox} variant='mono' size='micro'>
     #{children}
   </Text>

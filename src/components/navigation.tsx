@@ -1,9 +1,9 @@
-import React, { forwardRef } from 'react'
+import React, { FC, PropsWithChildren, forwardRef } from 'react'
 import { useRouter } from 'next/router'
 import { styled } from '../stitches.config'
 import Text from './text'
 
-const Navigation: React.FC = ({ children }) => (
+const Navigation: FC<PropsWithChildren> = ({ children }) => (
   <Text as='nav' size='milli'>
     <NavigationList>{children}</NavigationList>
   </Text>

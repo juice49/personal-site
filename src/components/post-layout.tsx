@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { Level } from 'react-accessible-headings'
 import { Toc } from '@stefanprobst/rehype-extract-toc'
 import { styled } from '../stitches.config'
@@ -18,7 +18,11 @@ interface Props {
   tableOfContents: Toc
 }
 
-const PostLayout: React.FC<Props> = ({ children, meta, tableOfContents }) => {
+const PostLayout: FC<PropsWithChildren<Props>> = ({
+  children,
+  meta,
+  tableOfContents,
+}) => {
   const title = `${meta.title} - Ash`
 
   return (

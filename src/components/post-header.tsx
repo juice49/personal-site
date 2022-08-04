@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { format } from 'date-fns'
 import { styled } from '../stitches.config'
 import Box from './box'
@@ -12,7 +12,11 @@ interface Props {
   column?: string
 }
 
-const PostHeader: React.FC<Props> = ({ children, date, column }) => (
+const PostHeader: FC<PropsWithChildren<Props>> = ({
+  children,
+  date,
+  column,
+}) => (
   <Container>
     <Box
       css={{
@@ -46,7 +50,7 @@ interface DateProps {
   dateTime: string
 }
 
-const Time: React.FC<DateProps> = ({ dateTime }) => {
+const Time: FC<PropsWithChildren<DateProps>> = ({ dateTime }) => {
   const date = new Date(dateTime)
 
   return (

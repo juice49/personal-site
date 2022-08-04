@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { FC, PropsWithChildren, Fragment } from 'react'
 import { styled } from '../stitches.config'
 import Box from '../components/box'
 import Note from '../components/note'
@@ -9,7 +9,12 @@ interface Props {
   author?: string
 }
 
-const Blockquote: React.FC<Props> = ({ children, cite, citeUrl, author }) => {
+const Blockquote: FC<PropsWithChildren<Props>> = ({
+  children,
+  cite,
+  citeUrl,
+  author,
+}) => {
   const AttributionContainer: React.ComponentType<
     React.AnchorHTMLAttributes<HTMLAnchorElement>
   > = props =>

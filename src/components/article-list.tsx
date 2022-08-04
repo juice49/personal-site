@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import Link, { LinkProps } from 'next/link'
 import { CSS } from '@stitches/react'
 import { styled, config } from '../stitches.config'
@@ -44,7 +44,7 @@ interface ArticleListItemProps {
   externalUrl?: string
 }
 
-export const ArticleListItem: React.FC<ArticleListItemProps> = ({
+export const ArticleListItem: FC<PropsWithChildren<ArticleListItemProps>> = ({
   children,
   heading,
   headingGap = true,
@@ -52,7 +52,9 @@ export const ArticleListItem: React.FC<ArticleListItemProps> = ({
   link,
   externalUrl,
 }) => {
-  let BlockLink: React.FC<LinkProps> = props => <React.Fragment {...props} />
+  let BlockLink: FC<PropsWithChildren<LinkProps>> = props => (
+    <React.Fragment {...props} />
+  )
 
   if (link) {
     BlockLink = function BlockLink({ children, ...props }) {

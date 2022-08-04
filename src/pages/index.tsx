@@ -1,3 +1,4 @@
+import { FC, PropsWithChildren } from 'react'
 import { NextPage, GetStaticProps } from 'next'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -255,7 +256,7 @@ const Page: NextPage<Props> = ({ posts }) => (
 
 export default Page
 
-const ListBox: React.FC = ({ children }) => (
+const ListBox: FC<PropsWithChildren> = ({ children }) => (
   <Box
     css={{
       stackBlock: '$medium',

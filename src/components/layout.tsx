@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -11,7 +11,11 @@ interface Props {
   isLogoH1?: boolean
 }
 
-const Layout: React.FC<Props> = ({ children, isLogoH1, ...props }) => {
+const Layout: FC<PropsWithChildren<Props>> = ({
+  children,
+  isLogoH1,
+  ...props
+}) => {
   globalStyle()
 
   return (
