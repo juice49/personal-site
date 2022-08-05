@@ -64,3 +64,7 @@ const Page: NextPage = () => (
 )
 
 export default Page
+
+export const config = {
+  runtime: 'experimental-edge',
+}
