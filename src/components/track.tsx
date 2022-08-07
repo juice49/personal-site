@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/future/image'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import { styled } from '../stitches.config'
 import Jam from '../types/jam'
 import Box from './box'
@@ -13,6 +13,8 @@ interface Props {
 }
 
 const Track: React.FC<Props> = ({ jam }) => {
+  const date = new Date(jam.date)
+
   return (
     <Container>
       <Box
@@ -58,7 +60,10 @@ const Track: React.FC<Props> = ({ jam }) => {
             color: 'var(--color, $bodySubtle)',
           }}
         >
-          {format(new Date(jam.date), 'd MMMM yyyy')}
+          {format(
+            new Date(date.valueOf() + date.getTimezoneOffset() * 60 * 1000),
+            'd MMMM yyyy',
+          )}
         </Text>
         <ActionList>
           {jam.track.appleMusicUrl && (
