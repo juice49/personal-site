@@ -27,14 +27,16 @@ function filterExtname(extname) {
 }
 
 async function importPost(filename: string): Promise<Post> {
-  const module = await import(`../pages/${process.env.POSTS_PATH}/${filename}`)
+  const postModule = await import(
+    `../pages/${process.env.POSTS_PATH}/${filename}`
+  )
 
   return {
-    ...module,
+    ...postModule,
     meta: {
-      ...module.meta,
+      ...postModule.meta,
       slug: path.basename(filename, path.extname(filename)),
     },
-    source: module.default,
+    source: postModule.default,
   }
 }
