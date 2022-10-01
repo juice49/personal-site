@@ -2,6 +2,7 @@ import React from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { MDXProvider } from '@mdx-js/react'
+import { PostMeta } from '../types/post'
 import Box from '../components/box'
 import OgImageMeta from '../components/og-image-meta'
 import PostLayout from '../components/post-layout'
@@ -10,7 +11,11 @@ import Code from '../components/code'
 import InlineCode from '../components/inline-code'
 import MDXComponents from '../mdx-components'
 
-const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+const App: React.FC<
+  AppProps<{
+    meta?: PostMeta
+  }>
+> = ({ Component, pageProps }) => {
   const title = 'Ash - full stack web developer'
 
   return (
