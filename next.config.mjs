@@ -101,9 +101,6 @@ export default withMdx({
   experimental: {
     browsersListForSwc: true,
     legacyBrowsers: false,
-    images: {
-      allowFutureImage: true,
-    },
   },
   async rewrites() {
     return [
