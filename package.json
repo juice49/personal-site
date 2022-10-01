@@ -31,7 +31,7 @@
     "next": "^12.0.0",
     "planetscale-node": "^0.3.0",
     "react": "^18.2.0",
-    "react-accessible-headings": "^3.0.0",
+    "react-accessible-headings": "^4.2.0",
     "react-dom": "^18.2.0",
     "react-hyperscript": "^3.2.0",
     "rehype-autolink-headings": "^6.1.1",
