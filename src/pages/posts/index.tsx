@@ -119,15 +119,10 @@ const Page: NextPage<Props> = ({ posts }) => {
                       <div>
                         {postsByYear[year].map(post => (
                           <article key={post.slug}>
-                            <Link
-                              href='/posts/[slug]'
-                              as={`/posts/${post.slug}`}
-                            >
-                              <a>
-                                <HeadingLevel>
-                                  <Text>{post.title}</Text>
-                                </HeadingLevel>
-                              </a>
+                            <Link href={`/posts/${post.slug}`}>
+                              <HeadingLevel>
+                                <Text>{post.title}</Text>
+                              </HeadingLevel>
                             </Link>
                           </article>
                         ))}

@@ -1,4 +1,9 @@
-import React, { FC, PropsWithChildren } from 'react'
+import React, {
+  FC,
+  ComponentType,
+  ComponentProps,
+  PropsWithChildren,
+} from 'react'
 import Link, { LinkProps } from 'next/link'
 import { CSS } from '@stitches/react'
 import { styled, config } from '../stitches.config'
@@ -52,18 +57,12 @@ export const ArticleListItem: FC<PropsWithChildren<ArticleListItemProps>> = ({
   link,
   externalUrl,
 }) => {
-  let BlockLink: FC<PropsWithChildren<LinkProps>> = props => (
+  let BlockLink: ComponentType<ComponentProps<typeof Link>> = props => (
     <React.Fragment {...props} />
   )
 
   if (link) {
-    BlockLink = function BlockLink({ children, ...props }) {
-      return (
-        <Link {...props} passHref>
-          <ArticleLink>{children}</ArticleLink>
-        </Link>
-      )
-    }
+    BlockLink = ArticleLink
   }
 
   if (externalUrl) {
@@ -135,7 +134,7 @@ export const ArticleListItem: FC<PropsWithChildren<ArticleListItemProps>> = ({
   )
 }
 
-const ArticleLinkOuter = styled('a', {
+const ArticleLinkOuter = styled(Link, {
   display: 'block',
   position: 'relative',
   '&:hover': {
@@ -155,13 +154,11 @@ const ArticleLinkInner = styled('div', {
   position: 'relative',
 })
 
-const ArticleLink = React.forwardRef<
-  HTMLAnchorElement,
-  React.AnchorHTMLAttributes<HTMLAnchorElement>
->(({ children, ...props }, ref) => (
-  <ArticleLinkOuter ref={ref} {...props}>
+const ArticleLink: ComponentType<ComponentProps<typeof Link>> = ({
+  children,
+  ...props
+}) => (
+  <ArticleLinkOuter {...props}>
     <ArticleLinkInner>{children}</ArticleLinkInner>
   </ArticleLinkOuter>
-))
-
-ArticleLink.displayName = 'ArticleLink'
+)

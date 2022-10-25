@@ -65,11 +65,9 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
       </Level>
       <StandardGrid>
         <StandardGridContent>
-          <Link href='/this-is-my-jam' passHref>
-            <Button as='a' variant='large'>
-              View all jams
-            </Button>
-          </Link>
+          <Button as={Link} href='/this-is-my-jam' variant='large'>
+            View all jams
+          </Button>
         </StandardGridContent>
       </StandardGrid>
     </Layout>

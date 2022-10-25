@@ -45,13 +45,11 @@ export const Article: React.FC<ArticleProps> = ({
       {column && <Tag>{column}</Tag>}
       <DateTime dateTime={date} />
     </Meta>
-    <Link passHref {...link}>
-      <ArticleLink>
-        <HeadingLevel>
-          <Heading>{title}</Heading>
-        </HeadingLevel>
-      </ArticleLink>
-    </Link>
+    <ArticleLink {...link}>
+      <HeadingLevel>
+        <Heading>{title}</Heading>
+      </HeadingLevel>
+    </ArticleLink>
     <Text
       as='p'
       size='milli'
@@ -86,7 +84,7 @@ const DateTime: React.FC<DateTimeProps> = ({ dateTime }) => {
   )
 }
 
-const ArticleLink = styled('a', {
+const ArticleLink = styled(Link, {
   [`& ${Heading}`]: {
     color: '$accentC',
   },
