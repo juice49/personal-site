@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import Image from 'next/future/image'
+import Image from 'next/image'
 import Feed from '@json-feed-types/1_1'
 import { MDXProvider } from '@mdx-js/react'
 import * as postApi from '../lib/post-api'
