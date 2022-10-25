@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
+import { Analytics } from '@vercel/analytics/react'
 import { MDXProvider } from '@mdx-js/react'
 import { PostMeta } from '../types/post'
 import Box from '../components/box'
@@ -49,6 +50,7 @@ const App: React.FC<
       </Head>
       <OgImageMeta title='I like to make things&mdash;usually with web technologies, and usually <em>for</em> the web.' />
       <Component {...pageProps} />
+      <Analytics />
     </MDXProvider>
   )
 }

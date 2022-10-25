@@ -22,6 +22,7 @@
     "@sanity/webhook": "^1.0.2",
     "@stefanprobst/rehype-extract-toc": "^2.2.0",
     "@stitches/react": "^1.2.4",
+    "@vercel/analytics": "^0.1.1",
     "acorn": "^8.7.0",
     "date-fns": "^2.16.1",
     "dotenv": "^16.0.0",
