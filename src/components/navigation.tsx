@@ -1,5 +1,6 @@
-import React, { FC, PropsWithChildren, forwardRef } from 'react'
+import React, { FC, PropsWithChildren } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { styled } from '../stitches.config'
 import Text from './text'
 
@@ -26,14 +27,14 @@ const NavigationList = styled('ul', {
 
 export const NavigationItem = 'li'
 
-export const NavigationLink = forwardRef<
-  HTMLAnchorElement,
-  React.AnchorHTMLAttributes<HTMLAnchorElement>
->((props, ref) => {
+export const NavigationLink: React.ComponentType<
+  React.ComponentProps<typeof Link>
+> = props => {
   const router = useRouter()
 
   const [currentPath, targetPath] = [router?.asPath, props?.href].map(
-    path => (path ?? '').split('/')[1],
+    path =>
+      (typeof path == 'string' ? path ?? '' : path.href ?? '').split('/')[1],
   )
 
   const isActive = currentPath === targetPath
@@ -42,9 +43,8 @@ export const NavigationLink = forwardRef<
 
   return (
     <Text
-      as='a'
+      as={Link}
       {...props}
-      ref={ref}
       className={activeClassName}
       weight={isActive ? 'bold' : undefined}
       css={{
@@ -77,6 +77,4 @@ export const NavigationLink = forwardRef<
       }}
     />
   )
-})
-
-NavigationLink.displayName = 'NavigationLink'
+}

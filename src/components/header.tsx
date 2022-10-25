@@ -20,24 +20,16 @@ const Header: React.FC<Props> = ({ isLogoH1 }) => (
     <NavigationContainer>
       <Navigation>
         <NavigationItem>
-          <Link href='/posts' passHref>
-            <NavigationLink>Posts</NavigationLink>
-          </Link>
+          <NavigationLink href='/posts'>Posts</NavigationLink>
         </NavigationItem>
         <NavigationItem>
-          <Link href='/projects' passHref>
-            <NavigationLink>Projects</NavigationLink>
-          </Link>
+          <NavigationLink href='/projects'>Projects</NavigationLink>
         </NavigationItem>
         <NavigationItem>
-          <Link href='/this-is-my-jam' passHref>
-            <NavigationLink>This is My Jam</NavigationLink>
-          </Link>
+          <NavigationLink href='/this-is-my-jam'>This is My Jam</NavigationLink>
         </NavigationItem>
         <NavigationItem>
-          <Link href='/about' passHref>
-            <NavigationLink>About</NavigationLink>
-          </Link>
+          <NavigationLink href='/about'>About</NavigationLink>
         </NavigationItem>
       </Navigation>
     </NavigationContainer>
