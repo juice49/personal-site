@@ -12,11 +12,9 @@ interface Props {
 
 const Header: React.FC<Props> = ({ isLogoH1 }) => (
   <Container>
-    <Link href='/' passHref>
-      <LogoLink>
-        <Logo as={isLogoH1 ? 'h1' : 'p'} />
-      </LogoLink>
-    </Link>
+    <LogoLink href='/'>
+      <Logo as={isLogoH1 ? 'h1' : 'p'} />
+    </LogoLink>
     <NavigationContainer>
       <Navigation>
         <NavigationItem>
@@ -60,7 +58,7 @@ const Logo: React.FC<LogoProps> = props => (
   </Text>
 )
 
-const LogoLink = styled('a', {
+const LogoLink = styled(Link, {
   textDecoration: 'none',
   /* color: var(--accent-color); */
   color: '$body',

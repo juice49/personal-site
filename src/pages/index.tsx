@@ -176,11 +176,9 @@ const Page: NextPage<Props> = ({ posts }) => (
                   paddingBlockEnd: '$4',
                 }}
               >
-                <Link href='/posts' passHref>
-                  <Button as='a' variant='large'>
-                    View more posts
-                  </Button>
-                </Link>
+                <Button as={Link} variant='large' href='/posts'>
+                  View more posts
+                </Button>
               </Box>
             </Level>
           </Box>
