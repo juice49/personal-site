@@ -49,6 +49,13 @@ const App: React.FC<
         <link rel='alternate' type='application/feed+json' href='/feed' />
       </Head>
       <OgImageMeta title='I like to make things&mdash;usually with web technologies, and usually <em>for</em> the web.' />
+      <a
+        rel='me'
+        href='https://mastodon.social/@juice49'
+        style={{ display: 'none' }}
+      >
+        Mastodon
+      </a>
       <Component {...pageProps} />
       <Analytics />
     </MDXProvider>
