@@ -2,7 +2,7 @@ import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import groq from 'groq'
-import { Level } from 'react-accessible-headings'
+// import { Level } from 'react-accessible-headings'
 import Jam from '../../../types/jam'
 import Layout from '../../../components/layout'
 import Heading from '../../../components/heading'
@@ -16,11 +16,15 @@ import StandardGrid, {
   StandardGridContent,
 } from '../../../components/standard-grid'
 
+// FIXME-APP-DIR
+const Level = ({ children }) => <>{children}</>
+
 interface Props {
   jam: Jam
   ogImageUrl: string
 }
 
+// FIXME-APP-DIR
 const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
   const title = `${jam.track.name} by ${jam.track.artists
     .map(({ name }) => name)
@@ -76,47 +80,49 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
 
 export default Page
 
-export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-  const jam = await sanity.fetch<Jam>(
-    groq`*[_type == "jam" && _id == $id][0]{
-      _id,
-      date,
-      track->{
-        name,
-        album->{
-          name,
-          "appleMusicImageUrl": coalesce(
-            appleMusicImageUrl,
-            image.asset->url
-          ),
-          'color': image.asset->metadata.palette.dominant.background,
-        },
-        artists[]->{
-          name
-        },
-        'appleMusicUrl': dataByPlatform.appleMusic.url,
-        'spotifyUrl': dataByPlatform.spotify.url,
-        'youtubeUrl': dataByPlatform.youtube.url,
-      }
-    }`,
-    {
-      id: params.id,
-    },
-  )
+// FIXME-APP-DIR
+// export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
+//   const jam = await sanity.fetch<Jam>(
+//     groq`*[_type == "jam" && _id == $id][0]{
+//       _id,
+//       date,
+//       track->{
+//         name,
+//         album->{
+//           name,
+//           "appleMusicImageUrl": coalesce(
+//             appleMusicImageUrl,
+//             image.asset->url
+//           ),
+//           'color': image.asset->metadata.palette.dominant.background,
+//         },
+//         artists[]->{
+//           name
+//         },
+//         'appleMusicUrl': dataByPlatform.appleMusic.url,
+//         'spotifyUrl': dataByPlatform.spotify.url,
+//         'youtubeUrl': dataByPlatform.youtube.url,
+//       }
+//     }`,
+//     {
+//       id: params.id,
+//     },
+//   )
 
-  return {
-    notFound: typeof jam._id === 'undefined',
-    props: {
-      ogImageUrl: `${process.env.NEXT_PUBLIC_OG_IMAGE_SERVICE_URL}/this-is-my-jam/${params.id}/og-image.png`,
-      jam,
-    },
-    revalidate: 3600,
-  }
-}
+//   return {
+//     notFound: typeof jam._id === 'undefined',
+//     props: {
+//       ogImageUrl: `${process.env.NEXT_PUBLIC_OG_IMAGE_SERVICE_URL}/this-is-my-jam/${params.id}/og-image.png`,
+//       jam,
+//     },
+//     revalidate: 3600,
+//   }
+// }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: 'blocking',
-  }
-}
+// FIXME-APP-DIR
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   return {
+//     paths: [],
+//     fallback: 'blocking',
+//   }
+// }

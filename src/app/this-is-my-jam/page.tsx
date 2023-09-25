@@ -1,7 +1,7 @@
 import { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import groq from 'groq'
-import { Level } from 'react-accessible-headings'
+// import { Level } from 'react-accessible-headings'
 import { styled } from '../../stitches.config'
 import Jam from '../../types/jam'
 import Layout from '../../components/layout'
@@ -14,6 +14,9 @@ import sanity from '../../lib/sanity'
 import StandardGrid, {
   StandardGridContent,
 } from '../../components/standard-grid'
+
+// FIXME-APP-DIR
+const Level = ({ children }) => <>{children}</>
 
 type JamsByYear = [year: string, jams: Jam[]][]
 
@@ -33,7 +36,8 @@ function sortDescending([a]: any, [b]: any) {
   return 0
 }
 
-const Page: NextPage<Props> = ({ jamsByYear }) => {
+// FIXME-APP-DIR
+const Page: NextPage<Props> = ({ jamsByYear = [] }) => {
   return (
     <Layout as='main'>
       <Head>
@@ -85,45 +89,46 @@ const Page: NextPage<Props> = ({ jamsByYear }) => {
 
 export default Page
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const jams: Jam[] = await sanity.fetch(groq`*[ _type ==  "jam"]{
-    _id,
-    date,
-    track->{
-      name,
-      album->{
-        name,
-        "appleMusicImageUrl": coalesce(
-          appleMusicImageUrl,
-          image.asset->url
-        ),
-        'color': image.asset->metadata.palette.dominant.background,
-      },
-      artists[]->{
-        name
-      },
-      'appleMusicUrl': dataByPlatform.appleMusic.url,
-      'spotifyUrl': dataByPlatform.spotify.url,
-      'youtubeUrl': dataByPlatform.youtube.url,
-    }
-  } | order(date desc)`)
+// FIXME-APP-DIR
+// export const getStaticProps: GetStaticProps<Props> = async () => {
+//   const jams: Jam[] = await sanity.fetch(groq`*[ _type ==  "jam"]{
+//     _id,
+//     date,
+//     track->{
+//       name,
+//       album->{
+//         name,
+//         "appleMusicImageUrl": coalesce(
+//           appleMusicImageUrl,
+//           image.asset->url
+//         ),
+//         'color': image.asset->metadata.palette.dominant.background,
+//       },
+//       artists[]->{
+//         name
+//       },
+//       'appleMusicUrl': dataByPlatform.appleMusic.url,
+//       'spotifyUrl': dataByPlatform.spotify.url,
+//       'youtubeUrl': dataByPlatform.youtube.url,
+//     }
+//   } | order(date desc)`)
 
-  const jamsByYear = jams.reduce<Record<string, Jam[]>>((reduced, jam) => {
-    const year = new Date(jam.date).getFullYear()
+//   const jamsByYear = jams.reduce<Record<string, Jam[]>>((reduced, jam) => {
+//     const year = new Date(jam.date).getFullYear()
 
-    return {
-      ...reduced,
-      [year]: [...(reduced[year] ?? []), jam],
-    }
-  }, {})
+//     return {
+//       ...reduced,
+//       [year]: [...(reduced[year] ?? []), jam],
+//     }
+//   }, {})
 
-  return {
-    props: {
-      jamsByYear: Object.entries(jamsByYear).sort(sortDescending),
-    },
-    revalidate: 3600,
-  }
-}
+//   return {
+//     props: {
+//       jamsByYear: Object.entries(jamsByYear).sort(sortDescending),
+//     },
+//     revalidate: 3600,
+//   }
+// }
 
 const List = styled('div', {
   '& > * + *': {

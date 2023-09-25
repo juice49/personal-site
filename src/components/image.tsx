@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState, useCallback } from 'react'
 import * as CSS from 'csstype'
 import { styled } from '../stitches.config'

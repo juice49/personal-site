@@ -1,13 +1,18 @@
 import { NextPage } from 'next'
-import { Level } from 'react-accessible-headings'
-import work from '../data/work'
-import Layout from '../components/layout'
-import Box from '../components/box'
-import Text from '../components/text'
-import Heading from '../components/heading'
-import StandardGrid, { StandardGridContent } from '../components/standard-grid'
-import ArticleList, { ArticleListItem } from '../components/article-list'
-import HeadingLevel from '../components/heading-level'
+// import { Level } from 'react-accessible-headings'
+import work from '../../data/work'
+import Layout from '../../components/layout'
+import Box from '../../components/box'
+import Text from '../../components/text'
+import Heading from '../../components/heading'
+import StandardGrid, {
+  StandardGridContent,
+} from '../../components/standard-grid'
+import ArticleList, { ArticleListItem } from '../../components/article-list'
+import HeadingLevel from '../../components/heading-level'
+
+// FIXME-APP-DIR
+const Level = ({ children }) => <>{children}</>
 
 const Page: NextPage = () => (
   <Layout as='main'>

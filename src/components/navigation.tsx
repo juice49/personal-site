@@ -1,5 +1,7 @@
+'use client'
+
 import React, { FC, PropsWithChildren } from 'react'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { styled } from '../stitches.config'
 import Text from './text'
@@ -25,17 +27,22 @@ const NavigationList = styled('ul', {
   },
 })
 
-export const NavigationItem = 'li'
+// FIXME-APP-DIR
+// why?
+// export const NavigationItem = 'li'
+export const NavigationItem = props => <li {...props} />
 
 export const NavigationLink: React.ComponentType<
   React.ComponentProps<typeof Link>
 > = props => {
   const router = useRouter()
 
-  const [currentPath, targetPath] = [router?.asPath, props?.href].map(
+  // FIXME-APP-DIR
+  /* const [currentPath, targetPath] = [router?.asPath, props?.href].map(
     path =>
       (typeof path == 'string' ? path ?? '' : path.href ?? '').split('/')[1],
-  )
+  ) */
+  const [currentPath, targetPath] = ['/', '/']
 
   const isActive = currentPath === targetPath
 

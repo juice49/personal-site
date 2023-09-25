@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
-import { Level } from 'react-accessible-headings'
+// import { Level } from 'react-accessible-headings'
 import projects from '../../data/projects'
 import misc from '../../data/misc'
 import Box from '../../components/box'
@@ -12,6 +12,9 @@ import StandardGrid, {
 } from '../../components/standard-grid'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 import HeadingLevel from '../../components/heading-level'
+
+// FIXME-APP-DIR
+const Level = ({ children }) => <>{children}</>
 
 const Page: NextPage = () => (
   <Layout as='main'>

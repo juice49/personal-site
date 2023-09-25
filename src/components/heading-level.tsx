@@ -1,8 +1,13 @@
 import React, { cloneElement } from 'react'
-import { useLevel } from 'react-accessible-headings'
+// import { useLevel } from 'react-accessible-headings'
 
 interface PolymorphicComponentProps {
   as: string | React.ComponentType
+}
+
+// FIXME-APP-DIR
+function useLevel() {
+  return 1
 }
 
 interface Props {

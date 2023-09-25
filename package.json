@@ -29,7 +29,7 @@
     "groq": "^2.1.4",
     "hastscript": "^7.0.2",
     "lodash.upperfirst": "^4.3.1",
-    "next": "^13.0.0",
+    "next": "^13.5.2",
     "planetscale-node": "^0.3.0",
     "react": "^18.2.0",
     "react-accessible-headings": "^4.2.0",

@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from 'react'
 import { NextPage, GetStaticProps } from 'next'
 import Link from 'next/link'
 import Head from 'next/head'
-import { Level } from 'react-accessible-headings'
+// import { Level } from 'react-accessible-headings'
 import { PostMeta } from '../types/post'
 import projects from '../data/projects'
 import misc from '../data/misc'
@@ -28,11 +28,15 @@ import StandardGrid, {
   StandardGridMeta,
 } from '../components/standard-grid'
 
+// FIXME-APP-DIR
+const Level = ({ children }) => <>{children}</>
+
 interface Props {
   posts: PostMeta[]
 }
 
-const Page: NextPage<Props> = ({ posts }) => (
+// FIXME-APP-DIR
+const Page: NextPage<Props> = ({ posts = [] }) => (
   <Layout as='main' isLogoH1>
     <Level>
       <Head>
@@ -264,12 +268,13 @@ const ListBox: FC<PropsWithChildren> = ({ children }) => (
   </Box>
 )
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const posts = await postApi.getAll()
+// FIXME-APP-DIR
+// export const getStaticProps: GetStaticProps<Props> = async () => {
+//   const posts = await postApi.getAll()
 
-  return {
-    props: {
-      posts: posts.slice(0, 6).map(post => post.meta),
-    },
-  }
-}
+//   return {
+//     props: {
+//       posts: posts.slice(0, 6).map(post => post.meta),
+//     },
+//   }
+// }

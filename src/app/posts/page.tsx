@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { NextPage, GetStaticProps } from 'next'
-import { Level } from 'react-accessible-headings'
+// import { Level } from 'react-accessible-headings'
 import { PostMeta } from '../../types/post'
 import * as postApi from '../../lib/post-api'
 import usePostsByYear from '../../lib/use-posts-by-year'
@@ -22,7 +22,11 @@ interface Props {
   posts: PostMeta[]
 }
 
-const Page: NextPage<Props> = ({ posts }) => {
+// FIXME-APP-DIR
+const Level = ({ children }) => <>{children}</>
+
+// FIXME-APP-DIR
+const Page: NextPage<Props> = ({ posts = [] }) => {
   const featurePostLimit = 6
 
   const { sortedYears, postsByYear } = usePostsByYear(
@@ -141,12 +145,13 @@ const Page: NextPage<Props> = ({ posts }) => {
 
 export default Page
 
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const posts = await postApi.getAll()
+// FIXME-APP-DIR
+// export const getStaticProps: GetStaticProps<Props> = async () => {
+//   const posts = await postApi.getAll()
 
-  return {
-    props: {
-      posts: posts.map(post => post.meta),
-    },
-  }
-}
+//   return {
+//     props: {
+//       posts: posts.map(post => post.meta),
+//     },
+//   }
+// }
