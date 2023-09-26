@@ -27,10 +27,7 @@ const NavigationList = styled('ul', {
   },
 })
 
-// FIXME-APP-DIR
-// why?
-// export const NavigationItem = 'li'
-export const NavigationItem = props => <li {...props} />
+export const NavigationItem = 'li'
 
 export const NavigationLink: React.ComponentType<
   React.ComponentProps<typeof Link>
