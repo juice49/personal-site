@@ -29,6 +29,14 @@ export const vars = createThemeContract({
   },
 })
 
+const space = {
+  1: '0.5rem',
+  2: '1rem',
+  3: '1.25rem',
+  4: '1.875rem',
+  5: '2.8125rem',
+}
+
 export const theme = style({
   vars: assignVars(vars, {
     colors: {
@@ -44,11 +52,7 @@ export const theme = style({
       body: `var(--font-pt-root-ui), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
     },
     space: {
-      1: '0.5rem',
-      2: '1rem',
-      3: '1.25rem',
-      4: '1.875rem',
-      5: '2.8125rem',
+      ...space,
       page: '15vmin',
       documentBorderWidth: vars.space.medium,
       small: vars.space[1],
@@ -59,11 +63,11 @@ export const theme = style({
   '@media': {
     [`(min-width: ${inlineBreakpoints[0]})`]: {
       vars: assignVars(vars.space, {
-        1: '0.625rem',
-        2: '1.25rem',
-        3: '1.5625rem',
-        4: '2.34375rem',
-        5: '3.515625rem',
+        1: `calc(${space[1]} * 1.25)`,
+        2: `calc(${space[2]} * 1.25)`,
+        3: `calc(${space[3]} * 1.25)`,
+        4: `calc(${space[4]} * 1.25)`,
+        5: `calc(${space[5]} * 1.25)`,
         page: '15vmin',
         documentBorderWidth: vars.space.medium,
         small: vars.space[1],
@@ -73,11 +77,11 @@ export const theme = style({
     },
     [`(min-width: ${inlineBreakpoints[1]})`]: {
       vars: assignVars(vars.space, {
-        1: '0.78125rem',
-        2: '1.5625rem',
-        3: '1.953125rem',
-        4: '2.9296875rem',
-        5: '4.39453125rem',
+        1: `calc(${space[1]} * 1.25 * 1.25)`,
+        2: `calc(${space[2]} * 1.25 * 1.25)`,
+        3: `calc(${space[3]} * 1.25 * 1.25)`,
+        4: `calc(${space[4]} * 1.25 * 1.25)`,
+        5: `calc(${space[5]} * 1.25 * 1.25)`,
         page: '15vmin',
         documentBorderWidth: vars.space.medium,
         small: vars.space[1],
