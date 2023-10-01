@@ -1,5 +1,5 @@
 import localFont from 'next/font/local'
-import { themeClass, fonts } from '../theme.css'
+import { theme } from '../theme.css'
 
 // FIXME
 export const metadata = {
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       className={[
-        themeClass,
+        theme,
         ptRootUi.variable,
         zangeziSans.variable,
         jetbrainsMono.variable,
