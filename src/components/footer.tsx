@@ -1,28 +1,30 @@
 import React from 'react'
 import Link from 'next/link'
-import { styled } from '../stitches.config'
-import Box from './box'
-import Text from './text'
+import box from '../styles/box.css'
+import text from '../styles/text.css'
 // import Wave from '../components/wave'
+import { footerBox, cell, metaList } from '../styles/footer.css'
 
 const Footer: React.FC = () => (
-  <Text as='div' size='milli'>
-    <FooterBox>
-      <Main
+  <div className={text({ size: 'milli' })}>
+    <footer className={footerBox()}>
+      <div
+        className={cell({ cell: 'main' })}
         css={{
           stackBlock: '$small',
         }}
       >
-        <Text weight='bold'>Made by Ash.</Text>
+        <span className={text({ weight: 'bold' })}>Made by Ash.</span>
         <p>The Web and Stuff 2008&thinsp;&ndash;&thinsp;??</p>
-      </Main>
-      <MetaA
-        css={{
+      </div>
+      <div
+        className={cell({ cell: 'metaA' })}
+        style={{
           stackBlock: '$small',
         }}
       >
-        <Text weight='bold'>Etc.</Text>
-        <MetaList>
+        <span className={text({ weight: 'bold' })}>Etc.</span>
+        <ul className={metaList()}>
           <li>
             <a href='/feed'>Subscribe with JSON Feed</a>
           </li>
@@ -36,15 +38,16 @@ const Footer: React.FC = () => (
               <del>Design system</del>
             </a>
           </li>
-        </MetaList>
-      </MetaA>
-      <MetaB
-        css={{
+        </ul>
+      </div>
+      <div
+        className={cell({ cell: 'metaB' })}
+        style={{
           stackBlock: '$small',
         }}
       >
-        <Text weight='bold'>Networks and stuff:</Text>
-        <MetaList>
+        <span className={text({ weight: 'bold' })}>Networks and stuff:</span>
+        <ul className={metaList()}>
           <li>
             <a href='mailto:ashley@juice49.com'>ashley@juice49.com</a>
           </li>
@@ -93,12 +96,12 @@ const Footer: React.FC = () => (
               Dribbble
             </a>
           </li>
-        </MetaList>
-      </MetaB>
-      <MetaC>
-        <Box
-          mw='0'
-          css={{
+        </ul>
+      </div>
+      <div className={cell({ cell: 'metaC' })}>
+        <div
+          className={box({ mw: 0 })}
+          style={{
             stackBlock: '$small',
           }}
         >
@@ -111,53 +114,10 @@ const Footer: React.FC = () => (
             Feel free to use and remix anything you find on this site. It would
             be cool to hear what you do with it ✌️.
           </p>
-        </Box>
-      </MetaC>
-    </FooterBox>
-  </Text>
+        </div>
+      </div>
+    </footer>
+  </div>
 )
 
-const FooterBox = styled('footer', {
-  display: 'grid',
-  padding: '$2',
-  gap: '$2',
-  color: '$bodySubtle',
-  gridTemplateAreas: `'main'
-    'metaA'
-    'metaB'
-    'metaC'`,
-  '@i1': {
-    gridTemplateAreas: `'main main'
-      'metaA metaB'
-      'metaC metaC'`,
-    gridTemplateColumns: '1fr 1fr',
-  },
-  '@i2': {
-    gridTemplateAreas: `'main metaA metaB'
-      'main metaA metaB'
-      'metaC metaC metaC'`,
-    gridTemplateColumns: '1fr repeat(2, max-content)',
-  },
-})
-
 export default Footer
-
-const Main = styled('div', {
-  gridArea: 'main',
-})
-
-const MetaA = styled('div', {
-  gridArea: 'metaA',
-})
-
-const MetaB = styled('div', {
-  gridArea: 'metaB',
-})
-
-const MetaC = styled('div', {
-  gridArea: 'metaC',
-})
-
-const MetaList = styled('ul', {
-  listStyle: 'none',
-})

@@ -5,16 +5,16 @@ import groq from 'groq'
 // import { Level } from 'react-accessible-headings'
 import Jam from '../../../types/jam'
 import Layout from '../../../components/layout'
-import Heading from '../../../components/heading'
-import Box from '../../../components/box'
+import { heading } from '../../../styles/heading.css'
+import box from '../../../styles/box.css'
 import TrackComponent from '../../../components/track'
-import Button from '../../../components/button'
+import button from '../../../styles/button.css'
 import HeadingLevel from '../../../components/heading-level'
 import sanity from '../../../lib/sanity'
-
-import StandardGrid, {
-  StandardGridContent,
-} from '../../../components/standard-grid'
+import {
+  standardGrid,
+  standardGridContent,
+} from '../../../styles/standard-grid.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -45,35 +45,35 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:image' content={ogImageUrl} />
       </Head>
-      <Box
-        css={{
+      <div
+        style={{
           paddingInline: '$medium',
         }}
       >
         <HeadingLevel>
-          <Heading variant='alpha'>This is My Jam</Heading>
+          <h1 className={heading({ variant: 'alpha' })}>This is My Jam</h1>
         </HeadingLevel>
-      </Box>
+      </div>
       <Level>
-        <StandardGrid>
-          <StandardGridContent>
-            <Box
-              css={{
+        <div className={standardGrid()}>
+          <div className={standardGridContent()}>
+            <div
+              style={{
                 stackBlock: '$4',
               }}
             >
               <TrackComponent jam={jam} />
-            </Box>
-          </StandardGridContent>
-        </StandardGrid>
+            </div>
+          </div>
+        </div>
       </Level>
-      <StandardGrid>
-        <StandardGridContent>
-          <Button as={Link} href='/this-is-my-jam' variant='large'>
+      <div className={standardGrid()}>
+        <div className={standardGridContent()}>
+          <Link href='/this-is-my-jam' className={button({ variant: 'large' })}>
             View all jams
-          </Button>
-        </StandardGridContent>
-      </StandardGrid>
+          </Link>
+        </div>
+      </div>
     </Layout>
   )
 }

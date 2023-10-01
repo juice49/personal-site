@@ -1,17 +1,17 @@
 import { NextPage, GetServerSideProps } from 'next'
 import Head from 'next/head'
 import { format } from 'date-fns'
-import { styled, globalCss, theme } from '../../stitches.config'
-import globalStyle from '../../components/global-style'
-import Box from '../../components/box'
-import Text from '../../components/text'
-import Heading from '../../components/heading'
+import '../../components/global-style.css'
+import { themeClass } from '../../theme.css'
+import text from '../../styles/text.css'
+import { heading } from '../../styles/heading.css'
 
-const customGlobalStyle = globalCss({
-  ':root': {
-    [theme.space.documentBorderWidth.variable]: 0,
-  },
-})
+// FIXME
+// const customGlobalStyle = globalCss({
+//   ':root': {
+//     [theme.space.documentBorderWidth.variable]: 0,
+//   },
+// })
 
 interface Props {
   title: string
@@ -19,9 +19,6 @@ interface Props {
 }
 
 const Page: NextPage<Props> = ({ title, date }) => {
-  globalStyle()
-  customGlobalStyle()
-
   return (
     <DocumentOuter>
       <Head>
@@ -52,9 +49,9 @@ const Page: NextPage<Props> = ({ title, date }) => {
           }}
         />
       </Head>
-      <Container>
-        <Box
-          css={{
+      <Container className={themeClass}>
+        <div
+          style={{
             padding: '$2',
             paddingBlockEnd: 0,
           }}
@@ -66,45 +63,46 @@ const Page: NextPage<Props> = ({ title, date }) => {
               width={34}
               height={34}
             />
-            <Text as='h2' weight='bold' size='milli'>
-              Ash
-            </Text>
+            <h2 className={text({ weight: 'bold', size: 'milli' })}>Ash</h2>
           </LogoContainer>
-        </Box>
-        <Box
-          css={{
+        </div>
+        <div
+          style={{
             paddingInline: '$2',
           }}
         >
-          <Heading
-            as='h1'
+          <h1
+            className={heading()}
             dangerouslySetInnerHTML={{
               __html: title,
             }}
           />
           {date && (
-            <Text variant='mono' size='micro' as='time' dateTime={date}>
+            <time
+              className={text({ variant: 'mono', size: 'micro' })}
+              dateTime={date}
+            >
               {format(new Date(date), 'd MMMM yyyy')}
-            </Text>
+            </time>
           )}
-        </Box>
+        </div>
         <Footer>
-          <Box
-            css={{
+          <div
+            style={{
               paddingInline: '$2',
               paddingBlock: '$1',
             }}
           >
-            <Text size='micro'>@juice49</Text>
-          </Box>
-          <Box
-            css={{
+            <span className={text({ size: 'micro' })}>@juice49</span>
+          </div>
+          <div
+            style={{
               paddingInline: '$2',
               paddingBlock: '$1',
             }}
           >
-            <Text size='micro'>https://ash.gd</Text>
-          </Box>
+            <span className={text({ size: 'micro' })}>https://ash.gd</span>
+          </div>
         </Footer>
       </Container>
     </DocumentOuter>
@@ -113,6 +111,7 @@ const Page: NextPage<Props> = ({ title, date }) => {
 
 export default Page
 
+// FIXME
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const props: Props = {
     title: [].concat(query.title)[0],
@@ -129,34 +128,44 @@ export const config = {
   unstable_runtimeJS: false,
 }
 
-const DocumentOuter = styled('div', {
-  display: 'flex',
-  minHeight: '100vh',
-  backgroundColor: '$background',
-})
+// FIXME
+const DocumentOuter = 'div'
+// const DocumentOuter = styled('div', {
+//   display: 'flex',
+//   minHeight: '100vh',
+//   backgroundColor: '$background',
+// })
 
-const Container = styled('div', {
-  display: 'grid',
-  width: '100%',
-  zoom: 1.75,
-  gridTemplateRows: 'auto 1fr auto',
-  alignItems: 'center',
-})
+// FIXME
+const Container = 'div'
+// const Container = styled('div', {
+//   display: 'grid',
+//   width: '100%',
+//   zoom: 1.75,
+//   gridTemplateRows: 'auto 1fr auto',
+//   alignItems: 'center',
+// })
 
-const Footer = styled('footer', {
-  display: 'flex',
-  justifyContent: 'space-between',
-  backgroundColor: '#fff',
-  color: '$bodySubtle',
-})
+// FIXME
+const Footer = 'footer'
+// const Footer = styled('footer', {
+//   display: 'flex',
+//   justifyContent: 'space-between',
+//   backgroundColor: '#fff',
+//   color: '$bodySubtle',
+// })
 
-const LogoContainer = styled('div', {
-  display: 'flex',
-  gap: '$1',
-  alignItems: 'center',
-})
+// FIXME
+const LogoContainer = 'div'
+// const LogoContainer = styled('div', {
+//   display: 'flex',
+//   gap: '$1',
+//   alignItems: 'center',
+// })
 
-const LogoImage = styled('img', {
-  display: 'block',
-  borderRadius: '50%',
-})
+// FIXME
+const LogoImage = 'img'
+// const LogoImage = styled('img', {
+//   display: 'block',
+//   borderRadius: '50%',
+// })

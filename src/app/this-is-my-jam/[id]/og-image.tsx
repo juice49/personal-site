@@ -1,28 +1,25 @@
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import Head from 'next/head'
 import groq from 'groq'
-import { styled, theme, globalCss } from '../../../stitches.config'
-import globalStyle from '../../../components/global-style'
+import '../../../components/global-style.css'
+import '../../../components/global-style.css'
 import Jam from '../../../types/jam'
-import Box from '../../../components/box'
-import Text from '../../../components/text'
-import Heading from '../../../components/heading'
+import text from '../../../styles/text.css'
+import { heading } from '../../../styles/heading.css'
 import sanity from '../../../lib/sanity'
 
 interface Props {
   jam: Jam
 }
 
-const customGlobalStyle = globalCss({
-  ':root': {
-    [theme.space.documentBorderWidth.variable]: 0,
-  },
-})
+// FIXME
+// const customGlobalStyle = globalCss({
+//   ':root': {
+//     [theme.space.documentBorderWidth.variable]: 0,
+//   },
+// })
 
 const Page: NextPage<Props> = ({ jam }) => {
-  globalStyle()
-  customGlobalStyle()
-
   return (
     <DocumentOuter>
       <Head>
@@ -48,8 +45,8 @@ const Page: NextPage<Props> = ({ jam }) => {
         />
       </Head>
       <Container>
-        <Box
-          css={{
+        <div
+          style={{
             display: 'flex',
             gridArea: 'image',
             flexDirection: 'column',
@@ -67,9 +64,9 @@ const Page: NextPage<Props> = ({ jam }) => {
               }" by ${jam.track.artists.map(({ name }) => name).join(', ')}`}
             />
           </ImageContainer>
-        </Box>
-        <Box
-          css={{
+        </div>
+        <div
+          style={{
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -77,12 +74,12 @@ const Page: NextPage<Props> = ({ jam }) => {
           }}
         >
           <div>
-            <Heading as='h1'>{jam.track.name}</Heading>
-            <Text size='micro' variant='mono'>
+            <h1 className={heading()}>{jam.track.name}</h1>
+            <span className={text({ size: 'micro', variant: 'mono' })}>
               {jam.track.artists.map(({ name }) => name).join(', ')}
-            </Text>
+            </span>
           </div>
-        </Box>
+        </div>
       </Container>
     </DocumentOuter>
   )
@@ -90,6 +87,7 @@ const Page: NextPage<Props> = ({ jam }) => {
 
 export default Page
 
+// FIXME
 export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const jam = await sanity.fetch<Jam>(
     groq`*[_type == "jam" && _id == $id][0]{
@@ -135,38 +133,44 @@ export const config = {
   unstable_runtimeJS: false,
 }
 
-const DocumentOuter = styled('div', {
-  display: 'flex',
-  minHeight: '100vh',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: '$background',
-})
+// FIXME
+const DocumentOuter = 'div'
+// const DocumentOuter = styled('div', {
+//   display: 'flex',
+//   minHeight: '100vh',
+//   alignItems: 'center',
+//   justifyContent: 'center',
+//   backgroundColor: '$background',
+// })
 
-const Container = styled('div', {
-  display: 'grid',
-  padding: '$2',
-  gridTemplateColumns: '6rem 1fr',
-  gridTemplateAreas: `'image info'`,
-  gap: '$2',
-  zoom: 1.75,
-})
+// FIXME
+const Container = 'div'
+// const Container = styled('div', {
+//   display: 'grid',
+//   padding: '$2',
+//   gridTemplateColumns: '6rem 1fr',
+//   gridTemplateAreas: `'image info'`,
+//   gap: '$2',
+//   zoom: 1.75,
+// })
 
-const ImageContainer = styled('div', {
-  backgroundColor: 'currentColor',
-  clipPath: `polygon(
-    0 0,
-    calc(100% - 4px) 4px,
-    100% 100%,
-    4px calc(100% - 4px)
-  )`,
-})
+const ImageContainer = 'div'
+// const ImageContainer = styled('div', {
+//   backgroundColor: 'currentColor',
+//   clipPath: `polygon(
+//     0 0,
+//     calc(100% - 4px) 4px,
+//     100% 100%,
+//     4px calc(100% - 4px)
+//   )`,
+// })
 
-const Image = styled('img', {
-  display: 'block',
-  width: '100%',
-  height: 'auto',
-})
+const Image = 'img'
+// const Image = styled('img', {
+//   display: 'block',
+//   width: '100%',
+//   height: 'auto',
+// })
 
 type AppleMusicImageDimensions =
   | 30

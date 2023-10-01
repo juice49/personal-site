@@ -4,12 +4,13 @@ import Head from 'next/head'
 // import { Level } from 'react-accessible-headings'
 import projects from '../../data/projects'
 import misc from '../../data/misc'
-import Box from '../../components/box'
+import box from '../../styles/box.css'
 import Layout from '../../components/layout'
-import Heading from '../../components/heading'
-import StandardGrid, {
-  StandardGridContent,
-} from '../../components/standard-grid'
+import { heading } from '../../styles/heading.css'
+import {
+  standardGrid,
+  standardGridContent,
+} from '../../styles/standard-grid.css'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 import HeadingLevel from '../../components/heading-level'
 
@@ -21,11 +22,11 @@ const Page: NextPage = () => (
     <Head>
       <title>Projects - Ash</title>
     </Head>
-    <StandardGrid>
-      <StandardGridContent>
+    <div className={standardGrid()}>
+      <div className={standardGridContent()}>
         <ListBox>
           <HeadingLevel>
-            <Heading>Projects</Heading>
+            <h1 className={heading()}>Projects</h1>
           </HeadingLevel>
           <Level>
             <ArticleList columns>
@@ -46,14 +47,14 @@ const Page: NextPage = () => (
             </ArticleList>
           </Level>
         </ListBox>
-      </StandardGridContent>
-    </StandardGrid>
-    <StandardGrid>
-      <StandardGridContent>
+      </div>
+    </div>
+    <div className={standardGrid()}>
+      <div className={standardGridContent()}>
         <Level>
           <ListBox>
             <HeadingLevel>
-              <Heading>Misc</Heading>
+              <h1 className={heading()}>Misc</h1>
             </HeadingLevel>
             <Level>
               <ArticleList columns>
@@ -75,19 +76,19 @@ const Page: NextPage = () => (
             </Level>
           </ListBox>
         </Level>
-      </StandardGridContent>
-    </StandardGrid>
+      </div>
+    </div>
   </Layout>
 )
 
 export default Page
 
 const ListBox: FC<PropsWithChildren> = ({ children }) => (
-  <Box
-    css={{
+  <div
+    style={{
       stackBlock: '$medium',
     }}
   >
     {children}
-  </Box>
+  </div>
 )

@@ -1,43 +1,24 @@
 import React, {
-  FC,
-  ComponentType,
-  ComponentProps,
-  PropsWithChildren,
+  type FC,
+  type ComponentType,
+  type ComponentProps,
+  type PropsWithChildren,
 } from 'react'
-import Link, { LinkProps } from 'next/link'
-import { CSS } from '@stitches/react'
-import { styled, config } from '../stitches.config'
-import Box from './box'
-import Text from './text'
+
+import Link, { type LinkProps } from 'next/link'
+import text from '../styles/text.css'
 import ExternalLinkIcon from './external-link-icon'
 import HeadingLevel from './heading-level'
 
-const border: CSS<typeof config> = {
-  borderBlockStart: '1px dashed $bodySubtle',
-  marginBlockStart: 'calc($2 * 0.5)',
-  paddingBlockStart: 'calc($2 * 0.5)',
-}
+import {
+  articleLinkInner,
+  articleLinkOuter,
+  container,
+} from '../styles/article-list.css'
 
-const Container = styled('ul', {
-  listStyle: 'circle',
-  marginInlineStart: '$2',
-  variants: {
-    columns: {
-      true: {
-        display: 'grid',
-        gap: '$2',
-        gridTemplateColumns: '1fr 1fr',
-        '& > *': border,
-      },
-      false: {
-        '& > * + *': border,
-      },
-    },
-  },
-  defaultVariants: {
-    columns: false,
-  },
-})
+const Container: ComponentType = props => (
+  <ul className={container()} {...props} />
+)
 
 export default Container
 
@@ -76,89 +57,67 @@ export const ArticleListItem: FC<PropsWithChildren<ArticleListItemProps>> = ({
   }
 
   return (
-    <Box
-      as='li'
-      css={{
+    <li
+      style={{
         paddingInline: '$small',
       }}
     >
       <BlockLink {...link}>
-        <Box
-          css={{
+        <div
+          style={{
             stackBlock: '$small',
           }}
         >
-          <Box
-            css={{
+          <div
+            style={{
               stackBlock: headingGap ? '$small' : undefined,
             }}
           >
             {heading && (
               <HeadingLevel>
-                <Text
-                  size='milli'
-                  weight='bold'
-                  css={{
+                <span
+                  className={text({
+                    size: 'milli',
+                    weight: 'bold',
+                  })}
+                  style={{
                     color: 'var(--color)',
                   }}
                 >
-                  <Box
-                    as='span'
-                    css={{
+                  <span
+                    style={{
                       stackInline: '$small',
                     }}
                   >
                     <span>{heading}</span>
                     {externalUrl && <ExternalLinkIcon />}
-                  </Box>
-                </Text>
+                  </span>
+                </span>
               </HeadingLevel>
             )}
             {description && (
-              <Text
-                as='p'
-                size='micro'
-                variant='mono'
-                css={{
+              <p
+                className={text({ size: 'micro', variant: 'mono' })}
+                style={{
                   color: 'var(--color, $bodySubtle)',
                 }}
               >
                 {description}
-              </Text>
+              </p>
             )}
-          </Box>
+          </div>
           {children}
-        </Box>
+        </div>
       </BlockLink>
-    </Box>
+    </li>
   )
 }
-
-const ArticleLinkOuter = styled(Link, {
-  display: 'block',
-  position: 'relative',
-  '&:hover': {
-    '--color': '#fff',
-  },
-  '&:hover:before': {
-    position: 'absolute',
-    zIndex: 0,
-    inset: '0 calc($1 * -1) calc($1 * -1) 0',
-    backgroundColor: '$accentA',
-    transform: 'skew(0.7deg, 0.7deg)',
-    content: '',
-  },
-})
-
-const ArticleLinkInner = styled('div', {
-  position: 'relative',
-})
 
 const ArticleLink: ComponentType<ComponentProps<typeof Link>> = ({
   children,
   ...props
 }) => (
-  <ArticleLinkOuter {...props}>
-    <ArticleLinkInner>{children}</ArticleLinkInner>
-  </ArticleLinkOuter>
+  <Link {...props} className={articleLinkOuter()}>
+    <div className={articleLinkInner()}>{children}</div>
+  </Link>
 )

@@ -1,15 +1,12 @@
 import { NextPage } from 'next'
 import Head from 'next/head'
 // import { Level } from 'react-accessible-headings'
-import { styled } from '../../stitches.config'
 import work from '../../data/work'
 import Layout from '../../components/layout'
-import Box from '../../components/box'
-import Text from '../../components/text'
-import Heading from '../../components/heading'
-import StandardGrid, {
-  StandardGridContent,
-} from '../../components/standard-grid'
+import text from '../../styles/text.css'
+import { heading } from '../../styles/heading.css'
+import { standardGridContent } from '../../styles/standard-grid.css'
+import { standardGrid } from '../../styles/standard-grid.css'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 import FeaturedSection from '../../components/featured-section'
 import HeadingLevel from '../../components/heading-level'
@@ -22,59 +19,59 @@ const Page: NextPage = () => (
     <Head>
       <meta name='robots' content='noindex' />
     </Head>
-    <StandardGrid>
-      <StandardGridContent>
-        <Box
-          css={{
+    <div className={standardGrid()}>
+      <div className={standardGridContent()}>
+        <div
+          style={{
             stackBlock: '$4',
           }}
         >
-          <Box
-            as='header'
-            css={{
+          <header
+            style={{
               stackBlock: '$1',
             }}
           >
             <HeadingLevel>
-              <Heading>Ash Stevens</Heading>
+              <h1 className={heading()}>Ash Stevens</h1>
             </HeadingLevel>
-            <Text as='p' variant='mono' size='micro'>
+            <p className={text({ variant: 'mono', size: 'micro' })}>
               Full stack web developer.
-            </Text>
-          </Box>
-          <Text as='p' weight='bold'>
+            </p>
+          </header>
+          <p className={text({ weight: 'bold' })}>
             I{' '}
-            <Text
-              css={{
+            <span
+              style={{
                 color: '#f81de6',
               }}
               role='img'
               aria-label='love'
             >
               &hearts;
-            </Text>{' '}
+            </span>{' '}
             making things for the web. TypeScript, React, node.js, and
             Responsive Web Design are some of my favourite tools and techniques.
-          </Text>
+          </p>
           <Contact />
-        </Box>
-      </StandardGridContent>
-    </StandardGrid>
-    <StandardGrid>
+        </div>
+      </div>
+    </div>
+    <div className={standardGrid()}>
       <Level>
-        <StandardGridContent>
-          <Box
-            css={{
+        <div className={standardGridContent()}>
+          <div
+            style={{
+              // FIXME
               stackBlock: '$medium',
             }}
           >
-            <Box
-              css={{
+            <div
+              style={{
                 stackBlock: '$medium',
               }}
             >
               <HeadingLevel>
-                <Heading>Skills</Heading>
+                <h1 className={heading()}>Skills</h1>
               </HeadingLevel>
               <Level>
                 <ArticleList columns>
@@ -158,21 +155,21 @@ const Page: NextPage = () => (
                   />
                 </ArticleList>
               </Level>
-            </Box>
-          </Box>
-        </StandardGridContent>
+            </div>
+          </div>
+        </div>
       </Level>
-    </StandardGrid>
-    <StandardGrid>
+    </div>
+    <div className={standardGrid()}>
       <Level>
-        <StandardGridContent>
-          <Box
-            css={{
+        <div className={standardGridContent()}>
+          <div
+            style={{
               stackBlock: '$medium',
             }}
           >
             <HeadingLevel>
-              <Heading>Experience</Heading>
+              <h1 className={heading()}>Experience</h1>
             </HeadingLevel>
             <Level>
               <ArticleList>
@@ -181,108 +178,108 @@ const Page: NextPage = () => (
                   headingGap={false}
                   description='2022&thinsp;-&thinsp;Present'
                 >
-                  <Box
-                    css={{
+                  <div
+                    style={{
                       stackBlock: '$small',
                     }}
                   >
-                    <Text as='p' size='milli'>
+                    <p className={text({ size: 'milli' })}>
                       Developed tooling for the support team.
-                    </Text>
-                    <Text as='p' size='milli'>
+                    </p>
+                    <p className={text({ size: 'milli' })}>
                       Provided support to developers using the Sanity platform.
-                    </Text>
-                  </Box>
+                    </p>
+                  </div>
                 </ArticleListItem>
                 <ArticleListItem
                   heading='Si digital: Web Developer'
                   headingGap={false}
                   description='2014&thinsp;-&thinsp;2022'
                 >
-                  <Box
-                    css={{
+                  <div
+                    style={{
                       stackBlock: '$small',
                     }}
                   >
-                    <Text as='p' size='milli'>
+                    <p className={text({ size: 'milli' })}>
                       Led multiple full stack projects including PWAs, React
                       Native apps, APIs (REST and GraphQL), and CMS
                       integrations.
-                    </Text>
-                    <Text as='p' size='milli'>
+                    </p>
+                    <p className={text({ size: 'milli' })}>
                       Driven the adoption of React and Jamstack frameworks such
                       as Next.js and Gatsby.
-                    </Text>
-                    <Text as='p' size='milli'>
+                    </p>
+                    <p className={text({ size: 'milli' })}>
                       Created normalisation layers for our clients&apos; APIs.
-                    </Text>
-                    <Text as='p' size='milli'>
+                    </p>
+                    <p className={text({ size: 'milli' })}>
                       Created backends in node.js.
-                    </Text>
-                    <Text as='p' size='milli'>
+                    </p>
+                    <p className={text({ size: 'milli' })}>
                       Developed design systems.
-                    </Text>
-                    <Text as='p' size='milli'>
+                    </p>
+                    <p className={text({ size: 'milli' })}>
                       Mentored teammates and written blog posts.
-                    </Text>
-                  </Box>
+                    </p>
+                  </div>
                 </ArticleListItem>
                 <ArticleListItem
                   heading='Chichester Design: Web Developer'
                   headingGap={false}
                   description='2009&thinsp;&ndash;&thinsp;2014'
                 >
-                  <Box
-                    css={{
+                  <div
+                    style={{
                       stackBlock: '$small',
                     }}
                   >
-                    <Text as='p' size='milli'>
+                    <p className={text({ size: 'milli' })}>
                       Led and completed multiple full stack web development
                       projects.
-                    </Text>
-                    <Text as='p' size='milli'>
+                    </p>
+                    <p className={text({ size: 'milli' })}>
                       Worked on a range of projects varying from simple
                       marketing websites to web apps and realtime data
                       visualisations.
-                    </Text>
-                  </Box>
+                    </p>
+                  </div>
                 </ArticleListItem>
                 <ArticleListItem
                   heading='Strawberrysoup: Freelance Copywriter'
                   headingGap={false}
                   description='2006&thinsp;&ndash;&thinsp;2007'
                 >
-                  <Text as='p' size='milli'>
+                  <p className={text({ size: 'milli' })}>
                     Wrote technical blog posts on topics such as web standards.
-                  </Text>
+                  </p>
                 </ArticleListItem>
                 <ArticleListItem
                   heading='Freelance Web Designer and Developer'
                   headingGap={false}
                   description='2005&thinsp;&ndash;&thinsp;2008'
                 >
-                  <Text as='p' size='milli'>
+                  <p className={text({ size: 'milli' })}>
                     Assorted frontend development and design work when I was a
                     teenager.
-                  </Text>
+                  </p>
                 </ArticleListItem>
               </ArticleList>
             </Level>
-          </Box>
-        </StandardGridContent>
+          </div>
+        </div>
       </Level>
-    </StandardGrid>
-    <StandardGrid>
+    </div>
+    <div className={standardGrid()}>
       <Level>
-        <StandardGridContent>
-          <Box
-            css={{
+        <div className={standardGridContent()}>
+          <div
+            style={{
               stackBlock: '$medium',
             }}
           >
             <HeadingLevel>
-              <Heading>Recent work</Heading>
+              <h1 className={heading()}>Recent work</h1>
             </HeadingLevel>
             <Level>
               <ArticleList columns>
@@ -291,20 +288,20 @@ const Page: NextPage = () => (
                 ))}
               </ArticleList>
             </Level>
-          </Box>
-        </StandardGridContent>
+          </div>
+        </div>
       </Level>
-    </StandardGrid>
-    <StandardGrid>
+    </div>
+    <div className={standardGrid()}>
       <Level>
-        <StandardGridContent>
-          <Box
-            css={{
+        <div className={standardGridContent()}>
+          <div
+            style={{
               stackBlock: '$medium',
             }}
           >
             <HeadingLevel>
-              <Heading>Education</Heading>
+              <h1 className={heading()}>Education</h1>
             </HeadingLevel>
             <Level>
               <ArticleList>
@@ -313,57 +310,59 @@ const Page: NextPage = () => (
                   headingGap={false}
                   description='2003&thinsp;&ndash;&thinsp;2009'
                 >
-                  <Text as='p' size='milli'>
+                  <p className={text({ size: 'milli' })}>
                     Nine GCSEs A&thinsp;&ndash;&thinsp;C including ICT, English,
                     Maths, Science, Graphics and Media Studies.
-                  </Text>
+                  </p>
                 </ArticleListItem>
               </ArticleList>
             </Level>
-          </Box>
-        </StandardGridContent>
+          </div>
+        </div>
       </Level>
-    </StandardGrid>
-    <StandardGrid>
-      <StandardGridContent>
+    </div>
+    <div className={standardGrid()}>
+      <div className={standardGridContent()}>
         <Contact />
-      </StandardGridContent>
-    </StandardGrid>
+      </div>
+    </div>
   </Layout>
 )
 
 export default Page
 
-const SkillList = styled('ul', Text, {
-  marginInlineStart: '$2',
-  listStyle: 'square',
-  color: '$bodySubtle',
-  defaultVariants: {
-    size: 'micro',
-    variant: 'mono',
-  },
-})
+// FIXME
+const SkillList = 'ul'
+// const SkillList = styled('ul', Text, {
+//   marginInlineStart: '$2',
+//   listStyle: 'square',
+//   color: '$bodySubtle',
+//   defaultVariants: {
+//     size: 'micro',
+//     variant: 'mono',
+//   },
+// })
 
 const Contact: React.FC = () => (
-  <Box
-    css={{
+  <div
+    style={{
       marginInline: 'calc($medium * -1)',
     }}
   >
     <FeaturedSection>
-      <Box
-        css={{
+      <div
+        style={{
           padding: '$medium',
         }}
       >
         <ContactList>
           <ContactListItem>
-            <Text weight='bold'>Email:</Text>
+            <span className={text({ weight: 'bold' })}>Email:</span>
             &nbsp;
             <a href='mailto:ashley@juice49.com'>ashley@juice49.com</a>
           </ContactListItem>
           <ContactListItem>
-            <Text weight='bold'>GitHub:</Text>
+            <span className={text({ weight: 'bold' })}>GitHub:</span>
             &nbsp;
             <a
               href='https://github.com/juice49'
@@ -374,7 +373,7 @@ const Contact: React.FC = () => (
             </a>
           </ContactListItem>
           <ContactListItem>
-            <Text weight='bold'>Twitter:</Text>
+            <span className={text({ weight: 'bold' })}>Twitter:</span>
             &nbsp;
             <a
               href='https://twitter.com/juice49'
@@ -385,32 +384,36 @@ const Contact: React.FC = () => (
             </a>
           </ContactListItem>
         </ContactList>
-      </Box>
+      </div>
     </FeaturedSection>
-  </Box>
+  </div>
 )
 
-const ContactList = styled('ul', {
-  display: 'grid',
-  gap: '$1',
-  listStyle: 'none',
-  color: '#fff',
-  '@i2': {
-    gridTemplateColumns: 'repeat(3, auto)',
-  },
-})
+// FIXME
+const ContactList = 'ul'
+// const ContactList = styled('ul', {
+//   display: 'grid',
+//   gap: '$1',
+//   listStyle: 'none',
+//   color: '#fff',
+//   '@i2': {
+//     gridTemplateColumns: 'repeat(3, auto)',
+//   },
+// })
 
-const ContactListItem = styled('li', Text, {
-  '& a': {
-    display: 'inline-block',
-    color: '$accentB',
-    borderBlockEnd: '1px dashed currentColor',
-    '&:hover, &:focus': {
-      backgroundColor: '$accentB',
-      color: '$accentA',
-    },
-  },
-  defaultVariants: {
-    size: 'milli',
-  },
-})
+// FIXME
+const ContactListItem = 'li'
+// const ContactListItem = styled('li', Text, {
+//   '& a': {
+//     display: 'inline-block',
+//     color: '$accentB',
+//     borderBlockEnd: '1px dashed currentColor',
+//     '&:hover, &:focus': {
+//       backgroundColor: '$accentB',
+//       color: '$accentA',
+//     },
+//   },
+//   defaultVariants: {
+//     size: 'milli',
+//   },
+// })

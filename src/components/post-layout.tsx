@@ -2,12 +2,10 @@ import Head from 'next/head'
 import React, { FC, PropsWithChildren } from 'react'
 // import { Level } from 'react-accessible-headings'
 import { Toc } from '@stefanprobst/rehype-extract-toc'
-import { styled } from '../stitches.config'
 import { PostMeta } from '../types/post'
 import Layout from './layout'
-import StandardGrid, { StandardGridContent } from './standard-grid'
-import Text from './text'
-import Box from './box'
+import { standardGrid, standardGridContent } from '../styles/standard-grid.css'
+import box from '../styles/box.css'
 import PostHeader from './post-header'
 import Tag from './tag'
 import OgImageMeta from './og-image-meta'
@@ -36,9 +34,9 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
           <meta key='og:title' property='og:title' content={title} />
         </Head>
         <OgImageMeta title={meta.title} date={meta.date} />
-        <Box
-          mw='1'
-          css={{
+        <div
+          className={box({ mw: 1 })}
+          style={{
             marginInline: 'auto',
             paddingInline: '$medium',
           }}
@@ -46,31 +44,31 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
           <PostHeader date={meta.date} column={meta.column}>
             {meta.title}
           </PostHeader>
-        </Box>
-        <Box>
-          <StandardGrid>
-            <StandardGridContent>
-              <Box
-                css={{
+        </div>
+        <div>
+          <div className={standardGrid()}>
+            <div className={standardGridContent()}>
+              <div
+                style={{
                   stackBlock: '$5',
                 }}
               >
                 {tableOfContents.length !== 0 && (
-                  <Box
-                    css={{
+                  <div
+                    style={{
                       '@i2': {
                         marginInline: 'calc($medium * -1)',
                       },
                     }}
                   >
                     <TableOfContents>{tableOfContents}</TableOfContents>
-                  </Box>
+                  </div>
                 )}
                 {children}
-              </Box>
-            </StandardGridContent>
-          </StandardGrid>
-        </Box>
+              </div>
+            <div className={standardGridContent()}>
+          </div>
+        </div>
         <Tags>
           {(meta.tags ?? []).map(tag => (
             <Tag key={tag}>{tag}</Tag>
@@ -83,7 +81,9 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
 
 export default PostLayout
 
-const Tags = styled('div', {
-  textAlign: 'center',
-  stackInline: '$small',
-})
+// FIXME
+const Tags = 'div'
+// const Tags = styled('div', {
+//   textAlign: 'center',
+//   stackInline: '$small',
+// })

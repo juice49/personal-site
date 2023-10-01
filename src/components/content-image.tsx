@@ -1,36 +1,29 @@
 import React from 'react'
 import Image, { ImageProps } from 'next/image'
-import { styled } from '../stitches.config'
-import Box from '../components/box'
-import Note from '../components/note'
+import { note } from '../styles/note.css'
+import { imageContainer } from '../styles/content-image.css'
 
 type Props = ImageProps & {
   caption?: React.ReactNode
 }
 
 const ContentImage: React.FC<Props> = ({ caption, ...props }) => (
-  <Box
-    as='figure'
-    css={{
+  <figure
+    style={{
       stackBlock: '$small',
     }}
   >
-    <Box
-      css={{
+    <div
+      style={{
         marginInline: 'calc($medium * -1)',
       }}
     >
-      <ImageContainer>
+      <div className={imageContainer()}>
         <Image {...props} />
-      </ImageContainer>
-    </Box>
-    {caption && <Note as='figcaption'>{caption}</Note>}
-  </Box>
+      </div>
+    </div>
+    {caption && <figcaption className={note()}>{caption}</figcaption>}
+  </figure>
 )
 
 export default ContentImage
-
-const ImageContainer = styled('div', {
-  display: 'flex',
-  justifyContent: 'center',
-})

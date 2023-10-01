@@ -1,4 +1,4 @@
-import Note from '../../components/note'
+import { note } from '../../styles/note.css'
 
 export const meta = {
   title: 'Component-level static props in Next.js',
@@ -36,7 +36,9 @@ To help simplify pre-rendering, Next.js requires that dynamic data is prepared a
                                  └─────────────────┘
 ```
 
-<Note as='p'>The flow of props in a statically rendered Next.js page.</Note>
+<p className={note()}>
+  The flow of props in a statically rendered Next.js page.
+</p>
 
 This pattern works great, but wouldn't it be neat if we could add static props from individual components? Think about static queries in Gatsby. They can be dropped into the component tree at any level to fetch data. The page itself doesn't need to be aware of all the data required by the components within.
 
@@ -99,7 +101,12 @@ During this extra render, the endpoints of all nested `<CMS />` components are [
                     └─────────────────────────────────────────────────────────────┘
 ```
 
-<Note as='p'>Gathering static props before pre-render. Each CMS component pushes its assigned endpoint to a global array. Once the required endpoints have been lifted up to the getStaticProps function, they are fetched in parallel. The fetched data is passed into the page props when Next.js pre-renders the page.</Note>
+<p className={note()}>
+  Gathering static props before pre-render. Each CMS component pushes its
+  assigned endpoint to a global array. Once the required endpoints have been
+  lifted up to the getStaticProps function, they are fetched in parallel. The
+  fetched data is passed into the page props when Next.js pre-renders the page.
+</p>
 
 The fetched data is [added to an object](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/lib/get-cms-static-props.js#L32), where its key is the requested endpoint. This object is [passed into the page props](https://github.com/shuding/next-cms/blob/f39cddc58b6b400d9dfa5fe14714c52b72e5bf7c/pages/index.js#L25). Because the key is the requested endpoint, it can be mapped back to the relevant `<CMS />` component when the page is rendered.
 
@@ -140,7 +147,9 @@ The `withCMSPage` _higher order component_ wraps the page in [a React Context](h
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ```
 
-<Note as='p'>The fetched data is injected into the CMS components using React Context.</Note>
+<p className={note()}>
+  The fetched data is injected into the CMS components using React Context.
+</p>
 
 ### 3. The CMS component
 

@@ -9,24 +9,25 @@ import misc from '../data/misc'
 import work from '../data/work'
 import * as postApi from '../lib/post-api'
 import Layout from '../components/layout'
-import Box from '../components/box'
-import Text from '../components/text'
-import Heading from '../components/heading'
+import box from '../styles/box.css'
+import text from '../styles/text.css'
+import { heading } from '../styles/heading.css'
 import Image from '../components/image'
-import Button from '../components/button'
-import Note from '../components/note'
+import button from '../styles/button.css'
+import { note } from '../styles/note.css'
 import FeaturedSection, {
   FeaturedSectionHeading,
 } from '../components/featured-section'
-import Articles, { Article } from '../components/articles'
+import { Article } from '../components/articles'
+import { articles } from '../styles/articles.css'
 import ArticleList, { ArticleListItem } from '../components/article-list'
 import HeadingLevel from '../components/heading-level'
-
-import StandardGrid, {
-  StandardGridContent,
-  StandardGridContentSlightlyWide,
-  StandardGridMeta,
-} from '../components/standard-grid'
+import {
+  standardGrid,
+  standardGridContent,
+  standardGridContentSlightlyWide,
+  standardGridMeta,
+} from '../styles/standard-grid.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -52,34 +53,33 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
         `}
         />
       </Head>
-      <Box>
-        <Box
-          css={{
+      <div>
+        <div
+          style={{
             stackBlock: '10vmin',
           }}
         >
           <div>
-            <Box
-              mw='1'
-              css={{
+            <div
+              className={box({ mw: 1 })}
+              style={{
                 position: 'relative',
                 zIndex: 1,
                 marginInline: 'auto',
                 paddingInline: '$medium',
               }}
             >
-              <Heading
-                as='p'
-                variant='alpha'
-                css={{
+              <p
+                className={heading({ variant: 'alpha' })}
+                style={{
                   marginBlockEnd: '-0.42em',
                 }}
               >
                 The Web and Stuff.
-              </Heading>
-            </Box>
-            <StandardGrid>
-              <StandardGridContentSlightlyWide>
+              </p>
+            </div>
+            <div className={standardGrid()}>
+              <div className={standardGridContentSlightlyWide()}>
                 <Image
                   src='/img/me@1000x1494.jpg'
                   previewSrc={
@@ -102,64 +102,61 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
                     '--height': 4032,
                   }}
                 />
-              </StandardGridContentSlightlyWide>
-            </StandardGrid>
+              </div>
+            </div>
           </div>
-          <StandardGrid>
-            <StandardGridContent>
-              <Box
-                css={{
+          <div className={standardGrid()}>
+            <div className={standardGridContent()}>
+              <div
+                style={{
                   stackBlock: '$medium',
                 }}
               >
-                <Text as='p' weight='bold'>
+                <p className={text({ weight: 'bold' })}>
                   I like to make things&mdash;usually with web technologies, and
                   usually <em>for</em> the web.
-                </Text>
+                </p>
                 <p>
                   At the moment I&apos;m most interested in jamstack and design
                   systems. I work with things like React, Next.js, node.js, and
                   GraphQL. Although there are parts of the stack I&apos;m very
                   focused on, I am most passionate about <em>making stuff</em>.
                 </p>
-              </Box>
-            </StandardGridContent>
-            <StandardGridMeta position={2}>
-              <Note as='p'>Blah blah blah I make websites.</Note>
-            </StandardGridMeta>
-          </StandardGrid>
-        </Box>
-      </Box>
-      <Box
-        mw='1'
-        as='section'
-        css={{
+              </div>
+            </div>
+            <div className={standardGridMeta({ position: 2 })}>
+              <p className={note()}>Blah blah blah I make websites.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section
+        className={box({ mw: 1, center: true })}
+        style={{
           paddingInline: '$medium',
         }}
-        center
       >
         <FeaturedSection>
-          <Box
-            css={{
+          <div
+            style={{
               stackBlock: '$4',
             }}
           >
-            <Box
-              as='header'
-              css={{
+            <header
+              style={{
                 paddingInline: '$4',
                 paddingBlockStart: '$4',
               }}
             >
               <FeaturedSectionHeading>Blog posts</FeaturedSectionHeading>
-            </Box>
+            </header>
             <Level>
-              <Box
-                css={{
+              <div
+                style={{
                   paddingInline: '$4',
                 }}
               >
-                <Articles>
+                <div className={articles()}>
                   {posts.map(post => (
                     <Article
                       key={post.slug}
@@ -172,33 +169,33 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
                       }}
                     />
                   ))}
-                </Articles>
-              </Box>
-              <Box
-                css={{
+                </div>
+              </div>
+              <div
+                style={{
                   paddingInline: '$4',
                   paddingBlockEnd: '$4',
                 }}
               >
-                <Button as={Link} variant='large' href='/posts'>
+                <Link className={button({ variant: 'large' })} href='/posts'>
                   View more posts
-                </Button>
-              </Box>
+                </Link>
+              </div>
             </Level>
-          </Box>
+          </div>
         </FeaturedSection>
-      </Box>
-      <Box
-        mw='1'
-        css={{
+      </section>
+      <div
+        className={box({ mw: 1 })}
+        style={{
           marginInline: 'auto',
           paddingInline: '$medium',
         }}
       >
-        <Articles>
+        <div className={articles()}>
           <ListBox>
             <HeadingLevel>
-              <Heading>Projects</Heading>
+              <h1 className={heading()}>Projects</h1>
             </HeadingLevel>
             <Level>
               <ArticleList>
@@ -221,7 +218,7 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
           </ListBox>
           <ListBox>
             <HeadingLevel>
-              <Heading>Misc</Heading>
+              <h1 className={heading()}>Misc</h1>
             </HeadingLevel>
             <ArticleList>
               {misc.map(misc => (
@@ -242,7 +239,7 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
           </ListBox>
           <ListBox>
             <HeadingLevel>
-              <Heading>Recent work</Heading>
+              <h1 className={heading()}>Recent work</h1>
             </HeadingLevel>
             <ArticleList>
               {work.map((item, index) => (
@@ -250,8 +247,8 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
               ))}
             </ArticleList>
           </ListBox>
-        </Articles>
-      </Box>
+        </div>
+      </div>
     </Level>
   </Layout>
 )
@@ -259,13 +256,13 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
 export default Page
 
 const ListBox: FC<PropsWithChildren> = ({ children }) => (
-  <Box
-    css={{
+  <div
+    style={{
       stackBlock: '$medium',
     }}
   >
     {children}
-  </Box>
+  </div>
 )
 
 // FIXME-APP-DIR

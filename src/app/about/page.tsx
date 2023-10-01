@@ -2,12 +2,11 @@ import { NextPage } from 'next'
 // import { Level } from 'react-accessible-headings'
 import work from '../../data/work'
 import Layout from '../../components/layout'
-import Box from '../../components/box'
-import Text from '../../components/text'
-import Heading from '../../components/heading'
-import StandardGrid, {
-  StandardGridContent,
-} from '../../components/standard-grid'
+import box from '../../styles/box.css'
+import text from '../../styles/text.css'
+import { heading } from '../../styles/heading.css'
+import { standardGridContent } from '../../styles/standard-grid.css'
+import { standardGrid } from '../../styles/standard-grid.css'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 import HeadingLevel from '../../components/heading-level'
 
@@ -16,54 +15,54 @@ const Level = ({ children }) => <>{children}</>
 
 const Page: NextPage = () => (
   <Layout as='main'>
-    <Box
-      css={{
+    <div
+      style={{
         paddingInline: '$medium',
       }}
     >
       <HeadingLevel>
-        <Heading variant='alpha'>Hello, I&apos;m Ash.</Heading>
+        <h1 className={heading({ variant: 'alpha' })}>Hello, I&apos;m Ash.</h1>
       </HeadingLevel>
-    </Box>
-    <StandardGrid>
-      <StandardGridContent>
-        <Box
-          css={{
+    </div>
+    <div className={standardGrid()}>
+      <div className={standardGridContent()}>
+        <div
+          style={{
             stackBlock: '$medium',
           }}
         >
-          <Text as='p' weight='bold'>
+          <p className={text({ weight: 'bold' })}>
             I like to make things&mdash;usually with web technologies, and
             usually <em>for</em> the web.
-          </Text>
+          </p>
           <p>
             At the moment I&apos;m most interested in jamstack and design
             systems. I work with things like React, Next.js, node.js, and
             GraphQL. Although there are parts of the stack I&apos;m very focused
             on, I am most passionate about <em>making stuff</em>.
           </p>
-        </Box>
-      </StandardGridContent>
-    </StandardGrid>
+        </div>
+      </div>
+    </div>
     <Level>
-      <StandardGrid>
-        <StandardGridContent>
-          <Box
-            css={{
+      <div className={standardGrid()}>
+        <div className={standardGridContent()}>
+          <div
+            style={{
               stackBlock: '$medium',
             }}
           >
             <HeadingLevel>
-              <Heading>Recent work</Heading>
+              <h1 className={heading()}>Recent work</h1>
             </HeadingLevel>
             <ArticleList columns>
               {work.map((work, index) => (
                 <ArticleListItem key={index} description={work.description} />
               ))}
             </ArticleList>
-          </Box>
-        </StandardGridContent>
-      </StandardGrid>
+          </div>
+        </div>
+      </div>
     </Level>
   </Layout>
 )

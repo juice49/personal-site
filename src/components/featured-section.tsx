@@ -1,44 +1,28 @@
 import React, { FC, PropsWithChildren } from 'react'
-import { styled } from '../stitches.config'
-import Box from './box'
-import Text from './text'
+import text from '../styles/text.css'
 import HeadingLevel from './heading-level'
+import { featuredSectionBox, inner } from '../styles/featured-section.css'
 
 const FeaturedSection: FC<PropsWithChildren> = ({ children }) => (
-  <FeaturedSectionBox>
-    <Inner>{children}</Inner>
-  </FeaturedSectionBox>
+  <div className={featuredSectionBox()}>
+    <div className={inner()}>{children}</div>
+  </div>
 )
 
 export default FeaturedSection
 
-const FeaturedSectionBox = styled('div', {
-  position: 'relative',
-  '&::before': {
-    content: '',
-    position: 'absolute',
-    inset: 0,
-    transform: 'skew(0.7deg, 0.7deg)',
-    backgroundColor: '#1e58fa',
-  },
-})
-
-const Inner = styled('div', {
-  position: 'relative',
-})
-
 export const FeaturedSectionHeading: FC<PropsWithChildren> = ({ children }) => (
-  <Box
-    css={{
+  <div
+    style={{
       paddingBlockEnd: '$small',
       color: '$accentB',
       borderBlockEnd: '1px dashed currentColor',
     }}
   >
     <HeadingLevel>
-      <Text variant='mono' size='milli'>
+      <span className={text({ variant: 'mono', size: 'milli' })}>
         {children}
-      </Text>
+      </span>
     </HeadingLevel>
-  </Box>
+  </div>
 )

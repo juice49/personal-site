@@ -1,10 +1,10 @@
+// TODO: Unused
 import React from 'react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { Analytics } from '@vercel/analytics/react'
 import { MDXProvider } from '@mdx-js/react'
 import { PostMeta } from '../types/post'
-import Box from '../components/box'
 import OgImageMeta from '../components/og-image-meta'
 import PostLayout from '../components/post-layout'
 import ContentImage from '../components/content-image'
@@ -19,6 +19,7 @@ const App: React.FC<
 > = ({ Component, pageProps }) => {
   const title = 'Ash - full stack web developer'
 
+  // FIXME
   return (
     <MDXProvider
       components={{
@@ -31,13 +32,13 @@ const App: React.FC<
           }
 
           return (
-            <Box
-              css={{
+            <div
+              style={{
                 marginInline: 'calc($medium * -1)',
               }}
             >
               <Code>{children}</Code>
-            </Box>
+            </div>
           )
         },
       }}

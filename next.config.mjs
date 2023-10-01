@@ -8,7 +8,10 @@ import rehypeTocExport from '@stefanprobst/rehype-extract-toc/mdx'
 import { getHighlighter, BUNDLED_LANGUAGES } from 'shiki'
 import { parse } from 'acorn'
 import { h } from 'hastscript'
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
 import stackWrapper from './src/lib/stack-wrapper.mjs'
+
+const withVanillaExtract = createVanillaExtractPlugin()
 
 const withMdx = mdx({
   options: {
@@ -85,55 +88,57 @@ function createNextStaticProps(map) {
   }
 }
 
-export default withMdx({
-  pageExtensions: ['ts', 'tsx', 'mdx'],
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-      },
-      {
-        protocol: 'https',
-        hostname: '*.mzstatic.com',
-      },
-    ],
-    formats: ['image/avif', 'image/webp'],
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/feed',
-        destination: '/feed.json',
-      },
-    ]
-  },
-  async headers() {
-    return [
-      {
-        source: '/feed',
-        headers: [
-          {
-            key: 'Content-Type',
-            value: 'application/feed+json; charset=utf-8',
-          },
-        ],
-      },
-    ]
-  },
-  webpack: (config, options) =>
-    merge(config, {
-      async entry() {
-        if (!options.isServer || options.nextRuntime !== 'nodejs') {
-          return config.entry
-        }
+export default withVanillaExtract(
+  withMdx({
+    pageExtensions: ['ts', 'tsx', 'mdx'],
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'https',
+          hostname: 'cdn.sanity.io',
+        },
+        {
+          protocol: 'https',
+          hostname: '*.mzstatic.com',
+        },
+      ],
+      formats: ['image/avif', 'image/webp'],
+    },
+    async rewrites() {
+      return [
+        {
+          source: '/feed',
+          destination: '/feed.json',
+        },
+      ]
+    },
+    async headers() {
+      return [
+        {
+          source: '/feed',
+          headers: [
+            {
+              key: 'Content-Type',
+              value: 'application/feed+json; charset=utf-8',
+            },
+          ],
+        },
+      ]
+    },
+    webpack: (config, options) =>
+      merge(config, {
+        async entry() {
+          if (!options.isServer || options.nextRuntime !== 'nodejs') {
+            return config.entry
+          }
 
-        const entry = await config.entry()
+          const entry = await config.entry()
 
-        return {
-          ...entry,
-          'render-json-feed': './src/scripts/render-json-feed.tsx',
-        }
-      },
-    }),
-})
+          return {
+            ...entry,
+            'render-json-feed': './src/scripts/render-json-feed.tsx',
+          }
+        },
+      }),
+  }),
+)

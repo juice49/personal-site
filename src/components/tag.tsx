@@ -1,18 +1,19 @@
 import React, { FC, PropsWithChildren } from 'react'
-import { styled } from '../stitches.config'
-import Text from './text'
+import text from '../styles/text.css'
 
 const Tag: FC<PropsWithChildren> = ({ children }) => (
-  <Text as={TagBox} variant='mono' size='micro'>
+  <TagBox className={text({ variant: 'mono', size: 'micro' })}>
     #{children}
-  </Text>
+  </TagBox>
 )
 
 export default Tag
 
-const TagBox = styled('span', {
-  display: 'inline-block',
-  padding: '0.25rem',
-  backgroundColor: '#000',
-  color: '#fff',
-})
+// FIXME
+const TagBox = 'span'
+// const TagBox = styled('span', {
+//   display: 'inline-block',
+//   padding: '0.25rem',
+//   backgroundColor: '#000',
+//   color: '#fff',
+// })

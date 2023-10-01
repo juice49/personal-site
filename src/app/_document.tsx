@@ -1,15 +1,11 @@
+// TODO: FIle is unused.
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
-import { getCssText } from '../stitches.config'
 
 export default class Document extends NextDocument {
   render() {
-    const css = getCssText()
-
     return (
       <Html lang='en'>
-        <Head>
-          <style id='stitches' dangerouslySetInnerHTML={{ __html: css }} />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

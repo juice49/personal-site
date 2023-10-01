@@ -3,12 +3,11 @@
 import React from 'react'
 import Image from 'next/image'
 import { format } from 'date-fns'
-import { styled } from '../stitches.config'
 import Jam from '../types/jam'
-import Box from './box'
-import Text from './text'
+import text from '../styles/text.css'
 import ExternalLinkIcon from './external-link-icon'
 import HeadingLevel from './heading-level'
+import { container, actionList, albumArtwork } from '../styles/track.css'
 
 interface Props {
   jam: Jam
@@ -16,16 +15,15 @@ interface Props {
 
 const Track: React.FC<Props> = ({ jam }) => {
   return (
-    <Container>
-      <Box
+    <article className={container()}>
+      <div
         style={{
           color: jam.track.album.color,
-        }}
-        css={{
           gridArea: 'image',
         }}
       >
-        <AlbumArtwork
+        <Image
+          className={albumArtwork()}
           src={getAppleMusicImageUrl(jam.track.album.appleMusicImageUrl, 160)}
           alt={`The album art for "${
             jam.track.album.name
@@ -33,100 +31,62 @@ const Track: React.FC<Props> = ({ jam }) => {
           width={140}
           height={140}
         />
-      </Box>
-      <Box
-        css={{
+      </div>
+      <div
+        style={{
           gridArea: 'info',
           stackBlock: '$small',
         }}
       >
         <div>
           <HeadingLevel>
-            <Text size='milli' weight='bold'>
+            <span className={text({ size: 'milli', weight: 'bold' })}>
               {jam.track.name}
-            </Text>
+            </span>
           </HeadingLevel>
-          <Text as='p' size='micro' variant='mono'>
+          <p className={text({ size: 'micro', variant: 'mono' })}>
             {jam.track.artists.map(({ name }) => name).join(', ')}
-          </Text>
+          </p>
         </div>
-        <Text
-          as='time'
+        <time
           dateTime={jam.date}
-          size='micro'
-          variant='mono'
-          css={{
+          className={text({ size: 'micro', variant: 'mono' })}
+          style={{
             display: 'block',
             color: 'var(--color, $bodySubtle)',
           }}
         >
           {format(new Date(jam.date), 'd MMMM yyyy')}
-        </Text>
-        <ActionList>
+        </time>
+        <ul className={actionList()}>
           {jam.track.appleMusicUrl && (
-            <Text as='li' size='micro' variant='mono'>
+            <li className={text({ size: 'micro', variant: 'mono' })}>
               <a href={jam.track.appleMusicUrl}>
                 Apple Music <ExternalLinkIcon />
               </a>
-            </Text>
+            </li>
           )}
           {jam.track.spotifyUrl && (
-            <Text as='li' size='micro' variant='mono'>
+            <li className={text({ size: 'micro', variant: 'mono' })}>
               <a href={jam.track.spotifyUrl}>
                 Spotify <ExternalLinkIcon />
               </a>
-            </Text>
+            </li>
           )}
           {jam.track.youtubeUrl && (
-            <Text as='li' size='micro' variant='mono'>
+            <li className={text({ size: 'micro', variant: 'mono' })}>
               <a href={jam.track.youtubeUrl}>
                 YouTube <ExternalLinkIcon />
               </a>
-            </Text>
+            </li>
           )}
-        </ActionList>
-      </Box>
-    </Container>
+        </ul>
+      </div>
+    </article>
   )
 }
 
 export default Track
-
-const Container = styled('article', {
-  display: 'grid',
-  gridTemplateColumns: 'minmax(3rem, 0.18fr) 1fr',
-  gridTemplateAreas: `'image info'`,
-  gap: '$2',
-})
-
-const ActionList = styled('ul', {
-  listStyle: 'none',
-  '@belowI1': {
-    stackBlock: '0.25rem',
-  },
-  '@i1': {
-    display: 'flex',
-    flexWrap: 'wrap',
-    stackInline: '$2',
-  },
-  'a:hover, a:focus': {
-    backgroundColor: '$accentA',
-    color: '#fff',
-  },
-})
-
-const AlbumArtwork = styled(Image, {
-  display: 'block',
-  width: '100%',
-  height: 'auto',
-  backgroundColor: 'currentColor',
-  clipPath: `polygon(
-    0 0,
-    calc(100% - 4px) 4px,
-    100% 100%,
-    4px calc(100% - 4px)
-  )`,
-})
 
 type AppleMusicImageDimensions =
   | 30

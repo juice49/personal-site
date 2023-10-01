@@ -1,17 +1,16 @@
 import React from 'react'
 import { Toc } from '@stefanprobst/rehype-extract-toc'
-import { styled } from '../stitches.config'
 import HeadingLevel from './heading-level'
-import Box from './box'
-import Text from './text'
+import box from '../styles/box.css'
+import text from '../styles/text.css'
 
 interface Props {
   children: Toc
 }
 
 const TableOfContents: React.FC<Props> = ({ children }) => (
-  <Box
-    css={{
+  <div
+    style={{
       stackBlock: '$small',
       '@i2': {
         padding: '$medium',
@@ -20,12 +19,12 @@ const TableOfContents: React.FC<Props> = ({ children }) => (
     }}
   >
     <HeadingLevel>
-      <Text size='milli' weight='bold'>
+      <span className={text({ size: 'milli', weight: 'bold' })}>
         Table of contents
-      </Text>
+      </span>
     </HeadingLevel>
     <ListContainer>{children}</ListContainer>
-  </Box>
+  </div>
 )
 
 export default TableOfContents
@@ -41,20 +40,24 @@ const ListContainer: React.FC<Props> = ({ children }) => (
   </List>
 )
 
-const List = styled('ol', {
-  $$gap: '0.5em',
-  marginInlineStart: '$medium',
-  listStyle: 'square',
-  stackBlock: '$$gap',
-  ol: {
-    listStyle: 'circle',
-  },
-})
+// FIXME
+const List = 'ol'
+// const List = styled('ol', {
+//   $$gap: '0.5em',
+//   marginInlineStart: '$medium',
+//   listStyle: 'square',
+//   stackBlock: '$$gap',
+//   ol: {
+//     listStyle: 'circle',
+//   },
+// })
 
-const Item = styled(Text, {
-  stackBlock: '$$gap',
-  defaultVariants: {
-    size: 'micro',
-    variant: 'mono',
-  },
-})
+// FIXME
+const Item = 'span'
+// const Item = styled(Text, {
+//   stackBlock: '$$gap',
+//   defaultVariants: {
+//     size: 'micro',
+//     variant: 'mono',
+//   },
+// })

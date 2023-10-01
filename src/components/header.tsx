@@ -2,22 +2,25 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { styled } from '../stitches.config'
-import Text from './text'
+import text from '../styles/text.css'
 import Navigation, { NavigationItem, NavigationLink } from './navigation'
 
-const breakpoints = ['36em']
+import {
+  headerContainer,
+  navigationContainer,
+  logoLink,
+} from '../styles/header.css'
 
 interface Props {
   isLogoH1?: boolean
 }
 
 const Header: React.FC<Props> = ({ isLogoH1 }) => (
-  <Container>
-    <LogoLink href='/'>
+  <div className={headerContainer()}>
+    <Link className={logoLink()} href='/'>
       <Logo as={isLogoH1 ? 'h1' : 'p'} />
-    </LogoLink>
-    <NavigationContainer>
+    </Link>
+    <div className={navigationContainer()}>
       <Navigation>
         <NavigationItem>
           <NavigationLink href='/posts'>Posts</NavigationLink>
@@ -32,40 +35,18 @@ const Header: React.FC<Props> = ({ isLogoH1 }) => (
           <NavigationLink href='/about'>About</NavigationLink>
         </NavigationItem>
       </Navigation>
-    </NavigationContainer>
-  </Container>
+    </div>
+  </div>
 )
 
 export default Header
-
-const Container = styled('header', {
-  display: 'flex',
-  padding: '$3',
-  [`@media (min-width: ${breakpoints[0]})`]: {
-    alignItems: 'center',
-  },
-})
-
-const NavigationContainer = styled('div', {
-  marginInlineStart: 'auto',
-})
 
 interface LogoProps {
   as?: string | React.ComponentType<any>
 }
 
 const Logo: React.FC<LogoProps> = props => (
-  <Text weight='bold' {...props}>
+  <span className={text({ weight: 'bold' })} {...props}>
     Ash
-  </Text>
+  </span>
 )
-
-const LogoLink = styled(Link, {
-  textDecoration: 'none',
-  /* color: var(--accent-color); */
-  color: '$body',
-  '&:hover, &:focus': {
-    color: '$accentA',
-    backgroundColor: 'initial',
-  },
-})

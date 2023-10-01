@@ -1,4 +1,4 @@
-import Button from '../../components/button'
+import button from '../../styles/button.css'
 
 export const meta = {
   title: 'Connect 4',
@@ -9,12 +9,11 @@ teammate and I were looking for a good example project for learning about unit
 testing. The initial idea seemed simple, but then we wondered _how exactly would
 you write a function to see if a Connect 4 game has been won_?
 
-<Button
-  as='a'
-  variant='large'
+<a
+  className={button({ variant: 'large' })}
   href='https://github.com/juice49/connect-4'
   target='_blank'
   rel='noopener'
 >
   Connect 4 on GitHub
-</Button>
+</a>

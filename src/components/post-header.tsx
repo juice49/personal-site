@@ -1,11 +1,10 @@
 import React, { FC, PropsWithChildren } from 'react'
 import { format } from 'date-fns'
-import { styled } from '../stitches.config'
-import Box from './box'
 import Tag from './tag'
-import Text from './text'
+import text from '../styles/text.css'
 import FeaturedSection from './featured-section'
 import HeadingLevel from './heading-level'
+import { container, postHeading } from '../styles/post-header.css'
 
 interface Props {
   date?: string
@@ -17,9 +16,9 @@ const PostHeader: FC<PropsWithChildren<Props>> = ({
   date,
   column,
 }) => (
-  <Container>
-    <Box
-      css={{
+  <header className={container()}>
+    <div
+      style={{
         stackBlock: '$medium',
       }}
     >
@@ -29,22 +28,18 @@ const PostHeader: FC<PropsWithChildren<Props>> = ({
         </div>
       )}
       <HeadingLevel>
-        <Heading>{children}</Heading>
+        <h1 className={postHeading()}>{children}</h1>
       </HeadingLevel>
       {column && (
         <div>
           <Tag>{column}</Tag>
         </div>
       )}
-    </Box>
-  </Container>
+    </div>
+  </header>
 )
 
 export default PostHeader
-
-const Container = styled('header', {
-  textAlign: 'center',
-})
 
 interface DateProps {
   dateTime: string
@@ -54,25 +49,14 @@ const Time: FC<PropsWithChildren<DateProps>> = ({ dateTime }) => {
   const date = new Date(dateTime)
 
   return (
-    <Text
-      as='time'
+    <time
+      className={text({ variant: 'mono', size: 'micro' })}
       dateTime={dateTime}
-      variant='mono'
-      size='micro'
-      css={{
+      style={{
         color: '$bodySubtle',
       }}
     >
       {format(date, 'd MMMM yyyy')}
-    </Text>
+    </time>
   )
 }
-
-const Heading = styled('h1', {
-  fontFamily: 'Zangezi Sans',
-  fontWeight: 700,
-  color: '$accentA',
-  lineHeight: 1.06,
-  fontSize: 'clamp(2.6rem, 7.2vw, 5.6rem)',
-  textAlign: 'center',
-})

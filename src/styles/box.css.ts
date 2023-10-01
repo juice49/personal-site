@@ -1,6 +1,6 @@
-import { styled } from '../stitches.config'
+import { recipe } from '@vanilla-extract/recipes'
 
-const Box = styled('div', {
+const box = recipe({
   variants: {
     center: {
       true: {
@@ -18,4 +18,4 @@ const Box = styled('div', {
   },
 })
 
-export default Box
+export default box

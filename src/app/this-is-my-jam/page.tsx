@@ -2,18 +2,17 @@ import { NextPage, GetStaticProps } from 'next'
 import Head from 'next/head'
 import groq from 'groq'
 // import { Level } from 'react-accessible-headings'
-import { styled } from '../../stitches.config'
 import Jam from '../../types/jam'
 import Layout from '../../components/layout'
 import TrackComponent from '../../components/track'
-import Heading from '../../components/heading'
-import Box from '../../components/box'
+import { heading } from '../../styles/heading.css'
 import HeadingLevel from '../../components/heading-level'
+import { list } from '../../styles/this-is-my-jam.css'
 import sanity from '../../lib/sanity'
-
-import StandardGrid, {
-  StandardGridContent,
-} from '../../components/standard-grid'
+import {
+  standardGrid,
+  standardGridContent,
+} from '../../styles/standard-grid.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -43,45 +42,45 @@ const Page: NextPage<Props> = ({ jamsByYear = [] }) => {
       <Head>
         <title>This is My Jam - Ash</title>
       </Head>
-      <Box
-        css={{
+      <div
+        style={{
           paddingInline: '$medium',
         }}
       >
         <HeadingLevel>
-          <Heading variant='alpha'>This is My Jam</Heading>
+          <h1 className={heading({ variant: 'alpha' })}>This is My Jam</h1>
         </HeadingLevel>
-      </Box>
+      </div>
       <Level>
-        <StandardGrid>
-          <StandardGridContent>
-            <Box
-              css={{
+        <div className={standardGrid()}>
+          <div className={standardGridContent()}>
+            <div
+              style={{
                 stackBlock: '$5',
               }}
             >
               {jamsByYear.map(([year, jams]) => (
-                <Box
+                <div
                   key={year}
-                  css={{
+                  style={{
                     stackBlock: '$medium',
                   }}
                 >
                   <HeadingLevel>
-                    <Heading>{year}</Heading>
+                    <h1 className={heading()}>{year}</h1>
                   </HeadingLevel>
                   <Level>
-                    <List>
+                    <div className={list()}>
                       {jams.map(jam => (
                         <TrackComponent key={jam._id} jam={jam} />
                       ))}
-                    </List>
+                    </div>
                   </Level>
-                </Box>
+                </div>
               ))}
-            </Box>
-          </StandardGridContent>
-        </StandardGrid>
+            </div>
+          </div>
+        </div>
       </Level>
     </Layout>
   )
@@ -129,11 +128,3 @@ export default Page
 //     revalidate: 3600,
 //   }
 // }
-
-const List = styled('div', {
-  '& > * + *': {
-    marginBlockStart: 'calc($4 * 0.5)',
-    paddingBlockStart: 'calc($4 * 0.5)',
-    borderBlockStart: '1px dashed $bodySubtle',
-  },
-})

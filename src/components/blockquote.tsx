@@ -1,7 +1,6 @@
 import React, { FC, PropsWithChildren, Fragment } from 'react'
-import { styled } from '../stitches.config'
-import Box from '../components/box'
-import Note from '../components/note'
+import { note } from '../styles/note.css'
+import { blockquoteText } from '../styles/blockquote.css'
 
 interface Props {
   cite?: string
@@ -21,25 +20,23 @@ const Blockquote: FC<PropsWithChildren<Props>> = ({
     citeUrl ? <a {...props} /> : <Fragment>{props.children}</Fragment>
 
   return (
-    <Box
-      as='figure'
-      css={{
+    <figure
+      style={{
         stackBlock: '$small',
       }}
     >
-      <Box
-        css={{
+      <blockquote
+        style={{
           '@i3': {
             marginInline: 'calc($medium * -1)',
           },
         }}
-        as='blockquote'
         cite={citeUrl}
       >
-        <BlockquoteText>{children}</BlockquoteText>
-      </Box>
+        <div className={blockquoteText()}>{children}</div>
+      </blockquote>
       {(author || cite) && (
-        <Note as='figcaption'>
+        <figcaption className={note()}>
           &mdash;&thinsp;
           <AttributionContainer href={citeUrl}>
             {(
@@ -56,17 +53,10 @@ const Blockquote: FC<PropsWithChildren<Props>> = ({
                 </Fragment>
               ))}
           </AttributionContainer>
-        </Note>
+        </figcaption>
       )}
-    </Box>
+    </figure>
   )
 }
 
 export default Blockquote
-
-const BlockquoteText = styled('div', {
-  fontSize: '1.4rem',
-  fontFamily: 'Zangezi Sans',
-  lineHeight: 1.2,
-  color: '$accentA',
-})

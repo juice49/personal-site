@@ -5,17 +5,18 @@ import { NextPage, GetStaticProps } from 'next'
 import { PostMeta } from '../../types/post'
 import * as postApi from '../../lib/post-api'
 import usePostsByYear from '../../lib/use-posts-by-year'
-import Heading from '../../components/heading'
-import Text from '../../components/text'
+import { heading } from '../../styles/heading.css'
 import Layout from '../../components/layout'
-import StandardGrid, {
-  StandardGridContent,
-} from '../../components/standard-grid'
-import Box from '../../components/box'
+import {
+  standardGrid,
+  standardGridContent,
+} from '../../styles/standard-grid.css'
+import box from '../../styles/box.css'
 import FeaturedSection, {
   FeaturedSectionHeading,
 } from '../../components/featured-section'
-import Articles, { Article } from '../../components/articles'
+import { Article } from '../../components/articles'
+import { articles } from '../../styles/articles.css'
 import HeadingLevel from '../../components/heading-level'
 
 interface Props {
@@ -35,54 +36,53 @@ const Page: NextPage<Props> = ({ posts = [] }) => {
 
   return (
     <Layout as='main'>
-      <Box
-        css={{
+      <div
+        style={{
           paddingInline: '$medium',
         }}
       >
         <HeadingLevel>
-          <Heading
-            css={{
+          <h1
+            className={heading({ variant: 'alpha' })}
+            style={{
               position: 'relative',
               zIndex: 1,
             }}
-            variant='alpha'
           >
             Posts
-          </Heading>
+          </h1>
         </HeadingLevel>
-      </Box>
+      </div>
       <Level>
-        <Box
-          mw='1'
-          css={{
+        <div
+          className={box({ mw: 1 })}
+          style={{
             marginInline: 'auto',
             paddingInline: '$medium',
           }}
         >
           <FeaturedSection>
-            <Box
-              css={{
+            <div
+              style={{
                 stackBlock: '$4',
               }}
             >
-              <Box
-                as='header'
-                css={{
+              <header
+                style={{
                   paddingInline: '$4',
                   paddingBlockStart: '$4',
                 }}
               >
                 <FeaturedSectionHeading>Recent</FeaturedSectionHeading>
-              </Box>
+              </header>
               <Level>
-                <Box
-                  css={{
+                <div
+                  style={{
                     paddingInline: '$4',
                     paddingBlockEnd: '$4',
                   }}
                 >
-                  <Articles>
+                  <div className={articles()}>
                     {posts.slice(0, featurePostLimit).map(post => (
                       <Article
                         key={post.slug}
@@ -95,29 +95,29 @@ const Page: NextPage<Props> = ({ posts = [] }) => {
                         }}
                       />
                     ))}
-                  </Articles>
-                </Box>
+                  </div>
+                </div>
               </Level>
-            </Box>
+            </div>
           </FeaturedSection>
-        </Box>
+        </div>
 
-        <StandardGrid>
-          <StandardGridContent>
-            <Box
-              css={{
+        <div className={standardGrid()}>
+          <div className={standardGridContent()}>
+            <div
+              style={{
                 stackBlock: '$medium',
               }}
             >
               {sortedYears.map(year => (
                 <article key={year}>
-                  <Box
-                    css={{
+                  <div
+                    style={{
                       stackBlock: '$small',
                     }}
                   >
                     <HeadingLevel>
-                      <Text>{year}</Text>
+                      <span>{year}</span>
                     </HeadingLevel>
                     <Level>
                       <div>
@@ -125,19 +125,19 @@ const Page: NextPage<Props> = ({ posts = [] }) => {
                           <article key={post.slug}>
                             <Link href={`/posts/${post.slug}`}>
                               <HeadingLevel>
-                                <Text>{post.title}</Text>
+                                <span>{post.title}</span>
                               </HeadingLevel>
                             </Link>
                           </article>
                         ))}
                       </div>
                     </Level>
-                  </Box>
+                  </div>
                 </article>
               ))}
-            </Box>
-          </StandardGridContent>
-        </StandardGrid>
+            </div>
+          </div>
+        </div>
       </Level>
     </Layout>
   )

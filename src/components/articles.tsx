@@ -1,20 +1,11 @@
 import Link, { LinkProps } from 'next/link'
 import React from 'react'
 import { format } from 'date-fns'
-import { styled } from '../stitches.config'
-import Box from './box'
 import Tag from './tag'
-import Text from './text'
-import Heading from './heading'
+import text from '../styles/text.css'
+import { heading } from '../styles/heading.css'
+import { articleLink, meta } from '../styles/articles.css'
 import HeadingLevel from './heading-level'
-
-const Articles = styled('div', {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(min(14rem, 100%), 1fr))',
-  gap: '$4',
-})
-
-export default Articles
 
 interface ArticleProps {
   column?: string
@@ -31,35 +22,36 @@ export const Article: React.FC<ArticleProps> = ({
   title,
   description,
 }) => (
-  <Box
-    css={{
+  <div
+    style={{
       stackBlock: '$small',
     }}
   >
-    <Meta
-      as={Box}
-      css={{
+    <div
+      className={meta()}
+      // FIXME
+      // as={Box}
+      style={{
         stackInline: '$small',
       }}
     >
       {column && <Tag>{column}</Tag>}
       <DateTime dateTime={date} />
-    </Meta>
-    <ArticleLink {...link}>
+    </div>
+    <Link {...link} className={articleLink()}>
       <HeadingLevel>
-        <Heading>{title}</Heading>
+        <h1 className={heading()}>{title}</h1>
       </HeadingLevel>
-    </ArticleLink>
-    <Text
-      as='p'
-      size='milli'
-      css={{
+    </Link>
+    <p
+      className={text({ size: 'milli' })}
+      style={{
         color: '$accentC',
       }}
     >
       {description}
-    </Text>
-  </Box>
+    </p>
+  </div>
 )
 
 interface DateTimeProps {
@@ -70,32 +62,14 @@ const DateTime: React.FC<DateTimeProps> = ({ dateTime }) => {
   const date = new Date(dateTime)
 
   return (
-    <Text
-      as='time'
-      variant='mono'
-      size='micro'
+    <time
+      className={text({ variant: 'mono', size: 'micro' })}
       dateTime={dateTime}
-      css={{
+      style={{
         color: '#fff',
       }}
     >
       {format(date, 'd MMMM yyyy')}
-    </Text>
+    </time>
   )
 }
-
-const ArticleLink = styled(Link, {
-  [`& ${Heading}`]: {
-    color: '$accentC',
-  },
-  '&:hover, &:focus': {
-    [`& ${Heading}`]: {
-      color: '$accentB',
-    },
-  },
-})
-
-const Meta = styled('div', {
-  display: 'flex',
-  alignItems: 'center',
-})
