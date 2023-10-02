@@ -1,5 +1,5 @@
 import { recipe } from '@vanilla-extract/recipes'
-import { vars } from '../theme.css'
+import { vars, inlineBreakpoints } from '../theme.css'
 
 export const footerBox = recipe({
   base: {
@@ -11,19 +11,18 @@ export const footerBox = recipe({
     'metaA'
     'metaB'
     'metaC'`,
-    // FIXME
-    // '@i1': {
-    //   gridTemplateAreas: `'main main'
-    //   'metaA metaB'
-    //   'metaC metaC'`,
-    //   gridTemplateColumns: '1fr 1fr',
-    // },
-    // '@i2': {
-    //   gridTemplateAreas: `'main metaA metaB'
-    //   'main metaA metaB'
-    //   'metaC metaC metaC'`,
-    //   gridTemplateColumns: '1fr repeat(2, max-content)',
-    // },
+    [`@media (min-width: ${inlineBreakpoints[0]})`]: {
+      gridTemplateAreas: `'main main'
+      'metaA metaB'
+      'metaC metaC'`,
+      gridTemplateColumns: '1fr 1fr',
+    },
+    [`@media (min-width: ${inlineBreakpoints[1]})`]: {
+      gridTemplateAreas: `'main metaA metaB'
+      'main metaA metaB'
+      'metaC metaC metaC'`,
+      gridTemplateColumns: '1fr repeat(2, max-content)',
+    },
   },
 })
 

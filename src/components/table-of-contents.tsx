@@ -1,8 +1,8 @@
 import React from 'react'
 import { Toc } from '@stefanprobst/rehype-extract-toc'
 import HeadingLevel from './heading-level'
-import box from '../styles/box.css'
 import text from '../styles/text.css'
+import { tableOfContents } from '../styles/table-of-contents.css'
 
 interface Props {
   children: Toc
@@ -10,12 +10,9 @@ interface Props {
 
 const TableOfContents: React.FC<Props> = ({ children }) => (
   <div
+    className={tableOfContents()}
     style={{
       stackBlock: '$small',
-      '@i2': {
-        padding: '$medium',
-        border: '4px double $accentA',
-      },
     }}
   >
     <HeadingLevel>

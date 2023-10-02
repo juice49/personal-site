@@ -10,6 +10,7 @@ import PostHeader from './post-header'
 import Tag from './tag'
 import OgImageMeta from './og-image-meta'
 import TableOfContents from './table-of-contents'
+import { tableOfContentsContainer } from '../styles/post-layout.css'
 
 interface Props {
   meta: PostMeta
@@ -54,19 +55,13 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
                 }}
               >
                 {tableOfContents.length !== 0 && (
-                  <div
-                    style={{
-                      '@i2': {
-                        marginInline: 'calc($medium * -1)',
-                      },
-                    }}
-                  >
+                  <div className={tableOfContentsContainer()}>
                     <TableOfContents>{tableOfContents}</TableOfContents>
                   </div>
                 )}
                 {children}
               </div>
-            <div className={standardGridContent()}>
+            </div>
           </div>
         </div>
         <Tags>

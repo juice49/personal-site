@@ -1,5 +1,5 @@
 import { recipe } from '@vanilla-extract/recipes'
-import { vars } from '../theme.css'
+import { vars, inlineBreakpoints } from '../theme.css'
 
 export const container = recipe({
   base: {
@@ -13,15 +13,14 @@ export const container = recipe({
 export const actionList = recipe({
   base: {
     listStyle: 'none',
-    // FIXME
-    // '@belowI1': {
-    //   stackBlock: '0.25rem',
-    // },
-    // '@i1': {
-    //   display: 'flex',
-    //   flexWrap: 'wrap',
-    //   stackInline: '$2',
-    // },
+    [`@media (max-width: calc(${inlineBreakpoints[0]} - 1px))`]: {
+      stackBlock: '0.25rem',
+    },
+    [`@media (min-width: ${inlineBreakpoints[0]})`]: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      stackInline: '$2',
+    },
     'a:hover, a:focus': {
       backgroundColor: '$accentA',
       color: '#fff',

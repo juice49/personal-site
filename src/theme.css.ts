@@ -1,6 +1,6 @@
 import { createThemeContract, style, assignVars } from '@vanilla-extract/css'
 
-const inlineBreakpoints = ['30em', '45em']
+export const inlineBreakpoints = ['30em', '45em', '65em', '72em']
 
 export const vars = createThemeContract({
   colors: {

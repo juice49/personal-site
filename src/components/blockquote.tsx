@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren, Fragment } from 'react'
 import { note } from '../styles/note.css'
-import { blockquoteText } from '../styles/blockquote.css'
+import { container, blockquoteText } from '../styles/blockquote.css'
 
 interface Props {
   cite?: string
@@ -25,14 +25,7 @@ const Blockquote: FC<PropsWithChildren<Props>> = ({
         stackBlock: '$small',
       }}
     >
-      <blockquote
-        style={{
-          '@i3': {
-            marginInline: 'calc($medium * -1)',
-          },
-        }}
-        cite={citeUrl}
-      >
+      <blockquote className={container()} cite={citeUrl}>
         <div className={blockquoteText()}>{children}</div>
       </blockquote>
       {(author || cite) && (
