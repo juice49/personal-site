@@ -91,31 +91,3 @@ export const theme = style({
     },
   },
 })
-
-// FIXME responsive theme
-// export const { styled, getCssText, globalCss, createTheme, config, theme } =
-//   createStitches({
-//     media: {
-//       belowI1: '(max-width: 29.999em)',
-//       i1: '(min-width: 30em)',
-//       belowI2: '(max-width: 44.999em)',
-//       i2: '(min-width: 45em)',
-//       belowI3: '(max-width: 65.999em)',
-//       i3: '(min-width: 65em)',
-//       belowI4: '(max-width: 72.999em)',
-//       i4: '(min-width: 72em)',
-//     },
-//     theme: {},
-//     utils: {
-//       stackInline: (gap: PropertyValue<'marginInlineStart'>) => ({
-//         '& > * + *': {
-//           marginInlineStart: gap,
-//         },
-//       }),
-//       stackBlock: (gap: PropertyValue<'marginBlockStart'>) => ({
-//         '& > * + *': {
-//           marginBlockStart: gap,
-//         },
-//       }),
-//     },
-//   })

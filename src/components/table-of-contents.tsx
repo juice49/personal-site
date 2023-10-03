@@ -2,7 +2,7 @@ import React from 'react'
 import { Toc } from '@stefanprobst/rehype-extract-toc'
 import HeadingLevel from './heading-level'
 import text from '../styles/text.css'
-import { tableOfContents } from '../styles/table-of-contents.css'
+import { tableOfContents, list, item } from '../styles/table-of-contents.css'
 import { stack, stackBlockGapVar } from '../styles/stack.css'
 import { vars } from '../theme.css'
 
@@ -29,34 +29,12 @@ const TableOfContents: React.FC<Props> = ({ children }) => (
 export default TableOfContents
 
 const ListContainer: React.FC<Props> = ({ children }) => (
-  <List>
+  <ol className={list()}>
     {children.map(entry => (
-      <Item key={entry.id} as='li'>
+      <li className={item()} key={entry.id}>
         <a href={`#${entry.id}`}>{entry.value}</a>
         {entry.children && <ListContainer>{entry.children}</ListContainer>}
-      </Item>
+      </li>
     ))}
-  </List>
+  </ol>
 )
-
-// FIXME
-const List = 'ol'
-// const List = styled('ol', {
-//   $$gap: '0.5em',
-//   marginInlineStart: '$medium',
-//   listStyle: 'square',
-//   stackBlock: '$$gap',
-//   ol: {
-//     listStyle: 'circle',
-//   },
-// })
-
-// FIXME
-const Item = 'span'
-// const Item = styled(Text, {
-//   stackBlock: '$$gap',
-//   defaultVariants: {
-//     size: 'micro',
-//     variant: 'mono',
-//   },
-// })
