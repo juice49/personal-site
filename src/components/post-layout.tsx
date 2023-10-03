@@ -62,7 +62,14 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
                     <TableOfContents>{tableOfContents}</TableOfContents>
                   </div>
                 )}
-                {children}
+                <div
+                  className={stack({ block: true })}
+                  style={{
+                    [stackBlockGapVar]: vars.space.medium,
+                  }}
+                >
+                  {children}
+                </div>
               </div>
             </div>
           </div>

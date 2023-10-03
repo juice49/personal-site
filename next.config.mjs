@@ -13,60 +13,60 @@ import stackWrapper from './src/lib/stack-wrapper.mjs'
 
 const withVanillaExtract = createVanillaExtractPlugin()
 
-const withMdx = mdx({
-  options: {
-    providerImportSource: '@mdx-js/react',
-    remarkPlugins: [stackWrapper],
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          content: h('span', '#'),
-          properties: {
-            ariaHidden: true,
-            tabIndex: -1,
-            class: 'heading-anchor-link',
-          },
-        },
-      ],
-      [
-        createNextStaticProps,
-        `{
-          meta,
-          tableOfContents,
-        }`,
-      ],
-      [
-        rehypePrettyCode,
-        {
-          theme: 'material-palenight',
-          getHighlighter: options =>
-            getHighlighter({
-              ...options,
-              langs: [
-                ...BUNDLED_LANGUAGES,
-                {
-                  id: 'groq',
-                  scopeName: 'source.groq',
-                  path: '../../vscode-sanity/grammars/groq.json',
-                },
-              ],
-            }),
-          onVisitLine(node) {
-            // Prevent lines from collapsing in `display: grid` mode, and allow
-            // empty lines to be copy/pasted.
-            if (node.children.length === 0) {
-              node.children = [{ type: 'text', value: ' ' }]
-            }
-          },
-        },
-      ],
-      rehypeToc,
-      rehypeTocExport,
-    ],
-  },
-})
+const withMdx = mdx() //{
+// options: {
+//   providerImportSource: '@mdx-js/react',
+//   remarkPlugins: [stackWrapper],
+//   rehypePlugins: [
+//     rehypeSlug,
+//     [
+//       rehypeAutolinkHeadings,
+//       {
+//         content: h('span', '#'),
+//         properties: {
+//           ariaHidden: true,
+//           tabIndex: -1,
+//           class: 'heading-anchor-link',
+//         },
+//       },
+//     ],
+//     [
+//       createNextStaticProps,
+//       `{
+//         meta,
+//         tableOfContents,
+//       }`,
+//     ],
+//     [
+//       rehypePrettyCode,
+//       {
+//         theme: 'material-palenight',
+//         getHighlighter: options =>
+//           getHighlighter({
+//             ...options,
+//             langs: [
+//               ...BUNDLED_LANGUAGES,
+//               {
+//                 id: 'groq',
+//                 scopeName: 'source.groq',
+//                 path: '../../vscode-sanity/grammars/groq.json',
+//               },
+//             ],
+//           }),
+//         onVisitLine(node) {
+//           // Prevent lines from collapsing in `display: grid` mode, and allow
+//           // empty lines to be copy/pasted.
+//           if (node.children.length === 0) {
+//             node.children = [{ type: 'text', value: ' ' }]
+//           }
+//         },
+//       },
+//     ],
+//     rehypeToc,
+//     rehypeTocExport,
+//   ],
+// },
+//}
 
 function createNextStaticProps(map) {
   return function transformer(tree) {
@@ -103,6 +103,9 @@ export default withVanillaExtract(
         },
       ],
       formats: ['image/avif', 'image/webp'],
+    },
+    experimental: {
+      mdxRs: true,
     },
     async rewrites() {
       return [
