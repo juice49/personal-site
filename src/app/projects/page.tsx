@@ -13,6 +13,8 @@ import {
 } from '../../styles/standard-grid.css'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 import HeadingLevel from '../../components/heading-level'
+import { stack, stackBlockGapVar } from '../../styles/stack.css'
+import { vars } from '../../theme.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -85,8 +87,9 @@ export default Page
 
 const ListBox: FC<PropsWithChildren> = ({ children }) => (
   <div
+    className={stack({ block: true })}
     style={{
-      stackBlock: '$medium',
+      [stackBlockGapVar]: vars.space.medium,
     }}
   >
     {children}

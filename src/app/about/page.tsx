@@ -9,6 +9,8 @@ import { standardGridContent } from '../../styles/standard-grid.css'
 import { standardGrid } from '../../styles/standard-grid.css'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 import HeadingLevel from '../../components/heading-level'
+import { stack, stackBlockGapVar } from '../../styles/stack.css'
+import { vars } from '../../theme.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -17,7 +19,7 @@ const Page: NextPage = () => (
   <Layout as='main'>
     <div
       style={{
-        paddingInline: '$medium',
+        paddingInline: vars.space.medium,
       }}
     >
       <HeadingLevel>
@@ -27,8 +29,9 @@ const Page: NextPage = () => (
     <div className={standardGrid()}>
       <div className={standardGridContent()}>
         <div
+          className={stack({ block: true })}
           style={{
-            stackBlock: '$medium',
+            [stackBlockGapVar]: vars.space.medium,
           }}
         >
           <p className={text({ weight: 'bold' })}>
@@ -48,8 +51,9 @@ const Page: NextPage = () => (
       <div className={standardGrid()}>
         <div className={standardGridContent()}>
           <div
+            className={stack({ block: true })}
             style={{
-              stackBlock: '$medium',
+              [stackBlockGapVar]: vars.space.medium,
             }}
           >
             <HeadingLevel>

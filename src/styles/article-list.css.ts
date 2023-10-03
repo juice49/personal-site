@@ -18,11 +18,9 @@ export const container = recipe({
         display: 'grid',
         gap: vars.space[2],
         gridTemplateColumns: '1fr 1fr',
-        // xxx test me
         '& > *': border,
       },
       false: {
-        // xxx test me
         '& > * + *': border,
       },
     },

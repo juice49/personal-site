@@ -5,6 +5,8 @@ import text from '../styles/text.css'
 import FeaturedSection from './featured-section'
 import HeadingLevel from './heading-level'
 import { container, postHeading } from '../styles/post-header.css'
+import { stack, stackBlockGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 interface Props {
   date?: string
@@ -18,8 +20,9 @@ const PostHeader: FC<PropsWithChildren<Props>> = ({
 }) => (
   <header className={container()}>
     <div
+      className={stack({ block: true })}
       style={{
-        stackBlock: '$medium',
+        [stackBlockGapVar]: vars.space.medium,
       }}
     >
       {date && (
@@ -53,7 +56,7 @@ const Time: FC<PropsWithChildren<DateProps>> = ({ dateTime }) => {
       className={text({ variant: 'mono', size: 'micro' })}
       dateTime={dateTime}
       style={{
-        color: '$bodySubtle',
+        color: vars.colors.bodySubtle,
       }}
     >
       {format(date, 'd MMMM yyyy')}

@@ -13,6 +13,8 @@ import {
   standardGrid,
   standardGridContent,
 } from '../../styles/standard-grid.css'
+import { stack, stackBlockGapVar } from '../../styles/stack.css'
+import { vars } from '../../theme.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -55,15 +57,17 @@ const Page: NextPage<Props> = ({ jamsByYear = [] }) => {
         <div className={standardGrid()}>
           <div className={standardGridContent()}>
             <div
+              className={stack({ block: true })}
               style={{
-                stackBlock: '$5',
+                [stackBlockGapVar]: vars.space[5],
               }}
             >
               {jamsByYear.map(([year, jams]) => (
                 <div
                   key={year}
+                  className={stack({ block: true })}
                   style={{
-                    stackBlock: '$medium',
+                    [stackBlockGapVar]: vars.space.medium,
                   }}
                 >
                   <HeadingLevel>

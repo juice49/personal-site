@@ -6,9 +6,12 @@ import React, {
 } from 'react'
 
 import Link, { type LinkProps } from 'next/link'
+import { RecipeVariants } from '@vanilla-extract/recipes'
 import text from '../styles/text.css'
 import ExternalLinkIcon from './external-link-icon'
 import HeadingLevel from './heading-level'
+import { stack, stackBlockGapVar, stackInlineGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 import {
   articleLinkInner,
@@ -16,8 +19,10 @@ import {
   container,
 } from '../styles/article-list.css'
 
-const Container: ComponentType = props => (
-  <ul className={container()} {...props} />
+type Props = PropsWithChildren<RecipeVariants<typeof container>>
+
+const Container: ComponentType<Props> = ({ columns, ...props }) => (
+  <ul className={container({ columns })} {...props} />
 )
 
 export default Container
@@ -64,13 +69,15 @@ export const ArticleListItem: FC<PropsWithChildren<ArticleListItemProps>> = ({
     >
       <BlockLink {...link}>
         <div
+          className={stack({ block: true })}
           style={{
-            stackBlock: '$small',
+            [stackBlockGapVar]: vars.space.small,
           }}
         >
           <div
+            className={stack({ block: true })}
             style={{
-              stackBlock: headingGap ? '$small' : undefined,
+              [stackBlockGapVar]: headingGap ? vars.space.small : undefined,
             }}
           >
             {heading && (
@@ -85,8 +92,9 @@ export const ArticleListItem: FC<PropsWithChildren<ArticleListItemProps>> = ({
                   }}
                 >
                   <span
+                    className={stack({ inline: true })}
                     style={{
-                      stackInline: '$small',
+                      [stackInlineGapVar]: vars.space.small,
                     }}
                   >
                     <span>{heading}</span>

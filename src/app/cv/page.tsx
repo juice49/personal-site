@@ -10,6 +10,9 @@ import { standardGrid } from '../../styles/standard-grid.css'
 import ArticleList, { ArticleListItem } from '../../components/article-list'
 import FeaturedSection from '../../components/featured-section'
 import HeadingLevel from '../../components/heading-level'
+import { skillList, contactList, contactListItem } from '../../styles/cv.css'
+import { stack, stackBlockGapVar } from '../../styles/stack.css'
+import { vars } from '../../theme.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -22,13 +25,15 @@ const Page: NextPage = () => (
     <div className={standardGrid()}>
       <div className={standardGridContent()}>
         <div
+          className={stack({ block: true })}
           style={{
-            stackBlock: '$4',
+            [stackBlockGapVar]: vars.space[4],
           }}
         >
           <header
+            className={stack({ block: true })}
             style={{
-              stackBlock: '$1',
+              [stackBlockGapVar]: vars.space[1],
             }}
           >
             <HeadingLevel>
@@ -60,14 +65,15 @@ const Page: NextPage = () => (
       <Level>
         <div className={standardGridContent()}>
           <div
+            className={stack({ block: true })}
             style={{
-              // FIXME
-              stackBlock: '$medium',
+              [stackBlockGapVar]: vars.space.medium,
             }}
           >
             <div
+              className={stack({ block: true })}
               style={{
-                stackBlock: '$medium',
+                [stackBlockGapVar]: vars.space.medium,
               }}
             >
               <HeadingLevel>
@@ -79,35 +85,35 @@ const Page: NextPage = () => (
                     heading='JavaScript and TypeScript'
                     description='I love JS!'
                   >
-                    <SkillList>
+                    <ul className={skillList()}>
                       <li>React</li>
                       <li>TypeScript</li>
                       <li>node.js</li>
                       <li>Next.js</li>
-                    </SkillList>
+                    </ul>
                   </ArticleListItem>
                   <ArticleListItem
                     heading='React'
                     description='I started working with React in 2014. Now I use it every day to make products for the web and mobile.'
                   >
-                    <SkillList>
+                    <ul className={skillList()}>
                       <li>React and React Native</li>
                       <li>
                         Global state management (Redux, Zustand, MobX State
                         Tree, and others)
                       </li>
                       <li>Component API design with TypeScript</li>
-                    </SkillList>
+                    </ul>
                   </ArticleListItem>
                   <ArticleListItem
                     heading='Jamstack'
                     description='Static websites, APIs, and serverless functions are my jam. My preferred tool is Next.js, but I have developed projects using Gatsby too.'
                   >
-                    <SkillList>
+                    <ul className={skillList()}>
                       <li>Next.js</li>
                       <li>Gatsby</li>
                       <li>Vercel Platform</li>
-                    </SkillList>
+                    </ul>
                   </ArticleListItem>
                   <ArticleListItem
                     heading='Sanity CMS'
@@ -121,13 +127,13 @@ const Page: NextPage = () => (
                     heading='CSS'
                     description={`I care deeply about well structured CSS. CSS-in-JS is my technique of choice, but I'm experienced with Stylus too.`}
                   >
-                    <SkillList>
+                    <ul className={skillList()}>
                       <li>Styled Components</li>
                       <li>Styled System</li>
                       <li>Stitches</li>
                       <li>Stylus</li>
                       <li>BEM</li>
-                    </SkillList>
+                    </ul>
                   </ArticleListItem>
                   <ArticleListItem
                     heading='Responsive Web Design'
@@ -164,8 +170,9 @@ const Page: NextPage = () => (
       <Level>
         <div className={standardGridContent()}>
           <div
+            className={stack({ block: true })}
             style={{
-              stackBlock: '$medium',
+              [stackBlockGapVar]: vars.space.medium,
             }}
           >
             <HeadingLevel>
@@ -179,8 +186,9 @@ const Page: NextPage = () => (
                   description='2022&thinsp;-&thinsp;Present'
                 >
                   <div
+                    className={stack({ block: true })}
                     style={{
-                      stackBlock: '$small',
+                      [stackBlockGapVar]: vars.space.small,
                     }}
                   >
                     <p className={text({ size: 'milli' })}>
@@ -197,8 +205,9 @@ const Page: NextPage = () => (
                   description='2014&thinsp;-&thinsp;2022'
                 >
                   <div
+                    className={stack({ block: true })}
                     style={{
-                      stackBlock: '$small',
+                      [stackBlockGapVar]: vars.space.small,
                     }}
                   >
                     <p className={text({ size: 'milli' })}>
@@ -230,8 +239,9 @@ const Page: NextPage = () => (
                   description='2009&thinsp;&ndash;&thinsp;2014'
                 >
                   <div
+                    className={stack({ block: true })}
                     style={{
-                      stackBlock: '$small',
+                      [stackBlockGapVar]: vars.space.small,
                     }}
                   >
                     <p className={text({ size: 'milli' })}>
@@ -274,8 +284,9 @@ const Page: NextPage = () => (
       <Level>
         <div className={standardGridContent()}>
           <div
+            className={stack({ block: true })}
             style={{
-              stackBlock: '$medium',
+              [stackBlockGapVar]: vars.space.medium,
             }}
           >
             <HeadingLevel>
@@ -296,8 +307,9 @@ const Page: NextPage = () => (
       <Level>
         <div className={standardGridContent()}>
           <div
+            className={stack({ block: true })}
             style={{
-              stackBlock: '$medium',
+              [stackBlockGapVar]: vars.space.medium,
             }}
           >
             <HeadingLevel>
@@ -331,18 +343,6 @@ const Page: NextPage = () => (
 
 export default Page
 
-// FIXME
-const SkillList = 'ul'
-// const SkillList = styled('ul', Text, {
-//   marginInlineStart: '$2',
-//   listStyle: 'square',
-//   color: '$bodySubtle',
-//   defaultVariants: {
-//     size: 'micro',
-//     variant: 'mono',
-//   },
-// })
-
 const Contact: React.FC = () => (
   <div
     style={{
@@ -355,13 +355,13 @@ const Contact: React.FC = () => (
           padding: '$medium',
         }}
       >
-        <ContactList>
-          <ContactListItem>
+        <ul className={contactList()}>
+          <li className={contactListItem()}>
             <span className={text({ weight: 'bold' })}>Email:</span>
             &nbsp;
             <a href='mailto:ashley@juice49.com'>ashley@juice49.com</a>
-          </ContactListItem>
-          <ContactListItem>
+          </li>
+          <li className={contactListItem()}>
             <span className={text({ weight: 'bold' })}>GitHub:</span>
             &nbsp;
             <a
@@ -371,8 +371,8 @@ const Contact: React.FC = () => (
             >
               juice49
             </a>
-          </ContactListItem>
-          <ContactListItem>
+          </li>
+          <li className={contactListItem()}>
             <span className={text({ weight: 'bold' })}>Twitter:</span>
             &nbsp;
             <a
@@ -382,38 +382,9 @@ const Contact: React.FC = () => (
             >
               @juice49
             </a>
-          </ContactListItem>
-        </ContactList>
+          </li>
+        </ul>
       </div>
     </FeaturedSection>
   </div>
 )
-
-// FIXME
-const ContactList = 'ul'
-// const ContactList = styled('ul', {
-//   display: 'grid',
-//   gap: '$1',
-//   listStyle: 'none',
-//   color: '#fff',
-//   '@i2': {
-//     gridTemplateColumns: 'repeat(3, auto)',
-//   },
-// })
-
-// FIXME
-const ContactListItem = 'li'
-// const ContactListItem = styled('li', Text, {
-//   '& a': {
-//     display: 'inline-block',
-//     color: '$accentB',
-//     borderBlockEnd: '1px dashed currentColor',
-//     '&:hover, &:focus': {
-//       backgroundColor: '$accentB',
-//       color: '$accentA',
-//     },
-//   },
-//   defaultVariants: {
-//     size: 'milli',
-//   },
-// })

@@ -11,6 +11,8 @@ import Tag from './tag'
 import OgImageMeta from './og-image-meta'
 import TableOfContents from './table-of-contents'
 import { tableOfContentsContainer } from '../styles/post-layout.css'
+import { stack, stackBlockGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 interface Props {
   meta: PostMeta
@@ -39,7 +41,7 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
           className={box({ mw: 1 })}
           style={{
             marginInline: 'auto',
-            paddingInline: '$medium',
+            paddingInline: vars.space.medium,
           }}
         >
           <PostHeader date={meta.date} column={meta.column}>
@@ -50,8 +52,9 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
           <div className={standardGrid()}>
             <div className={standardGridContent()}>
               <div
+                className={stack({ block: true })}
                 style={{
-                  stackBlock: '$5',
+                  [stackBlockGapVar]: vars.space[5],
                 }}
               >
                 {tableOfContents.length !== 0 && (

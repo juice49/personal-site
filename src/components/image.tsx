@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react'
 import * as CSS from 'csstype'
+import { imageBox, imageContent } from '../styles/image.css'
 
 interface Props {
   src: string
@@ -29,10 +30,14 @@ const Image: React.FC<Props> = ({
   }, [])
 
   return (
-    <ImageBox style={style}>
-      <ImageContent src={previewSrc} alt='' aria-hidden isPreview />
-      {/* FIXME */}
-      {/* <ImageContent as='picture' hasLoaded={hasLoaded}>
+    <div className={imageBox()} style={style}>
+      <img
+        className={imageContent({ isPreview: true })}
+        src={previewSrc}
+        alt=''
+        aria-hidden
+      />
+      <picture className={imageContent({ hasLoaded })}>
         {webpSrcSet && <source srcSet={webpSrcSet} type='image/webp' />}
         <source srcSet={srcSet} type='image/jpeg' />
         <img
@@ -42,51 +47,9 @@ const Image: React.FC<Props> = ({
           loading='lazy'
           onLoad={() => setHasLoaded(true)}
         />
-      </ImageContent> */}
-    </ImageBox>
+      </picture>
+    </div>
   )
 }
 
 export default Image
-
-// FIXME
-const ImageBox = 'div'
-// const ImageBox = styled('div', {
-//   position: 'relative',
-//   width: '100%',
-//   height: 'auto',
-//   overflow: 'hidden',
-//   '&:before': {
-//     display: 'block',
-//     paddingBlockStart: 'calc((var(--height) / var(--width)) * 100%)',
-//     content: '',
-//   },
-// })
-
-// FIXME
-const ImageContent = 'img'
-// const ImageContent = styled('img', {
-//   position: 'absolute',
-//   insetInlineStart: 0,
-//   insetBlockStart: 0,
-//   transitionProperty: 'opacity',
-//   transitionDuration: 'var(--transition-duration, 500ms)',
-//   '&, img': {
-//     display: 'block',
-//     width: '100%',
-//     height: '100%',
-//     objectFit: 'cover',
-//   },
-//   variants: {
-//     isPreview: {
-//       true: {
-//         filter: 'blur(var(--blur, 20px))',
-//       },
-//     },
-//     hasLoaded: {
-//       false: {
-//         opacity: 0,
-//       },
-//     },
-//   },
-// })

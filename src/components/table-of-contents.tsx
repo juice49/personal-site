@@ -3,6 +3,8 @@ import { Toc } from '@stefanprobst/rehype-extract-toc'
 import HeadingLevel from './heading-level'
 import text from '../styles/text.css'
 import { tableOfContents } from '../styles/table-of-contents.css'
+import { stack, stackBlockGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 interface Props {
   children: Toc
@@ -10,9 +12,9 @@ interface Props {
 
 const TableOfContents: React.FC<Props> = ({ children }) => (
   <div
-    className={tableOfContents()}
+    className={[tableOfContents(), stack({ block: true })].join(' ')}
     style={{
-      stackBlock: '$small',
+      [stackBlockGapVar]: vars.space.small,
     }}
   >
     <HeadingLevel>

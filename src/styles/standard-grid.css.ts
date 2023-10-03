@@ -1,5 +1,5 @@
 import { recipe } from '@vanilla-extract/recipes'
-import { vars } from '../theme.css'
+import { vars, inlineBreakpoints } from '../theme.css'
 
 export const standardGrid = recipe({
   base: {
@@ -12,27 +12,26 @@ export const standardGrid = recipe({
     minmax(${vars.space[2]}, auto)
     minmax(0, 42ch)
     minmax(${vars.space[2]}, auto)`,
-    // FIXME
-    // '--gutterAb': '$space$2',
-    // '@belowI2': {
-    //   '& > * + *': {
-    //     marginBlockStart: '$2',
-    //   },
-    // },
-    // '@i3': {
-    //   gridTemplateAreas: `'gutter1 meta1 gutterA content gutterB meta2 gutter2'`,
-    //   gridTemplateColumns: `
-    //   1fr
-    //   minmax(auto, 15ch)
-    //   var(--gutterAb)
-    //   minmax(auto, 46ch)
-    //   var(--gutterAb)
-    //   minmax(auto, 15ch)
-    //   1fr`,
-    // },
-    // '@i4': {
-    //   '--gutterAb': '$space$4',
-    // },
+    '--gutterAb': vars.space[2],
+    [`@media (max-width: calc(${inlineBreakpoints[1]} - 1px ))`]: {
+      '& > * + *': {
+        marginBlockStart: vars.space[2],
+      },
+    },
+    [`@media (min-width: ${inlineBreakpoints[2]})`]: {
+      gridTemplateAreas: `'gutter1 meta1 gutterA content gutterB meta2 gutter2'`,
+      gridTemplateColumns: `
+        1fr
+        minmax(auto, 15ch)
+        var(--gutterAb)
+        minmax(auto, 46ch)
+        var(--gutterAb)
+        minmax(auto, 15ch)
+        1fr`,
+    },
+    [`@media (min-width: ${inlineBreakpoints[3]})`]: {
+      '--gutterAb': vars.space[4],
+    },
   },
 })
 
@@ -48,20 +47,18 @@ export const standardGridContentSlightlyWide = recipe({
     justifyContent: 'center',
     alignItems: 'flex-start',
     gridArea: 'content',
-    // FIXME
-    // '@i3': {
-    //   gridArea: '1 / gutterA / 1 / gutterB',
-    // },
+    [`@media (min-width: ${inlineBreakpoints[2]})`]: {
+      gridArea: '1 / gutterA / 1 / gutterB',
+    },
   },
 })
 
 export const standardGridContentWide = recipe({
   base: {
     gridArea: 'content',
-    // FIXME
-    // '@i3': {
-    //   gridArea: '1 / meta1 / 1 / meta2',
-    // },
+    [`@media (min-width: ${inlineBreakpoints[2]})`]: {
+      gridArea: '1 / meta1 / 1 / meta2',
+    },
   },
 })
 

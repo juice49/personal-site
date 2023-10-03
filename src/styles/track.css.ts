@@ -14,12 +14,16 @@ export const actionList = recipe({
   base: {
     listStyle: 'none',
     [`@media (max-width: calc(${inlineBreakpoints[0]} - 1px))`]: {
-      stackBlock: '0.25rem',
+      '& > * + *': {
+        marginBlockStart: '0.25rem',
+      },
     },
     [`@media (min-width: ${inlineBreakpoints[0]})`]: {
       display: 'flex',
       flexWrap: 'wrap',
-      stackInline: '$2',
+      '& > * + *': {
+        marginInlineStart: vars.space[2],
+      },
     },
     'a:hover, a:focus': {
       backgroundColor: '$accentA',

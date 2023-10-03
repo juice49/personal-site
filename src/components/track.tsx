@@ -8,6 +8,8 @@ import text from '../styles/text.css'
 import ExternalLinkIcon from './external-link-icon'
 import HeadingLevel from './heading-level'
 import { container, actionList, albumArtwork } from '../styles/track.css'
+import { stack, stackBlockGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 interface Props {
   jam: Jam
@@ -33,9 +35,10 @@ const Track: React.FC<Props> = ({ jam }) => {
         />
       </div>
       <div
+        className={stack({ block: true })}
         style={{
           gridArea: 'info',
-          stackBlock: '$small',
+          [stackBlockGapVar]: vars.space.small,
         }}
       >
         <div>

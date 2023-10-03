@@ -3,15 +3,16 @@ import { vars } from '../theme.css'
 
 globalStyle('*', {
   margin: 0,
+  padding: 0,
 })
 
-// FIXME
 globalStyle(':root', {
   fontFamily: vars.fonts.body,
   '-webkit-font-smoothing': 'antialiased',
   '-moz-osx-font-smoothing': 'grayscale',
   fontSize: 'clamp(1.26rem, 1.8vw, 1.48rem)',
   lineHeight: 1.44,
+  // FIXME
   textSizeAdjust: '100%',
   backgroundColor: vars.colors.documentBorder,
   color: vars.colors.body,

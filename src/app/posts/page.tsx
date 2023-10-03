@@ -18,6 +18,8 @@ import FeaturedSection, {
 import { Article } from '../../components/articles'
 import { articles } from '../../styles/articles.css'
 import HeadingLevel from '../../components/heading-level'
+import { stack, stackBlockGapVar } from '../../styles/stack.css'
+import { vars } from '../../theme.css'
 
 interface Props {
   posts: PostMeta[]
@@ -38,7 +40,7 @@ const Page: NextPage<Props> = ({ posts = [] }) => {
     <Layout as='main'>
       <div
         style={{
-          paddingInline: '$medium',
+          paddingInline: vars.space.medium,
         }}
       >
         <HeadingLevel>
@@ -58,19 +60,20 @@ const Page: NextPage<Props> = ({ posts = [] }) => {
           className={box({ mw: 1 })}
           style={{
             marginInline: 'auto',
-            paddingInline: '$medium',
+            paddingInline: vars.space.medium,
           }}
         >
           <FeaturedSection>
             <div
+              className={stack({ block: true })}
               style={{
-                stackBlock: '$4',
+                [stackBlockGapVar]: vars.space[4],
               }}
             >
               <header
                 style={{
-                  paddingInline: '$4',
-                  paddingBlockStart: '$4',
+                  paddingInline: vars.space[4],
+                  paddingBlockStart: vars.space[4],
                 }}
               >
                 <FeaturedSectionHeading>Recent</FeaturedSectionHeading>
@@ -78,8 +81,8 @@ const Page: NextPage<Props> = ({ posts = [] }) => {
               <Level>
                 <div
                   style={{
-                    paddingInline: '$4',
-                    paddingBlockEnd: '$4',
+                    paddingInline: vars.space[4],
+                    paddingBlockEnd: vars.space[4],
                   }}
                 >
                   <div className={articles()}>
@@ -105,15 +108,17 @@ const Page: NextPage<Props> = ({ posts = [] }) => {
         <div className={standardGrid()}>
           <div className={standardGridContent()}>
             <div
+              className={stack({ block: true })}
               style={{
-                stackBlock: '$medium',
+                [stackBlockGapVar]: vars.space.medium,
               }}
             >
               {sortedYears.map(year => (
                 <article key={year}>
                   <div
+                    className={stack({ block: true })}
                     style={{
-                      stackBlock: '$small',
+                      [stackBlockGapVar]: vars.space.small,
                     }}
                   >
                     <HeadingLevel>

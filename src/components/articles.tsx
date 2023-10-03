@@ -6,6 +6,8 @@ import text from '../styles/text.css'
 import { heading } from '../styles/heading.css'
 import { articleLink, meta } from '../styles/articles.css'
 import HeadingLevel from './heading-level'
+import { stack, stackBlockGapVar, stackInlineGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 interface ArticleProps {
   column?: string
@@ -23,16 +25,17 @@ export const Article: React.FC<ArticleProps> = ({
   description,
 }) => (
   <div
+    className={stack({ block: true })}
     style={{
-      stackBlock: '$small',
+      [stackBlockGapVar]: vars.space.small,
     }}
   >
     <div
-      className={meta()}
+      className={[meta(), stack({ inline: true })].join(' ')}
       // FIXME
       // as={Box}
       style={{
-        stackInline: '$small',
+        [stackInlineGapVar]: vars.space.small,
       }}
     >
       {column && <Tag>{column}</Tag>}

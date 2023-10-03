@@ -1,6 +1,8 @@
 import React, { FC, PropsWithChildren, Fragment } from 'react'
 import { note } from '../styles/note.css'
 import { container, blockquoteText } from '../styles/blockquote.css'
+import { stack, stackBlockGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 interface Props {
   cite?: string
@@ -21,8 +23,9 @@ const Blockquote: FC<PropsWithChildren<Props>> = ({
 
   return (
     <figure
+      className={stack({ block: true })}
       style={{
-        stackBlock: '$small',
+        [stackBlockGapVar]: vars.space.small,
       }}
     >
       <blockquote className={container()} cite={citeUrl}>

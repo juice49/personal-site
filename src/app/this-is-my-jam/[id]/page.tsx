@@ -15,6 +15,8 @@ import {
   standardGrid,
   standardGridContent,
 } from '../../../styles/standard-grid.css'
+import { stack, stackBlockGapVar } from '../../../styles/stack.css'
+import { vars } from '../../../theme.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -47,7 +49,7 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
       </Head>
       <div
         style={{
-          paddingInline: '$medium',
+          paddingInline: vars.space.medium,
         }}
       >
         <HeadingLevel>
@@ -58,8 +60,9 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
         <div className={standardGrid()}>
           <div className={standardGridContent()}>
             <div
+              className={stack({ block: true })}
               style={{
-                stackBlock: '$4',
+                [stackBlockGapVar]: vars.space[4],
               }}
             >
               <TrackComponent jam={jam} />

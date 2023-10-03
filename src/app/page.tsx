@@ -28,6 +28,8 @@ import {
   standardGridContentSlightlyWide,
   standardGridMeta,
 } from '../styles/standard-grid.css'
+import { stack, stackBlockGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
@@ -55,8 +57,9 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
       </Head>
       <div>
         <div
+          className={stack({ block: true })}
           style={{
-            stackBlock: '10vmin',
+            [stackBlockGapVar]: '10vmin',
           }}
         >
           <div>
@@ -108,8 +111,9 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
           <div className={standardGrid()}>
             <div className={standardGridContent()}>
               <div
+                className={stack({ block: true })}
                 style={{
-                  stackBlock: '$medium',
+                  [stackBlockGapVar]: vars.space.medium,
                 }}
               >
                 <p className={text({ weight: 'bold' })}>
@@ -138,14 +142,15 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
       >
         <FeaturedSection>
           <div
+            className={stack({ block: true })}
             style={{
-              stackBlock: '$4',
+              [stackBlockGapVar]: vars.space[4],
             }}
           >
             <header
               style={{
-                paddingInline: '$4',
-                paddingBlockStart: '$4',
+                paddingInline: vars.space[4],
+                paddingBlockStart: vars.space[4],
               }}
             >
               <FeaturedSectionHeading>Blog posts</FeaturedSectionHeading>
@@ -153,7 +158,7 @@ const Page: NextPage<Props> = ({ posts = [] }) => (
             <Level>
               <div
                 style={{
-                  paddingInline: '$4',
+                  paddingInline: vars.space[4],
                 }}
               >
                 <div className={articles()}>
@@ -257,8 +262,9 @@ export default Page
 
 const ListBox: FC<PropsWithChildren> = ({ children }) => (
   <div
+    className={stack({ block: true })}
     style={{
-      stackBlock: '$medium',
+      [stackBlockGapVar]: vars.space.medium,
     }}
   >
     {children}

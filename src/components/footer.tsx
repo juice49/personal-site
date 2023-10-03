@@ -4,23 +4,25 @@ import box from '../styles/box.css'
 import text from '../styles/text.css'
 // import Wave from '../components/wave'
 import { footerBox, cell, metaList } from '../styles/footer.css'
+import { stack, stackBlockGapVar } from '../styles/stack.css'
+import { vars } from '../theme.css'
 
 const Footer: React.FC = () => (
   <div className={text({ size: 'milli' })}>
     <footer className={footerBox()}>
       <div
-        className={cell({ cell: 'main' })}
-        css={{
-          stackBlock: '$small',
+        className={[cell({ cell: 'main' }), stack({ block: true })].join(' ')}
+        style={{
+          [stackBlockGapVar]: vars.space.small,
         }}
       >
         <span className={text({ weight: 'bold' })}>Made by Ash.</span>
         <p>The Web and Stuff 2008&thinsp;&ndash;&thinsp;??</p>
       </div>
       <div
-        className={cell({ cell: 'metaA' })}
+        className={[cell({ cell: 'metaA' }), stack({ block: true })].join(' ')}
         style={{
-          stackBlock: '$small',
+          [stackBlockGapVar]: vars.space.small,
         }}
       >
         <span className={text({ weight: 'bold' })}>Etc.</span>
@@ -41,9 +43,9 @@ const Footer: React.FC = () => (
         </ul>
       </div>
       <div
-        className={cell({ cell: 'metaB' })}
+        className={[cell({ cell: 'metaB' }), stack({ block: true })].join(' ')}
         style={{
-          stackBlock: '$small',
+          [stackBlockGapVar]: vars.space.small,
         }}
       >
         <span className={text({ weight: 'bold' })}>Networks and stuff:</span>
@@ -100,9 +102,9 @@ const Footer: React.FC = () => (
       </div>
       <div className={cell({ cell: 'metaC' })}>
         <div
-          className={box({ mw: 0 })}
+          className={[box({ mw: 0 }), stack({ block: true })].join(' ')}
           style={{
-            stackBlock: '$small',
+            [stackBlockGapVar]: vars.space.small,
           }}
         >
           {/* <Wave
