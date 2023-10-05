@@ -7,7 +7,7 @@ export async function getAll(): Promise<Post[]> {
     throw new Error('`POSTS_PATH` is not defined.')
   }
 
-  const postFiles = await fs.readdir(`./src/pages/${process.env.POSTS_PATH}`)
+  const postFiles = await fs.readdir(`./src/app/${process.env.POSTS_PATH}`)
 
   const postImports = postFiles.filter(filterExtname('mdx')).map(importPost)
 
@@ -28,7 +28,7 @@ function filterExtname(extname) {
 
 async function importPost(filename: string): Promise<Post> {
   const postModule = await import(
-    `../pages/${process.env.POSTS_PATH}/${filename}`
+    `../app/${process.env.POSTS_PATH}/${filename}`
   )
 
   return {

@@ -1,8 +1,6 @@
-import React from 'react'
+import React, { type ComponentType } from 'react'
 import Link from 'next/link'
-import { NextPage, GetStaticProps } from 'next'
 // import { Level } from 'react-accessible-headings'
-import { PostMeta } from '../../types/post'
 import * as postApi from '../../lib/post-api'
 import usePostsByYear from '../../lib/use-posts-by-year'
 import { heading } from '../../styles/heading.css'
@@ -21,20 +19,14 @@ import HeadingLevel from '../../components/heading-level'
 import { stack, stackBlockGapVar } from '../../styles/stack.css'
 import { vars } from '../../theme.css'
 
-interface Props {
-  posts: PostMeta[]
-}
-
 // FIXME-APP-DIR
 const Level = ({ children }) => <>{children}</>
 
 // FIXME-APP-DIR
-const Page: NextPage<Props> = ({ posts = [] }) => {
+const Page: ComponentType = async () => {
+  const posts = (await postApi.getAll()).map(post => post.meta)
   const featurePostLimit = 6
-
-  const { sortedYears, postsByYear } = usePostsByYear(
-    posts.slice(featurePostLimit),
-  )
+  const { sortedYears, postsByYear } = usePostsByYear(posts)
 
   return (
     <Layout as='main'>
@@ -149,14 +141,3 @@ const Page: NextPage<Props> = ({ posts = [] }) => {
 }
 
 export default Page
-
-// FIXME-APP-DIR
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//   const posts = await postApi.getAll()
-
-//   return {
-//     props: {
-//       posts: posts.map(post => post.meta),
-//     },
-//   }
-// }
