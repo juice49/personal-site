@@ -1,11 +1,10 @@
 import { type ComponentType } from 'react'
-import { type PostMeta } from '../../../types/post'
+import { type Metadata } from 'next'
 import PostLayout from '../../../components/post-layout'
 
 interface Props {
   params: {
     slug: string
-    meta: PostMeta
   }
 }
 
@@ -21,3 +20,15 @@ const Page: ComponentType<Props> = async ({ params }) => {
 }
 
 export default Page
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { meta } = await import(`../${params.slug}.mdx`)
+  const title = `${meta.title} - Ash`
+
+  return {
+    title,
+    openGraph: {
+      title,
+    },
+  }
+}
