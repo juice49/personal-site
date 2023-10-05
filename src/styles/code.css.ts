@@ -1,19 +1,16 @@
 import { recipe } from '@vanilla-extract/recipes'
 import { vars } from '../theme.css'
 
-export const container = recipe({
+export const pre = recipe({
   base: {
+    '&:focus': {
+      outline: ['2px auto Highlight', '0 auto -webkit-focus-ring-color'],
+    },
+    marginInline: `calc(${vars.space.medium} * -1)`,
     padding: vars.space[2],
     backgroundColor: '#131313',
-    fontSize: '0.8rem',
     color: '#fff',
     overflow: 'auto',
-    '&:focus': {
-      outline: `
-      2px auto Highlight;
-      0 auto -webkit-focus-ring-color;
-    `,
-    },
     code: {
       display: 'grid',
       whiteSpace: 'pre',
@@ -22,33 +19,26 @@ export const container = recipe({
       wordWrap: 'normal',
       hyphens: 'none',
       tabSize: 2,
-      font: 'inherit',
-      // fontFamily: 'Arnold',
-      fontFamily: 'var(--font-jetbrains-mono',
+      '&[data-language]': {
+        backgroundColor: 'transparent',
+      },
+      fontSize: '0.8rem',
     },
+  },
+})
 
-    /* .hljs-comment {
-    color: #868e96;
-  }
+export const code = recipe({
+  base: {
+    padding: '0.18em 0.48em',
+    backgroundColor: 'rgb(255 255 255 / 0.6)',
+    font: 'inherit',
+    fontSize: '0.7rem',
+    color: vars.colors.bodySubtle,
+    borderRadius: '0.25em',
+    fontFamily: 'var(--font-jetbrains-mono)',
 
-  .hljs-function,
-  .hljs-function-variable,
-  .hljs-selector {
-    color: #e599f7;
-    font-weight 700;
-  }
-
-  .hljs-tag,
-  .hljs-property {
-    color: #f06595;
-  }
-
-  .hljs-keyword {
-    color: #20c997;
-  }
-
-  .hljs-punctuation {
-    color: #ffe066;
-  } */
+    '&[data-language]': {
+      backgroundColor: 'rgba(154, 1, 148, 0.84)',
+    },
   },
 })

@@ -13,7 +13,37 @@ import stackWrapper from './src/lib/stack-wrapper.mjs'
 
 const withVanillaExtract = createVanillaExtractPlugin()
 
-const withMdx = mdx() //{
+const withMdx = mdx({
+  options: {
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: 'material-palenight',
+          getHighlighter: options =>
+            getHighlighter({
+              ...options,
+              langs: [
+                ...BUNDLED_LANGUAGES,
+                {
+                  id: 'groq',
+                  scopeName: 'source.groq',
+                  path: '../../vscode-sanity/grammars/groq.json',
+                },
+              ],
+            }),
+          onVisitLine(node) {
+            // Prevent lines from collapsing in `display: grid` mode, and allow
+            // empty lines to be copy/pasted.
+            if (node.children.length === 0) {
+              node.children = [{ type: 'text', value: ' ' }]
+            }
+          },
+        },
+      ],
+    ],
+  },
+}) //{
 // options: {
 //   providerImportSource: '@mdx-js/react',
 //   remarkPlugins: [stackWrapper],
@@ -37,31 +67,7 @@ const withMdx = mdx() //{
 //         tableOfContents,
 //       }`,
 //     ],
-//     [
-//       rehypePrettyCode,
-//       {
-//         theme: 'material-palenight',
-//         getHighlighter: options =>
-//           getHighlighter({
-//             ...options,
-//             langs: [
-//               ...BUNDLED_LANGUAGES,
-//               {
-//                 id: 'groq',
-//                 scopeName: 'source.groq',
-//                 path: '../../vscode-sanity/grammars/groq.json',
-//               },
-//             ],
-//           }),
-//         onVisitLine(node) {
-//           // Prevent lines from collapsing in `display: grid` mode, and allow
-//           // empty lines to be copy/pasted.
-//           if (node.children.length === 0) {
-//             node.children = [{ type: 'text', value: ' ' }]
-//           }
-//         },
-//       },
-//     ],
+
 //     rehypeToc,
 //     rehypeTocExport,
 //   ],
@@ -103,9 +109,6 @@ export default withVanillaExtract(
         },
       ],
       formats: ['image/avif', 'image/webp'],
-    },
-    experimental: {
-      mdxRs: true,
     },
     async rewrites() {
       return [

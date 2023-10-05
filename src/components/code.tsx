@@ -1,10 +1,18 @@
-import React, { FC, PropsWithChildren } from 'react'
-import { container } from '../styles/code.css'
+import { type ComponentType, type PropsWithChildren } from 'react'
+import { pre, code } from '../styles/code.css'
 
-const Code: FC<PropsWithChildren> = ({ children }) => (
-  <pre className={container()} tabIndex={0}>
-    <code>{children}</code>
-  </pre>
+const Code: ComponentType<PropsWithChildren> = ({ children }) => (
+  <CodeContainer>
+    <CodeInner>{children}</CodeInner>
+  </CodeContainer>
 )
 
 export default Code
+
+export const CodeContainer: ComponentType<PropsWithChildren> = props => (
+  <pre className={pre()} tabIndex={0} {...props} />
+)
+
+export const CodeInner: ComponentType<PropsWithChildren> = props => (
+  <code className={code()} {...props} />
+)
