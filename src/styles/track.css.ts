@@ -37,7 +37,7 @@ export const albumArtwork = recipe({
     display: 'block',
     width: '100%',
     height: 'auto',
-    backgroundColor: 'currentColor',
+    backgroundColor: 'var(--color)',
     clipPath: `polygon(
     0 0,
     calc(100% - 4px) 4px,

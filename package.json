@@ -18,7 +18,7 @@
     "@mdx-js/mdx": "^2.0.0-rc.2",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.5.4",
-    "@sanity/client": "^3.0.3",
+    "@sanity/client": "^6.4.12",
     "@sanity/webhook": "^1.0.2",
     "@stefanprobst/rehype-extract-toc": "^2.2.0",
     "@types/mdx": "^2.0.8",

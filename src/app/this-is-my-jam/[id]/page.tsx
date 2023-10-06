@@ -1,4 +1,5 @@
-import { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import { type ComponentType } from 'react'
+import { notFound } from 'next/navigation'
 import Head from 'next/head'
 import Link from 'next/link'
 import groq from 'groq'
@@ -22,19 +23,52 @@ import { vars } from '../../../theme.css'
 const Level = ({ children }) => <>{children}</>
 
 interface Props {
-  jam: Jam
-  ogImageUrl: string
+  params: {
+    id: string
+  }
 }
 
-// FIXME-APP-DIR
-const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
+const Page: ComponentType<Props> = async ({ params }) => {
+  // FIXME revalidation
+  const jam = await sanity.fetch<Jam>(
+    groq`*[_type == "jam" && _id == $id][0]{
+        _id,
+        date,
+        track->{
+          name,
+          album->{
+            name,
+            "appleMusicImageUrl": coalesce(
+              appleMusicImageUrl,
+              image.asset->url
+            ),
+            'color': image.asset->metadata.palette.dominant.background,
+          },
+          artists[]->{
+            name
+          },
+          'appleMusicUrl': dataByPlatform.appleMusic.url,
+          'spotifyUrl': dataByPlatform.spotify.url,
+          'youtubeUrl': dataByPlatform.youtube.url,
+        }
+      }`,
+    {
+      id: params.id,
+    },
+  )
+
+  if (!jam) {
+    notFound()
+  }
+
   const title = `${jam.track.name} by ${jam.track.artists
     .map(({ name }) => name)
     .join(', ')}`
 
   return (
     <Layout as='main'>
-      <Head>
+      {/* FIXME migrate metadata */}
+      {/*<Head>
         <title>{title} - This is My Jam - Ash</title>
         <meta key='og:image' property='og:image' content={ogImageUrl} />
         <meta key='og:image:width' property='og:image:width' content='1200' />
@@ -46,7 +80,7 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
         />
         <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:image' content={ogImageUrl} />
-      </Head>
+      </Head> */}
       <div
         style={{
           paddingInline: vars.space.medium,
@@ -82,50 +116,3 @@ const Page: NextPage<Props> = ({ jam, ogImageUrl }) => {
 }
 
 export default Page
-
-// FIXME-APP-DIR
-// export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
-//   const jam = await sanity.fetch<Jam>(
-//     groq`*[_type == "jam" && _id == $id][0]{
-//       _id,
-//       date,
-//       track->{
-//         name,
-//         album->{
-//           name,
-//           "appleMusicImageUrl": coalesce(
-//             appleMusicImageUrl,
-//             image.asset->url
-//           ),
-//           'color': image.asset->metadata.palette.dominant.background,
-//         },
-//         artists[]->{
-//           name
-//         },
-//         'appleMusicUrl': dataByPlatform.appleMusic.url,
-//         'spotifyUrl': dataByPlatform.spotify.url,
-//         'youtubeUrl': dataByPlatform.youtube.url,
-//       }
-//     }`,
-//     {
-//       id: params.id,
-//     },
-//   )
-
-//   return {
-//     notFound: typeof jam._id === 'undefined',
-//     props: {
-//       ogImageUrl: `${process.env.NEXT_PUBLIC_OG_IMAGE_SERVICE_URL}/this-is-my-jam/${params.id}/og-image.png`,
-//       jam,
-//     },
-//     revalidate: 3600,
-//   }
-// }
-
-// FIXME-APP-DIR
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return {
-//     paths: [],
-//     fallback: 'blocking',
-//   }
-// }

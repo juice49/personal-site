@@ -1,4 +1,4 @@
-import { NextPage, GetStaticProps } from 'next'
+import { ComponentType } from 'react'
 import Head from 'next/head'
 import groq from 'groq'
 // import { Level } from 'react-accessible-headings'
@@ -37,8 +37,44 @@ function sortDescending([a]: any, [b]: any) {
   return 0
 }
 
-// FIXME-APP-DIR
-const Page: NextPage<Props> = ({ jamsByYear = [] }) => {
+const Page: ComponentType<Props> = async () => {
+  // FIXME revalidate on demand and 3,600 second TTL
+  const jams: Jam[] = await sanity.fetch(groq`*[ _type ==  "jam"]{
+      _id,
+      date,
+      track->{
+        name,
+        album->{
+          name,
+          "appleMusicImageUrl": coalesce(
+            appleMusicImageUrl,
+            image.asset->url
+          ),
+          'color': image.asset->metadata.palette.dominant.background,
+        },
+        artists[]->{
+          name
+        },
+        'appleMusicUrl': dataByPlatform.appleMusic.url,
+        'spotifyUrl': dataByPlatform.spotify.url,
+        'youtubeUrl': dataByPlatform.youtube.url,
+      }
+    } | order(date desc)`)
+
+  const jamsByYearUnsorted = jams.reduce<Record<string, Jam[]>>(
+    (reduced, jam) => {
+      const year = new Date(jam.date).getFullYear()
+
+      return {
+        ...reduced,
+        [year]: [...(reduced[year] ?? []), jam],
+      }
+    },
+    {},
+  )
+
+  const jamsByYear = Object.entries(jamsByYearUnsorted).sort(sortDescending)
+
   return (
     <Layout as='main'>
       <Head>
@@ -46,7 +82,7 @@ const Page: NextPage<Props> = ({ jamsByYear = [] }) => {
       </Head>
       <div
         style={{
-          paddingInline: '$medium',
+          paddingInline: vars.space.medium,
         }}
       >
         <HeadingLevel>
@@ -91,44 +127,3 @@ const Page: NextPage<Props> = ({ jamsByYear = [] }) => {
 }
 
 export default Page
-
-// FIXME-APP-DIR
-// export const getStaticProps: GetStaticProps<Props> = async () => {
-//   const jams: Jam[] = await sanity.fetch(groq`*[ _type ==  "jam"]{
-//     _id,
-//     date,
-//     track->{
-//       name,
-//       album->{
-//         name,
-//         "appleMusicImageUrl": coalesce(
-//           appleMusicImageUrl,
-//           image.asset->url
-//         ),
-//         'color': image.asset->metadata.palette.dominant.background,
-//       },
-//       artists[]->{
-//         name
-//       },
-//       'appleMusicUrl': dataByPlatform.appleMusic.url,
-//       'spotifyUrl': dataByPlatform.spotify.url,
-//       'youtubeUrl': dataByPlatform.youtube.url,
-//     }
-//   } | order(date desc)`)
-
-//   const jamsByYear = jams.reduce<Record<string, Jam[]>>((reduced, jam) => {
-//     const year = new Date(jam.date).getFullYear()
-
-//     return {
-//       ...reduced,
-//       [year]: [...(reduced[year] ?? []), jam],
-//     }
-//   }, {})
-
-//   return {
-//     props: {
-//       jamsByYear: Object.entries(jamsByYear).sort(sortDescending),
-//     },
-//     revalidate: 3600,
-//   }
-// }

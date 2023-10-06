@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import Image from 'next/image'
 import { format } from 'date-fns'
@@ -20,7 +18,7 @@ const Track: React.FC<Props> = ({ jam }) => {
     <article className={container()}>
       <div
         style={{
-          color: jam.track.album.color,
+          '--color': jam.track.album.color,
           gridArea: 'image',
         }}
       >
