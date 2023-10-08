@@ -9,6 +9,10 @@ export async function GET() {
   // TODO: Dynamically switch protocol.
   const response = await fetch(
     `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/feed/html`,
+    // FIXME: Feed generation at build time requires that `feed/html` is ready.
+    {
+      cache: 'no-store',
+    },
   )
 
   const responseHtml = await response.text()
