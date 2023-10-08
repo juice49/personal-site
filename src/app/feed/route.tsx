@@ -7,11 +7,21 @@ export async function GET() {
   const posts = await postApi.getAll()
 
   // TODO: Dynamically switch protocol.
+  //
+  // Why does this cache have a TTL? The data never changes outside of a
+  // deployment, but the `feed/html` route isn't ready to fetch when
+  // prerendering occurs during build. Therefore, the cache must be revalidated
+  // at least once, shortly after deployment, to make sure `content_html` is
+  // populated.
+  //
+  // This is rather wasteful, and could be better solved using a post-deploy
+  // webhook combined with on-demand revalidation.
   const response = await fetch(
     `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/feed/html`,
-    // FIXME: Feed generation at build time requires that `feed/html` is ready.
     {
-      cache: 'no-store',
+      next: {
+        revalidate: 60,
+      },
     },
   )
 
@@ -48,5 +58,3 @@ export async function GET() {
 
   return Response.json(feed)
 }
-
-export const dynamic = 'force-dynamic'
