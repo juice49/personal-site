@@ -3,6 +3,7 @@ import Blockquote from '../src/components/blockquote'
 import { heading } from './styles/heading.css'
 import { note } from './styles/note.css'
 import { CodeContainer, CodeInner } from './components/code'
+import ContentImage from './components/content-image'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -19,5 +20,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     pre: CodeContainer,
     code: CodeInner,
     inlineCode: 'h1',
+    Image: ContentImage,
   }
 }
