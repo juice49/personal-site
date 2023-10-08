@@ -1,4 +1,3 @@
-import { merge } from 'webpack-merge'
 import mdx from '@next/mdx'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
@@ -131,20 +130,5 @@ export default withVanillaExtract(
         },
       ]
     },
-    webpack: (config, options) =>
-      merge(config, {
-        async entry() {
-          if (!options.isServer || options.nextRuntime !== 'nodejs') {
-            return config.entry
-          }
-
-          const entry = await config.entry()
-
-          return {
-            ...entry,
-            'render-json-feed': './src/scripts/render-json-feed.tsx',
-          }
-        },
-      }),
   }),
 )
