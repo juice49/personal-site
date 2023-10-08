@@ -5,7 +5,12 @@ import * as postApi from '../../lib/post-api'
 // TODO: Configure caching.
 export async function GET() {
   const posts = await postApi.getAll()
-  const response = await fetch('http://localhost:3000/feed/html')
+
+  // TODO: Dynamically switch protocol.
+  const response = await fetch(
+    `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/feed/html`,
+  )
+
   const responseHtml = await response.text()
   const renderedPosts = parse(responseHtml)
 
