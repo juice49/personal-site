@@ -113,12 +113,10 @@ In Sanity, an [id segmented by periods is known as a _path_](https://www.sanity.
   cite='Sanity documentation'
   citeUrl='https://www.sanity.io/docs/ids'
 >
-  <p>
-    The default, fixed access control rules give unauthenticated users read
-    access to documents under the root path only, which means that it is not
-    possible to make documents under a sub-path (i.e. containing a . in the ID)
-    publicly available.
-  </p>
+  The default, fixed access control rules give unauthenticated users read access
+  to documents under the root path only, which means that it is not possible to
+  make documents under a sub-path (i.e. containing a . in the ID) publicly
+  available.
 </Blockquote>
 
 Aha! That explains the problem. When I namespaced the document ids, I inadvertently made them private.
