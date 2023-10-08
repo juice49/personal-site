@@ -48,3 +48,5 @@ export async function GET() {
 
   return Response.json(feed)
 }
+
+export const dynamic = 'force-dynamic'
