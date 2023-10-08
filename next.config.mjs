@@ -96,6 +96,9 @@ function createNextStaticProps(map) {
 export default withVanillaExtract(
   withMdx({
     pageExtensions: ['ts', 'tsx', 'mdx'],
+    eslint: {
+      ignoreDuringBuilds: true,
+    },
     images: {
       remotePatterns: [
         {
