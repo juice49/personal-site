@@ -1,4 +1,4 @@
-import { ComponentType } from 'react'
+import { type ComponentType, type PropsWithChildren } from 'react'
 import Head from 'next/head'
 import groq from 'groq'
 // import { Level } from 'react-accessible-headings'
@@ -17,7 +17,9 @@ import { stack, stackBlockGapVar } from '../../styles/stack.css'
 import { vars } from '../../theme.css'
 
 // FIXME-APP-DIR
-const Level = ({ children }) => <>{children}</>
+const Level: ComponentType<PropsWithChildren> = ({ children }) => (
+  <>{children}</>
+)
 
 type JamsByYear = [year: string, jams: Jam[]][]
 

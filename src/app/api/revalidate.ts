@@ -1,4 +1,4 @@
-import { NextApiHandler } from 'next'
+import { NextApiHandler, NextApiRequest } from 'next'
 import { isValidRequest } from '@sanity/webhook'
 
 type DocumentType = 'track' | 'jam'
@@ -16,10 +16,24 @@ const strategyMap: Record<DocumentType, Strategy> = {
 }
 
 const revalidate: NextApiHandler = async (req, res) => {
+  if (typeof process.env.REVALIDATE_WEBHOOK_SECRET === 'undefined') {
+    return res.status(500).json({
+      success: false,
+      message: 'Secret missing',
+    })
+  }
+
   if (!isValidRequest(req, process.env.REVALIDATE_WEBHOOK_SECRET)) {
     return res.status(401).json({
       success: false,
       message: 'Invalid signature',
+    })
+  }
+
+  if (!isRevalidationRequest(req)) {
+    return res.status(400).json({
+      success: false,
+      message: 'Invalid request',
     })
   }
 
@@ -41,3 +55,18 @@ const revalidate: NextApiHandler = async (req, res) => {
 }
 
 export default revalidate
+
+function isRevalidationRequest(request: NextApiRequest): request is Omit<
+  NextApiRequest,
+  'body'
+> & {
+  body: {
+    _type: DocumentType
+    _id: string
+  }
+} {
+  return (
+    ['track', 'jam'].includes(request.body._type) &&
+    typeof request.body._id === 'string'
+  )
+}

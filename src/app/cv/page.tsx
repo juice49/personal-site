@@ -13,9 +13,12 @@ import HeadingLevel from '../../components/heading-level'
 import { skillList, contactList, contactListItem } from '../../styles/cv.css'
 import { stack, stackBlockGapVar } from '../../styles/stack.css'
 import { vars } from '../../theme.css'
+import { type PropsWithChildren, type ComponentType } from 'react'
 
 // FIXME-APP-DIR
-const Level = ({ children }) => <>{children}</>
+const Level: ComponentType<PropsWithChildren> = ({ children }) => (
+  <>{children}</>
+)
 
 const Page: NextPage = () => (
   <Layout as='main'>

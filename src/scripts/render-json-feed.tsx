@@ -1,10 +1,42 @@
-import React from 'react'
+import React, { type PropsWithChildren } from 'react'
 import ReactDOMServer from 'react-dom/server'
 import Image from 'next/image'
 import Feed from '@json-feed-types/1_1'
 import { MDXProvider } from '@mdx-js/react'
 import * as postApi from '../lib/post-api'
-import MDXComponents from '../mdx-components'
+import { useMDXComponents } from '../mdx-components'
+
+declare module 'react' {
+  interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+    'data-language'?: string
+  }
+}
+
+const MDXComponents = useMDXComponents({
+  code: function CodeComponent({
+    children,
+    ...props
+  }: PropsWithChildren<{
+    'data-language'?: string
+  }>) {
+    if (typeof props['data-language'] === 'undefined') {
+      return <code>{children}</code>
+    }
+
+    return (
+      <pre>
+        <code>{children}</code>
+      </pre>
+    )
+  },
+  Blockquote: ({ children }) => (
+    <blockquote>
+      <p>{children}</p>
+    </blockquote>
+  ),
+  Image,
+})
+
 ;(async () => {
   const posts = await postApi.getAll()
 
@@ -30,28 +62,7 @@ import MDXComponents from '../mdx-components'
       date_published: post.meta.date,
       tags: post.meta.tags,
       content_html: ReactDOMServer.renderToStaticMarkup(
-        <MDXProvider
-          components={{
-            ...MDXComponents,
-            code: function CodeComponent({ children, ...props }) {
-              if (typeof props['data-language'] === 'undefined') {
-                return <code>{children}</code>
-              }
-
-              return (
-                <pre>
-                  <code>{children}</code>
-                </pre>
-              )
-            },
-            Blockquote: ({ children }) => (
-              <blockquote>
-                <p>{children}</p>
-              </blockquote>
-            ),
-            Image,
-          }}
-        >
+        <MDXProvider components={MDXComponents}>
           <post.source />
         </MDXProvider>,
       ),

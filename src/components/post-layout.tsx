@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import React, { FC, PropsWithChildren } from 'react'
+import React, { type ComponentType, FC, type PropsWithChildren } from 'react'
 // import { Level } from 'react-accessible-headings'
 import { Toc } from '@stefanprobst/rehype-extract-toc'
 import { PostMeta } from '../types/post'
@@ -20,7 +20,9 @@ interface Props {
 }
 
 // FIXME-APP-DIR
-const Level = ({ children }) => <>{children}</>
+const Level: ComponentType<PropsWithChildren> = ({ children }) => (
+  <>{children}</>
+)
 
 const PostLayout: FC<PropsWithChildren<Props>> = ({
   children,

@@ -109,7 +109,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
       }
     }`,
     {
-      id: params.id,
+      id: params?.id,
     },
   )
 

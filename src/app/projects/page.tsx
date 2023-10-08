@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react'
+import { type ComponentType, FC, type PropsWithChildren } from 'react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 // import { Level } from 'react-accessible-headings'
@@ -17,7 +17,9 @@ import { stack, stackBlockGapVar } from '../../styles/stack.css'
 import { vars } from '../../theme.css'
 
 // FIXME-APP-DIR
-const Level = ({ children }) => <>{children}</>
+const Level: ComponentType<PropsWithChildren> = ({ children }) => (
+  <>{children}</>
+)
 
 const Page: NextPage = () => (
   <Layout as='main'>
@@ -38,10 +40,11 @@ const Page: NextPage = () => (
                   heading={project.name}
                   description={project.description}
                   link={
-                    project.slug &&
-                    !project.externalUrl && {
-                      href: `/projects/${project.slug}`,
-                    }
+                    project.slug && !project.externalUrl
+                      ? {
+                          href: `/projects/${project.slug}`,
+                        }
+                      : undefined
                   }
                   externalUrl={project.externalUrl}
                 />
@@ -66,10 +69,11 @@ const Page: NextPage = () => (
                     heading={misc.name}
                     description={misc.description}
                     link={
-                      misc.slug &&
-                      !misc.externalUrl && {
-                        href: `/projects/${misc.slug}`,
-                      }
+                      misc.slug && !misc.externalUrl
+                        ? {
+                            href: `/projects/${misc.slug}`,
+                          }
+                        : undefined
                     }
                     externalUrl={misc.externalUrl}
                   />

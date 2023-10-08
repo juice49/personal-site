@@ -30,7 +30,9 @@ import { stack, stackBlockGapVar } from '../styles/stack.css'
 import { vars } from '../theme.css'
 
 // FIXME-APP-DIR
-const Level = ({ children }) => <>{children}</>
+const Level: ComponentType<PropsWithChildren> = ({ children }) => (
+  <>{children}</>
+)
 
 // FIXME-APP-DIR
 const Page: ComponentType = async () => {
@@ -166,7 +168,7 @@ const Page: ComponentType = async () => {
                         column={post.column ?? post?.tags?.[0]}
                         date={post.date}
                         title={post.title}
-                        description={post.description}
+                        description={post.description ?? ''}
                         link={{
                           href: `/posts/${post.slug}`,
                         }}
@@ -208,10 +210,11 @@ const Page: ComponentType = async () => {
                       heading={project.name}
                       description={project.description}
                       link={
-                        project.slug &&
-                        !project.externalUrl && {
-                          href: `/projects/${project.slug}`,
-                        }
+                        project.slug && !project.externalUrl
+                          ? {
+                              href: `/projects/${project.slug}`,
+                            }
+                          : undefined
                       }
                       externalUrl={project.externalUrl}
                     />
@@ -230,10 +233,11 @@ const Page: ComponentType = async () => {
                     heading={misc.name}
                     description={misc.description}
                     link={
-                      misc.slug &&
-                      !misc.externalUrl && {
-                        href: `/projects/${misc.slug}`,
-                      }
+                      misc.slug && !misc.externalUrl
+                        ? {
+                            href: `/projects/${misc.slug}`,
+                          }
+                        : undefined
                     }
                     externalUrl={misc.externalUrl}
                   />

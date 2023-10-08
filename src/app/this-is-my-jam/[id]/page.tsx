@@ -1,4 +1,4 @@
-import { type ComponentType } from 'react'
+import { type PropsWithChildren, type ComponentType } from 'react'
 import { notFound } from 'next/navigation'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -20,7 +20,9 @@ import { stack, stackBlockGapVar } from '../../../styles/stack.css'
 import { vars } from '../../../theme.css'
 
 // FIXME-APP-DIR
-const Level = ({ children }) => <>{children}</>
+const Level: ComponentType<PropsWithChildren> = ({ children }) => (
+  <>{children}</>
+)
 
 interface Props {
   params: {

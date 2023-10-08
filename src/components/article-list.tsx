@@ -43,12 +43,12 @@ export const ArticleListItem: FC<PropsWithChildren<ArticleListItemProps>> = ({
   link,
   externalUrl,
 }) => {
-  let BlockLink: ComponentType<ComponentProps<typeof Link>> = props => (
+  let BlockLink: ComponentType<PropsWithChildren> = props => (
     <React.Fragment {...props} />
   )
 
   if (link) {
-    BlockLink = ArticleLink
+    BlockLink = props => <ArticleLink {...props} {...link} />
   }
 
   if (externalUrl) {
@@ -67,7 +67,7 @@ export const ArticleListItem: FC<PropsWithChildren<ArticleListItemProps>> = ({
         paddingInline: '$small',
       }}
     >
-      <BlockLink {...link}>
+      <BlockLink>
         <div
           className={stack({ block: true })}
           style={{

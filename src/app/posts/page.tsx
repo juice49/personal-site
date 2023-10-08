@@ -1,4 +1,4 @@
-import React, { type ComponentType } from 'react'
+import React, { type PropsWithChildren, type ComponentType } from 'react'
 import Link from 'next/link'
 // import { Level } from 'react-accessible-headings'
 import * as postApi from '../../lib/post-api'
@@ -20,7 +20,9 @@ import { stack, stackBlockGapVar } from '../../styles/stack.css'
 import { vars } from '../../theme.css'
 
 // FIXME-APP-DIR
-const Level = ({ children }) => <>{children}</>
+const Level: ComponentType<PropsWithChildren> = ({ children }) => (
+  <>{children}</>
+)
 
 // FIXME-APP-DIR
 const Page: ComponentType = async () => {
@@ -84,7 +86,7 @@ const Page: ComponentType = async () => {
                         column={post.column ?? post?.tags?.[0]}
                         date={post.date}
                         title={post.title}
-                        description={post.description}
+                        description={post.description ?? ''}
                         link={{
                           href: `/posts/${post.slug}`,
                         }}

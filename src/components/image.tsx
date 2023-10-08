@@ -23,7 +23,7 @@ const Image: React.FC<Props> = ({
 }) => {
   const [hasLoaded, setHasLoaded] = useState<boolean>(false)
 
-  const ref = useCallback(image => {
+  const ref = useCallback<(image: HTMLImageElement) => void>(image => {
     if (image?.complete) {
       setHasLoaded(true)
     }

@@ -3,8 +3,8 @@
 // TODO: Move to Monstera.
 // type VariantMixin<T> = (variants: Record<T, string>) => Mixin<{ variant: T }, string>
 
-const variants = (definitions, propName = 'variant') => props => {
-  return definitions[props[propName]]
-}
+// const variants = (definitions, propName = 'variant') => props => {
+//   return definitions[props[propName]]
+// }
 
-export default variants
+// export default variants
