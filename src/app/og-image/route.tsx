@@ -1,43 +1,9 @@
 import { ImageResponse } from 'next/server'
 import { format } from 'date-fns'
+import loadSatoriFonts from '../../lib/load-satori-fonts'
+import { colors, space, fontSizes } from '../../lib/og-image'
 
 export const runtime = 'edge'
-
-const colors = {
-  background: 'rgb(253, 206, 245)',
-  foreground: '#fff',
-  bodySubtle: 'rgb(69, 68, 68)',
-  accentA: '#090efe',
-}
-
-const space = {
-  1: 24,
-  2: 58,
-}
-
-const fontSizes = {
-  small: 21,
-  regular: 23,
-  medium: 30,
-  large: 53,
-}
-
-type FontFiles<FontPaths extends string[]> = {
-  [FontFile in keyof FontPaths]: ArrayBuffer
-}
-
-function loadFonts<FontPaths extends string[]>(
-  ...fontPaths: FontPaths
-): Promise<FontFiles<FontPaths>> {
-  return Promise.all(
-    fontPaths
-      .map(path =>
-        [`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/fonts`, path].join('/'),
-      )
-      .map(url => fetch(url))
-      .map(request => request.then(response => response.arrayBuffer())),
-  ) as Promise<FontFiles<FontPaths>>
-}
 
 export async function GET(request: Request) {
   const url = new URL(request.url)
@@ -45,7 +11,7 @@ export async function GET(request: Request) {
   const date = url.searchParams.get('date')
 
   const [ptRootUiRegular, ptRootUiBold, zangeziSansBlack, jetBrainsMono] =
-    await loadFonts(
+    await loadSatoriFonts(
       'pt-root-ui/pt-root-ui_regular.ttf',
       'pt-root-ui/pt-root-ui_bold.ttf',
       'zangezi-sans-0.9/ZangeziSans09-Black.woff',
