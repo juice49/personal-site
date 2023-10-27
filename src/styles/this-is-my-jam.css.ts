@@ -3,7 +3,6 @@ import { vars } from '../theme.css'
 
 export const list = recipe({
   base: {
-    // xxx test me
     '& > * + *': {
       marginBlockStart: `calc(${vars.space[4]} * 0.5)`,
       paddingBlockStart: `calc(${vars.space[4]} * 0.5)`,
