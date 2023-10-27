@@ -24,7 +24,6 @@ const Level: ComponentType<PropsWithChildren> = ({ children }) => (
   <>{children}</>
 )
 
-// FIXME-APP-DIR
 const Page: ComponentType = async () => {
   const posts = (await postApi.getAll()).map(post => post.meta)
   const featurePostLimit = 6
