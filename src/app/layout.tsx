@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 import localFont from 'next/font/local'
 import { theme } from '../theme.css'
+import { ogImage } from '../lib/og-image'
 
 const title = 'Ash - full stack web developer'
 
@@ -11,6 +12,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title,
+    images: ogImage({
+      title:
+        'I like to make things—usually with web technologies, and usually for the web.',
+    }),
   },
   alternates: {
     types: {

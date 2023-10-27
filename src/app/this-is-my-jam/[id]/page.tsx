@@ -1,6 +1,6 @@
+import { type Metadata } from 'next'
 import { type PropsWithChildren, type ComponentType } from 'react'
 import { notFound } from 'next/navigation'
-import Head from 'next/head'
 import Link from 'next/link'
 import groq from 'groq'
 // import { Level } from 'react-accessible-headings'
@@ -24,15 +24,9 @@ const Level: ComponentType<PropsWithChildren> = ({ children }) => (
   <>{children}</>
 )
 
-interface Props {
-  params: {
-    id: string
-  }
-}
-
-const Page: ComponentType<Props> = async ({ params }) => {
-  // FIXME revalidation
-  const jam = await sanity.fetch<Jam>(
+// FIXME revalidation
+function fetchJam(id: string): Promise<Jam> {
+  return sanity.fetch<Jam>(
     groq`*[_type == "jam" && _id == $id][0]{
         _id,
         date,
@@ -55,34 +49,26 @@ const Page: ComponentType<Props> = async ({ params }) => {
         }
       }`,
     {
-      id: params.id,
+      id,
     },
   )
+}
+
+interface Props {
+  params: {
+    id: string
+  }
+}
+
+const Page: ComponentType<Props> = async ({ params }) => {
+  const jam = await fetchJam(params.id)
 
   if (!jam) {
     notFound()
   }
 
-  const title = `${jam.track.name} by ${jam.track.artists
-    .map(({ name }) => name)
-    .join(', ')}`
-
   return (
     <Layout as='main'>
-      {/* FIXME migrate metadata */}
-      {/*<Head>
-        <title>{title} - This is My Jam - Ash</title>
-        <meta key='og:image' property='og:image' content={ogImageUrl} />
-        <meta key='og:image:width' property='og:image:width' content='1200' />
-        <meta key='og:image:height' property='og:image:height' content='600' />
-        <meta
-          key='og:title'
-          property='og:title'
-          content={`This is My Jam: ${title}`}
-        />
-        <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:image' content={ogImageUrl} />
-      </Head> */}
       <div
         style={{
           paddingInline: vars.space.medium,
@@ -118,3 +104,23 @@ const Page: ComponentType<Props> = async ({ params }) => {
 }
 
 export default Page
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const jam = await fetchJam(params.id)
+
+  const title = `${jam.track.name} by ${jam.track.artists
+    .map(({ name }) => name)
+    .join(', ')}`
+
+  return {
+    title: `${title} - This is My Jam - Ash`,
+    openGraph: {
+      title,
+      images: {
+        width: 1200,
+        height: 600,
+        url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/this-is-my-jam/${params.id}/og-image`,
+      },
+    },
+  }
+}

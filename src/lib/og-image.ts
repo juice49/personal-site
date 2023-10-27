@@ -16,3 +16,24 @@ export const fontSizes = {
   medium: 30,
   large: 53,
 }
+
+interface OgImageProps {
+  title: string
+  date?: string
+}
+
+export function ogImage(props: OgImageProps): {
+  url: string
+  width: number
+  height: number
+} {
+  const searchParams = new URLSearchParams({
+    ...props,
+  })
+
+  return {
+    url: `${process.env.NEXT_PUBLIC_VERCEL_URL}/og-image?${searchParams}`,
+    width: 1200,
+    height: 600,
+  }
+}

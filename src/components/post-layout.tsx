@@ -8,7 +8,6 @@ import { standardGrid, standardGridContent } from '../styles/standard-grid.css'
 import box from '../styles/box.css'
 import PostHeader from './post-header'
 import Tag from './tag'
-import OgImageMeta from './og-image-meta'
 import TableOfContents from './table-of-contents'
 import { tableOfContentsContainer } from '../styles/post-layout.css'
 import { stack, stackBlockGapVar } from '../styles/stack.css'
@@ -38,7 +37,6 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
           <title>{title}</title>
           <meta key='og:title' property='og:title' content={title} />
         </Head>
-        <OgImageMeta title={meta.title} date={meta.date} />
         <div
           className={box({ mw: 1 })}
           style={{

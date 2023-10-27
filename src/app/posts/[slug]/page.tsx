@@ -1,6 +1,7 @@
 import { type ComponentType } from 'react'
 import { type Metadata } from 'next'
 import PostLayout from '../../../components/post-layout'
+import { ogImage } from '../../../lib/og-image'
 
 interface Props {
   params: {
@@ -21,15 +22,18 @@ const Page: ComponentType<Props> = async ({ params }) => {
 
 export default Page
 
-// FIXME NEXT_RSC_ERR_CLIENT_METADATA_EXPORT: generateMetadata
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   const { meta } = await import(`../${params.slug}.mdx`)
-//   const title = `${meta.title} - Ash`
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { meta } = await import(`../${params.slug}.mdx`)
+  const title = `${meta.title} - Ash`
 
-//   return {
-//     title,
-//     openGraph: {
-//       title,
-//     },
-//   }
-// }
+  return {
+    title,
+    openGraph: {
+      title,
+      images: ogImage({
+        title: meta.title,
+        date: meta.date,
+      }),
+    },
+  }
+}
