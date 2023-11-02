@@ -7,11 +7,12 @@ import Layout from './layout'
 import { standardGrid, standardGridContent } from '../styles/standard-grid.css'
 import box from '../styles/box.css'
 import PostHeader from './post-header'
-import Tag from './tag'
+import { tag } from '../styles/tag.css'
 import TableOfContents from './table-of-contents'
 import { tableOfContentsContainer } from '../styles/post-layout.css'
 import { stack, stackBlockGapVar } from '../styles/stack.css'
 import { vars } from '../theme.css'
+import { tagList } from '../styles/tag-list.css'
 
 interface Props {
   meta: PostMeta
@@ -74,21 +75,16 @@ const PostLayout: FC<PropsWithChildren<Props>> = ({
             </div>
           </div>
         </div>
-        <Tags>
-          {(meta.tags ?? []).map(tag => (
-            <Tag key={tag}>{tag}</Tag>
+        <ul className={[tagList(), stack({ inline: true })].join(' ')}>
+          {(meta.tags ?? []).map(tagName => (
+            <li key={tagName} className={tag()}>
+              {tagName}
+            </li>
           ))}
-        </Tags>
+        </ul>
       </Level>
     </Layout>
   )
 }
 
 export default PostLayout
-
-// FIXME
-const Tags = 'div'
-// const Tags = styled('div', {
-//   textAlign: 'center',
-//   stackInline: '$small',
-// })

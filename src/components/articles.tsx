@@ -1,13 +1,13 @@
 import Link, { LinkProps } from 'next/link'
 import React from 'react'
 import { format } from 'date-fns'
-import Tag from './tag'
 import text from '../styles/text.css'
 import { heading } from '../styles/heading.css'
 import { articleLink, meta } from '../styles/articles.css'
 import HeadingLevel from './heading-level'
 import { stack, stackBlockGapVar, stackInlineGapVar } from '../styles/stack.css'
 import { vars } from '../theme.css'
+import { tag } from '../styles/tag.css'
 
 interface ArticleProps {
   column?: string
@@ -38,7 +38,7 @@ export const Article: React.FC<ArticleProps> = ({
         [stackInlineGapVar]: vars.space.small,
       }}
     >
-      {column && <Tag>{column}</Tag>}
+      {column && <span className={tag()}>{column}</span>}
       <DateTime dateTime={date} />
     </div>
     <Link {...link} className={articleLink()}>
